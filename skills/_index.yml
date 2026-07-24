@@ -1,0 +1,31 @@
+generated: '2026-06-20'
+method: generated
+skills:
+- file: fat-zebra-accept-a-card-payment.md
+  name: Accept a card payment
+  api: openapi/fat-zebra-gateway.json
+  operations:
+  - create-a-purchase-with-fraud-screening-1
+  - fetch-a-purchase
+- file: fat-zebra-authorize-and-capture.md
+  name: Authorize then capture
+  api: openapi/fat-zebra-gateway.json
+  operations:
+  - create-an-authorization
+  - capture-an-authorization
+  - release-an-authorization
+- file: fat-zebra-tokenize-and-charge.md
+  name: Tokenize a card and charge it
+  api: openapi/fat-zebra-gateway.json
+  operations:
+  - tokenize-a-card
+  - create-a-purchase-with-a-token-1
+  - create-a-payment-plan
+- file: fat-zebra-board-a-submerchant.md
+  name: Board a sub-merchant (Partner API)
+  api: openapi/fat-zebra-partner.json
+  operations:
+  - createMerchant
+  - boardAcquirer
+  - activateMerchant
+  - listMerchants

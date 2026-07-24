@@ -1,0 +1,113 @@
+# Fat Zebra Documentation Documentation
+
+> Find comprehensive guides and documentation to help you start working with the Fat Zebra API as quickly as possible.
+
+## Guides
+- [Addendum Data](https://docs.fatzebra.com/docs/addendum-data.md)
+- [3D Secure Card Payments](https://docs.fatzebra.com/docs/3d-secure.md)
+- [Payment Aggregators](https://docs.fatzebra.com/docs/payment-aggregators.md)
+- [Merchant Initiated Transaction](https://docs.fatzebra.com/docs/merchant-initiated-transaction.md)
+- [Apple Pay Onboarding via Merchant Dashboard](https://docs.fatzebra.com/docs/apple-pay-onboarding-via-merchant-dashboard.md)
+- [Apple Pay (app) Certificate Renewal](https://docs.fatzebra.com/docs/apple-pay-certificate-renewal.md)
+- [Google Pay™](https://docs.fatzebra.com/docs/google-pay.md): A faster, safer way to pay. Google Pay™ allows your customers to securely and quickly check out in apps and on the web.
+- [Web Integration](https://docs.fatzebra.com/docs/web-integration.md): Instructions detailing how to integrate Google Pay™ into your Website using Fat Zebra as your gateway
+- [Google Pay Merchant ID](https://docs.fatzebra.com/docs/google-pay-merchant-id.md)
+- [Third Party Network Tokens](https://docs.fatzebra.com/docs/third-party-network-tokens.md): Fat Zebra allows the use of third party network tokens for Mastercard or Visa through the MDES and VTS program.
+- [React SDK - Overview](https://docs.fatzebra.com/docs/react-sdk-overview.md)
+- [Types](https://docs.fatzebra.com/docs/types.md)
+- [Javascript SDK Features](https://docs.fatzebra.com/docs/javascript-sdk-features.md)
+- [renderPaymentsPage](https://docs.fatzebra.com/docs/renderpaymentspage.md)
+- [PaymentIntent](https://docs.fatzebra.com/docs/paymentintent.md)
+- [HppSetupParams](https://docs.fatzebra.com/docs/hppsetupparams.md)
+- [Events](https://docs.fatzebra.com/docs/events-1.md)
+- [Form Validation (V2)](https://docs.fatzebra.com/docs/form-validation.md): Error messages that can be used to indicate which payment form fields have invalid data.
+- [Validation](https://docs.fatzebra.com/docs/validation.md): Error messages can be produced when incorrect data is passed to JS SDK methods
+- [Event Listeners](https://docs.fatzebra.com/docs/event-listeners.md): Subscribe to events
+- [Using Hosted Payments Page](https://docs.fatzebra.com/docs/using-hosted-payments-page.md)
+- [3DS Cards for Testing](https://docs.fatzebra.com/docs/testing.md)
+- [Suspended & Cancelled Merchants](https://docs.fatzebra.com/docs/suspended-merchants.md): Suspended & Cancelled Merchant Login Behaviour
+- [Create Payment Link](https://docs.fatzebra.com/docs/create-payment-link.md)
+- [Subscribe to reports via email](https://docs.fatzebra.com/docs/receive-reports-by-email-copy.md)
+- [Users](https://docs.fatzebra.com/docs/users.md)
+- [User Permissions](https://docs.fatzebra.com/docs/user-permissions.md): User permissions can be set to give users access to various parts of the system.
+- [Invite Users](https://docs.fatzebra.com/docs/invite-users.md)
+- [Editing User Permissions](https://docs.fatzebra.com/docs/editing-user-permissions.md)
+- [Revoking User Access](https://docs.fatzebra.com/docs/revoking-user-access.md)
+- [Changing Current User's Access Level](https://docs.fatzebra.com/docs/changing-users-from-admin-to-standard-and-vise-versa.md): from Admin to Standard and vise versa
+- [Introduction](https://docs.fatzebra.com/docs/introduction.md)
+- [Authentication](https://docs.fatzebra.com/docs/authentication-1.md)
+- [Conventions](https://docs.fatzebra.com/docs/conventions.md)
+- [Boarding a merchant](https://docs.fatzebra.com/docs/boarding-a-merchant.md)
+- [Managing acquirer connections](https://docs.fatzebra.com/docs/managing-acquirer-connections.md)
+- [Merchant lifecycle](https://docs.fatzebra.com/docs/merchant-lifecycle.md)
+- [Users and SSO](https://docs.fatzebra.com/docs/users-and-sso.md)
+- [Errors and troubleshooting](https://docs.fatzebra.com/docs/errors-and-troubleshooting.md)
+
+## API Reference
+- [Purchases](https://docs.fatzebra.com/reference/purchases.md)
+- [Create a purchase using a wallet](https://docs.fatzebra.com/reference/create-a-purchase-with-wallet.md)
+- [Create a purchase using a network token passthrough](https://docs.fatzebra.com/reference/create-a-purchase-using-token-passthough.md)
+- [Create a purchase using a wallet passthrough](https://docs.fatzebra.com/reference/create-a-purchase-using-wallet-passthrough.md)
+- [Create a purchase with a token](https://docs.fatzebra.com/reference/create-a-purchase-with-a-token-1.md)
+- [Create an authorization](https://docs.fatzebra.com/reference/create-an-authorization.md)
+- [Capture an authorization](https://docs.fatzebra.com/reference/capture-an-authorization.md): Please note, If the outer successful field is false, it means the capture was rejected at the gateway level and the errors array needs to be looked at to confirm why it failed.
+- [Delete an MDES Token Connect tokenized card](https://docs.fatzebra.com/reference/delete-an-mdes-token-connect-tokenized-card.md): Deactivates a scheme-tokenized card. Currently only supported for cards tokenized via MDES Token Connect; other card types return a 400.
+- [Tokenize a card](https://docs.fatzebra.com/reference/tokenize-a-card-1.md): Tokenizes a card within the system, returning a token that can be used for subsequent transactions.
+- [Create a customer](https://docs.fatzebra.com/reference/create-a-customer.md): Please note, one payment method field is required, either card, card_token or bank_account.
+- [Create a payment plan](https://docs.fatzebra.com/reference/create-a-payment-plan.md)
+- [Update a payment plan](https://docs.fatzebra.com/reference/update-a-payment-plan.md): A Payment Plan's status can only be updated to Cancelled, Suspended or Active. For a suspended plan it is possible to set a date the plan is suspended until.   When a plan is suspended, any pending payments will be removed. If the plan is resumed, the pending payments will be re-created to meet the plan's constraints.   Note: Payment plan must be active for any other attributes to be updated.
+- [Fetch a payout's transactions for date](https://docs.fatzebra.com/reference/fetch-a-payout-report-for-date-transactions.md)
+- [Health Check](https://docs.fatzebra.com/reference/health-check.md): An optional health check end point.
+- [/health](https://docs.fatzebra.com/reference/health-check-1.md)
+- [Apple Pay on the Web - Domain Registration](https://docs.fatzebra.com/reference/merchant-registration.md)
+- [List Apple Pay (web) domains](https://docs.fatzebra.com/reference/list-apple-pay-web-domains.md)
+- [V2 - Overview](https://docs.fatzebra.com/reference/hosted-payment-pages.md): Fat Zebra provides a hosted payment page for merchants who wish to remove all PCI-DSS scope from their systems. This is known commercially as PayNow. Please note that merchants and service providers are required to complete Self-Assessment Questionnaire A to adhere to PCI DSS Compliance.
+- [V3 - Overview](https://docs.fatzebra.com/reference/v3-overview.md): Fat Zebra provides a hosted payment page for merchants who wish to remove all PCI-DSS scope from their systems. This is known commercially as PayNow. Please note that merchants and service providers are required to complete Self-Assessment Questionnaire A to adhere to PCI DSS Compliance.
+- [Click to Pay - Configuration](https://docs.fatzebra.com/reference/click-to-pay-configuration.md)
+- [Click to Pay - Hosted Payment Page](https://docs.fatzebra.com/reference/click-to-pay-hosted-payment-page.md)
+- [Click to Pay - iFrame Embed](https://docs.fatzebra.com/reference/click-to-pay-iframe-embed.md)
+- [Click to Pay - JavaScript SDK](https://docs.fatzebra.com/reference/click-to-pay-javascript-sdk.md)
+- [Click to Pay - Test Card Numbers](https://docs.fatzebra.com/reference/click-to-pay-test-card-numbers.md)
+- [Auth + partner resolution canary](https://docs.fatzebra.com/reference/ping.md): Smoke-tests auth and partner resolution. Returns `{ "ok": true }` on success.
+- [Show the authenticated partner (self)](https://docs.fatzebra.com/reference/showself.md): Returns the partner object: id, name, status, environment, branding, and defaults.
+- [Rotate the partner's own API token](https://docs.fatzebra.com/reference/rotateselfcredentials.md): Rotates the partner's API `token`. No body is expected. The fresh value is returned once — the previous token stops working immediately, so the caller must store the response.
+- [List the partner's merchants](https://docs.fatzebra.com/reference/listmerchants.md): Returns the partner's merchants newest-first in the list envelope. Each item is a summary (username only) — fetch the full merchant via `GET /merchants/{username}`.
+- [Create a merchant](https://docs.fatzebra.com/reference/createmerchant.md): Creates a merchant. By default (no `acquirers` in the body) the merchant is identity-only: `status` is `pending`, no processing connection is attached, and a fresh API token is generated. The merchant can't take payments until a processing connection is boarded and the merchant is activated. Pass an `acquirers` array to create and board in one call (see **Combined create-and-board** below).  The response is `201` with the merchant object and a one-time `credentials.token`. The token is shown once here and never again on reads — store it.  `username` may be omitted; one is derived from the trading/business name. Either way the stored username is prefixed with the partner's reseller prefix.  A create is rejected with `409 conflict` (`"merchant exists"`) when this partner already has a merchant with the same ABN, business name and trading name — a repeated submit of the same business. A shared ABN alone is allowed: it creates a new merchant.  **Combined create-and-board.** When the body carries an `acquirers` array, the merchant is created, every named acquirer is boarded, and the merchant is activated — all in one call. If any acquirer can't be boarded the whole request fails and nothing is created: no merchant, no connections. The failure is reported the same way as the standalone board endpoint:  * `422 validation_error` — something the caller can fix: an unsupported   currency or card type, a duplicate/missing `merchant_id`, no processor   supports the acquirer for the requested currencies, or a processor   rejecting a field (e.g. the MID). `fields` names the offending field. * `422 processor_error` — an unactionable upstream failure: a processor   was unreachable, busy, or rejected the board for a reason the caller   can't fix. `fields` is empty; retry or escalate. * `404 not_found` — an acquirer is unknown or not available to this   partner.  **Idempotency and retries.** Boarding is synchronous and recovery is always the partner re-issuing a call. Safe-retry behaviour is built into the operations themselves:  * **Identity create** dedupes on the triple `(ABN, business name,   trading name)` — re-posting the same business returns `409 conflict`   (`"merchant exists"`) instead of producing a duplicate. A shared   ABN alone is allowed and creates a new merchant. * **Combined create-and-board** either creates the merchant and every   requested connection, or creates nothing. On failure the partner   re-issues the same request — there is no partial state to clean up. * **Standalone board** (`POST /merchants/{username}/acquirers`) is   idempotent per acquirer: re-posting the same `acquirer` against a   merchant that already has it returns the existing connection   instead of creating a duplicate. A `processor_error` retry is safe   for the same reason.  **What to do on each failure**:  * `422 validation_error` → read `fields`, correct the named input   (currency, MID, card type, etc.), POST again. Idempotency makes a   corrected retry safe. * `422 processor_error` → the request itself is fine; the upstream   processor isn't. Back off and re-post the identical request, or   escalate if it persists. Don't mutate the payload. * `409 conflict` on create → the merchant already exists for this   partner; fetch it with `GET /merchants/{username}` instead of   re-creating.
+- [Show a merchant](https://docs.fatzebra.com/reference/showmerchant.md)
+- [Update a merchant](https://docs.fatzebra.com/reference/updatemerchant.md): Updates the merchant's identity/business details. `username`, `status` and `credentials` are read-only here — use the lifecycle endpoints (`/activate`, `/suspend`, `/cancel`) to change `status`, and `/credentials/rotate` to rotate credentials.
+- [Update a merchant (alias for PATCH)](https://docs.fatzebra.com/reference/replacemerchant.md): Routes to the same update action as `PATCH /merchants/{username}`; same behaviour and contract.
+- [Activate a merchant](https://docs.fatzebra.com/reference/activatemerchant.md): Transitions the merchant to `active` so it can transact. No body is expected. Activating a merchant that has no active acquirer connection is rejected with `409 conflict` ("merchant has no active processing connection") — board an acquirer first.
+- [Suspend a merchant](https://docs.fatzebra.com/reference/suspendmerchant.md): Transitions the merchant to `suspended`. No body is expected.
+- [Rotate a merchant's credentials](https://docs.fatzebra.com/reference/rotatemerchantcredentials.md): Rotates the merchant's API `token` and its `signing_secret`. No body is expected. The fresh values are returned once — the previous token stops working immediately, so the caller must store the response.  The response is a bare credentials object: `username`, `token`, `signing_secret`, `rotated_at`.
+- [List a merchant's acquirer connections](https://docs.fatzebra.com/reference/listacquirerconnections.md): Returns the merchant's acquirer connections newest-first in the list envelope.
+- [Board a merchant onto an acquirer (synchronous)](https://docs.fatzebra.com/reference/boardacquirer.md): Boards the merchant onto an acquirer synchronously and returns the resulting connection with `201`. There is no pending state.  You name an `acquirer` (your bank relationship) and the acquirer-assigned `merchant_id` (MID), plus the `terminal_id` (TID) when the acquirer needs one. Fat Zebra validates the MID/TID and `currencies` against its config and boards the merchant onto every processor behind that acquirer that can carry a requested currency — you never name a processor. Omit `currencies` to board everything the acquirer supports.  Boarding is idempotent: re-posting the same acquirer returns the existing connection rather than creating a duplicate.  Failures are reported inline:  * `422 validation_error` — an unsupported currency, a missing   `merchant_id`, or no   processor supports the acquirer for the requested currencies. The   offending fields are listed under `error.fields`. * `422 processor_error` — an underlying processor board was rejected or   errored upstream. * `404 not_found` — the acquirer is unknown or not available to this   partner.
+- [Show an acquirer connection](https://docs.fatzebra.com/reference/showacquirerconnection.md)
+- [Update an acquirer connection](https://docs.fatzebra.com/reference/updateacquirerconnection.md): Patches the mutable fields only: `priority`, `currencies`, `card_types`. Changing `currencies` / `card_types` re-evaluates which underlying processors stay active. `card_types` is narrowed to each processor's routable set, so a PATCH can't enable a scheme the acquirer can't settle. The `acquirer` and the MID/TID (`merchant_id` / `terminal_id`) are immutable once the connection exists.
+- [Enable an acquirer connection](https://docs.fatzebra.com/reference/enableacquirerconnection.md): Flips `enabled` to `true` across the underlying links. The routing toggle only — config and MID/TID are untouched. No body is expected.
+- [Disable an acquirer connection](https://docs.fatzebra.com/reference/disableacquirerconnection.md): Flips `enabled` to `false` across the underlying links — turns a boarded connection off for routing without deleting it. Config and MID/TID are untouched. No body is expected.
+- [List acquirers this partner may board onto](https://docs.fatzebra.com/reference/listacquirers.md): Scoped to the partner's allowed set (derived from the processors behind each acquirer). Returns the list shape; `next_cursor` is always `null` (the catalogue is small and unpaginated).
+- [Show one acquirer's detail](https://docs.fatzebra.com/reference/showacquirer.md): Returns the acquirer's `supported_currencies` and `supported_schemes`.  An unknown or non-boardable acquirer code returns `404`.
+- [Show SSO enforcement state](https://docs.fatzebra.com/reference/showsso.md): Returns whether SSO is enforced for the partner, plus how many users are linked to the IdP versus not.
+- [Enforce SSO](https://docs.fatzebra.com/reference/enforcesso.md): Turns on SSO enforcement for the partner. No body is expected. Returns `409 conflict` when active users aren't yet linked to the IdP — they'd be locked out, so link them first.
+- [Disable SSO enforcement](https://docs.fatzebra.com/reference/disablesso.md): Turns off SSO enforcement for the partner. No body is expected.
+- [List the partner's dashboard users](https://docs.fatzebra.com/reference/listusers.md): Returns the partner's dashboard user ids newest-first in the list envelope. Fetch the full user via `GET /users/{id}`.
+- [Create a dashboard user](https://docs.fatzebra.com/reference/createuser.md): Creates a dashboard user under the partner. The `password` is write-only — it is accepted here but never returned on reads.
+- [Show a user](https://docs.fatzebra.com/reference/showuser.md)
+- [Update a user](https://docs.fatzebra.com/reference/updateuser.md): Updates the user's `name`, `email`, `role` or `password`. The `password` is write-only — it is accepted here but never returned.
+- [Remove a user](https://docs.fatzebra.com/reference/deleteuser.md): Deletes the user. Returns `204` with no content.
+- [Deactivate a user](https://docs.fatzebra.com/reference/deactivateuser.md): Locks the account so the user can't sign in. No body is expected.
+- [Reactivate a user](https://docs.fatzebra.com/reference/reactivateuser.md): Unlocks the account so the user can sign in again. No body is expected.
+- [Cancel a merchant](https://docs.fatzebra.com/reference/cancelmerchant.md): Transitions the merchant to `closed`. No body is expected.
+
+## Pages
+- [Documentation Feedback](https://docs.fatzebra.com/documentation-feedback.md)
+
+## Changelog
+- [New Documentation Site](https://docs.fatzebra.com/changelog/welcome-to-pmnts.md)
+- [Improvements & Bug Fixes – August 2024](https://docs.fatzebra.com/changelog/bug-fixes-improvements.md)
+- [card_token parameter added for Payment Plans endpoints](https://docs.fatzebra.com/changelog/card_token-parameter-added-for-payment-plans-endpoints.md)
+- [Additional Authorization Reasons for Merchant Initiated Transactions](https://docs.fatzebra.com/changelog/additional-authorization-reasons-for-merchant-initiated-transactions.md)
+- [Introduction of Merchant Advice Retry After](https://docs.fatzebra.com/changelog/merchant-advice-retry-after.md)
+- [Introduction of Merchant Advice Codes](https://docs.fatzebra.com/changelog/introduction-of-merchant-advice-codes.md)
+- [fatzebra.js update 2021-05-11](https://docs.fatzebra.com/changelog/fatzebrajs-update.md)
+- [New Payment Aggregator Fields](https://docs.fatzebra.com/changelog/new-payment-aggregator-fields.md)

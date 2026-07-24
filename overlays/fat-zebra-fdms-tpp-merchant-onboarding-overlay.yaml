@@ -1,0 +1,14 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Fat Zebra FDMS TPP Merchant Onboarding
+  version: 1.0.0
+extends: openapi/fat-zebra-fdms-tpp-merchant-onboarding.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: fat-zebra
+    x-apievangelist-auth: http-basic
+    x-apievangelist-pci-dss: true
+    x-apievangelist-idempotency: reference-based (gateway) / resource-key (partner)
+    x-apievangelist-decline-codes: errors/fat-zebra-decline-codes.yml
+    x-apievangelist-sandbox: sandbox/fat-zebra-sandbox.yml

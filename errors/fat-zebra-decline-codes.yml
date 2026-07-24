@@ -1,0 +1,459 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.fatzebra.com/docs/response-codes
+docs: https://docs.fatzebra.com/docs/response-codes
+envelope_field: response_code
+note: Returned on Purchase, Refund and Auth/Capture responses. response_code maps to standard financial-network
+  (ISO 8583-style) response codes; "00" = Approved. For lost/stolen/fraud declines the specific reason
+  must be masked to the buyer and presented as a generic decline.
+count: 98
+decline_codes:
+- code: '00'
+  message: Approved
+  bank_meaning: Approved
+  successful: true
+- code: '01'
+  message: Refer to Card Issuer
+  bank_meaning: Transaction Declined
+  successful: false
+  action: The customer needs to contact their card issuer for more information.
+- code: '02'
+  message: Refer to Card Issuer
+  bank_meaning: Transaction Declined
+  successful: false
+  action: The customer needs to contact their card issuer for more information.
+- code: '03'
+  message: No Merchant
+  bank_meaning: Merchant configuration error
+  successful: false
+  action: Check the merchant details provided.
+- code: '04'
+  message: Refer to Card Issuer
+  bank_meaning: Card marked as Lost or Stolen
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '05'
+  message: Refer to Card Issuer
+  bank_meaning: Do Not Honor
+  successful: false
+  action: The customer needs to contact their card issuer for more information.
+- code: '06'
+  message: Merchant/Acquirer Error
+  bank_meaning: Error - Original Not Found or similar
+  successful: false
+- code: '07'
+  message: Refer to Card Issuer
+  bank_meaning: Card marked as lost or stolen (Pick Up Card - Special)
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: 08
+  message: Approved
+  bank_meaning: Honour with Identification
+  successful: true
+- code: 09
+  message: Acquirer Busy
+  bank_meaning: Request in Progress (Local Terminal Error)
+  successful: false
+- code: '10'
+  message: Approved
+  bank_meaning: Approved for Partial Amount
+  successful: true
+- code: '11'
+  message: Approved
+  bank_meaning: Approved - VIP
+  successful: true
+- code: '12'
+  message: Invalid Transaction
+  bank_meaning: Invalid Transaction Type
+  successful: false
+  action: The customer needs to contact their card issuer to make sure their card can be used to make
+    this type of purchase.
+- code: '13'
+  message: Invalid Amount
+  bank_meaning: Invalid Amount
+  successful: false
+  action: If the amount appears to be correct, the customer needs to check with their card issuer that
+    they can make purchases of that amount.
+- code: '14'
+  message: Invalid Card Number
+  bank_meaning: Invalid Card Number
+  successful: false
+  action: The customer needs to contact their card issuer to check that the card is working correctly.
+- code: '15'
+  message: No Issuer
+  bank_meaning: The card does not have a valid issuer in the scheme registration file
+  successful: false
+- code: '16'
+  message: Approved
+  bank_meaning: Approved - Update Track 3
+  successful: true
+- code: '17'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '18'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '19'
+  message: Declined
+  bank_meaning: Re-enter last transaction
+  successful: false
+  action: The payment should be attempted again. If it still cannot be processed, the customer needs to
+    contact their card issuer.
+- code: '20'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '21'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '22'
+  message: Declined
+  bank_meaning: Suspected Malfunction
+  successful: false
+  action: The payment should be attempted again. If it still cannot be processed, try again later.
+- code: '23'
+  message: Declined
+  bank_meaning: Unacceptable Transaction Fee
+  successful: false
+- code: '24'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '25'
+  message: Declined
+  bank_meaning: Unable to Locate Record on File
+  successful: false
+- code: '26'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '27'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '28'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '29'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '30'
+  message: Declined
+  bank_meaning: Format Error
+  successful: false
+- code: '31'
+  message: Bank Not Supported
+  bank_meaning: Bank Not Supported by Switch/Route
+  successful: false
+- code: '32'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '33'
+  message: Expired Card
+  bank_meaning: Expired Card (Capture)
+  successful: false
+  action: The customer should use another card.
+- code: '34'
+  message: Declined
+  bank_meaning: Suspected Fraud - Retain Card
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '35'
+  message: Declined
+  bank_meaning: Card Acceptor, Contact Acquirer, Retain Card
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '36'
+  message: Declined
+  bank_meaning: Restricted Card - Retain Card
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '37'
+  message: Declined
+  bank_meaning: Contact Acquirer Security Department, Retain Card
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '38'
+  message: Declined
+  bank_meaning: PIN Retries Exceeded (Capture Card)
+  successful: false
+  action: The customer must use another card or method of payment.
+- code: '39'
+  message: Declined
+  bank_meaning: No Credit Account
+  successful: false
+  action: The customer needs to contact their card issuer to check that the card is working correctly.
+- code: '40'
+  message: Declined
+  bank_meaning: Function Not Supported
+  successful: false
+- code: '41'
+  message: Declined
+  bank_meaning: Lost Card
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '42'
+  message: Declined
+  bank_meaning: No Universal (Credit-capable) account
+  successful: false
+  action: The customer needs to contact their card issuer to check that the card is working correctly.
+- code: '43'
+  message: Declined
+  bank_meaning: Stolen Card
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '44'
+  message: Declined
+  bank_meaning: No Investment Account (Not Used)
+  successful: false
+  action: The customer needs to contact their card issuer to check that the card is working correctly.
+- code: '45'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '46'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '47'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '48'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '49'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '50'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '51'
+  message: Insufficient Funds
+  bank_meaning: Insufficient Funds
+  successful: false
+  action: The customer should use an alternative payment method.
+- code: '52'
+  message: Declined
+  bank_meaning: No Cheque Account
+  successful: false
+  action: The customer needs to contact their card issuer to check that the card is working correctly.
+- code: '53'
+  message: Declined
+  bank_meaning: No Savings Account
+  successful: false
+  action: The customer needs to contact their card issuer to check that the card is working correctly.
+- code: '54'
+  message: Expired Card
+  bank_meaning: Expired Card
+  successful: false
+  action: The customer should use another card.
+- code: '55'
+  message: Declined
+  bank_meaning: Incorrect PIN
+  successful: false
+  action: The customer should try again using the correct PIN.
+- code: '56'
+  message: Declined
+  bank_meaning: No Card Record - Check with Issuer
+  successful: false
+  action: The customer needs to contact their card issuer to check that the card is working correctly.
+- code: '57'
+  message: Declined
+  bank_meaning: Function Not Permitted to Card Holder
+  successful: false
+  action: The customer needs to contact their card issuer to make sure their card can be used to make
+    this type of purchase.
+- code: '58'
+  message: Declined
+  bank_meaning: Function Not Permitted to Terminal
+  successful: false
+- code: '59'
+  message: Declined
+  bank_meaning: Suspected Fraud
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '60'
+  message: Declined
+  bank_meaning: Merchant to Contact Acquirer
+  successful: false
+- code: '61'
+  message: Declined
+  bank_meaning: Exceeds Withdrawal Limit
+  successful: false
+- code: '62'
+  message: Declined
+  bank_meaning: Restricted Card
+  successful: false
+- code: '63'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '64'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '65'
+  message: Declined
+  bank_meaning: Exceeds Withdrawal
+  successful: false
+  action: The customer’s card issuer has declined the transaction as the customer has exceeded the withdrawal
+    frequency limit.
+- code: '66'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '67'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '68'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '69'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '70'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '71'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '72'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '73'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '74'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '75'
+  message: Declined
+  bank_meaning: PIN Tries Exceeded
+  successful: false
+  action: The customer must use another card or method of payment.
+- code: '76'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '77'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '78'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '79'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '80'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '81'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '82'
+  message: Declined
+  bank_meaning: CVV Validation Error
+  successful: false
+  action: The customer should try again using the correct CVV.
+- code: '83'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '84'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '85'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '86'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '87'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '88'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '89'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '90'
+  message: Declined - Please Retry
+  bank_meaning: Cutoff In Progress - retry allowed
+  successful: false
+  action: The payment should be attempted again. If it still cannot be processed, the customer needs to
+    contact their card issuer.
+- code: '91'
+  message: Declined
+  bank_meaning: Host or Switch Unavailable/Card Issuer Signed Off/Card Issuer Timed Out/Card Issuer Unavailable
+  successful: false
+  action: The payment should be attempted again. If it still cannot be processed, the customer needs to
+    contact their card issuer.
+- code: '92'
+  message: Declined
+  bank_meaning: Unable to Route Transaction
+  successful: false
+  action: The payment should be attempted again. If it still cannot be processed, try again later.
+- code: '93'
+  message: Declined
+  bank_meaning: Cannot Complete, Violation Of The Law
+  successful: false
+  action: The specific reason for the decline should not be reported to the customer. Instead, it needs
+    to be presented as a generic decline.
+- code: '94'
+  message: Declined
+  bank_meaning: Duplicate Transaction
+  successful: false
+  action: Check to see if a recent payment already exists.
+- code: '95'
+  message: Declined
+  bank_meaning: Not Used
+  successful: false
+- code: '96'
+  message: Declined
+  bank_meaning: System Error
+  successful: false
+  action: The payment should be attempted again. If it still cannot be processed, try again later.
+- code: '99'
+  message: System Error - Contact Gateway if error persists
+  bank_meaning: System Error
+  successful: false
+  action: The payment should be attempted again. If it still cannot be processed, try again later.

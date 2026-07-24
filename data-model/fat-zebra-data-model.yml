@@ -1,0 +1,111 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/fat-zebra-gateway.json (paths/entities) + openapi/fat-zebra-partner.json (components.schemas)
+entities:
+- name: purchase
+  path: /purchases
+  description: A card purchase/transaction; carries a unique reference and a response_code.
+- name: authorization
+  path: /purchases (auth)
+  description: A card authorization awaiting capture.
+- name: refund
+  path: /refunds
+  description: A refund against a purchase.
+- name: credit_card
+  path: /credit_cards
+  description: A tokenized card (token/alias).
+- name: customer
+  path: /customers
+  description: A stored customer.
+- name: bank_account
+  path: /bank_accounts
+  description: A stored bank account for direct debit/credit.
+- name: direct_debit
+  path: /direct_debits
+  description: A pull from a bank account over local rails.
+- name: direct_credit
+  path: /direct_credits
+  description: A push to a bank account over local rails.
+- name: payment_plan
+  path: /payment_plans
+  description: A recurring payment plan.
+- name: batch
+  path: /batches
+  description: A batch file of transactions.
+- name: web_hook
+  path: /web_hooks
+  description: A registered webhook endpoint.
+- name: merchant
+  path: /merchants (partner)
+  description: A sub-merchant boarded by a partner.
+- name: acquirer_connection
+  path: /merchants/{username}/acquirers (partner)
+  description: A merchant-to-acquirer boarding connection.
+relationships:
+- from: refund
+  to: purchase
+  type: belongs_to
+  via: purchase_id
+- from: authorization
+  to: capture
+  type: has_one
+  via: id
+- from: purchase
+  to: credit_card
+  type: belongs_to
+  via: card_token
+- from: purchase
+  to: customer
+  type: belongs_to
+  via: customer
+- from: credit_card
+  to: customer
+  type: belongs_to
+  via: customer
+- from: direct_debit
+  to: bank_account
+  type: belongs_to
+  via: bank_account
+- from: direct_credit
+  to: bank_account
+  type: belongs_to
+  via: bank_account
+- from: payment_plan
+  to: customer
+  type: belongs_to
+  via: customer
+- from: merchant
+  to: acquirer_connection
+  type: has_many
+  via: acquirer
+partner_schemas:
+- Acquirer
+- AcquirerBoardRequest
+- AcquirerConnection
+- AcquirerConnectionCreateRequest
+- AcquirerConnectionListEnvelope
+- AcquirerConnectionUpdateRequest
+- AcquirerListEnvelope
+- Address
+- Error
+- ListEnvelope
+- Merchant
+- MerchantCreateRequest
+- MerchantCredentials
+- MerchantCredentialsInline
+- MerchantListEnvelope
+- MerchantOnboardingResult
+- MerchantSummary
+- MerchantSurcharging
+- MerchantUpdateRequest
+- Partner
+- PartnerBranding
+- PartnerCredentials
+- PartnerDefaults
+- PingResponse
+- SsoState
+- User
+- UserCreateRequest
+- UserListEnvelope
+- UserSummary
+- UserUpdateRequest

@@ -1,0 +1,16 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/fat-zebra-billing.json, openapi/fat-zebra-fdms-tpp-merchant-onboarding.json,
+  openapi/fat-zebra-gateway.json, openapi/fat-zebra-partner.json
+summary:
+  types:
+  - http
+schemes:
+- name: sec0
+  type: http
+  scheme: basic
+  sources:
+  - openapi/fat-zebra-billing.json
+  - openapi/fat-zebra-fdms-tpp-merchant-onboarding.json
+  - openapi/fat-zebra-gateway.json
+  - openapi/fat-zebra-partner.json

@@ -1,0 +1,33 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.fatzebra.com/docs/react-sdk-overview ; https://docs.fatzebra.com/docs/javascript-sdk-features
+families:
+- family: fatzebra.js (JS SDK)
+  type: client-side-js
+  loader: '@fat-zebra/sdk (npm) / fatzebra.js'
+  components:
+  - renderPaymentsPage
+  - PaymentIntent
+  - HppSetupParams
+  - verifyCard (3DS/SCA)
+  docs: https://docs.fatzebra.com/docs/javascript-sdk-features
+  description: Browser JavaScript SDK for building custom payment forms, tokenizing cards client-side,
+    and running 3DS/SCA checks; emits fz.sca.success / fz.sca.error events.
+- family: React SDK
+  type: react-components
+  loader: '@fat-zebra/sdk'
+  docs: https://docs.fatzebra.com/docs/react-sdk-overview
+  description: React component wrappers over fatzebra.js for embedding payment fields in React apps.
+- family: Hosted Payments Page (PayNow)
+  type: hosted
+  docs: https://docs.fatzebra.com/docs/using-hosted-payments-page
+  description: Fat Zebra-hosted payment page / payment links (PayNow) so merchants can take card, wallet
+    and Click to Pay payments without handling card data.
+- family: Wallet buttons
+  type: hosted
+  components:
+  - Apple Pay
+  - Google Pay
+  - Click to Pay
+  docs: https://docs.fatzebra.com/docs/google-pay
+  description: Prebuilt wallet acceptance surfaces integrated via fatzebra.js.

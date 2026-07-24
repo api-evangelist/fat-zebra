@@ -1,0 +1,12 @@
+generated: '2026-07-24'
+method: searched
+probe: true
+source: https://docs.fatzebra.com/docs/pci-certification
+url: https://docs.fatzebra.com/docs/pci-certification
+certifications:
+- PCI DSS
+evidence:
+- source: https://docs.fatzebra.com/docs/pci-certification
+  keywords:
+  - pci dss
+  - pci-dss

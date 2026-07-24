@@ -1,0 +1,110 @@
+generated: '2026-06-20'
+method: derived
+source: Binds candidate MCP tools (mcp/fat-zebra-mcp.yml) to backing OpenAPI operationIds.
+surfaces:
+  openapi:
+  - openapi/fat-zebra-gateway.json
+  - openapi/fat-zebra-partner.json
+  graphql: null
+  mcp:
+    url: null
+    status: candidate
+    gated: false
+    note: Candidate MCP surface derived from OpenAPI; no live tools/list.
+crosswalk:
+- tool: create_purchase
+  category: Payments
+  rest:
+  - create-a-purchase-with-fraud-screening-1
+  binding: rest
+  confidence: high
+- tool: fetch_purchase
+  category: Payments
+  rest:
+  - fetch-a-purchase
+  binding: rest
+  confidence: high
+- tool: list_purchases
+  category: Payments
+  rest:
+  - list-purchases
+  binding: rest
+  confidence: high
+- tool: create_authorization
+  category: Payments
+  rest:
+  - create-an-authorization
+  binding: rest
+  confidence: high
+- tool: capture_authorization
+  category: Payments
+  rest:
+  - capture-an-authorization
+  binding: rest
+  confidence: high
+- tool: issue_refund
+  category: Refunds
+  rest:
+  - issue-a-refund
+  binding: rest
+  confidence: high
+- tool: tokenize_card
+  category: Tokenization
+  rest:
+  - tokenize-a-card
+  binding: rest
+  confidence: high
+- tool: list_customers
+  category: Customers
+  rest:
+  - list-customers
+  binding: rest
+  confidence: high
+- tool: create_payment_plan
+  category: Recurring
+  rest:
+  - create-a-payment-plan
+  binding: rest
+  confidence: high
+- tool: create_direct_debit
+  category: Bank rails
+  rest:
+  - create-a-direct-debit
+  binding: rest
+  confidence: high
+- tool: create_direct_credit
+  category: Bank rails
+  rest:
+  - create-a-direct-credit
+  binding: rest
+  confidence: high
+- tool: create_webhook
+  category: Webhooks
+  rest:
+  - create-a-webhook
+  binding: rest
+  confidence: high
+- tool: board_merchant
+  category: Partner
+  rest:
+  - createMerchant
+  binding: rest
+  confidence: high
+- tool: list_merchants
+  category: Partner
+  rest:
+  - listMerchants
+  binding: rest
+  confidence: high
+mcp_only: []
+rest_only:
+- capability: Full gateway + partner surface not exposed as candidate tools
+  count: 114
+  note: 128 REST operations across gateway (98) + partner (30); candidate tool list covers the marquee
+    flows only.
+coverage:
+  tools_named: 14
+  tools_bound: 14
+  mcp_only: 0
+  rest_ops_total: 128
+  rest_ops_with_tool: 14

@@ -1,0 +1,17 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.fatzebra.com ; https://status.fatzebra.com
+versioning:
+  scheme: uri-path
+  gateway_current: v1.0
+  partner_current: v2
+  docs: https://docs.fatzebra.com/docs/introduction
+  note: Gateway is versioned in the URI path (/v1.0); the Partner API is a separate /v2/partners surface.
+deprecation:
+  policy_url: https://docs.fatzebra.com/changelog/welcome-to-pmnts
+  sunset_header: false
+  note: Product changes and deprecations are communicated via the dated changelog; no RFC 8594 Sunset/Deprecation
+    header contract documented.
+status_page: https://status.fatzebra.com/
+changelog: https://docs.fatzebra.com/changelog
+deprecated_operations: []

@@ -1,0 +1,54 @@
+generated: '2026-06-20'
+method: searched
+source: npm, RubyGems, PyPI, Packagist, NuGet, github.com/fatzebra
+packages:
+- language: javascript
+  registry: npm
+  name: '@fat-zebra/sdk'
+  version: 2.1.3
+  url: https://www.npmjs.com/package/@fat-zebra/sdk
+  install: npm install @fat-zebra/sdk
+  description: Modern JavaScript SDK for Fat Zebra payment services (fatzebra.js / hosted payments).
+  official: true
+- language: ruby
+  registry: rubygems
+  name: fat_zebra
+  version: 3.3.3
+  url: https://rubygems.org/gems/fat_zebra
+  install: gem install fat_zebra
+  source: https://github.com/fatzebra/Ruby-Library
+  description: Official Ruby gem for the Fat Zebra gateway (purchase, refund, auth, capture, tokenization).
+  official: true
+- language: python
+  registry: pypi
+  name: fatzebra
+  version: 0.0.7
+  url: https://pypi.org/project/fatzebra/
+  install: pip install fatzebra
+  source: https://github.com/fatzebra/fatzebra-python
+  description: Official Python client for the Fat Zebra gateway.
+  official: true
+- language: php
+  registry: packagist
+  name: fatzebra/fatzebra
+  url: https://packagist.org/packages/fatzebra/fatzebra
+  install: composer require fatzebra/fatzebra
+  source: https://github.com/fatzebra/PHP-Library
+  description: Official PHP library for the Fat Zebra Australian online payment gateway.
+  official: true
+- language: dotnet
+  registry: nuget
+  name: FatZebra.Gateway
+  version: 2.3.0
+  url: https://www.nuget.org/packages/FatZebra.Gateway
+  install: dotnet add package FatZebra.Gateway
+  source: https://github.com/fatzebra/.NET-Library
+  description: Official .NET/C# library for the Fat Zebra gateway.
+  official: true
+- language: java
+  registry: github
+  name: FatZebra-Java
+  url: https://github.com/fatzebra/FatZebra-Java
+  source: https://github.com/fatzebra/FatZebra-Java
+  description: Official Java library for the Fat Zebra gateway (source distribution).
+  official: true

@@ -2,17 +2,15 @@ aid: fat-zebra
 url: https://raw.githubusercontent.com/api-evangelist/fat-zebra/refs/heads/main/apis.yml
 name: Fat Zebra
 kind: company
-description: Fat Zebra is an Australian payments company (founded 2012, Sydney) providing
-  a card-present and card-not-present payment gateway and processing platform for merchants,
-  ISOs, and software platforms across Australia and New Zealand. Its API-first Gateway
-  handles Visa, Mastercard, and Amex purchases, authorizations and captures, refunds
-  and voids, card tokenization, 3D Secure, recurring payment plans, direct debits and
-  direct credits over local bank rails, chargeback handling, batch processing, and hosted
-  payment pages (PayNow), alongside wallet acceptance for Apple Pay, Google Pay, and
-  Click to Pay. A separate Partner API lets platforms and ISOs create and board their
-  own sub-merchants onto acquirer connections programmatically. The developer surface
-  is a genuine, well-documented ReadMe hub at docs.fatzebra.com with four downloadable
-  OpenAPI definitions, and the runtime platform is branded pmnts (gateway.pmnts.io).
+description: Fat Zebra is an Australian payments company (founded 2012, Sydney) providing a card-present
+  and card-not-present payment gateway and processing platform for merchants, ISOs, and software platforms
+  across Australia and New Zealand. Its API-first Gateway handles Visa, Mastercard, and Amex purchases,
+  authorizations and captures, refunds and voids, card tokenization, 3D Secure, recurring payment plans,
+  direct debits and direct credits over local bank rails, chargeback handling, batch processing, and hosted
+  payment pages (PayNow), alongside wallet acceptance for Apple Pay, Google Pay, and Click to Pay. A separate
+  Partner API lets platforms and ISOs create and board their own sub-merchants onto acquirer connections
+  programmatically. The developer surface is a genuine, well-documented ReadMe hub at docs.fatzebra.com
+  with four downloadable OpenAPI definitions, and the runtime platform is branded pmnts (gateway.pmnts.io).
   Authentication is HTTP Basic using a username and API token.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
@@ -33,11 +31,10 @@ specificationVersion: '0.19'
 apis:
 - aid: fat-zebra:fat-zebra-gateway-api
   name: Fat Zebra Gateway API
-  description: The core Fat Zebra payments Gateway — 98 documented operations across
-    73 paths covering purchases, authorizations and captures, refunds and voids, card
-    tokenization (credit_cards), customers and bank accounts, direct debits and direct
-    credits, chargebacks, batches, recurring payment plans, surcharging, and webhook
-    management. OpenAPI 3.1. Auth is HTTP Basic (username + API token).
+  description: The core Fat Zebra payments Gateway — 98 documented operations across 73 paths covering
+    purchases, authorizations and captures, refunds and voids, card tokenization (credit_cards), customers
+    and bank accounts, direct debits and direct credits, chargebacks, batches, recurring payment plans,
+    surcharging, and webhook management. OpenAPI 3.1. Auth is HTTP Basic (username + API token).
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
@@ -52,13 +49,16 @@ apis:
     url: https://docs.fatzebra.com/docs/purchases-overview
   - type: APIReference
     url: https://docs.fatzebra.com/reference/purchases
+  - type: Overlay
+    url: overlays/fat-zebra-gateway-overlay.yaml
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
 - aid: fat-zebra:fat-zebra-partner-api
   name: Fat Zebra Partner API
-  description: The Partner (v2) API for ISOs and software platforms to programmatically
-    create and manage their own sub-merchants and acquirer connections — 30 operations
-    across 22 paths covering partner self/identity, merchant create/board/lifecycle
-    (activate, suspend, cancel), credential rotation, acquirer connection management,
-    SSO enforcement, and dashboard users. OpenAPI 3.1. Auth is HTTP Basic (partner
+  description: The Partner (v2) API for ISOs and software platforms to programmatically create and manage
+    their own sub-merchants and acquirer connections — 30 operations across 22 paths covering partner
+    self/identity, merchant create/board/lifecycle (activate, suspend, cancel), credential rotation, acquirer
+    connection management, SSO enforcement, and dashboard users. OpenAPI 3.1. Auth is HTTP Basic (partner
     username + API token). Production, sandbox, and staging environments documented.
   humanURL: https://docs.fatzebra.com/docs/introduction
   baseURL: https://gateway.pmnts.io/v2/partners
@@ -73,11 +73,13 @@ apis:
     url: https://docs.fatzebra.com/docs/introduction
   - type: APIReference
     url: https://docs.fatzebra.com/reference/showself
+  - type: Overlay
+    url: overlays/fat-zebra-partner-overlay.yaml
 - aid: fat-zebra:fat-zebra-billing-api
   name: Fat Zebra Billing API
-  description: An early usage-based Billing API (OpenAPI 3.0.3) exposing billing entities
-    and a batch usage-record push for metered billing against customers. Documented
-    server is the sandbox host billing.pmnts-sandbox.io. Auth is HTTP Basic.
+  description: An early usage-based Billing API (OpenAPI 3.0.3) exposing billing entities and a batch
+    usage-record push for metered billing against customers. Documented server is the sandbox host billing.pmnts-sandbox.io.
+    Auth is HTTP Basic.
   humanURL: https://docs.fatzebra.com/
   baseURL: https://billing.pmnts-sandbox.io/api/v1/
   tags:
@@ -88,12 +90,13 @@ apis:
     url: openapi/fat-zebra-billing.json
   - type: Documentation
     url: https://docs.fatzebra.com/
+  - type: Overlay
+    url: overlays/fat-zebra-billing-overlay.yaml
 - aid: fat-zebra:fat-zebra-fdms-tpp-merchant-onboarding-api
   name: Fat Zebra FDMS TPP Merchant Onboarding API
-  description: A Third-Party Processor (TPP) merchant onboarding API for the FDMS acquiring
-    integration (OpenAPI 3.0.3) — create and list merchants and an internal onboard
-    operation. Documented server is the sandbox host acquiring-sandbox.fatzebra.com.au.
-    Auth is HTTP Basic.
+  description: A Third-Party Processor (TPP) merchant onboarding API for the FDMS acquiring integration
+    (OpenAPI 3.0.3) — create and list merchants and an internal onboard operation. Documented server is
+    the sandbox host acquiring-sandbox.fatzebra.com.au. Auth is HTTP Basic.
   humanURL: https://docs.fatzebra.com/
   baseURL: https://acquiring-sandbox.fatzebra.com.au/api/v1
   tags:
@@ -104,7 +107,17 @@ apis:
     url: openapi/fat-zebra-fdms-tpp-merchant-onboarding.json
   - type: Documentation
     url: https://docs.fatzebra.com/
+  - type: Overlay
+    url: overlays/fat-zebra-fdms-tpp-merchant-onboarding-overlay.yaml
 common:
+- type: TrustCenter
+  url: security/fat-zebra-trust-center.yml
+- type: DomainSecurity
+  url: security/fat-zebra-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/fat-zebra-agentic-access.yml
+- type: Authentication
+  url: authentication/fat-zebra-authentication.yml
 - type: Website
   url: https://www.fatzebra.com/
 - type: DeveloperPortal
@@ -133,6 +146,59 @@ common:
   url: https://www.fatzebra.com/privacy-policy
 - type: Integrations
   url: https://www.fatzebra.com/platform/integrations
+- type: Packages
+  url: packages/fat-zebra-packages.yml
+- type: SDKs
+  url: packages/fat-zebra-packages.yml
+- type: WellKnown
+  url: well-known/fat-zebra-well-known.yml
+- type: MCPServer
+  url: mcp/fat-zebra-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/fat-zebra-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/fat-zebra-llms.txt
+- type: Conformance
+  url: conformance/fat-zebra-conformance.yml
+- type: Compliance
+  url: https://docs.fatzebra.com/docs/pci-certification
+- type: ErrorCatalog
+  url: errors/fat-zebra-problem-types.yml
+- type: DeclineCodes
+  url: errors/fat-zebra-decline-codes.yml
+- type: Lifecycle
+  url: lifecycle/fat-zebra-lifecycle.yml
+- type: Deprecation
+  url: https://docs.fatzebra.com/changelog/welcome-to-pmnts
+- type: Sandbox
+  url: sandbox/fat-zebra-sandbox.yml
+- type: Conventions
+  url: conventions/fat-zebra-conventions.yml
+- type: Idempotency
+  url: conventions/fat-zebra-conventions.yml
+- type: Components
+  url: components/fat-zebra-components.yml
+- type: DataModel
+  url: data-model/fat-zebra-data-model.yml
+- type: Webhooks
+  url: asyncapi/fat-zebra-webhooks.yml
+- type: AgentSkill
+  url: skills/fat-zebra-accept-a-card-payment.md
+  name: Accept a card payment
+- type: AgentSkill
+  url: skills/fat-zebra-authorize-and-capture.md
+  name: Authorize then capture
+- type: AgentSkill
+  url: skills/fat-zebra-tokenize-and-charge.md
+  name: Tokenize a card and charge it
+- type: AgentSkill
+  url: skills/fat-zebra-board-a-submerchant.md
+  name: Board a sub-merchant
+- type: ChangeLog
+  url: changelog/fat-zebra-changelog.yml
+  name: Fat Zebra changelog (structured)
+- type: SignUp
+  url: https://www.fatzebra.com/contact/sales
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

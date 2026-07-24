@@ -1,0 +1,39 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.fatzebra.com ; openapi/*.json
+authentication:
+  style: HTTP Basic
+  credential: username + API token
+  docs: https://docs.fatzebra.com/docs/authentication
+  cross_ref: authentication/fat-zebra-authentication.yml
+idempotency:
+  supported: true
+  gateway:
+    mechanism: reference-based dedup
+    field: reference
+    scope: per transaction (purchase/refund/auth)
+    note: Every purchase/refund/auth carries a merchant-supplied unique "reference" (max 255 chars). Re-submitting
+      the same reference returns the existing transaction rather than creating a duplicate — the gateway
+      idempotency contract.
+  partner:
+    mechanism: natural / resource-key idempotency
+    note: 'Partner boarding is idempotent per acquirer: re-posting the same acquirer against a merchant
+      that already has it returns the existing connection instead of creating a duplicate, making corrected
+      retries safe.'
+pagination:
+  style: page-number
+  params:
+  - page
+  - limit
+  note: List endpoints accept page and limit query params; responses include records[] plus total/pagination
+    metadata.
+error_envelope:
+  shape: '{ successful: false, errors: [ ... ], test: bool }'
+  cross_ref: errors/fat-zebra-problem-types.yml
+  declines: response_code field (see errors/fat-zebra-decline-codes.yml)
+versioning:
+  style: uri-path
+  cross_ref: lifecycle/fat-zebra-lifecycle.yml
+rate_limiting:
+  documented: false
+  note: No published rate-limit headers/policy found in docs or specs.

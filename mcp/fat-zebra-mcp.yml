@@ -1,0 +1,68 @@
+generated: '2026-06-20'
+method: derived
+status: candidate
+source: Derived from openapi/fat-zebra-gateway.json + openapi/fat-zebra-partner.json — no official Fat
+  Zebra MCP server found.
+server:
+  name: fat-zebra
+  transport: http
+  url: null
+  note: No hosted/remote Fat Zebra MCP server is published; this is a candidate tool surface derived from
+    the OpenAPIs.
+tools:
+- name: create_purchase
+  category: Payments
+  description: Create a card purchase
+  source_operation: openapi/fat-zebra-gateway.json#create-a-purchase-with-fraud-screening-1
+- name: fetch_purchase
+  category: Payments
+  description: Fetch a purchase by id
+  source_operation: openapi/fat-zebra-gateway.json#fetch-a-purchase
+- name: list_purchases
+  category: Payments
+  description: List purchases
+  source_operation: openapi/fat-zebra-gateway.json#list-purchases
+- name: create_authorization
+  category: Payments
+  description: Authorize a card (no capture)
+  source_operation: openapi/fat-zebra-gateway.json#create-an-authorization
+- name: capture_authorization
+  category: Payments
+  description: Capture a prior authorization
+  source_operation: openapi/fat-zebra-gateway.json#capture-an-authorization
+- name: issue_refund
+  category: Refunds
+  description: Refund a purchase
+  source_operation: openapi/fat-zebra-gateway.json#issue-a-refund
+- name: tokenize_card
+  category: Tokenization
+  description: Tokenize a card
+  source_operation: openapi/fat-zebra-gateway.json#tokenize-a-card
+- name: list_customers
+  category: Customers
+  description: List customers
+  source_operation: openapi/fat-zebra-gateway.json#list-customers
+- name: create_payment_plan
+  category: Recurring
+  description: Create a recurring payment plan
+  source_operation: openapi/fat-zebra-gateway.json#create-a-payment-plan
+- name: create_direct_debit
+  category: Bank rails
+  description: Create a direct debit
+  source_operation: openapi/fat-zebra-gateway.json#create-a-direct-debit
+- name: create_direct_credit
+  category: Bank rails
+  description: Create a direct credit
+  source_operation: openapi/fat-zebra-gateway.json#create-a-direct-credit
+- name: create_webhook
+  category: Webhooks
+  description: Register a webhook endpoint
+  source_operation: openapi/fat-zebra-gateway.json#create-a-webhook
+- name: board_merchant
+  category: Partner
+  description: Create/board a sub-merchant
+  source_operation: openapi/fat-zebra-partner.json#createMerchant
+- name: list_merchants
+  category: Partner
+  description: List sub-merchants
+  source_operation: openapi/fat-zebra-partner.json#listMerchants

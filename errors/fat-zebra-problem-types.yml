@@ -1,0 +1,52 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/*.json (4xx/5xx responses)
+format: fat-zebra-envelope
+envelope:
+  successful: boolean
+  errors: array of human-readable strings
+  response: object (on success)
+  test: boolean
+note: Gateway/Partner API errors are returned as a JSON envelope with successful:false and an errors[]
+  array (not RFC 9457 application/problem+json). 422 responses carry field-validation messages. Card declines
+  surface via response_code (see decline-codes), not HTTP status.
+problems:
+- status: 400
+  title: Bad request
+  description: Bad request
+  example_operations:
+  - openapi/fat-zebra-billing.json#billing-entities
+  - openapi/fat-zebra-billing.json#push-usage
+  - openapi/fat-zebra-fdms-tpp-merchant-onboarding.json#list-merchants
+  - openapi/fat-zebra-fdms-tpp-merchant-onboarding.json#onboard-a-merchant
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  example_operations:
+  - openapi/fat-zebra-gateway.json#paypal-capture-an-authorization
+  - openapi/fat-zebra-gateway.json#paypal-refund-a-capture
+  - openapi/fat-zebra-gateway.json#paypal-void-an-authorization
+  - openapi/fat-zebra-partner.json#activateMerchant
+- status: 404
+  title: Resource not found
+  description: Resource not found
+  example_operations:
+  - openapi/fat-zebra-gateway.json#accept-dispute
+  - openapi/fat-zebra-gateway.json#cancel-a-payment-plan
+  - openapi/fat-zebra-gateway.json#check-get-an-apple-pay-on-the-web-domain
+  - openapi/fat-zebra-gateway.json#delete-a-direct-credit
+- status: 409
+  title: Conflict
+  description: Conflict
+  example_operations:
+  - openapi/fat-zebra-partner.json#activateMerchant
+  - openapi/fat-zebra-partner.json#createMerchant
+  - openapi/fat-zebra-partner.json#enforceSso
+- status: 422
+  title: Unprocessable entity
+  description: Unprocessable entity
+  example_operations:
+  - openapi/fat-zebra-gateway.json#accept-dispute
+  - openapi/fat-zebra-gateway.json#capture-an-authorization
+  - openapi/fat-zebra-gateway.json#create-a-bank-account
+  - openapi/fat-zebra-gateway.json#create-a-direct-credit

@@ -1,0 +1,24 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.fatzebra.com/docs/webhooks
+spec_type: Webhooks
+transport: HTTP POST callbacks
+description: Fat Zebra Gateway sends webhook notifications to a merchant-registered external service when
+  events occur, as an alternative to polling. Webhook endpoints are managed via the gateway web_hooks
+  operations.
+management_operations:
+- oid: create-a-webhook
+  method: POST
+  path: /web_hooks
+- oid: list-webhooks
+  method: GET
+  path: /web_hooks
+- oid: update-a-webhook
+  method: PUT
+  path: /web_hooks/{id}
+- oid: delete-a-webhook
+  method: DELETE
+  path: /web_hooks/{id}
+docs: https://docs.fatzebra.com/docs/webhooks
+note: Fat Zebra documents webhooks and ships web_hooks management operations but publishes no AsyncAPI
+  document; captured here as a webhook catalog (type Webhooks).

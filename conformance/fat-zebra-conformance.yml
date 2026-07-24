@@ -1,0 +1,29 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.fatzebra.com/docs/pci-certification ; openapi/*.json
+standards:
+- id: pci-dss
+  conforms: true
+  evidence: Fat Zebra is PCI DSS certified (Level 1 service provider); documented at docs.fatzebra.com/docs/pci-certification
+  docs: https://docs.fatzebra.com/docs/pci-certification
+- id: 3d-secure-2
+  conforms: true
+  evidence: 3DS2 / SCA supported via fatzebra.js verifyCard and purchase liability-shift flow
+- id: emv-3ds
+  conforms: true
+  evidence: EMV 3-D Secure card authentication documented
+- id: iso-8583-response-codes
+  conforms: true
+  evidence: Gateway returns standard financial-network response_code values (see decline-codes)
+- id: http-basic-auth
+  conforms: true
+  evidence: All OpenAPI securitySchemes are http/basic (username + API token)
+- id: oauth2
+  conforms: false
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a Fat Zebra JSON envelope (successful/errors[]), not application/problem+json
+- id: fapi
+  conforms: false

@@ -1,0 +1,15 @@
+generated: '2026-06-20'
+method: searched
+source: https://docs.fatzebra.com/changelog
+url: https://docs.fatzebra.com/changelog
+scheme: dated
+platform: ReadMe changelog (pmnts)
+note: 'Fat Zebra publishes a dated product changelog on the docs hub (ReadMe-hosted). Entries are rendered
+  client-side; the live changelog at the source URL is the authoritative recent window. First entry: "Welcome
+  to pmnts".'
+entries:
+- title: Welcome to pmnts
+  date: null
+  highlights:
+  - Introduction of the pmnts runtime platform branding (gateway.pmnts.io).
+  url: https://docs.fatzebra.com/changelog/welcome-to-pmnts
