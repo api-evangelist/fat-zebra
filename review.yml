@@ -1,0 +1,107 @@
+aid: fat-zebra
+name: Fat Zebra
+review:
+  question: Does Fat Zebra publish a real developer portal with downloadable OpenAPI definitions?
+  answer: true
+  date: '2026-07-24'
+  reviewer: API Evangelist
+findings:
+  summary: |
+    Fat Zebra is an API-native Australian payments company with a genuine,
+    well-documented developer portal at https://docs.fatzebra.com/ (HTTP 200),
+    a ReadMe-hosted hub for the pmnts platform. The portal ships an AI index at
+    https://docs.fatzebra.com/llms.txt (HTTP 200) and FOUR downloadable OpenAPI
+    definitions, all harvested verbatim into openapi/ from the ReadMe api-registry
+    (dash.readme.com/api/v1/api-registry/{uuid}, HTTP 200 each on 2026-07-24):
+
+      1. Gateway API (gateway.json, uuid 2kzeqfvmrvneu1u) — OpenAPI 3.1.0, 73 paths /
+         98 operations. Core payments: purchases, authorizations/captures, refunds/voids,
+         card tokenization (credit_cards), customers, bank accounts, direct debits,
+         direct credits, chargebacks, batches, payment plans, surcharging, web_hooks.
+         Production server confirmed live: https://gateway.pmnts.io/v1.0/ping -> HTTP 200.
+      2. Partner API (partner-openapi.yaml, uuid 7t5scdmqq2tixn) — OpenAPI 3.1.0, 22 paths /
+         30 operations. ISO/platform sub-merchant onboarding, acquirer boarding, credential
+         rotation, SSO enforcement, dashboard users. Production base
+         https://gateway.pmnts.io/v2/partners (documented; ping confirmed).
+      3. Billing API (fat-zebra-billing.json, uuid 1mld74kq6vkiq6) — OpenAPI 3.0.3, 2 ops
+         (billing entities + batch usage records). Documented server sandbox-only:
+         https://billing.pmnts-sandbox.io/api/v1/.
+      4. FDMS TPP Merchant Onboarding API (fdms-tpp-merchant-onboarding.json, uuid
+         1mld74kq6vrc1k) — OpenAPI 3.0.3, 3 ops (create/list/onboard merchants). Documented
+         server sandbox-only: https://acquiring-sandbox.fatzebra.com.au/api/v1.
+
+    Home market is Australia (Sydney, founded 2012), serving AU/NZ merchants, ISOs, and
+    platforms. The old gateway.fatzebra.com host is dead (curl -> 000); the live runtime is
+    the pmnts-branded platform (gateway.pmnts.io). Wallet acceptance (Apple Pay, Google Pay,
+    Click to Pay) and hosted payment pages (PayNow) are documented in guides.
+  authModel:
+    scheme: HTTP Basic
+    note: |
+      Every request uses HTTP Basic auth with username + API token (confirmed at
+      https://docs.fatzebra.com/docs/authentication-1). All four OpenAPI specs declare an
+      http/basic security scheme (sec0 / PartnerBasicAuth) as the sole, top-level requirement.
+      No OAuth2, mTLS, or OIDC surface is documented; no /.well-known discovery documents were
+      probed as the portal does not advertise them.
+  webhooks:
+    documented: true
+    asyncapiFound: false
+    note: |
+      The Gateway OpenAPI exposes webhook-management endpoints (/web_hooks and /web_hooks/{id})
+      for registering merchant webhook subscriptions, and the docs describe merchant-facing
+      event notifications. No AsyncAPI document and no OpenAPI callbacks objects are published
+      (0 operations carry a callbacks object across all four specs).
+  postman:
+    found: false
+    note: No public Postman collection or workspace was located; the portal is ReadMe-native.
+  graphql:
+    found: false
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://gateway.pmnts.io/v1.0
+    documented: true
+    note: Core Gateway API (production).
+  - protocol: REST
+    scheme: https
+    baseURL: https://gateway.pmnts.io/v2/partners
+    documented: true
+    note: Partner API (production, sandbox, staging documented).
+  - protocol: REST
+    scheme: https
+    baseURL: https://billing.pmnts-sandbox.io/api/v1/
+    documented: true
+    note: Billing API (only a sandbox server is declared in the spec).
+  - protocol: REST
+    scheme: https
+    baseURL: https://acquiring-sandbox.fatzebra.com.au/api/v1
+    documented: true
+    note: FDMS TPP Merchant Onboarding API (only a sandbox server is declared in the spec).
+sources:
+- url: https://docs.fatzebra.com/
+  type: DeveloperPortal
+  note: ReadMe-hosted developer hub for the pmnts platform. HTTP 200.
+- url: https://docs.fatzebra.com/llms.txt
+  type: Documentation
+  note: AI index of guides, API reference, and changelog. HTTP 200.
+- url: https://docs.fatzebra.com/docs/authentication-1
+  type: Documentation
+  note: Confirms HTTP Basic (username + API token). HTTP 200.
+- url: https://docs.fatzebra.com/reference/purchases
+  type: APIReference
+  note: Gateway API reference; page HTML lists the four backing OAS files. HTTP 200.
+- url: https://dash.readme.com/api/v1/api-registry/2kzeqfvmrvneu1u
+  type: OpenAPI
+  note: Gateway API spec, harvested verbatim -> openapi/fat-zebra-gateway.json. HTTP 200.
+- url: https://dash.readme.com/api/v1/api-registry/7t5scdmqq2tixn
+  type: OpenAPI
+  note: Partner API spec, harvested verbatim -> openapi/fat-zebra-partner.json. HTTP 200.
+- url: https://dash.readme.com/api/v1/api-registry/1mld74kq6vkiq6
+  type: OpenAPI
+  note: Billing API spec, harvested verbatim -> openapi/fat-zebra-billing.json. HTTP 200.
+- url: https://dash.readme.com/api/v1/api-registry/1mld74kq6vrc1k
+  type: OpenAPI
+  note: FDMS TPP Merchant Onboarding spec, verbatim -> openapi/fat-zebra-fdms-tpp-merchant-onboarding.json. HTTP 200.
+actions:
+  openapiHarvested: true
+  specsCount: 4
+  apisYmlUpdated: true

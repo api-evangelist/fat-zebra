@@ -1,0 +1,138 @@
+aid: fat-zebra
+url: https://raw.githubusercontent.com/api-evangelist/fat-zebra/refs/heads/main/apis.yml
+name: Fat Zebra
+kind: company
+description: Fat Zebra is an Australian payments company (founded 2012, Sydney) providing
+  a card-present and card-not-present payment gateway and processing platform for merchants,
+  ISOs, and software platforms across Australia and New Zealand. Its API-first Gateway
+  handles Visa, Mastercard, and Amex purchases, authorizations and captures, refunds
+  and voids, card tokenization, 3D Secure, recurring payment plans, direct debits and
+  direct credits over local bank rails, chargeback handling, batch processing, and hosted
+  payment pages (PayNow), alongside wallet acceptance for Apple Pay, Google Pay, and
+  Click to Pay. A separate Partner API lets platforms and ISOs create and board their
+  own sub-merchants onto acquirer connections programmatically. The developer surface
+  is a genuine, well-documented ReadMe hub at docs.fatzebra.com with four downloadable
+  OpenAPI definitions, and the runtime platform is branded pmnts (gateway.pmnts.io).
+  Authentication is HTTP Basic using a username and API token.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Payments
+- Australia
+- Payment Gateway
+- Payment Processing
+- Acquiring
+- Card Payments
+- Tokenization
+- Recurring Billing
+- Direct Debit
+- Hosted Payment Pages
+- Merchant Onboarding
+created: '2026-07-24'
+modified: '2026-07-24'
+specificationVersion: '0.19'
+apis:
+- aid: fat-zebra:fat-zebra-gateway-api
+  name: Fat Zebra Gateway API
+  description: The core Fat Zebra payments Gateway — 98 documented operations across
+    73 paths covering purchases, authorizations and captures, refunds and voids, card
+    tokenization (credit_cards), customers and bank accounts, direct debits and direct
+    credits, chargebacks, batches, recurring payment plans, surcharging, and webhook
+    management. OpenAPI 3.1. Auth is HTTP Basic (username + API token).
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Payments
+  - Gateway
+  - Card Payments
+  - Tokenization
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-gateway.json
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+- aid: fat-zebra:fat-zebra-partner-api
+  name: Fat Zebra Partner API
+  description: The Partner (v2) API for ISOs and software platforms to programmatically
+    create and manage their own sub-merchants and acquirer connections — 30 operations
+    across 22 paths covering partner self/identity, merchant create/board/lifecycle
+    (activate, suspend, cancel), credential rotation, acquirer connection management,
+    SSO enforcement, and dashboard users. OpenAPI 3.1. Auth is HTTP Basic (partner
+    username + API token). Production, sandbox, and staging environments documented.
+  humanURL: https://docs.fatzebra.com/docs/introduction
+  baseURL: https://gateway.pmnts.io/v2/partners
+  tags:
+  - Merchant Onboarding
+  - Partner
+  - Acquiring
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-partner.json
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+- aid: fat-zebra:fat-zebra-billing-api
+  name: Fat Zebra Billing API
+  description: An early usage-based Billing API (OpenAPI 3.0.3) exposing billing entities
+    and a batch usage-record push for metered billing against customers. Documented
+    server is the sandbox host billing.pmnts-sandbox.io. Auth is HTTP Basic.
+  humanURL: https://docs.fatzebra.com/
+  baseURL: https://billing.pmnts-sandbox.io/api/v1/
+  tags:
+  - Billing
+  - Usage Based Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-billing.json
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-fdms-tpp-merchant-onboarding-api
+  name: Fat Zebra FDMS TPP Merchant Onboarding API
+  description: A Third-Party Processor (TPP) merchant onboarding API for the FDMS acquiring
+    integration (OpenAPI 3.0.3) — create and list merchants and an internal onboard
+    operation. Documented server is the sandbox host acquiring-sandbox.fatzebra.com.au.
+    Auth is HTTP Basic.
+  humanURL: https://docs.fatzebra.com/
+  baseURL: https://acquiring-sandbox.fatzebra.com.au/api/v1
+  tags:
+  - Merchant Onboarding
+  - Acquiring
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-fdms-tpp-merchant-onboarding.json
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+common:
+- type: Website
+  url: https://www.fatzebra.com/
+- type: DeveloperPortal
+  url: https://docs.fatzebra.com/
+- type: Documentation
+  url: https://docs.fatzebra.com/docs/introduction
+- type: APIReference
+  url: https://docs.fatzebra.com/reference/purchases
+- type: GettingStarted
+  url: https://docs.fatzebra.com/docs/getting-started
+- type: ChangeLog
+  url: https://docs.fatzebra.com/changelog/welcome-to-pmnts
+- type: GitHubOrganization
+  url: https://github.com/fatzebra
+- type: StatusPage
+  url: https://status.fatzebra.com/
+- type: Pricing
+  url: https://www.fatzebra.com/platform/pricing
+- type: Blog
+  url: https://www.fatzebra.com/company/news
+- type: Support
+  url: https://www.fatzebra.com/contact/support
+- type: Security
+  url: https://www.fatzebra.com/security
+- type: PrivacyPolicy
+  url: https://www.fatzebra.com/privacy-policy
+- type: Integrations
+  url: https://www.fatzebra.com/platform/integrations
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
