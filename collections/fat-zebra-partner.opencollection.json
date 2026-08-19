@@ -1,0 +1,647 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fat Zebra Partner API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Auth + partner resolution canary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/ping"
+          },
+          "docs": "Smoke-tests auth and partner resolution. Returns `{ \"ok\": true }` on\nsuccess.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Partner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show the authenticated partner (self)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/me"
+          },
+          "docs": "Returns the partner object: id, name, status, environment, branding,\nand defaults.\n"
+        },
+        {
+          "info": {
+            "name": "Rotate the partner's own API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/me/credentials/rotate"
+          },
+          "docs": "Rotates the partner's API `token`. No body is expected. The fresh value\nis returned once — the previous token stops working immediately, so the\ncaller must store the response.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the partner's dashboard users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/users",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Defaults to 25, capped at 100."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor — the id of the last item from the previous page. Omit for the first page."
+              }
+            ]
+          },
+          "docs": "Returns the partner's dashboard user ids newest-first in the list\nenvelope. Fetch the full user via `GET /users/{id}`.\n"
+        },
+        {
+          "info": {
+            "name": "Create a dashboard user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a dashboard user under the partner. The `password` is\nwrite-only — it is accepted here but never returned on reads.\n"
+        },
+        {
+          "info": {
+            "name": "Show a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User id (e.g. `123-RU-9f3k2m8q`)."
+              }
+            ]
+          },
+          "docs": "Show a user"
+        },
+        {
+          "info": {
+            "name": "Update a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://gateway.pmnts.io/v2/partners/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User id (e.g. `123-RU-9f3k2m8q`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the user's `name`, `email`, `role` or `password`. The\n`password` is write-only — it is accepted here but never returned.\n"
+        },
+        {
+          "info": {
+            "name": "Remove a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://gateway.pmnts.io/v2/partners/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User id (e.g. `123-RU-9f3k2m8q`)."
+              }
+            ]
+          },
+          "docs": "Deletes the user. Returns `204` with no content.\n"
+        },
+        {
+          "info": {
+            "name": "Deactivate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/users/:id/deactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User id (e.g. `123-RU-9f3k2m8q`)."
+              }
+            ]
+          },
+          "docs": "Locks the account so the user can't sign in. No body is expected.\n"
+        },
+        {
+          "info": {
+            "name": "Reactivate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/users/:id/reactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User id (e.g. `123-RU-9f3k2m8q`)."
+              }
+            ]
+          },
+          "docs": "Unlocks the account so the user can sign in again. No body is expected.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSO",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Show SSO enforcement state",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/sso"
+          },
+          "docs": "Returns whether SSO is enforced for the partner, plus how many users\nare linked to the IdP versus not.\n"
+        },
+        {
+          "info": {
+            "name": "Enforce SSO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/sso/enforce"
+          },
+          "docs": "Turns on SSO enforcement for the partner. No body is expected. Returns\n`409 conflict` when active users aren't yet linked to the IdP — they'd\nbe locked out, so link them first.\n"
+        },
+        {
+          "info": {
+            "name": "Disable SSO enforcement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/sso/disable"
+          },
+          "docs": "Turns off SSO enforcement for the partner. No body is expected.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Acquirers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List acquirers this partner may board onto",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/acquirers"
+          },
+          "docs": "Scoped to the partner's allowed set (derived from the processors behind\neach acquirer). Returns the list shape; `next_cursor` is always `null`\n(the catalogue is small and unpaginated).\n"
+        },
+        {
+          "info": {
+            "name": "Show one acquirer's detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/acquirers/:code",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "Acquirer code (e.g. `nab`)."
+              }
+            ]
+          },
+          "docs": "Returns the acquirer's `supported_currencies` and `supported_schemes`.\n\nAn unknown or non-boardable acquirer code returns `404`.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Merchants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the partner's merchants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Defaults to 25, capped at 100."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor — the id of the last item from the previous page. Omit for the first page."
+              }
+            ]
+          },
+          "docs": "Returns the partner's merchants newest-first in the list envelope. Each\nitem is a summary (username only) — fetch the full merchant via\n`GET /merchants/{username}`.\n"
+        },
+        {
+          "info": {
+            "name": "Create a merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a merchant. By default (no `acquirers` in the body) the merchant\nis identity-only: `status` is `pending`, no processing connection is\nattached, and a fresh API token is generated. The merchant can't take\npayments until a processing connection is boarded and the merchant is\nactivated. Pass an `acquirers` array to create and board in one call\n(see **Combined create-and-board** below).\n\nThe response is `201` with the merchant object and a one-time\n`credentials.token`. The token is shown onc"
+        },
+        {
+          "info": {
+            "name": "Show a merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ]
+          },
+          "docs": "Show a merchant"
+        },
+        {
+          "info": {
+            "name": "Update a merchant (alias for PATCH)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Routes to the same update action as `PATCH /merchants/{username}`; same\nbehaviour and contract.\n"
+        },
+        {
+          "info": {
+            "name": "Update a merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the merchant's identity/business details. `username`, `status`\nand `credentials` are read-only here — use the lifecycle endpoints\n(`/activate`, `/suspend`, `/cancel`) to change `status`, and\n`/credentials/rotate` to rotate credentials.\n"
+        },
+        {
+          "info": {
+            "name": "Activate a merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/activate",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ]
+          },
+          "docs": "Transitions the merchant to `active` so it can transact. No body is\nexpected. Activating a merchant that has no active acquirer connection\nis rejected with `409 conflict` (\"merchant has no active processing\nconnection\") — board an acquirer first.\n"
+        },
+        {
+          "info": {
+            "name": "Suspend a merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/suspend",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ]
+          },
+          "docs": "Transitions the merchant to `suspended`. No body is expected.\n"
+        },
+        {
+          "info": {
+            "name": "Cancel a merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/cancel",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ]
+          },
+          "docs": "Transitions the merchant to `closed`. No body is expected.\n"
+        },
+        {
+          "info": {
+            "name": "Rotate a merchant's credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/credentials/rotate",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ]
+          },
+          "docs": "Rotates the merchant's API `token` and its `signing_secret`. No body is\nexpected. The fresh values are returned once — the previous token stops\nworking immediately, so the caller must store the response.\n\nThe response is a bare credentials object: `username`, `token`,\n`signing_secret`, `rotated_at`.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Acquirer connections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List a merchant's acquirer connections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/acquirers",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Defaults to 25, capped at 100."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor — the id of the last item from the previous page. Omit for the first page."
+              }
+            ]
+          },
+          "docs": "Returns the merchant's acquirer connections newest-first in the list\nenvelope.\n"
+        },
+        {
+          "info": {
+            "name": "Board a merchant onto an acquirer (synchronous)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/acquirers",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Boards the merchant onto an acquirer synchronously and returns the\nresulting connection with `201`. There is no pending state.\n\nYou name an `acquirer` (your bank relationship) and the\nacquirer-assigned `merchant_id` (MID), plus the\n`terminal_id` (TID) when the acquirer needs one. Fat Zebra validates the MID/TID and `currencies`\nagainst its config and boards the merchant onto every processor behind\nthat acquirer that can carry a requested currency — you never name a\nprocessor. Omit `currencies` t"
+        },
+        {
+          "info": {
+            "name": "Show an acquirer connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/acquirers/:conn_id",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              },
+              {
+                "name": "conn_id",
+                "value": "",
+                "type": "path",
+                "description": "Acquirer-connection id — the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+              }
+            ]
+          },
+          "docs": "Show an acquirer connection"
+        },
+        {
+          "info": {
+            "name": "Update an acquirer connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/acquirers/:conn_id",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              },
+              {
+                "name": "conn_id",
+                "value": "",
+                "type": "path",
+                "description": "Acquirer-connection id — the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patches the mutable fields only: `priority`, `currencies`,\n`card_types`. Changing `currencies` / `card_types` re-evaluates which\nunderlying processors stay active. `card_types` is narrowed to each\nprocessor's routable set, so a PATCH can't enable a scheme the acquirer\ncan't settle. The `acquirer` and the MID/TID (`merchant_id` /\n`terminal_id`) are immutable once the connection exists.\n"
+        },
+        {
+          "info": {
+            "name": "Enable an acquirer connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/acquirers/:conn_id/enable",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              },
+              {
+                "name": "conn_id",
+                "value": "",
+                "type": "path",
+                "description": "Acquirer-connection id — the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+              }
+            ]
+          },
+          "docs": "Flips `enabled` to `true` across the underlying links. The routing\ntoggle only — config and MID/TID are untouched. No body is expected.\n"
+        },
+        {
+          "info": {
+            "name": "Disable an acquirer connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://gateway.pmnts.io/v2/partners/merchants/:username/acquirers/:conn_id/disable",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The merchant's username (e.g. `acme-store`)."
+              },
+              {
+                "name": "conn_id",
+                "value": "",
+                "type": "path",
+                "description": "Acquirer-connection id — the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+              }
+            ]
+          },
+          "docs": "Flips `enabled` to `false` across the underlying links — turns a boarded\nconnection off for routing without deleting it. Config and MID/TID are\nuntouched. No body is expected.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

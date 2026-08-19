@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FDMS TPP Merchant Onboarding",
+    "version": "unknown"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List merchants",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://acquiring-sandbox.fatzebra.com.au/api/v1/merchants",
+        "params": [
+          {
+            "name": "filter[onboarded]",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "List merchants"
+    },
+    {
+      "info": {
+        "name": "FDMS TPP Merchant Onboarding",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://acquiring-sandbox.fatzebra.com.au/api/v1/merchants",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "FDMS TPP Merchant Onboarding"
+    },
+    {
+      "info": {
+        "name": "Onboard merchants (internal)",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://acquiring-sandbox.fatzebra.com.au/api/v1/merchants/onboard",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Onboard merchants (internal)"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,474 @@
+{
+  "item": [
+    {
+      "id": "3137deb7-eb14-4614-a249-302d5eb6aa07",
+      "name": "FDMS TPP Merchant Onboarding",
+      "request": {
+        "name": "FDMS TPP Merchant Onboarding",
+        "description": {
+          "content": "",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "merchants"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"legal_name\": \"<string>\",\n  \"business_number\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"contact_website\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"merchant_category_code\": \"<string>\",\n  \"ecommerce_enabled\": \"<boolean>\",\n  \"trading_address_contact_name\": \"<string>\",\n  \"trading_address_line_1\": \"<string>\",\n  \"trading_address_line_2\": \"<string>\",\n  \"trading_address_line_3\": \"<string>\",\n  \"trading_address_line_4\": \"<string>\",\n  \"trading_address_city\": \"<string>\",\n  \"trading_address_state\": \"<string>\",\n  \"trading_address_postcode\": \"<string>\",\n  \"trading_address_country\": \"<string>\",\n  \"legal_address_contact_name\": \"<string>\",\n  \"legal_address_line_1\": \"<string>\",\n  \"legal_address_line_2\": \"<string>\",\n  \"legal_address_line_3\": \"<string>\",\n  \"legal_address_line_4\": \"<string>\",\n  \"legal_address_city\": \"<string>\",\n  \"legal_address_state\": \"<string>\",\n  \"legal_address_postcode\": \"<string>\",\n  \"legal_address_country\": \"<string>\",\n  \"signed_date\": \"<date>\",\n  \"total_annual_cash_or_credit_debit_turnover\": \"<integer>\",\n  \"total_annual_credit_turnover\": \"<integer>\",\n  \"average_ticket_or_sales_amount\": \"<integer>\",\n  \"card_present\": \"<boolean>\",\n  \"deposit_required\": \"<boolean>\",\n  \"deposit_percentage\": \"<integer>\",\n  \"average_delivery_time\": \"<integer>\",\n  \"recurring_transactions\": \"<boolean>\",\n  \"terminal_type\": \"<string>\",\n  \"config_code\": \"<string>\",\n  \"term_quantity\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "949e906f-c7e4-4544-b63d-bf8ce1de534c",
+          "name": "200",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "merchants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"legal_name\": \"<string>\",\n  \"business_number\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"contact_website\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"merchant_category_code\": \"<string>\",\n  \"ecommerce_enabled\": \"<boolean>\",\n  \"trading_address_contact_name\": \"<string>\",\n  \"trading_address_line_1\": \"<string>\",\n  \"trading_address_line_2\": \"<string>\",\n  \"trading_address_line_3\": \"<string>\",\n  \"trading_address_line_4\": \"<string>\",\n  \"trading_address_city\": \"<string>\",\n  \"trading_address_state\": \"<string>\",\n  \"trading_address_postcode\": \"<string>\",\n  \"trading_address_country\": \"<string>\",\n  \"legal_address_contact_name\": \"<string>\",\n  \"legal_address_line_1\": \"<string>\",\n  \"legal_address_line_2\": \"<string>\",\n  \"legal_address_line_3\": \"<string>\",\n  \"legal_address_line_4\": \"<string>\",\n  \"legal_address_city\": \"<string>\",\n  \"legal_address_state\": \"<string>\",\n  \"legal_address_postcode\": \"<string>\",\n  \"legal_address_country\": \"<string>\",\n  \"signed_date\": \"<date>\",\n  \"total_annual_cash_or_credit_debit_turnover\": \"<integer>\",\n  \"total_annual_credit_turnover\": \"<integer>\",\n  \"average_ticket_or_sales_amount\": \"<integer>\",\n  \"card_present\": \"<boolean>\",\n  \"deposit_required\": \"<boolean>\",\n  \"deposit_percentage\": \"<integer>\",\n  \"average_delivery_time\": \"<integer>\",\n  \"recurring_transactions\": \"<boolean>\",\n  \"terminal_type\": \"<string>\",\n  \"config_code\": \"<string>\",\n  \"term_quantity\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7cfdd816-f953-45da-9102-5709456b97ff",
+          "name": "400",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "merchants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"legal_name\": \"<string>\",\n  \"business_number\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"contact_website\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"merchant_category_code\": \"<string>\",\n  \"ecommerce_enabled\": \"<boolean>\",\n  \"trading_address_contact_name\": \"<string>\",\n  \"trading_address_line_1\": \"<string>\",\n  \"trading_address_line_2\": \"<string>\",\n  \"trading_address_line_3\": \"<string>\",\n  \"trading_address_line_4\": \"<string>\",\n  \"trading_address_city\": \"<string>\",\n  \"trading_address_state\": \"<string>\",\n  \"trading_address_postcode\": \"<string>\",\n  \"trading_address_country\": \"<string>\",\n  \"legal_address_contact_name\": \"<string>\",\n  \"legal_address_line_1\": \"<string>\",\n  \"legal_address_line_2\": \"<string>\",\n  \"legal_address_line_3\": \"<string>\",\n  \"legal_address_line_4\": \"<string>\",\n  \"legal_address_city\": \"<string>\",\n  \"legal_address_state\": \"<string>\",\n  \"legal_address_postcode\": \"<string>\",\n  \"legal_address_country\": \"<string>\",\n  \"signed_date\": \"<date>\",\n  \"total_annual_cash_or_credit_debit_turnover\": \"<integer>\",\n  \"total_annual_credit_turnover\": \"<integer>\",\n  \"average_ticket_or_sales_amount\": \"<integer>\",\n  \"card_present\": \"<boolean>\",\n  \"deposit_required\": \"<boolean>\",\n  \"deposit_percentage\": \"<integer>\",\n  \"average_delivery_time\": \"<integer>\",\n  \"recurring_transactions\": \"<boolean>\",\n  \"terminal_type\": \"<string>\",\n  \"config_code\": \"<string>\",\n  \"term_quantity\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5f551d04-9cf3-43c5-b878-8aa5d5171238",
+      "name": "List merchants",
+      "request": {
+        "name": "List merchants",
+        "description": {
+          "content": "",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "merchants"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "filter[onboarded]",
+              "value": "<boolean>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "414534f7-a2b1-41e0-b892-8707bdd791c0",
+          "name": "200",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "merchants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "filter[onboarded]",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{\\n  \\\"count\\\": 2,\\n  \\\"response\\\": [\\n    {\\n      \\\"username\\\": \\\"TEST\\\",\\n      \\\"tpp_id\\\": 400,\\n      \\\"tpp_job_id\\\": \\\"NY4000MB\\\",\\n      \\\"tpp_name\\\": \\\"Acme Inc.\\\"\\n      ...\\n    },\\n    {\\n      \\\"username\\\": \\\"WAT\\\",\\n      \\\"tpp_id\\\": 400,\\n      \\\"tpp_job_id\\\": \\\"NY4000MB\\\",\\n      \\\"tpp_name\\\": \\\"Acme Inc.\\\"\\n      ...\\n    }\\n  ],\\n  \\\"pagination\\\": {\\n    \\\"current\\\": 1,\\n    \\\"previous\\\": null,\\n    \\\"next\\\": null,\\n    \\\"per_page\\\": 10,\\n    \\\"pages\\\": 1,\\n    \\\"count\\\": 2\\n  }   \\n}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "19a3ee95-df95-47e1-baf7-0470adf41e22",
+          "name": "400",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "merchants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "filter[onboarded]",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "146c822a-778b-4e35-88e2-0d87d67b983c",
+      "name": "Onboard merchants (internal)",
+      "request": {
+        "name": "Onboard merchants (internal)",
+        "description": {
+          "content": "",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "merchants",
+            "onboard"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "14bdc8e6-3068-4870-a4c7-c62e41d7c658",
+          "name": "200",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "merchants",
+                "onboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usernames\": [\n    \"TEST\",\n    \"WAT\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{\\n  \\\"merchants\\\": [\\n    {\\n      \\\"username\\\": \\\"TEST\\\",\\n      \\\"onboarded_at: \\\"2018-01-01T23:51:17Z\\\"\\n    },\\n    {\\n      \\\"username\\\": \\\"WAT\\\",\\n      \\\"onboarded_at: \\\"2018-01-01T23:51:17Z\\\"\\n    }\\n  ]\\n}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1f7b3b92-7633-4732-a0dd-27db34d39ac7",
+          "name": "400",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "merchants",
+                "onboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usernames\": [\n    \"TEST\",\n    \"WAT\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acquiring-sandbox.fatzebra.com.au/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f947223f-b006-4eba-8bfe-5366fed475ed",
+    "name": "FDMS TPP Merchant Onboarding",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

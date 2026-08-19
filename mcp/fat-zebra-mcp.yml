@@ -66,3 +66,9 @@ tools:
   category: Partner
   description: List sub-merchants
   source_operation: openapi/fat-zebra-partner.json#listMerchants
+deployment:
+  mode: none
+  verified: derived
+  tools: 14
+  checked: '2026-08-12'
+  source: catalog MCP census

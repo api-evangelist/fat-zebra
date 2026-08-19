@@ -1,0 +1,367 @@
+{
+  "item": [
+    {
+      "id": "a8721fcc-f698-4e97-a792-301e05b1ed8e",
+      "name": "Billing Entities",
+      "request": {
+        "name": "Billing Entities",
+        "description": {
+          "content": "",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "4ffd3e10-8558-4f90-bcab-757782b23fd4",
+          "name": "200",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{ \\\"billing_entities\\\": [] }\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bab7e162-91b7-4044-b555-8c971f8cf96e",
+          "name": "400",
+          "originalRequest": {
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "738f08e7-5c23-4493-a6b5-661c1575099d",
+      "name": "Push usage",
+      "request": {
+        "name": "Push usage",
+        "description": {
+          "content": "",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "customers",
+            ":customer_id",
+            "usage_records",
+            "batch"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "customer_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"usage_records\": [\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    },\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "71017532-0ea2-4790-902d-fd9002adf042",
+          "name": "200",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "customers",
+                ":customer_id",
+                "usage_records",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usage_records\": [\n    {\n      \"unit\": \"transaction\",\n      \"volume\": 2935,\n      \"tags\": [\n        \"purchase\",\n        \"visa\"\n      ],\n      \"period_from\": \"2017-08-31T00:00:00.000000+00:00\",\n      \"period_to\": \"2017-08-31T23:59:59.000000+00:00\"\n    },\n    {\n      \"unit\": \"transaction\",\n      \"volume\": 136,\n      \"tags\": [\n        \"purchase\",\n        \"amex\"\n      ],\n      \"period_from\": \"2017-08-31T00:00:00.000000+00:00\",\n      \"period_to\": \"2017-08-31T23:59:59.000000+00:00\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "65eb8cb4-45e7-451f-8ad4-6d4efdc111f3",
+          "name": "400",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "customers",
+                ":customer_id",
+                "usage_records",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customer_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: basic",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "Basic <credentials>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usage_records\": [\n    {\n      \"unit\": \"transaction\",\n      \"volume\": 2935,\n      \"tags\": [\n        \"purchase\",\n        \"visa\"\n      ],\n      \"period_from\": \"2017-08-31T00:00:00.000000+00:00\",\n      \"period_to\": \"2017-08-31T23:59:59.000000+00:00\"\n    },\n    {\n      \"unit\": \"transaction\",\n      \"volume\": 136,\n      \"tags\": [\n        \"purchase\",\n        \"amex\"\n      ],\n      \"period_from\": \"2017-08-31T00:00:00.000000+00:00\",\n      \"period_to\": \"2017-08-31T23:59:59.000000+00:00\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"{}\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://billing.pmnts-sandbox.io/api/v1/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3eeb206-8a19-4e84-9b48-93bbbaa22bcd",
+    "name": "Fat Zebra Billing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

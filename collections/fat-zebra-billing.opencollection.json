@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fat Zebra Billing",
+    "version": "unknown"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing Entities",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://billing.pmnts-sandbox.io/api/v1",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Billing Entities"
+    },
+    {
+      "info": {
+        "name": "Push usage",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://billing.pmnts-sandbox.io/api/v1/customers/:customer_id/usage_records/batch",
+        "params": [
+          {
+            "name": "customer_id",
+            "value": "",
+            "type": "path"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Push usage"
+    }
+  ],
+  "bundled": true
+}

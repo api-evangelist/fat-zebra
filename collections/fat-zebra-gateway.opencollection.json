@@ -1,0 +1,2405 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "gateway",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List purchases",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Offset to start"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of purchases in the response"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the purchase was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the purchase was created"
+          }
+        ]
+      },
+      "docs": "List purchases"
+    },
+    {
+      "info": {
+        "name": "Create a purchase with fraud screening",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a purchase with fraud screening"
+    },
+    {
+      "info": {
+        "name": "Create a purchase using a wallet",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a purchase using a wallet"
+    },
+    {
+      "info": {
+        "name": "Create a purchase using a network token passthrough",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/ ​",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a purchase using a network token passthrough"
+    },
+    {
+      "info": {
+        "name": "Create a purchase using a wallet passthrough",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/ ​​",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a purchase using a wallet passthrough"
+    },
+    {
+      "info": {
+        "name": "Create a purchase with a token",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/ ​​​",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a purchase with a token"
+    },
+    {
+      "info": {
+        "name": "Create a purchase, with fraud screening",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/ ​​​​",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a purchase, with fraud screening"
+    },
+    {
+      "info": {
+        "name": "Create an authorization",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/ ​​​​​",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create an authorization"
+    },
+    {
+      "info": {
+        "name": "Fetch a purchase",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID or reference of the purchase."
+          }
+        ]
+      },
+      "docs": "Fetch a purchase"
+    },
+    {
+      "info": {
+        "name": "Update an authorization",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "id of the purchase"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Extend, increase authorized amount"
+    },
+    {
+      "info": {
+        "name": "Release an authorization",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "id of the purchase"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Void an authorization partially or completely"
+    },
+    {
+      "info": {
+        "name": "Capture an authorization",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/:id/capture",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "id of the purchase"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Please note, If the outer successful field is false, it means the capture was rejected at the gateway level and the errors array needs to be looked at to confirm why it failed."
+    },
+    {
+      "info": {
+        "name": "Void a purchase",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/void",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "ID of the purchase to be voided"
+          }
+        ]
+      },
+      "docs": "Void a purchase"
+    },
+    {
+      "info": {
+        "name": "List purchases by settlement",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/purchases/settlement",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "from",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "List purchases by settlement"
+    },
+    {
+      "info": {
+        "name": "List tokenized cards",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/credit_cards",
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Page number to return"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Max number of results to return"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the card was tokenized"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the card was tokenized"
+          }
+        ]
+      },
+      "docs": "List tokenized cards"
+    },
+    {
+      "info": {
+        "name": "Tokenize a card",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/credit_cards",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Tokenizes a card within the system, returning a token that can be used for subsequent transactions."
+    },
+    {
+      "info": {
+        "name": "Tokenize a card with wallet credentials",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/credit_cards/",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Tokenize a card with wallet credentials"
+    },
+    {
+      "info": {
+        "name": "Fetch a tokenized card",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/credit_cards/:token_or_alias",
+        "params": [
+          {
+            "name": "token_or_alias",
+            "value": "",
+            "type": "path",
+            "description": "Token or alias of the card"
+          }
+        ]
+      },
+      "docs": "Fetch a tokenized card"
+    },
+    {
+      "info": {
+        "name": "Update a tokenized card",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/credit_cards/:token_or_alias",
+        "params": [
+          {
+            "name": "token_or_alias",
+            "value": "",
+            "type": "path",
+            "description": "Token or alias of the card to update"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update an existing card"
+    },
+    {
+      "info": {
+        "name": "Delete an MDES Token Connect tokenized card",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/credit_cards/:token_or_alias",
+        "params": [
+          {
+            "name": "token_or_alias",
+            "value": "",
+            "type": "path",
+            "description": "Token or alias of the card to delete"
+          }
+        ]
+      },
+      "docs": "Deactivates a scheme-tokenized card. Currently only supported for cards tokenized via MDES Token Connect; other card types return a 400."
+    },
+    {
+      "info": {
+        "name": "List refunds",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/refunds",
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Page number to return"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Max number of results to return"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the refund was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the refund was created"
+          }
+        ]
+      },
+      "docs": "List refunds"
+    },
+    {
+      "info": {
+        "name": "Issue a refund",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/refunds",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Issue a refund against a purchase or standalone"
+    },
+    {
+      "info": {
+        "name": "Void a refund",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/refunds/void",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "query",
+            "description": "ID of the refund"
+          },
+          {
+            "name": "reference",
+            "value": "",
+            "type": "query",
+            "description": "Reference of the refund"
+          }
+        ]
+      },
+      "docs": "Void a refund"
+    },
+    {
+      "info": {
+        "name": "Fetch a refund",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/refunds/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID or reference of the refund."
+          }
+        ]
+      },
+      "docs": "Fetch a refund"
+    },
+    {
+      "info": {
+        "name": "List direct debits",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_debits",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Page number to return"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Max number of results to return"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the direct debit was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the direct debit was created"
+          }
+        ]
+      },
+      "docs": "List direct debits"
+    },
+    {
+      "info": {
+        "name": "Create a direct debit",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_debits",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a direct debit"
+    },
+    {
+      "info": {
+        "name": "Update a direct debit",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_debits/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID of the direct debit"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "A direct debit can be updated if it has a status of `New`. Once direct debits have been submitted to the financial institution, they are locked and can only be updated by the Fat Zebra system."
+    },
+    {
+      "info": {
+        "name": "Delete a direct debit",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_debits/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID of the direct debit"
+          }
+        ]
+      },
+      "docs": "A direct debit can be deleted if it has a status of `New`. Deleting a direct debit will update its status to `Deleted`, however the data will not be removed from Fat Zebra's systems."
+    },
+    {
+      "info": {
+        "name": "Fetch a direct debit",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_debits/:id_or_reference",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id_or_reference",
+            "value": "",
+            "type": "path",
+            "description": "ID or reference of the direct debit"
+          }
+        ]
+      },
+      "docs": "Fetch a direct debit"
+    },
+    {
+      "info": {
+        "name": "List direct credits",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_credits",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Page number to return"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Max number of results to return"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the date at which the direct credit was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the date at which the direct credit was created"
+          }
+        ]
+      },
+      "docs": "List direct credits"
+    },
+    {
+      "info": {
+        "name": "Create a direct credit",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_credits",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a direct credit"
+    },
+    {
+      "info": {
+        "name": "Update a direct credit",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_credits/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID of the direct credit"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "A direct credit can be updated if it has a status of `New`. Once direct credits have been submitted to the financial institution, they are locked and can only be updated by the Fat Zebra system."
+    },
+    {
+      "info": {
+        "name": "Delete a direct credit",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_credits/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID of the direct credit"
+          }
+        ]
+      },
+      "docs": "A direct credit can be deleted if it has a status of `New`. Deleting a direct credit will update its status to `Deleted`, however the data will not be removed from Fat Zebra's systems."
+    },
+    {
+      "info": {
+        "name": "Fetch a direct credit",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/direct_credits/:id_or_reference",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id_or_reference",
+            "value": "",
+            "type": "path",
+            "description": "ID or reference of the direct credit"
+          }
+        ]
+      },
+      "docs": "Fetch a direct credit"
+    },
+    {
+      "info": {
+        "name": "Fetch a chargeback",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/chargebacks/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID of the chargeback"
+          }
+        ]
+      },
+      "docs": "Fetch a chargeback"
+    },
+    {
+      "info": {
+        "name": "Update a chargeback",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/chargebacks/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "id of the chargeback"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update a chargeback"
+    },
+    {
+      "info": {
+        "name": "List chargebacks",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/chargebacks",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "List chargebacks"
+    },
+    {
+      "info": {
+        "name": "Fetch a chargeback notification",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/chargebacks/:chargeback_id/notifications/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "chargeback_id",
+            "value": "",
+            "type": "path"
+          },
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "id of the notification"
+          }
+        ]
+      },
+      "docs": "Fetch a chargeback notification"
+    },
+    {
+      "info": {
+        "name": "Update a chargeback notification",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/chargebacks/:chargeback_id/notifications/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "chargeback_id",
+            "value": "",
+            "type": "path",
+            "description": "id of the chargeback"
+          },
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "id of the notification"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update a chargeback notification"
+    },
+    {
+      "info": {
+        "name": "List chargeback notifications",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/chargebacks/:id/notifications",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "id of the chargeback"
+          }
+        ]
+      },
+      "docs": "List chargeback notifications"
+    },
+    {
+      "info": {
+        "name": "Create a batch",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/batches/:filename",
+        "params": [
+          {
+            "name": "filename",
+            "value": "",
+            "type": "path",
+            "description": "Your CSV batch payments file name"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a batch"
+    },
+    {
+      "info": {
+        "name": "Fetch a batch",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/batches/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID or Reference of the Batch"
+          }
+        ]
+      },
+      "docs": "Fetch a batch"
+    },
+    {
+      "info": {
+        "name": "Delete a batch",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/batches/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID or Reference of the Batch"
+          }
+        ]
+      },
+      "docs": "Delete a batch"
+    },
+    {
+      "info": {
+        "name": "Retrieve batch result file",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/batches/:id/result.csv",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID or Reference of the Batch"
+          }
+        ]
+      },
+      "docs": "Retrieve batch result file"
+    },
+    {
+      "info": {
+        "name": "List all batches",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/batches",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of records to return per request (page) - the maximum per request is 50."
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "The pagination offset. For example, offset=10, limit=10 will return records 100 to 110"
+          }
+        ]
+      },
+      "docs": "List all batches"
+    },
+    {
+      "info": {
+        "name": "List customers",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/customers",
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "The page number of customers to be returned."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of customers per page to be returned."
+          }
+        ]
+      },
+      "docs": "List customers"
+    },
+    {
+      "info": {
+        "name": "Create a customer",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/customers",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Please note, one payment method field is required, either card, card_token or bank_account."
+    },
+    {
+      "info": {
+        "name": "Fetch a customer",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/customers/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID or Reference"
+          }
+        ]
+      },
+      "docs": "Fetch a customer"
+    },
+    {
+      "info": {
+        "name": "Update a customer",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/customers/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID or Reference"
+          }
+        ]
+      },
+      "docs": "Update a customer"
+    },
+    {
+      "info": {
+        "name": "Delete a customer",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/customers/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID or Reference"
+          }
+        ]
+      },
+      "docs": "Delete a customer"
+    },
+    {
+      "info": {
+        "name": "List bank accounts",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/bank_accounts",
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Page number to return"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of results to return"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the bank account was registered"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the bank account was registered"
+          }
+        ]
+      },
+      "docs": "List bank accounts"
+    },
+    {
+      "info": {
+        "name": "Create a bank account",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/bank_accounts"
+      },
+      "docs": "Create a bank account"
+    },
+    {
+      "info": {
+        "name": "Fetch a bank account",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/bank_accounts/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The bank account record ID"
+          }
+        ]
+      },
+      "docs": "Fetch a bank account"
+    },
+    {
+      "info": {
+        "name": "Get applicable surcharge",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/applicable_surcharge",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "pan",
+            "value": "",
+            "type": "query",
+            "description": "The card number of the debit or credit card"
+          },
+          {
+            "name": "amount",
+            "value": "",
+            "type": "query",
+            "description": "Amount to be surcharged in the smallest currency unit"
+          },
+          {
+            "name": "currency",
+            "value": "",
+            "type": "query",
+            "description": "Currency of the amount to be surcharged"
+          }
+        ]
+      },
+      "docs": "Get the applicable surcharge for a given amount, currency and card number."
+    },
+    {
+      "info": {
+        "name": "List webhooks",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/web_hooks",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of records to return per request. The maximum records per request is 50"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "The pagination offset for the request."
+          }
+        ]
+      },
+      "docs": "List your installed webhooks"
+    },
+    {
+      "info": {
+        "name": "Create a webhook",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/web_hooks",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create webhooks"
+    },
+    {
+      "info": {
+        "name": "Update a webhook",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/web_hooks/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "Id of the webhook"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Update a webhook"
+    },
+    {
+      "info": {
+        "name": "Delete a webhook",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/web_hooks/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Delete a webhook"
+    },
+    {
+      "info": {
+        "name": "List payment plans",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/payment_plans",
+        "params": [
+          {
+            "name": "from",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Maximum number of records to return. Must not be more than 50."
+          }
+        ]
+      },
+      "docs": "List payment plans"
+    },
+    {
+      "info": {
+        "name": "Create a payment plan",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/payment_plans",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create a payment plan"
+    },
+    {
+      "info": {
+        "name": "Fetch a payment plan",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/payment_plans/:id_or_reference",
+        "params": [
+          {
+            "name": "id_or_reference",
+            "value": "",
+            "type": "path",
+            "description": "ID or merchant's reference of the payment plan."
+          }
+        ]
+      },
+      "docs": "Fetch a payment plan"
+    },
+    {
+      "info": {
+        "name": "Update a payment plan",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/payment_plans/:id_or_reference",
+        "params": [
+          {
+            "name": "id_or_reference",
+            "value": "",
+            "type": "path",
+            "description": "ID or merchant's reference of the payment plan to update."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "A Payment Plan's status can only be updated to Cancelled, Suspended or Active. For a suspended plan it is possible to set a date the plan is suspended until. \n\nWhen a plan is suspended, any pending payments will be removed. If the plan is resumed, the pending payments will be re-created to meet the plan's constraints.\n\n\nNote:\nPayment plan must be active for any other attributes to be updated."
+    },
+    {
+      "info": {
+        "name": "Cancel a payment plan",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/payment_plans/:id_or_reference",
+        "params": [
+          {
+            "name": "id_or_reference",
+            "value": "",
+            "type": "path",
+            "description": "ID or reference of the payment plan to cancel."
+          }
+        ]
+      },
+      "docs": "Payment Plans can be cancelled which removed any scheduled payments and stops the plan from being processed. Once a Plan has been cancelled it is considered 'Deleted' and cannot be re-activated."
+    },
+    {
+      "info": {
+        "name": "Fetch settlement totals",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/settlement/totals",
+        "params": [
+          {
+            "name": "date",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "currency",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Fetch settlement totals"
+    },
+    {
+      "info": {
+        "name": "Fetch an invoice",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/invoices/:reference",
+        "params": [
+          {
+            "name": "reference",
+            "value": "",
+            "type": "path",
+            "description": "Reference of the invoice to be fetched."
+          }
+        ]
+      },
+      "docs": "Individual invoices can be retrieved by their reference."
+    },
+    {
+      "info": {
+        "name": "Check replacement status",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/invoice_imports/4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8"
+      },
+      "docs": "Check replacement status"
+    },
+    {
+      "info": {
+        "name": "Replace all invoices",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/invoices"
+      },
+      "docs": "**Note: This action will replace all existing invoices.**"
+    },
+    {
+      "info": {
+        "name": "List orders",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/orders",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Offset to start"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of records in the response"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the record was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the record was created"
+          }
+        ]
+      },
+      "docs": "List orders"
+    },
+    {
+      "info": {
+        "name": "Fetch an order",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/orders/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the order."
+          }
+        ]
+      },
+      "docs": "Fetch an order"
+    },
+    {
+      "info": {
+        "name": "List authorizations",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/authorizations",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Offset to start"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of records in the response"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the record was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the record was created"
+          }
+        ]
+      },
+      "docs": "List authorizations"
+    },
+    {
+      "info": {
+        "name": "Fetch an authorization",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/authorizations/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the authorization."
+          }
+        ]
+      },
+      "docs": "Fetch an authorization"
+    },
+    {
+      "info": {
+        "name": "Capture an authorization",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/authorizations/:id/capture",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID of the authorization to be captured."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Capture an authorization"
+    },
+    {
+      "info": {
+        "name": "Void an authorization",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/authorizations/:id/void",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "ID of the authorization to be voided."
+          }
+        ]
+      },
+      "docs": "Void an authorization"
+    },
+    {
+      "info": {
+        "name": "List captures",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/captures",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Offset to start"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of records in the response"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the record was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the record was created"
+          }
+        ]
+      },
+      "docs": "List captures"
+    },
+    {
+      "info": {
+        "name": "Fetch a capture",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/captures/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the capture."
+          }
+        ]
+      },
+      "docs": "Fetch a capture"
+    },
+    {
+      "info": {
+        "name": "Refund a capture",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/captures/:id/refund",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the capture to be refunded"
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Refund a capture"
+    },
+    {
+      "info": {
+        "name": "List refunds",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/refunds",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Offset to start"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of records in the response"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the record was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the record was created"
+          }
+        ]
+      },
+      "docs": "List refunds"
+    },
+    {
+      "info": {
+        "name": "Fetch a refund",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/refunds/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the refund."
+          }
+        ]
+      },
+      "docs": "Fetch a refund"
+    },
+    {
+      "info": {
+        "name": "List billing agreements",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Offset to start"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of records in the response"
+          },
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Lower bound for the time at which the record was created"
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Upper bound for the time at which the record was created"
+          }
+        ]
+      },
+      "docs": "List billing agreements"
+    },
+    {
+      "info": {
+        "name": "Fetch a billing agreement",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements/:id",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the billing agreement."
+          }
+        ]
+      },
+      "docs": "Fetch a billing agreement"
+    },
+    {
+      "info": {
+        "name": "Cancel a billing agreement",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements/:id/cancel",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the billing agreement."
+          }
+        ]
+      },
+      "docs": "Cancel a billing agreement"
+    },
+    {
+      "info": {
+        "name": "Charge a billing agreement",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements/:id/charge",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the billing agreement."
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Charge a billing agreement"
+    },
+    {
+      "info": {
+        "name": "Generate a JWT token",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/authenticate/session",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "This API generates a JWT token to initiate the SCA/3DS2 process."
+    },
+    {
+      "info": {
+        "name": "Decode a JWT token",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/authenticate/decode_session",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "token",
+            "value": "",
+            "type": "query",
+            "description": "A JWT token to be decrypted"
+          }
+        ]
+      },
+      "docs": "Decode a JWT token"
+    },
+    {
+      "info": {
+        "name": "Authenticate a transaction",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/authenticate",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "This API is used to authenticate a transaction. The first step is to call this API with sca.type = \"enrollment\" to check whether the transaction is frictionless or needs further challenge. After a successful challenge, this API should be called with sca.type = \"validation\" which will return 3DS2/SCA fields."
+    },
+    {
+      "info": {
+        "name": "Create an OAuth Client",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/oauth_clients",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Create an OAuth Client"
+    },
+    {
+      "info": {
+        "name": "Fetch a payout report for date",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/reports/payouts/:date",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "date",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Fetch a payout report for date"
+    },
+    {
+      "info": {
+        "name": "Fetch a payout's transactions for date",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/reports/payouts/:date/transactions",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "date",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Fetch a payout's transactions for date"
+    },
+    {
+      "info": {
+        "name": "List disputes",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/disputes",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "from",
+            "value": "",
+            "type": "query",
+            "description": "Return disputes that were opened on or after this date, provided in the format 'YYYY-DD-MM'."
+          },
+          {
+            "name": "to",
+            "value": "",
+            "type": "query",
+            "description": "Return disputes that were opened up to and on this date, provided in the format 'YYYY-MM-DD'."
+          },
+          {
+            "name": "search",
+            "value": "",
+            "type": "query",
+            "description": "Dispute reference or transaction fatzebra ID to search on."
+          },
+          {
+            "name": "status",
+            "value": "",
+            "type": "query",
+            "description": "Disputes of any status will be returned if this is not provided. Acceptable values: open, lost, won, expired, accepted."
+          },
+          {
+            "name": "order_by",
+            "value": "",
+            "type": "query",
+            "description": "Acceptable values: opened_on, next_due_date."
+          },
+          {
+            "name": "order_direction",
+            "value": "",
+            "type": "query",
+            "description": "Acceptable values: asc, desc."
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Page number."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Number of disputes to return per page."
+          }
+        ]
+      },
+      "docs": "List disputes"
+    },
+    {
+      "info": {
+        "name": "Fetch dispute",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/transactions/:transaction_fatzebra_id/dispute",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "transaction_fatzebra_id",
+            "value": "",
+            "type": "path",
+            "description": "The fatzebra id of the transaction."
+          }
+        ]
+      },
+      "docs": "Fetch dispute"
+    },
+    {
+      "info": {
+        "name": "Accept dispute",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/transactions/:transaction_fatzebra_id/dispute/accept",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": ""
+          }
+        ],
+        "params": [
+          {
+            "name": "transaction_fatzebra_id",
+            "value": "",
+            "type": "path",
+            "description": "The fatzebra id of the transaction."
+          }
+        ]
+      },
+      "docs": "Accept dispute"
+    },
+    {
+      "info": {
+        "name": "Create Registration",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/utlities/mastercard/click_to_pay/registration"
+      },
+      "docs": "In order to start using Mastercard Click to Pay you must first register your account with Mastercard. To do this you can use the following API endpoint:"
+    },
+    {
+      "info": {
+        "name": "Check Registration",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/utilities/mastercard/click_to_pay/registration"
+      },
+      "docs": "In order to check the status of your Mastercard Click to Pay Registration the following API endpoint can be used."
+    },
+    {
+      "info": {
+        "name": "Check (Get) an Apple Pay on the Web Domain",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/utilities/apple_pay/domains/www.example.com"
+      },
+      "docs": "Check (Get) an Apple Pay on the Web Domain"
+    },
+    {
+      "info": {
+        "name": "Register (Create) an Apple Pay on the Web Domain",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/utilities/apple_pay/domains/www.example.com",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "Register (Create) an Apple Pay on the Web Domain"
+    },
+    {
+      "info": {
+        "name": "Remove (Delete) an Apple Pay on the Web Domain",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/utilities/apple_pay/domains/www.example.com"
+      },
+      "docs": "Remove (Delete) an Apple Pay on the Web Domain"
+    },
+    {
+      "info": {
+        "name": "List Apple Pay (web) domains",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/utilities/apple_pay/domains"
+      },
+      "docs": "List Apple Pay (web) domains"
+    },
+    {
+      "info": {
+        "name": "get_health",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://gateway.pmnts-sandbox.io/v1.0/health",
+        "params": [
+          {
+            "name": "echo",
+            "value": "",
+            "type": "query",
+            "description": "An optional query string to be returned back by the API"
+          }
+        ]
+      }
+    }
+  ],
+  "bundled": true
+}
