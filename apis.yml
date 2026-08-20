@@ -84,6 +84,9 @@ apis:
   baseURL: https://billing.pmnts-sandbox.io/api/v1/
   tags:
   - Billing
+  - Usage-Based Billing
+  tags_raw:
+  - Billing
   - Usage Based Billing
   properties:
   - type: OpenAPI
