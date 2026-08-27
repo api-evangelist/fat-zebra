@@ -29,90 +29,697 @@ created: '2026-07-24'
 modified: '2026-07-24'
 specificationVersion: '0.23'
 apis:
-- aid: fat-zebra:fat-zebra-gateway-api
-  name: Fat Zebra Gateway API
-  description: The core Fat Zebra payments Gateway — 98 documented operations across 73 paths covering
-    purchases, authorizations and captures, refunds and voids, card tokenization (credit_cards), customers
-    and bank accounts, direct debits and direct credits, chargebacks, batches, recurring payment plans,
-    surcharging, and webhook management. OpenAPI 3.1. Auth is HTTP Basic (username + API token).
+- aid: fat-zebra:fat-zebra-acquirer-connections-api
+  name: Fat Zebra Acquirer connections API
+  description: A merchant's connections to acquirers — board, list, update, enable/disable.
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
-  - Payments
-  - Gateway
-  - Card Payments
-  - Tokenization
+  - Acquirer connections
   properties:
   - type: OpenAPI
-    url: openapi/fat-zebra-gateway.json
+    url: openapi/fat-zebra-acquirer-connections-api-openapi.yml
   - type: Documentation
     url: https://docs.fatzebra.com/docs/purchases-overview
   - type: APIReference
     url: https://docs.fatzebra.com/reference/purchases
-  - type: Overlay
-    url: overlays/fat-zebra-gateway-overlay.yaml
   - type: Webhooks
     url: asyncapi/fat-zebra-webhooks.yml
-- aid: fat-zebra:fat-zebra-partner-api
-  name: Fat Zebra Partner API
-  description: The Partner (v2) API for ISOs and software platforms to programmatically create and manage
-    their own sub-merchants and acquirer connections — 30 operations across 22 paths covering partner
-    self/identity, merchant create/board/lifecycle (activate, suspend, cancel), credential rotation, acquirer
-    connection management, SSO enforcement, and dashboard users. OpenAPI 3.1. Auth is HTTP Basic (partner
-    username + API token). Production, sandbox, and staging environments documented.
-  humanURL: https://docs.fatzebra.com/docs/introduction
-  baseURL: https://gateway.pmnts.io/v2/partners
-  tags:
-  - Merchant Onboarding
-  - Partner
-  - Acquiring
-  properties:
-  - type: OpenAPI
-    url: openapi/fat-zebra-partner.json
   - type: Documentation
     url: https://docs.fatzebra.com/docs/introduction
   - type: APIReference
     url: https://docs.fatzebra.com/reference/showself
-  - type: Overlay
-    url: overlays/fat-zebra-partner-overlay.yaml
-- aid: fat-zebra:fat-zebra-billing-api
-  name: Fat Zebra Billing API
-  description: An early usage-based Billing API (OpenAPI 3.0.3) exposing billing entities and a batch
-    usage-record push for metered billing against customers. Documented server is the sandbox host billing.pmnts-sandbox.io.
-    Auth is HTTP Basic.
-  humanURL: https://docs.fatzebra.com/
-  baseURL: https://billing.pmnts-sandbox.io/api/v1/
-  tags:
-  - Billing
-  - Usage-Based Billing
-  tags_raw:
-  - Billing
-  - Usage Based Billing
-  properties:
-  - type: OpenAPI
-    url: openapi/fat-zebra-billing.json
   - type: Documentation
     url: https://docs.fatzebra.com/
-  - type: Overlay
-    url: overlays/fat-zebra-billing-overlay.yaml
-- aid: fat-zebra:fat-zebra-fdms-tpp-merchant-onboarding-api
-  name: Fat Zebra FDMS TPP Merchant Onboarding API
-  description: A Third-Party Processor (TPP) merchant onboarding API for the FDMS acquiring integration
-    (OpenAPI 3.0.3) — create and list merchants and an internal onboard operation. Documented server is
-    the sandbox host acquiring-sandbox.fatzebra.com.au. Auth is HTTP Basic.
-  humanURL: https://docs.fatzebra.com/
-  baseURL: https://acquiring-sandbox.fatzebra.com.au/api/v1
+- aid: fat-zebra:fat-zebra-acquirers-api
+  name: Fat Zebra Acquirers API
+  description: The acquirer catalogue this partner may board onto.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
   tags:
-  - Merchant Onboarding
-  - Acquiring
+  - Acquirers
   properties:
   - type: OpenAPI
-    url: openapi/fat-zebra-fdms-tpp-merchant-onboarding.json
+    url: openapi/fat-zebra-acquirers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
   - type: Documentation
     url: https://docs.fatzebra.com/
-  - type: Overlay
-    url: overlays/fat-zebra-fdms-tpp-merchant-onboarding-overlay.yaml
+- aid: fat-zebra:fat-zebra-applicable-surcharge-api
+  name: Fat Zebra Applicable Surcharge API
+  description: The Applicable Surcharge API from Fat Zebra — 1 operation(s) for applicable surcharge.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Applicable Surcharge
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-applicable-surcharge-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-authenticate-api
+  name: Fat Zebra Authenticate API
+  description: The Authenticate API from Fat Zebra — 3 operation(s) for authenticate.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Authenticate
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-authenticate-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-bank-accounts-api
+  name: Fat Zebra Bank Accounts API
+  description: The Bank Accounts API from Fat Zebra — 2 operation(s) for bank accounts.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Bank Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-bank-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-batches-api
+  name: Fat Zebra Batches API
+  description: The Batches API from Fat Zebra — 4 operation(s) for batches.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-batches-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-chargebacks-api
+  name: Fat Zebra Chargebacks API
+  description: The Chargebacks API from Fat Zebra — 4 operation(s) for chargebacks.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Chargebacks
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-chargebacks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-credit-cards-api
+  name: Fat Zebra Credit Cards API
+  description: The Credit Cards API from Fat Zebra — 3 operation(s) for credit cards.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Credit Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-credit-cards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-customers-api
+  name: Fat Zebra Customers API
+  description: The Customers API from Fat Zebra — 3 operation(s) for customers.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-direct-credits-api
+  name: Fat Zebra Direct Credits API
+  description: The Direct Credits API from Fat Zebra — 3 operation(s) for direct credits.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Direct Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-direct-credits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-direct-debits-api
+  name: Fat Zebra Direct Debits API
+  description: The Direct Debits API from Fat Zebra — 3 operation(s) for direct debits.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Direct Debits
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-direct-debits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-disputes-api
+  name: Fat Zebra Disputes API
+  description: The Disputes API from Fat Zebra — 1 operation(s) for disputes.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Disputes
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-disputes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-fat-zebra-billing-api
+  name: Fat Zebra Fat Zebra Billing API
+  description: The Fat Zebra Billing API from Fat Zebra — 1 operation(s) for fat zebra billing.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Fat Zebra Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-fat-zebra-billing-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-health-api
+  name: Fat Zebra Health API
+  description: The Health API from Fat Zebra — 2 operation(s) for health.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-health-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-invoice-imports-api
+  name: Fat Zebra Invoice Imports API
+  description: The Invoice Imports API from Fat Zebra — 1 operation(s) for invoice imports.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Invoice Imports
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-invoice-imports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-invoices-api
+  name: Fat Zebra Invoices API
+  description: The Invoices API from Fat Zebra — 2 operation(s) for invoices.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-merchants-api
+  name: Fat Zebra Merchants API
+  description: The Merchants API from Fat Zebra — 7 operation(s) for merchants.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Merchants
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-merchants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-oauth-clients-api
+  name: Fat Zebra Oauth Clients API
+  description: The Oauth Clients API from Fat Zebra — 1 operation(s) for oauth clients.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Oauth Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-oauth-clients-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-partner-api
+  name: Fat Zebra Partner API
+  description: The authenticated partner (self).
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Partner
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-partner-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-payment-plans-api
+  name: Fat Zebra Payment Plans API
+  description: The Payment Plans API from Fat Zebra — 2 operation(s) for payment plans.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Payment Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-payment-plans-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-paypal-api
+  name: Fat Zebra Paypal API
+  description: The Paypal API from Fat Zebra — 15 operation(s) for paypal.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Paypal
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-paypal-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-purchases-api
+  name: Fat Zebra Purchases API
+  description: The Purchases API from Fat Zebra — 11 operation(s) for purchases.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Purchases
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-purchases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-refunds-api
+  name: Fat Zebra Refunds API
+  description: The Refunds API from Fat Zebra — 3 operation(s) for refunds.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-reports-api
+  name: Fat Zebra Reports API
+  description: The Reports API from Fat Zebra — 2 operation(s) for reports.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-reports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-settlement-api
+  name: Fat Zebra Settlement API
+  description: The Settlement API from Fat Zebra — 1 operation(s) for settlement.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Settlement
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-settlement-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-sso-api
+  name: Fat Zebra SSO API
+  description: Partner SSO enforcement — read state, enforce, disable.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - SSO
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-sso-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-transactions-api
+  name: Fat Zebra Transactions API
+  description: The Transactions API from Fat Zebra — 2 operation(s) for transactions.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-users-api
+  name: Fat Zebra Users API
+  description: Partner dashboard users — CRUD plus deactivate/reactivate.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-utilities-api
+  name: Fat Zebra Utilities API
+  description: The Utilities API from Fat Zebra — 3 operation(s) for utilities.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-utlities-api
+  name: Fat Zebra Utlities API
+  description: The Utlities API from Fat Zebra — 1 operation(s) for utlities.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Utlities
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-utlities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-web-hooks-api
+  name: Fat Zebra Web Hooks API
+  description: The Web Hooks API from Fat Zebra — 2 operation(s) for web hooks.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Web Hooks
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-web-hooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
 common:
+- type: Overlay
+  url: overlays/fat-zebra-gateway-overlay.yaml
+- type: Overlay
+  url: overlays/fat-zebra-partner-overlay.yaml
+- type: Overlay
+  url: overlays/fat-zebra-billing-overlay.yaml
+- type: Overlay
+  url: overlays/fat-zebra-fdms-tpp-merchant-onboarding-overlay.yaml
 - type: TrustCenter
   url: security/fat-zebra-trust-center.yml
 - type: DomainSecurity
