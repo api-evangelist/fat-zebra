@@ -420,6 +420,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - OAuth Clients
+  tags_raw:
   - Oauth Clients
   properties:
   - type: OpenAPI
@@ -486,6 +488,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - PayPal
+  tags_raw:
   - Paypal
   properties:
   - type: OpenAPI
@@ -618,6 +622,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -640,6 +646,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -706,6 +714,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - Webhook
+  tags_raw:
   - Web Hooks
   properties:
   - type: OpenAPI
