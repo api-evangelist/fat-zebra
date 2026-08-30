@@ -1,0 +1,595 @@
+openapi: 3.2.0
+info:
+  title: Fat Zebra Customers API
+  version: '1.0'
+  description: 'Operations tagged Customers across 2 of this provider''s published API definitions: fat-zebra-billing.json, fat-zebra-gateway.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://billing.pmnts-sandbox.io/api/v1/
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Customers
+paths:
+  /customers/{customer_id}/usage_records/batch:
+    post:
+      summary: Push usage
+      description: ''
+      operationId: push-usage
+      parameters:
+      - name: customer_id
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usage_records:
+                  type: array
+                  items:
+                    properties:
+                      unit:
+                        type: string
+                      volume:
+                        type: integer
+                      tags:
+                        type: array
+                        default: []
+                        items:
+                          type: string
+                      period_from:
+                        type: string
+                      period_to:
+                        type: string
+                    type: object
+            examples:
+              Request Example:
+                value:
+                  usage_records:
+                  - unit: transaction
+                    volume: 2935
+                    tags:
+                    - purchase
+                    - visa
+                    period_from: '2017-08-31T00:00:00.000000+00:00'
+                    period_to: '2017-08-31T23:59:59.000000+00:00'
+                  - unit: transaction
+                    volume: 136
+                    tags:
+                    - purchase
+                    - amex
+                    period_from: '2017-08-31T00:00:00.000000+00:00'
+                    period_to: '2017-08-31T23:59:59.000000+00:00'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Customers
+    servers:
+    - url: https://billing.pmnts-sandbox.io/api/v1/
+  /customers:
+    post:
+      summary: Create a customer
+      description: Please note, one payment method field is required, either card, card_token or bank_account.
+      operationId: create-a-customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - first_name
+              - last_name
+              - reference
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                reference:
+                  type: string
+                email_address:
+                  type: string
+                ip_address:
+                  type: string
+                address:
+                  type: object
+                  required:
+                  - address
+                  - city
+                  - state
+                  - postcode
+                  - country
+                  properties:
+                    address:
+                      type: string
+                      description: Street number and name
+                    city:
+                      type: string
+                    state:
+                      type: string
+                    postcode:
+                      type: string
+                    country:
+                      type: string
+                card:
+                  type: object
+                  required:
+                  - card_holder
+                  properties:
+                    card_holder:
+                      type: string
+                    card_number:
+                      type: string
+                    expiry_date:
+                      type: string
+                    cvv:
+                      type: string
+                card_token:
+                  type: string
+                  description: A card token can be sent through in lieu of the card data in the card array
+                bank_account:
+                  type: object
+                  description: The customer's bank account.
+                  properties:
+                    account_name:
+                      type: string
+                      description: Account name to be used for direct entry.
+                    account_number:
+                      type: string
+                      description: Bank account number. 6-9 digits for an Australian bank account, or 8-10 digits for a New Zealand bank account
+                    bsb:
+                      type: string
+                      description: 'BSB number - this will be in the format of ###-### for an Australian bank account, or ###### for a New Zealand bank account'
+                    account_type:
+                      type: string
+                      description: '"AU" or "NZ" for Australian or New Zealand bank account. Defaults to "AU" if not provided.'
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"id\":\"071-C-D1LXAHM7\",\n    \"email\":\"hhump@gmail.com\",\n    \"reference\":\"jsoie33789\",\n    \"first_name\":\"Harrold\",\n    \"last_name\":\"Humphries\",\n    \"created_at\":\"2018-06-07T15:07:52+10:00\",\n    \"address\":{\n      \"address\":\"1 Harriet Road\",\n      \"city\":\"Kooliablin\",\n      \"state\":\"NSW\",\n      \"postcode\":\"2222\",\n      \"country\":\"Australia\"\n    },\n    \"card_token\":\"fke87c9q\",\n    \"card_number\":\"512345XXXXXX2346\",\n    \"bank_account\":null,\n    \"metadata\":null\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-C-D1LXAHM7
+                      email:
+                        type: string
+                        example: hhump@gmail.com
+                      reference:
+                        type: string
+                        example: jsoie33789
+                      first_name:
+                        type: string
+                        example: Harrold
+                      last_name:
+                        type: string
+                        example: Humphries
+                      created_at:
+                        type: string
+                        example: '2018-06-07T15:07:52+10:00'
+                      address:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: 1 Harriet Road
+                          city:
+                            type: string
+                            example: Kooliablin
+                          state:
+                            type: string
+                            example: NSW
+                          postcode:
+                            type: string
+                            example: '2222'
+                          country:
+                            type: string
+                            example: Australia
+                      card_token:
+                        type: string
+                        example: fke87c9q
+                      card_number:
+                        type: string
+                        example: 512345XXXXXX2346
+                      bank_account: {}
+                      metadata: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+            text/plain:
+              examples:
+                Ruby:
+                  value: "=> #<FatZebra::Customer:0x3fdcec8c6244 id=071-C-C77AZZ7C> JSON: {\n  \"id\": \"071-C-C77AZZ7C\",\n  \"email\": null,\n  \"reference\": \"abcde123\",\n  \"first_name\": \"Harrold\",\n  \"last_name\": \"Humphries\",\n  \"created_at\": \"2017-12-08T17:07:43+11:00\",\n  \"address\": {\n    \"address\": \"1 Harriet Road\",\n    \"city\": \"Kooliablin\",\n    \"state\": \"NSW\",\n    \"postcode\": \"2222\",\n    \"country\": \"Australia\"\n  },\n  \"card_token\": \"fke8n73t\",\n  \"card_number\": \"512345XXXXXX2346\",\n  \"bank_account\": null,\n  \"metadata\": {\n  }\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/customers -d'  \n{  \n  \"first_name\": \"Harrold\",  \n  \"last_name\": \"Humphries\",  \n  \"reference\": \"jsoie33789\",  \n  \"email_address\": \"hhump@gmail.com\",  \n  \"ip_address\": \"180.200.33.181\",  \n  \"card\": {  \n    \"card_holder\": \"Harrold Humphries Senior\",  \n    \"card_number\": \"5123456789012346\",  \n    \"expiry_date\": \"05/2023\",  \n    \"cvv\": \"123\"  \n  },  \n  \"address\": {  \n    \"address\": \"1 Harriet Road\",  \n    \"city\": \"Kooliablin\",  \n    \"state\": \"NSW\",  \n    \"postcode\": \"2222\",  \n    \"country\": \"Australia\"  \n  }  \n}'"
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Customer.create(\n  first_name: \"Harrold\",\n  last_name: \"Humphries\",\n  reference: \"abc123\",\n  email: \"hhump@gmail.com\",\n  ip_address: \"180.200.33.181\",\n  card: {\n    card_holder: \"Harrold Humphries Senior\",\n    card_number: \"5123456789012346\",\n    expiry_date: \"05/2023\",\n    cvv: \"123\"\n  },\n  address: {\n    address: \"1 Harriet Road\",\n    city: \"Kooliablin\",\n    state: \"NSW\",\n    postcode: \"2222\",\n    country: \"Australia\"\n  }\n)\n"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Customers
+    get:
+      summary: List customers
+      description: ''
+      operationId: list-customers
+      parameters:
+      - name: offset
+        in: query
+        description: The page number of customers to be returned.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: The number of customers per page to be returned.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"071-C-JE34F66V\",\n      \"email\": \"jim@citizen.com\",\n      \"reference\": \"CUST-98198\",\n      \"first_name\": \"Jim\",\n      \"last_name\": \"Smith\",\n      \"created_at\": \"2017-12-04T21:51:11+11:00\",\n      \"address\": {\n        \"address\": \"\",\n        \"city\": \"\",\n        \"state\": \"\",\n        \"postcode\": \"\",\n        \"country\": \"\"\n      },\n      \"card_token\": \"fke89s3v\",\n      \"card_number\": \"400555XXXXXX0001\",\n      \"bank_account\": null,\n      \"metadata\": {}\n    },\n    # ...\n  ],\n  \"errors\": [],\n  \"test\": true,\n  \"records\": 10,\n  \"total_records\": 945,\n  \"page\": 1,\n  \"total_pages\": 95\n}"
+            text/plain:
+              examples:
+                Ruby:
+                  value: "[\n  #<FatZebra::Customer:0x3fd9087c911c id=071-C-JE34F66V> JSON: {\n    \"id\": \"071-C-JE34F66V\",\n    \"email\": \"jim@citizen.com\",\n    \"reference\": \"CUST-98198\",\n    \"first_name\": \"Jim\",\n    \"last_name\": \"Smith\",\n    \"created_at\": \"2017-12-04T21:51:11+11:00\",\n    \"address\": {\n      \"address\": \"\",\n      \"city\": \"\",\n      \"state\": \"\",\n      \"postcode\": \"\",\n      \"country\": \"\"\n    },\n    \"card_token\": \"fke89s3v\",\n    \"card_number\": \"400555XXXXXX0001\",\n    \"bank_account\": null,\n    \"metadata\": {\n    }\n  },\n  # ...\n]"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u <<user>>:<<pass>> https://gateway.pmnts-sandbox.io/v1.0/customers
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Customer.search.data"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Customers
+    servers:
+    - url: https://gateway.pmnts-sandbox.io/v1.0
+  /customers/{id}:
+    put:
+      summary: Update a customer
+      description: ''
+      operationId: update-a-customer
+      parameters:
+      - name: id
+        in: path
+        description: ID or Reference
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-C-K7IY0XBJ\",\n    \"email\": null,\n    \"reference\": \"abcd123456\",\n    \"first_name\": \"Harrold\",\n    \"last_name\": \"Holt\",\n    \"created_at\": \"2018-01-18T17:04:23+11:00\",\n    \"address\": {\n      \"address\": \"1 Harriet Road\",\n      \"city\": \"Kooliablin\",\n      \"state\": \"NSW\",\n      \"postcode\": \"2222\",\n      \"country\": \"Australia\"\n    },\n    \"card_token\": \"fke8kly5\",\n    \"card_number\": \"512345XXXXXX2346\",\n    \"bank_account\": null,\n    \"metadata\": {}\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-C-K7IY0XBJ
+                      email: {}
+                      reference:
+                        type: string
+                        example: abcd123456
+                      first_name:
+                        type: string
+                        example: Harrold
+                      last_name:
+                        type: string
+                        example: Holt
+                      created_at:
+                        type: string
+                        example: '2018-01-18T17:04:23+11:00'
+                      address:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: 1 Harriet Road
+                          city:
+                            type: string
+                            example: Kooliablin
+                          state:
+                            type: string
+                            example: NSW
+                          postcode:
+                            type: string
+                            example: '2222'
+                          country:
+                            type: string
+                            example: Australia
+                      card_token:
+                        type: string
+                        example: fke8kly5
+                      card_number:
+                        type: string
+                        example: 512345XXXXXX2346
+                      bank_account: {}
+                      metadata:
+                        type: object
+                        properties: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+            text/plain:
+              examples:
+                Ruby:
+                  value: "=> #<FatZebra::Customer:0x3fe0746d7740 id=071-C-K7IY0XBJ> JSON: {\n  \"id\": \"071-C-K7IY0XBJ\",\n  \"email\": null,\n  \"reference\": \"abcd123456\",\n  \"first_name\": \"Harrold\",\n  \"last_name\": \"Holt\",\n  \"created_at\": \"2018-01-18T17:04:23+11:00\",\n  \"address\": {\n    \"address\": \"1 Harriet Road\",\n    \"city\": \"Kooliablin\",\n    \"state\": \"NSW\",\n    \"postcode\": \"2222\",\n    \"country\": \"Australia\"\n  },\n  \"card_token\": \"fke8kly5\",\n  \"card_number\": \"512345XXXXXX2346\",\n  \"bank_account\": null,\n  \"metadata\": {\n  }\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -u TEST:TEST -X PUT https://gateway.pmnts-sandbox.io/v1.0/customers/071-C-K7IY0XBJ -d'\n{  \n   \"last_name\":  \"Holt\"  \n}'"
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Customer.update('071-C-K7IY0XBJ', last_name: 'Holt')"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Customers
+    delete:
+      summary: Delete a customer
+      description: ''
+      operationId: delete-a-customer
+      parameters:
+      - name: id
+        in: path
+        description: ID or Reference
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-C-CMXJWC7L\",\n    \"email\": null,\n    \"reference\": \"abcd12345\",\n    \"first_name\": \"Harrold\",\n    \"last_name\": \"Humphries\",\n    \"created_at\": \"2018-01-18T16:47:53+11:00\",\n    \"address\": {\n      \"address\": \"1 Harriet Road\",\n      \"city\": \"Kooliablin\",\n      \"state\": \"NSW\",\n      \"postcode\": \"2222\",\n      \"country\": \"Australia\"\n    },\n    \"card_token\": \"fke8b0fc\",\n    \"card_number\": \"512345XXXXXX2346\",\n    \"bank_account\": null,\n    \"metadata\": {}\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-C-CMXJWC7L
+                      email: {}
+                      reference:
+                        type: string
+                        example: abcd12345
+                      first_name:
+                        type: string
+                        example: Harrold
+                      last_name:
+                        type: string
+                        example: Humphries
+                      created_at:
+                        type: string
+                        example: '2018-01-18T16:47:53+11:00'
+                      address:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: 1 Harriet Road
+                          city:
+                            type: string
+                            example: Kooliablin
+                          state:
+                            type: string
+                            example: NSW
+                          postcode:
+                            type: string
+                            example: '2222'
+                          country:
+                            type: string
+                            example: Australia
+                      card_token:
+                        type: string
+                        example: fke8b0fc
+                      card_number:
+                        type: string
+                        example: 512345XXXXXX2346
+                      bank_account: {}
+                      metadata:
+                        type: object
+                        properties: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+            text/plain:
+              examples:
+                Ruby:
+                  value: "=> #<FatZebra::Customer:0x3fe07498490c id=071-C-WO5D3VT9> JSON: {\n  \"id\": \"071-C-WO5D3VT9\",\n  \"email\": null,\n  \"reference\": \"abcd123\",\n  \"first_name\": \"Harrold\",\n  \"last_name\": \"Humphries\",\n  \"created_at\": \"2017-12-08T16:45:27+11:00\",\n  \"address\": {\n    \"address\": \"1 Harriet Road\",\n    \"city\": \"Kooliablin\",\n    \"state\": \"NSW\",\n    \"postcode\": \"2222\",\n    \"country\": \"Australia\"\n  },\n  \"card_token\": null,\n  \"card_number\": null,\n  \"bank_account\": null,\n  \"metadata\": {\n  }\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST -X DELETE https://gateway.pmnts-sandbox.io/v1.0/customers/071-C-CMXJWC7L
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Customer.delete('071-C-WO5D3VT9')"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Customers
+    get:
+      summary: Fetch a customer
+      description: ''
+      operationId: fetch-a-customer
+      parameters:
+      - name: id
+        in: path
+        description: ID or Reference
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-C-JE34F66V\",\n    \"email\": \"jim@citizen.com\",\n    \"reference\": \"CUST-98198\",\n    \"first_name\": \"Jim\",\n    \"last_name\": \"Smith\",\n    \"created_at\": \"2017-12-04T21:51:11+11:00\",\n    \"address\": {\n      \"address\": \"1 Citizen Road\",\n      \"city\": \"Sydney\",\n      \"state\": \"NSW\",\n      \"postcode\": \"2000\",\n      \"country\": \"Australia\"\n    },\n    \"card_token\": \"fke89s3v\",\n    \"card_number\": \"400555XXXXXX0001\",\n    \"bank_account\": null,\n    \"metadata\": {}\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-C-JE34F66V
+                      email:
+                        type: string
+                        example: jim@citizen.com
+                      reference:
+                        type: string
+                        example: CUST-98198
+                      first_name:
+                        type: string
+                        example: Jim
+                      last_name:
+                        type: string
+                        example: Smith
+                      created_at:
+                        type: string
+                        example: '2017-12-04T21:51:11+11:00'
+                      address:
+                        type: object
+                        properties:
+                          address:
+                            type: string
+                            example: 1 Citizen Road
+                          city:
+                            type: string
+                            example: Sydney
+                          state:
+                            type: string
+                            example: NSW
+                          postcode:
+                            type: string
+                            example: '2000'
+                          country:
+                            type: string
+                            example: Australia
+                      card_token:
+                        type: string
+                        example: fke89s3v
+                      card_number:
+                        type: string
+                        example: 400555XXXXXX0001
+                      bank_account: {}
+                      metadata:
+                        type: object
+                        properties: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+            text/plain:
+              examples:
+                Ruby:
+                  value: "=> #<FatZebra::Customer:0x3fdceaad1180 id=071-C-JE34F66V> JSON: {\n  \"id\": \"071-C-JE34F66V\",\n  \"email\": \"jim@citizen.com\",\n  \"reference\": \"CUST-98198\",\n  \"first_name\": \"Jim\",\n  \"last_name\": \"Smith\",\n  \"created_at\": \"2017-12-04T21:51:11+11:00\",\n  \"address\": {\n    \"address\": \"1 Citizen Road\",\n    \"city\": \"Sydney\",\n    \"state\": \"NSW\",\n    \"postcode\": \"2000\",\n    \"country\": \"Australia\"\n  },\n  \"card_token\": \"fke89s3v\",\n  \"card_number\": \"400555XXXXXX0001\",\n  \"bank_account\": null,\n  \"metadata\": {}\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/customers/071-C-JE34F66V
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Customer.find('071-C-JE34F66V')"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Customers
+    servers:
+    - url: https://gateway.pmnts-sandbox.io/v1.0
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-refined-from:
+- fat-zebra-billing.json
+- fat-zebra-gateway.json
+x-readme:
+  headers: []
+x-readme-fauxas: true

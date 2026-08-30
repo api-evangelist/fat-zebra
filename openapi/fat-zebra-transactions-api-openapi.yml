@@ -1,0 +1,276 @@
+openapi: 3.2.0
+info:
+  title: gateway Transactions API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Transactions
+paths:
+  /transactions/{transaction_fatzebra_id}/dispute:
+    get:
+      summary: Fetch dispute
+      description: ''
+      operationId: fetch-dispute
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: transaction_fatzebra_id
+        in: path
+        description: The fatzebra id of the transaction.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Disputed:
+                  value: "{\n    \"successful\": true,\n    \"response\": {\n        \"disputed\": true,\n        \"dispute\": {\n            \"opened_on\": \"2022-11-08\",\n            \"reference\": \"20210929603011-5\",\n            \"amount_cents\": 420,\n            \"amount_currency\": \"AUD\",\n            \"next_due_date\": \"2022-11-22\",\n            \"status\": \"open\",\n            \"reason_code\": \"4837\",\n            \"reason_description\": \"No Cardholder Authorization\",\n            \"dispute_events\": [\n                {\n                    \"acquirer_event_code\": \"CB1\",\n                    \"acquirer_event_description\": \"1st Chargeback\",\n                    \"posting_date\": \"2022-11-08\"\n                }\n            ]\n        }\n    },\n    \"errors\": [],\n    \"test\": true\n}"
+                Not Disputed:
+                  value: "{\n    \"successful\": true,\n    \"response\": {\n        \"disputed\": false\n    },\n    \"errors\": [],\n    \"test\": true\n}"
+              schema:
+                oneOf:
+                - title: Disputed
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        disputed:
+                          type: boolean
+                          example: true
+                          default: true
+                        dispute:
+                          type: object
+                          properties:
+                            opened_on:
+                              type: string
+                              example: '2022-11-08'
+                            reference:
+                              type: string
+                              example: 20210929603011-5
+                            amount_cents:
+                              type: integer
+                              example: 420
+                              default: 0
+                            amount_currency:
+                              type: string
+                              example: AUD
+                            next_due_date:
+                              type: string
+                              example: '2022-11-22'
+                            status:
+                              type: string
+                              example: open
+                            reason_code:
+                              type: string
+                              example: '4837'
+                            reason_description:
+                              type: string
+                              example: No Cardholder Authorization
+                            dispute_events:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  acquirer_event_code:
+                                    type: string
+                                    example: CB1
+                                  acquirer_event_description:
+                                    type: string
+                                    example: 1st Chargeback
+                                  posting_date:
+                                    type: string
+                                    example: '2022-11-08'
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Not Disputed
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        disputed:
+                          type: boolean
+                          example: false
+                          default: true
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"successful\": false,\n    \"response\": {},\n    \"errors\": [\n        \"Could not find transaction\"\n    ],\n    \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find transaction
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"successful\": false,\n    \"response\": {},\n    \"errors\": [\"Merchant not configured for TPP\"],\n    \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Merchant not configured for TPP
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/transactions/001-P-154WFRUM/dispute -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Transactions
+  /transactions/{transaction_fatzebra_id}/dispute/accept:
+    put:
+      summary: Accept dispute
+      description: ''
+      operationId: accept-dispute
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: transaction_fatzebra_id
+        in: path
+        description: The fatzebra id of the transaction.
+        schema:
+          type: string
+        required: true
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                OK:
+                  value: "{\n    \"successful\": true,\n    \"response\": {},\n    \"errors\": [],\n    \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"successful\": false,\n    \"response\": {},\n    \"errors\": [\n        \"Could not find transaction\"\n    ],\n    \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find transaction
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"successful\": false,\n    \"response\": {},\n    \"errors\" => ['Dispute has already been closed']\n    \"test\": true\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/transactions/001-P-154WFRUM/dispute/accept -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Transactions
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

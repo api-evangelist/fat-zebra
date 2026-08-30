@@ -1,0 +1,122 @@
+openapi: 3.2.0
+info:
+  title: gateway Applicable Surcharge API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Applicable Surcharge
+paths:
+  /applicable_surcharge:
+    get:
+      summary: Get applicable surcharge
+      description: Get the applicable surcharge for a given amount, currency and card number.
+      operationId: get-applicable-surcharge
+      parameters:
+      - name: pan
+        in: query
+        description: The card number of the debit or credit card
+        required: true
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: amount
+        in: query
+        description: Amount to be surcharged in the smallest currency unit
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: currency
+        in: query
+        description: Currency of the amount to be surcharged
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"card_description\": \"credit\",\n    \"surcharge_amount\": 1,\n    \"surcharge_amount_description\": \"0.9%\",\n    \"total_amount\": 101\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      card_description:
+                        type: string
+                        example: credit
+                      surcharge_amount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      surcharge_amount_description:
+                        type: string
+                        example: 0.9%
+                      total_amount:
+                        type: integer
+                        example: 101
+                        default: 0
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": null,\n  \"errors\": [\n    \"invalid pan\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: invalid pan
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/applicable_surcharge?pan=4242424242424242&amount=100&currency=AUD -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Applicable Surcharge
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

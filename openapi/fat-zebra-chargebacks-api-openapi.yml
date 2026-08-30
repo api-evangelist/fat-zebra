@@ -1,0 +1,529 @@
+openapi: 3.2.0
+info:
+  title: gateway Chargebacks API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Chargebacks
+paths:
+  /chargebacks/{id}:
+    get:
+      summary: Fetch a chargeback
+      description: ''
+      operationId: chargebacks-1
+      parameters:
+      - name: id
+        in: path
+        description: ID of the chargeback
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {    \n    \"acquirer_merchant_id\": \"ABCDE12345\",\n    \"id\": \"071-CB-MIP4SIHH\",\n    \"reference\": \"C2BB3D60\",\n    \"chargeback_control_number\": \"39875410\",\n    \"amount\": 4000,\n    \"reason_code\": null,\n    \"reason_description\": \"Cardholder disputes transaction\",\n    \"status\": \"Matched\",\n    \"merchant_status\": \"In progress\",\n    \"due_date\": \"2018-01-31\",\n    \"metadata\": {\n      \"transaction_date\": \"31-Dec-2018\",\n      \"transaction_time\": \"14:13:00\"\n\t  },\n    \"notifications\": [\n      { \n        ... \n      },\n      { \n        ...\n      }\n    ],\n    \"created_at\": \"2018-01-17T15:02:46+10:00\",\n    \"updated_at\": \"2018-01-17T15:02:46+10:00\" \n  },\n  \"errors\": [\n  ],\n  \"test\": true \n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/chargebacks/071-CB-MIP4SIHH -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Chargebacks
+    patch:
+      summary: Update a chargeback
+      description: ''
+      operationId: update-a-chargeback-2
+      parameters:
+      - name: id
+        in: path
+        description: id of the chargeback
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_status:
+                  type: string
+                  description: Merchant's status for the chargeback process
+                  default: In progress
+                purchase_id:
+                  type: string
+                  description: Id of the purchase to match this chargeback to
+                metadata:
+                  type: object
+                  properties: {}
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {    \n    \"acquirer_merchant_id\": \"ABCDE12345\",\n    \"id\": \"071-CB-MIP4SIHH\",\n    \"reference\": \"C2BB3D60\",\n    \"chargeback_control_number\": \"39875410\",\n    \"amount\": 4000,\n    \"reason_code\": null,\n    \"reason_description\": \"Cardholder disputes transaction\",\n    \"status\": \"Matched\",\n    \"merchant_status\": \"Resolved\",\n    \"due_date\": \"2018-01-31\",\n    \"transaction_id\": \"071-P-PAGTKK4W\",\n    \"metadata\": {\n      \"transaction_date\": \"31-Dec-2018\",\n      \"transaction_time\": \"14:13:00\"\n    },\n    \"created_at\": \"2018-01-17T15:02:46+10:00\",\n    \"updated_at\": \"2018-01-18T07:39:24+10:00\"\n  },\n  \"errors\": [\n  ],\n  \"test\": true \n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      acquirer_merchant_id:
+                        type: string
+                        example: ABCDE12345
+                      id:
+                        type: string
+                        example: 071-CB-MIP4SIHH
+                      reference:
+                        type: string
+                        example: C2BB3D60
+                      chargeback_control_number:
+                        type: string
+                        example: '39875410'
+                      amount:
+                        type: integer
+                        example: 4000
+                        default: 0
+                      reason_code: {}
+                      reason_description:
+                        type: string
+                        example: Cardholder disputes transaction
+                      status:
+                        type: string
+                        example: Matched
+                      merchant_status:
+                        type: string
+                        example: Resolved
+                      due_date:
+                        type: string
+                        example: '2018-01-31'
+                      transaction_id:
+                        type: string
+                        example: 071-P-PAGTKK4W
+                      metadata:
+                        type: object
+                        properties:
+                          transaction_date:
+                            type: string
+                            example: 31-Dec-2018
+                          transaction_time:
+                            type: string
+                            example: '14:13:00'
+                      created_at:
+                        type: string
+                        example: '2018-01-17T15:02:46+10:00'
+                      updated_at:
+                        type: string
+                        example: '2018-01-18T07:39:24+10:00'
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/chargebacks/071-CB-MIP4SIHH -u TEST:TEST -d' \n  { \n    \"merchant_status\": \"Resolved\"\n  }'\n"
+        samples-languages:
+        - curl
+      tags:
+      - Chargebacks
+  /chargebacks:
+    get:
+      summary: List chargebacks
+      description: ''
+      operationId: list-chargebacks
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": [ \n    {\n      \"acquirer_merchant_id\": \"ABCDE12345\",\n      \"id\": \"071-CB-MIP4SIHH\",\n      \"reference\": \"C2BB3D60\",\n      \"amount\": 4000,\n      \"reason_code\": null,\n      \"reason_description\": \"Cardholder disputes transaction\",\n      \"status\": \"Matched\",\n      \"merchant_status\": \"In Progress\",\n      \"due_date\": \"2018-01-31\",\n\t\t\t\"transaction_id\": \"071-P-PAGTKK4W\",\n\t    \"metadata\": {\n        \"transaction_date\": \"31-Dec-2018\",\n        \"transaction_time\": \"14:13:00\"\n  \t  },\n      \"created_at\": \"2018-01-17T15:02:46+10:00\",\n      \"updated_at\": \"2018-01-17T15:02:46+10:00\"      \n    },\n    {\n      \"acquirer_merchant_id\": \"ABCDE12345\",\n      \"id\": \"071-CB-NJQ5TJII\",\n      \"reference\": \"D3CC4E71\",\n      \"amount\": 987,\n      \"reason_code\": null,\n      \"reason_description\": \"Fraudulent Transaction - Card Absent Environment\",\n      \"status\": \"Matched\",\n      \"merchant_status\": \"New\",\n      \"due_date\": \"2018-07-01\",\n\t\t\t\"transaction_id\": \"071-P-PAGTKK4W\",\n\t    \"metadata\": {\n        \"transaction_date\": \"31-Dec-2018\",\n        \"transaction_time\": \"14:13:00\"\n  \t  },\n      \"created_at\": \"2018-06-24T08:20:57+10:00\",\n      \"updated_at\": \"2018-06-30T10:38:04+10:00\"\n    }\n  ],\n  \"errors\": [\n  ],\n  \"test\": true \n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        acquirer_merchant_id:
+                          type: string
+                          example: ABCDE12345
+                        id:
+                          type: string
+                          example: 071-CB-MIP4SIHH
+                        reference:
+                          type: string
+                          example: C2BB3D60
+                        amount:
+                          type: integer
+                          example: 4000
+                          default: 0
+                        reason_code: {}
+                        reason_description:
+                          type: string
+                          example: Cardholder disputes transaction
+                        status:
+                          type: string
+                          example: Matched
+                        merchant_status:
+                          type: string
+                          example: In Progress
+                        due_date:
+                          type: string
+                          example: '2018-01-31'
+                        transaction_id:
+                          type: string
+                          example: 071-P-PAGTKK4W
+                        metadata:
+                          type: object
+                          properties:
+                            transaction_date:
+                              type: string
+                              example: 31-Dec-2018
+                            transaction_time:
+                              type: string
+                              example: '14:13:00'
+                        created_at:
+                          type: string
+                          example: '2018-01-17T15:02:46+10:00'
+                        updated_at:
+                          type: string
+                          example: '2018-01-17T15:02:46+10:00'
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/chargebacks -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Chargebacks
+  /chargebacks/{chargeback_id}/notifications/{id}:
+    get:
+      summary: Fetch a chargeback notification
+      description: ''
+      operationId: fetch-a-chargeback-notification-1
+      parameters:
+      - name: chargeback_id
+        in: path
+        schema:
+          type: string
+          default: id of the chargeback
+        required: true
+      - name: id
+        in: path
+        description: id of the notification
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-CN-LBUNAQ4\",\n    \"received_at\": \"2018-01-17T15:02:00.000Z\",\n    \"merchant_status\": \"Unread\",\n    \"metadata\": {\n         \"chargebackId\": \"98372140\",\n         \"respondByDate\": \"24-Jul-18\",\n         \"chargebackRef\": \"C2BB3D60\",\n         \"reasonForChargeback\": \"Service cancelled on 05/04/2018, credit not processed\"\n    },\n    \"chargeback_id\": \"071-CB-MIP4SIHH\"    \n  },\n  \"errors\": [\n  ],\n  \"test\": true \n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-CN-LBUNAQ4
+                      received_at:
+                        type: string
+                        example: '2018-01-17T15:02:00.000Z'
+                      merchant_status:
+                        type: string
+                        example: Unread
+                      metadata:
+                        type: object
+                        properties:
+                          chargebackId:
+                            type: string
+                            example: '98372140'
+                          respondByDate:
+                            type: string
+                            example: 24-Jul-18
+                          chargebackRef:
+                            type: string
+                            example: C2BB3D60
+                          reasonForChargeback:
+                            type: string
+                            example: Service cancelled on 05/04/2018, credit not processed
+                      chargeback_id:
+                        type: string
+                        example: 071-CB-MIP4SIHH
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/chargebacks/071-CB-MIP4SIHH/notifications/071-CN-LBUNAQ4 -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Chargebacks
+    patch:
+      summary: Update a chargeback notification
+      description: ''
+      operationId: update-a-chargeback-1
+      parameters:
+      - name: chargeback_id
+        in: path
+        description: id of the chargeback
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        description: id of the notification
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                merchant_status:
+                  type: string
+                  description: Merchant's status for the chargeback process
+                  default: In progress
+                metadata:
+                  type: object
+                  properties: {}
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-CN-LBUNAQ4\",\n    \"chargeback_id\": \"071-CB-MIP4SIHH\",\n    \"received_at\": \"2018-01-17T15:02:00.000Z\",\n    \"merchant_status\": \"Unead\",\n    \"metadata\": {\n         \"chargebackId\": \"98372140\",\n         \"respondByDate\": \"24-Jul-18\",\n         \"chargebackRef\": \"c2bb3d60-d04b-4c1c-8fd1-9d7a440a6d8b\",\n         \"reasonForChargeback\": \"Service cancelled on 05/04/2018, credit not processed\"\n    }\n  },\n  \"errors\": [\n  ],\n  \"test\": true \n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-CN-LBUNAQ4
+                      chargeback_id:
+                        type: string
+                        example: 071-CB-MIP4SIHH
+                      received_at:
+                        type: string
+                        example: '2018-01-17T15:02:00.000Z'
+                      merchant_status:
+                        type: string
+                        example: Unead
+                      metadata:
+                        type: object
+                        properties:
+                          chargebackId:
+                            type: string
+                            example: '98372140'
+                          respondByDate:
+                            type: string
+                            example: 24-Jul-18
+                          chargebackRef:
+                            type: string
+                            example: c2bb3d60-d04b-4c1c-8fd1-9d7a440a6d8b
+                          reasonForChargeback:
+                            type: string
+                            example: Service cancelled on 05/04/2018, credit not processed
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/chargebacks/071-CN-LBUNAQ4 -u TEST:TEST -d' \n  { \n    \"merchant_status\": \"Unread\"\n  }'"
+        samples-languages:
+        - curl
+      tags:
+      - Chargebacks
+  /chargebacks/{id}/notifications:
+    get:
+      summary: List chargeback notifications
+      description: ''
+      operationId: list-chargeback-notifications-1
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: id
+        in: path
+        description: id of the chargeback
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": [ \n    {\n      \"id\": \"071-CN-LBUNAQ4\",\n      \"received_at\": \"2018-01-17T00:00:00.000Z\",\n      \"merchant_status\": \"Read\",\n      \"metadata\": {\n        \"chargebackId\": \"141899\",\n        \"chargebackRef\": \"C2BB3D60\",\n        \"requestDate\": \"17-Jan-2018\",\n        \"reasonForChargeback\": \"Cardholder disputes transaction\",\n        \"respondToFaxNumber\" : \"(02) 9383 8848\",\n        \"requestForDocumentation\": \"Request for documentation\",\n        \"respondByDate\": \"31-Jan-2018\"\n      },\n      \"chargeback_id\": \"071-CB-MIP4SIHH\",\n      \"created_at\": \"2018-01-17T15:02:46+10:00\",\n      \"updated_at\": \"2018-01-17T15:02:46+10:00\"\n    },\n    {\n      \"id\": \"071-CN-MCVPBR5\",\n      \"received_at\": \"2018-02-05T00:00:00.000Z\",\n      \"merchant_status\": \"Unread\",\n      \"metadata\": {\n        \"chargebackId\": \"150839\",\n        \"chargebackDebitRef\": \"C2BB3D60\",\n        \"requestDate\": \"05-Feb-2018\",\n        \"reasonForChargeback\": \"Documentation not supplied in timeframe\",\n        \"reasonCode\": \"4837\",\n        \"chargebackDate\": \"05-Feb-2018\"\n      },\n      \"chargeback_id\": \"071-CB-MIP4SIHH\",      \n      \"created_at\": \"2018-02-05T16:28:17+10:00\",\n      \"updated_at\": \"2018-02-05T16:28:17+10:00\"    \n    }\n  ]                 \n  },\n  \"errors\": [\n  ],\n  \"test\": true \n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/chargebacks/071-CB-MIP4SIHH/notifications -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Chargebacks
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

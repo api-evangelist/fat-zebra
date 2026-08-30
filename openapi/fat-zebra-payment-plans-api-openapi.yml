@@ -1,0 +1,1074 @@
+openapi: 3.2.0
+info:
+  title: gateway Payment Plans API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Payment Plans
+paths:
+  /payment_plans:
+    post:
+      summary: Create a payment plan
+      description: ''
+      operationId: create-a-payment-plan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customer
+              - amount
+              - frequency
+              - payment_method
+              - anniversary
+              - start_date
+              properties:
+                customer:
+                  type: string
+                  description: ID of the customer that the plan should belong to.
+                card_token:
+                  type: string
+                  description: The token for a card to link this payment plan to
+                amount:
+                  type: integer
+                  description: Recurring payment amount in the smallest unit of the currency.
+                  format: int32
+                setup_fee:
+                  type: integer
+                  description: Setup fee to be charged upon creation of the payment plan.
+                  format: int32
+                frequency:
+                  type: string
+                  description: 'Frequency of the payments. Acceptable values are: Daily, Weekly, Fortnightly, Monthly, 4 Weekly, Quarterly, Half Yearly, Annually.'
+                payment_method:
+                  type: string
+                  description: Payment method for the plan - this can be Credit Card or Direct Debit. Note that if the customer is not setup with the defined payment method an error will be returned.
+                anniversary:
+                  type: integer
+                  description: Anniversary of the recurring payments.  For Weekly and Fortnightly payments this will be the day of the week (1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday) For Monthly this will be the day of the month. If the day of the month is greater then 28, and the month is shorter then the anniversary this date will be moved forward to the nearest possible date (i.e. a payment for the 31st will fall on the 30th for monthly like September etc).
+                  format: int32
+                start_date:
+                  type: string
+                  description: Date that the payment plan should start. This must be in the future.
+                  format: date
+                end_date:
+                  type: string
+                  description: Date that the payment plan should end on. This must be in the future and greater than the start_date.
+                  format: date
+                reference:
+                  type: string
+                  description: Reference for the payment plan.
+                description:
+                  type: string
+                  description: Description for the payment plan (e.g. Model 200R Blender Lay-by).
+                currency:
+                  type: string
+                  description: ISO 4217 currency code for the plan.
+                total_count:
+                  type: integer
+                  description: Total number of payments to process for this plan.
+                  format: int32
+                total_amount:
+                  type: integer
+                  description: Total amount of all payments to be processed for this plan.
+                  format: int32
+                failed_payment_fee:
+                  type: integer
+                  description: 'Fee that applies to the retried payment in the event of any declined payment. Note: This amount will compound for the total number of retries (3) performed.'
+                  default: 0
+                  format: int32
+                retry_interval:
+                  type: integer
+                  description: Number of days between payment retries for any declined payments.
+                  default: 3
+                  format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"id\":\"071-PP-8389G3DA\",\n    \"customer\":\"071-C-JE34F66V\",\n    \"amount\":100,\n    \"currency\":null,\n    \"setup_fee\":0,\n    \"frequency\":\"Weekly\",\n    \"anniversary\":5,\n    \"start_date\":\"2025-07-16\",\n    \"end_date\":null,\n    \"total_count\":2,\n    \"total_amount\":null,\n    \"payment_method\":\"Credit Card\",\n    \"reference\":\"071-PP-8389G3DA\",\n    \"description\":null,\n    \"status\":\"Active\",\n    \"status_reason\":\"None\",\n    \"created_at\":\"2018-07-11T16:23:39+10:00\",\n    \"failed_payment_fee\":0,\n    \"retry_interval\":3,\n    \"status_change_date\":null,\n    \"card_token\": \"ABC12345\",\n    \"payments\":[\n      {\n        \"id\":\"071-PT-WQ8LIHI4\",\n        \"payment_plan\":\"071-PP-8389G3DA\",\n        \"reference\":\"071-PP-8389G3DA-0001\",\n        \"amount\":100,\n        \"currency\":null,\n        \"scheduled_date\":\"2025-07-18\",\n        \"payment_method\":\"Credit Card\",\n        \"status\":\"Scheduled\",\n        \"result\":null,\n        \"records\":[]\n      },\n      {\n        \"id\":\"071-PT-QNFQFYW2\",\n        \"payment_plan\":\"071-PP-8389G3DA\",\n        \"reference\":\"071-PP-8389G3DA-0002\",\n        \"amount\":100,\n        \"currency\":null,\n        \"scheduled_date\":\"2025-07-25\",\n        \"payment_method\":\"Credit Card\",\n        \"status\":\"Scheduled\",\n        \"result\":null,\n        \"records\":[]\n      }\n    ]\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PP-8389G3DA
+                      customer:
+                        type: string
+                        example: 071-C-JE34F66V
+                      amount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      currency: {}
+                      setup_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      frequency:
+                        type: string
+                        example: Weekly
+                      anniversary:
+                        type: integer
+                        example: 5
+                        default: 0
+                      start_date:
+                        type: string
+                        example: '2025-07-16'
+                      end_date: {}
+                      total_count:
+                        type: integer
+                        example: 2
+                        default: 0
+                      total_amount: {}
+                      payment_method:
+                        type: string
+                        example: Credit Card
+                      reference:
+                        type: string
+                        example: 071-PP-8389G3DA
+                      description: {}
+                      status:
+                        type: string
+                        example: Active
+                      status_reason:
+                        type: string
+                        example: None
+                      created_at:
+                        type: string
+                        example: '2018-07-11T16:23:39+10:00'
+                      failed_payment_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      retry_interval:
+                        type: integer
+                        example: 3
+                        default: 0
+                      status_change_date: {}
+                      card_token:
+                        type: string
+                        example: ABC12345
+                      payments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 071-PT-WQ8LIHI4
+                            payment_plan:
+                              type: string
+                              example: 071-PP-8389G3DA
+                            reference:
+                              type: string
+                              example: 071-PP-8389G3DA-0001
+                            amount:
+                              type: integer
+                              example: 100
+                              default: 0
+                            currency: {}
+                            scheduled_date:
+                              type: string
+                              example: '2025-07-18'
+                            payment_method:
+                              type: string
+                              example: Credit Card
+                            status:
+                              type: string
+                              example: Scheduled
+                            result: {}
+                            records:
+                              type: array
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Invalid Payment Method:
+                  value: "{\n  \"successful\":false,\n  \"response\":{\n    \"id\":\"071-PP-UV4ZJECK\",\n    \"customer\":\"071-C-JE34F66V\",\n    \"amount\":100,\n    \"currency\":null,\n    \"setup_fee\":0,\n    \"frequency\":\"Weekly\",\n    \"anniversary\":5,\n    \"start_date\":\"2025-07-16\",\n    \"end_date\":null,\n    \"total_count\":2,\n    \"total_amount\":null,\n    \"payment_method\":\"Debit Card\",\n    \"reference\":\"071-PP-UV4ZJECK\",\n    \"description\":null,\n    \"status\":\"Active\",\n    \"status_reason\":\"None\",\n    \"created_at\":null,\n    \"failed_payment_fee\":0,\n    \"retry_interval\":3,\n    \"status_change_date\":null,\n    \"payments\":[]\n  },\n  \"errors\":[\"Payment method is not valid\"],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PP-UV4ZJECK
+                      customer:
+                        type: string
+                        example: 071-C-JE34F66V
+                      amount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      currency: {}
+                      setup_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      frequency:
+                        type: string
+                        example: Weekly
+                      anniversary:
+                        type: integer
+                        example: 5
+                        default: 0
+                      start_date:
+                        type: string
+                        example: '2025-07-16'
+                      end_date: {}
+                      total_count:
+                        type: integer
+                        example: 2
+                        default: 0
+                      total_amount: {}
+                      payment_method:
+                        type: string
+                        example: Debit Card
+                      reference:
+                        type: string
+                        example: 071-PP-UV4ZJECK
+                      description: {}
+                      status:
+                        type: string
+                        example: Active
+                      status_reason:
+                        type: string
+                        example: None
+                      created_at: {}
+                      failed_payment_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      retry_interval:
+                        type: integer
+                        example: 3
+                        default: 0
+                      status_change_date: {}
+                      payments:
+                        type: array
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Payment method is not valid
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/payment_plans -u TEST:TEST -X POST -d '\n{\n  \"customer\": \"071-C-JE34F66V\",\n  \"amount\": 100,\n  \"frequency\": \"Weekly\",\n  \"payment_method\": \"Credit Card\",\n  \"anniversary\": 5,\n  \"start_date\": \"2025-07-16\",\n  \"total_count\": 2\n}'"
+        samples-languages:
+        - curl
+      tags:
+      - Payment Plans
+    get:
+      summary: List payment plans
+      description: ''
+      operationId: list-payment-plans
+      parameters:
+      - name: from
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Maximum number of records to return. Must not be more than 50.
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":[\n    {\n      \"id\":\"071-PP-8389G3DA\",\n      \"customer\":\"071-C-JE34F66V\",\n      \"amount\":100,\n      \"currency\":null,\n      \"setup_fee\":0,\n      \"frequency\":\"Weekly\",\n      \"anniversary\":5,\n      \"start_date\":\"2025-07-16\",\n      \"end_date\":null,\n      \"total_count\":2,\n      \"total_amount\":null,\n      \"payment_method\":\"Credit Card\",\n      \"reference\":\"071-PP-8389G3DA\",\n      \"description\":null,\n      \"status\":\"Active\",\n      \"status_reason\":\"None\",\n      \"created_at\":\"2018-07-11T16:23:39+10:00\",\n      \"failed_payment_fee\":0,\n      \"retry_interval\":3,\n      \"status_change_date\":null,\n      \"payments\":[]\n    },\n    {\n      \"id\":\"071-PP-EFI5O5E3\",\n      \"customer\":\"071-C-JMECN7JX\",\n      \"amount\":100,\n      \"currency\":null,\n      \"setup_fee\":0,\n      \"frequency\":\"Weekly\",\n      \"anniversary\":5,\n      \"start_date\":\"2015-07-16\",\n      \"end_date\":null,\n      \"total_count\":5,\n      \"total_amount\":500,\n      \"payment_method\":\"Credit Card\",\n      \"reference\":\"3cbf0d6975c876c7a2f10ceb81760c06\",\n      \"description\":null,\n      \"status\":\"Active\",\n      \"status_reason\":\"None\",\n      \"created_at\":\"2018-06-12T15:38:13+10:00\",\n      \"failed_payment_fee\":0,\n      \"retry_interval\":3,\n      \"status_change_date\":null,\n      \"payments\":[]\n    }\n  ],\n  \"errors\":[],\n  \"test\":true,\n  \"records\":2,\n  \"total_records\":346,\n  \"page\":1,\n  \"total_pages\":173\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-PP-8389G3DA
+                        customer:
+                          type: string
+                          example: 071-C-JE34F66V
+                        amount:
+                          type: integer
+                          example: 100
+                          default: 0
+                        currency: {}
+                        setup_fee:
+                          type: integer
+                          example: 0
+                          default: 0
+                        frequency:
+                          type: string
+                          example: Weekly
+                        anniversary:
+                          type: integer
+                          example: 5
+                          default: 0
+                        start_date:
+                          type: string
+                          example: '2025-07-16'
+                        end_date: {}
+                        total_count:
+                          type: integer
+                          example: 2
+                          default: 0
+                        total_amount: {}
+                        payment_method:
+                          type: string
+                          example: Credit Card
+                        reference:
+                          type: string
+                          example: 071-PP-8389G3DA
+                        description: {}
+                        status:
+                          type: string
+                          example: Active
+                        status_reason:
+                          type: string
+                          example: None
+                        created_at:
+                          type: string
+                          example: '2018-07-11T16:23:39+10:00'
+                        failed_payment_fee:
+                          type: integer
+                          example: 0
+                          default: 0
+                        retry_interval:
+                          type: integer
+                          example: 3
+                          default: 0
+                        status_change_date: {}
+                        payments:
+                          type: array
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+                  records:
+                    type: integer
+                    example: 2
+                    default: 0
+                  total_records:
+                    type: integer
+                    example: 346
+                    default: 0
+                  page:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total_pages:
+                    type: integer
+                    example: 173
+                    default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/payment_plans?limit=2 -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Payment Plans
+  /payment_plans/{id_or_reference}:
+    put:
+      summary: Update a payment plan
+      description: "A Payment Plan's status can only be updated to Cancelled, Suspended or Active. For a suspended plan it is possible to set a date the plan is suspended until. \n\nWhen a plan is suspended, any pending payments will be removed. If the plan is resumed, the pending payments will be re-created to meet the plan's constraints.\n\n\nNote:\nPayment plan must be active for any other attributes to be updated."
+      operationId: update-a-payment-plan
+      parameters:
+      - name: id_or_reference
+        in: path
+        description: ID or merchant's reference of the payment plan to update.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_token:
+                  type: string
+                  description: The card token to link this payment plan to
+                new_status:
+                  type: string
+                  description: Status to update to. Valid values are "Suspended", "Active", "Cancelled",
+                reason:
+                  type: string
+                  description: Reason for updating payment plan status
+                until_date:
+                  type: string
+                  description: Optionally used when suspending or activating a plan. This date will be saved on the payment plan for record-keeping purposes. The plan will need to be manually actioned on this date.
+                  format: date
+                amount:
+                  type: integer
+                  description: Recurring payment amount in the smallest unit of the currency.
+                  format: int32
+                setup_fee:
+                  type: integer
+                  description: Setup fee to be charged upon creation of the payment plan.
+                  format: int32
+                frequency:
+                  type: string
+                  description: 'Frequency of the payments. Acceptable values are: Daily, Weekly, Fortnightly, Monthly, 4 Weekly, Quarterly, Half Yearly, Annually.'
+                payment_method:
+                  type: string
+                  description: Payment method for the plan - this can be Credit Card or Direct Debit. Note that if the customer is not setup with the defined payment method an error will be returned.
+                anniversary:
+                  type: string
+                  description: Anniversary of the recurring payments.  For Weekly and Fortnightly payments this will be the day of the week (1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday) For Monthly this will be the day of the month. If the day of the month is greater then 28, and the month is shorter then the anniversary this date will be moved forward to the nearest possible date (i.e. a payment for the 31st will fall on the 30th for monthly like September etc).
+                start_date:
+                  type: string
+                  description: Date that the payment plan should start. This must be in the future.
+                  format: date
+                end_date:
+                  type: string
+                  description: Date that the payment plan should end on. This must be in the future and greater than the start_date.
+                  format: date
+                reference:
+                  type: string
+                  description: Reference for the payment plan.
+                description:
+                  type: string
+                  description: Description for the payment plan (e.g. Model 200R Blender Lay-by).
+                currency:
+                  type: string
+                  description: ISO 4217 currency code for the plan.
+                total_count:
+                  type: integer
+                  description: Total number of payments to process for this plan.
+                  format: int32
+                total_amount:
+                  type: integer
+                  description: Total amount of all payments to be processed for this plan.
+                  format: int32
+                failed_payment_fee:
+                  type: integer
+                  description: 'Fee that applies to the retried payment in the event of any declined payment. Note: This amount will compound for the total number of retries (3) performed.'
+                  default: 0
+                  format: int32
+                retry_interval:
+                  type: integer
+                  description: Number of days between payment retries for any declined payments.
+                  default: 3
+                  format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL Suspend 200 OK:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"id\":\"071-PP-8389G3DA\",\n    \"customer\":\"071-C-JE34F66V\",\n    \"amount\":100,\n    \"currency\":null,\"setup_fee\":0,\n    \"frequency\":\"Weekly\",\n    \"anniversary\":5,\n    \"start_date\":\"2025-07-16\",\n    \"end_date\":null,\n    \"total_count\":2,\n    \"total_amount\":null,\n    \"payment_method\":\"Credit Card\",\n    \"reference\":\"071-PP-8389G3DA\",\n    \"description\":null,\n    \"status\":\"Suspended\",\n    \"status_reason\":\"Other\",\n    \"created_at\":\"2018-07-11T16:23:39+10:00\",\n    \"failed_payment_fee\":0,\n    \"retry_interval\":3,\n    \"status_change_date\":null,\n    \"card_token\": \"ABC12345\",\n    \"payments\":[]\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+                cURL Update 200 OK:
+                  value: "{\n   \"successful\":true,\n   \"response\":{\n      \"amount\":100,\n      \"currency\":\"AUD\",\n      \"setup_fee\":0,\n      \"frequency\":\"Weekly\",\n      \"anniversary\":5,\n      \"start_date\":\"2025-07-17\",\n      \"end_date\":\"nil\",\n      \"total_count\":2,\n      \"total_amount\":200,\n      \"payment_method\":\"Credit Card\",\n      \"reference\":\"8774b9d1-57b3-4bc7-854b-f81ae1e51aa7\",\n      \"description\":\"nil\",\n      \"status\":\"Active\",\n      \"status_reason\":\"None\",\n      \"created_at\":\"2022-11-24T09:22:02+11:00\",\n      \"failed_payment_fee\":0,\n      \"retry_interval\":1,\n      \"status_change_date\":\"nil\",\n      \"display_reason\":\"None\",\n      \"card_token\": \"ABC12345\",\n      \"payments\":[\n         {\n            \"id\":\"001-PT-ZD1Y124\",\n            \"payment_plan\":\"001-PP-2CLZQHLI\",\n            \"reference\":\"8774b9d1-57b3-4bc7-854b-f81ae1e51aa7-0001\",\n            \"amount\":100,\n            \"currency\":\"AUD\",\n            \"scheduled_date\":\"2025-07-18\",\n            \"payment_method\":\"Credit Card\",\n            \"status\":\"Scheduled\",\n            \"result\":\"nil\",\n            \"records\":[\n               \n            ]\n         },\n         {\n            \"id\":\"001-PT-L1MCLPL6\",\n            \"payment_plan\":\"001-PP-2CLZQHLI\",\n            \"reference\":\"8774b9d1-57b3-4bc7-854b-f81ae1e51aa7-0002\",\n            \"amount\":100,\n            \"currency\":\"AUD\",\n            \"scheduled_date\":\"2025-07-25\",\n            \"payment_method\":\"Credit Card\",\n            \"status\":\"Scheduled\",\n            \"result\":\"nil\",\n            \"records\":[\n               \n            ]\n         }\n      ]\n   },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                oneOf:
+                - title: cURL Suspend 200 OK
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-PP-8389G3DA
+                        customer:
+                          type: string
+                          example: 071-C-JE34F66V
+                        amount:
+                          type: integer
+                          example: 100
+                          default: 0
+                        currency: {}
+                        setup_fee:
+                          type: integer
+                          example: 0
+                          default: 0
+                        frequency:
+                          type: string
+                          example: Weekly
+                        anniversary:
+                          type: integer
+                          example: 5
+                          default: 0
+                        start_date:
+                          type: string
+                          example: '2025-07-16'
+                        end_date: {}
+                        total_count:
+                          type: integer
+                          example: 2
+                          default: 0
+                        total_amount: {}
+                        payment_method:
+                          type: string
+                          example: Credit Card
+                        reference:
+                          type: string
+                          example: 071-PP-8389G3DA
+                        description: {}
+                        status:
+                          type: string
+                          example: Suspended
+                        status_reason:
+                          type: string
+                          example: Other
+                        created_at:
+                          type: string
+                          example: '2018-07-11T16:23:39+10:00'
+                        failed_payment_fee:
+                          type: integer
+                          example: 0
+                          default: 0
+                        retry_interval:
+                          type: integer
+                          example: 3
+                          default: 0
+                        status_change_date: {}
+                        card_token:
+                          type: string
+                          example: ABC12345
+                        payments:
+                          type: array
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: cURL Update 200 OK
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        amount:
+                          type: integer
+                          example: 100
+                          default: 0
+                        currency:
+                          type: string
+                          example: AUD
+                        setup_fee:
+                          type: integer
+                          example: 0
+                          default: 0
+                        frequency:
+                          type: string
+                          example: Weekly
+                        anniversary:
+                          type: integer
+                          example: 5
+                          default: 0
+                        start_date:
+                          type: string
+                          example: '2025-07-17'
+                        end_date:
+                          type: string
+                          example: nil
+                        total_count:
+                          type: integer
+                          example: 2
+                          default: 0
+                        total_amount:
+                          type: integer
+                          example: 200
+                          default: 0
+                        payment_method:
+                          type: string
+                          example: Credit Card
+                        reference:
+                          type: string
+                          example: 8774b9d1-57b3-4bc7-854b-f81ae1e51aa7
+                        description:
+                          type: string
+                          example: nil
+                        status:
+                          type: string
+                          example: Active
+                        status_reason:
+                          type: string
+                          example: None
+                        created_at:
+                          type: string
+                          example: '2022-11-24T09:22:02+11:00'
+                        failed_payment_fee:
+                          type: integer
+                          example: 0
+                          default: 0
+                        retry_interval:
+                          type: integer
+                          example: 1
+                          default: 0
+                        status_change_date:
+                          type: string
+                          example: nil
+                        display_reason:
+                          type: string
+                          example: None
+                        card_token:
+                          type: string
+                          example: ABC12345
+                        payments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: 001-PT-ZD1Y124
+                              payment_plan:
+                                type: string
+                                example: 001-PP-2CLZQHLI
+                              reference:
+                                type: string
+                                example: 8774b9d1-57b3-4bc7-854b-f81ae1e51aa7-0001
+                              amount:
+                                type: integer
+                                example: 100
+                                default: 0
+                              currency:
+                                type: string
+                                example: AUD
+                              scheduled_date:
+                                type: string
+                                example: '2025-07-18'
+                              payment_method:
+                                type: string
+                                example: Credit Card
+                              status:
+                                type: string
+                                example: Scheduled
+                              result:
+                                type: string
+                                example: nil
+                              records:
+                                type: array
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":{},\n  \"errors\":[\"Could not find Payment Plan\"],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Payment Plan
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/payment_plans/071-PP-8389G3DA -u TEST:TEST -X PUT -d '\n{\n  \"new_status\": \"Suspended\",\n  \"until_date\": \"2025-08-25\"\n}'"
+          name: cURL Suspend
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/payment_plans/071-PP-8389G3DA -u TEST:TEST -X PUT -d '\n{\n  \"amount\": 100,\n  \"frequency\": \"Weekly\",\n  \"payment_method\": \"Credit Card\",\n  \"anniversary\": 5,\n  \"start_date\": \"2025-07-16\",\n  \"total_count\": 2\n}'"
+          name: cURL Update
+        samples-languages:
+        - curl
+      tags:
+      - Payment Plans
+    delete:
+      summary: Cancel a payment plan
+      description: Payment Plans can be cancelled which removed any scheduled payments and stops the plan from being processed. Once a Plan has been cancelled it is considered 'Deleted' and cannot be re-activated.
+      operationId: cancel-a-payment-plan
+      parameters:
+      - name: id_or_reference
+        in: path
+        description: ID or reference of the payment plan to cancel.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"id\":\"071-PP-8389G3DA\",\n    \"customer\":\"071-C-JE34F66V\",\n    \"amount\":100,\n    \"currency\":null,\n    \"setup_fee\":0,\n    \"frequency\":\"Weekly\",\n    \"anniversary\":5,\n    \"start_date\":\"2025-07-16\",\n    \"end_date\":null,\n    \"total_count\":2,\n    \"total_amount\":null,\n    \"payment_method\":\"Credit Card\",\n    \"reference\":\"071-PP-8389G3DA\",\n    \"description\":null,\n    \"status\":\"Cancelled\",\n    \"status_reason\":\"Other\",\n    \"created_at\":\"2018-07-11T16:23:39+10:00\",\n    \"failed_payment_fee\":0,\n    \"retry_interval\":3,\n    \"status_change_date\":null,\n    \"payments\":[]\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PP-8389G3DA
+                      customer:
+                        type: string
+                        example: 071-C-JE34F66V
+                      amount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      currency: {}
+                      setup_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      frequency:
+                        type: string
+                        example: Weekly
+                      anniversary:
+                        type: integer
+                        example: 5
+                        default: 0
+                      start_date:
+                        type: string
+                        example: '2025-07-16'
+                      end_date: {}
+                      total_count:
+                        type: integer
+                        example: 2
+                        default: 0
+                      total_amount: {}
+                      payment_method:
+                        type: string
+                        example: Credit Card
+                      reference:
+                        type: string
+                        example: 071-PP-8389G3DA
+                      description: {}
+                      status:
+                        type: string
+                        example: Cancelled
+                      status_reason:
+                        type: string
+                        example: Other
+                      created_at:
+                        type: string
+                        example: '2018-07-11T16:23:39+10:00'
+                      failed_payment_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      retry_interval:
+                        type: integer
+                        example: 3
+                        default: 0
+                      status_change_date: {}
+                      payments:
+                        type: array
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":{},\n  \"errors\":[\"Could not find Payment Plan\"],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Payment Plan
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/payment_plans/071-PP-8389G3DA -u TEST:TEST -X DELETE
+        - language: ruby
+          code: FatZebra::PaymentPlan.delete('071-PP-EFI5O5E3')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Payment Plans
+    get:
+      summary: Fetch a payment plan
+      description: ''
+      operationId: fetch-a-payment-plan
+      parameters:
+      - name: id_or_reference
+        in: path
+        description: ID or merchant's reference of the payment plan.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"id\":\"071-PP-8389G3DA\",\n    \"customer\":\"071-C-JE34F66V\",\n    \"amount\":100,\n    \"currency\":null,\n    \"setup_fee\":0,\n    \"frequency\":\"Weekly\",\n    \"anniversary\":5,\n    \"start_date\":\"2025-07-16\",\n    \"end_date\":null,\n    \"total_count\":2,\n    \"total_amount\":null,\n    \"payment_method\":\"Credit Card\",\n    \"reference\":\"071-PP-8389G3DA\",\n    \"description\":null,\n    \"status\":\"Active\",\n    \"status_reason\":\"None\",\n    \"created_at\":\"2018-07-11T16:23:39+10:00\",\n    \"failed_payment_fee\":0,\n    \"retry_interval\":3,\n    \"status_change_date\":null,\n    \"payments\":[\n      {\n        \"id\":\"071-PT-WQ8LIHI4\",\n        \"payment_plan\":\"071-PP-8389G3DA\",\n        \"reference\":\"071-PP-8389G3DA-0001\",\n        \"amount\":100,\n        \"currency\":null,\n        \"scheduled_date\":\"2025-07-18\",\n        \"payment_method\":\"Credit Card\",\n        \"status\":\"Scheduled\",\n        \"result\":null,\n        \"records\":[]\n      },\n      {\n        \"id\":\"071-PT-QNFQFYW2\",\n        \"payment_plan\":\"071-PP-8389G3DA\",\n        \"reference\":\"071-PP-8389G3DA-0002\",\n        \"amount\":100,\n        \"currency\":null,\n        \"scheduled_date\":\"2025-07-25\",\n        \"payment_method\":\"Credit Card\",\n        \"status\":\"Scheduled\",\n        \"result\":null,\n        \"records\":[]\n      }\n    ]\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PP-8389G3DA
+                      customer:
+                        type: string
+                        example: 071-C-JE34F66V
+                      amount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      currency: {}
+                      setup_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      frequency:
+                        type: string
+                        example: Weekly
+                      anniversary:
+                        type: integer
+                        example: 5
+                        default: 0
+                      start_date:
+                        type: string
+                        example: '2025-07-16'
+                      end_date: {}
+                      total_count:
+                        type: integer
+                        example: 2
+                        default: 0
+                      total_amount: {}
+                      payment_method:
+                        type: string
+                        example: Credit Card
+                      reference:
+                        type: string
+                        example: 071-PP-8389G3DA
+                      description: {}
+                      status:
+                        type: string
+                        example: Active
+                      status_reason:
+                        type: string
+                        example: None
+                      created_at:
+                        type: string
+                        example: '2018-07-11T16:23:39+10:00'
+                      failed_payment_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      retry_interval:
+                        type: integer
+                        example: 3
+                        default: 0
+                      status_change_date: {}
+                      payments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 071-PT-WQ8LIHI4
+                            payment_plan:
+                              type: string
+                              example: 071-PP-8389G3DA
+                            reference:
+                              type: string
+                              example: 071-PP-8389G3DA-0001
+                            amount:
+                              type: integer
+                              example: 100
+                              default: 0
+                            currency: {}
+                            scheduled_date:
+                              type: string
+                              example: '2025-07-18'
+                            payment_method:
+                              type: string
+                              example: Credit Card
+                            status:
+                              type: string
+                              example: Scheduled
+                            result: {}
+                            records:
+                              type: array
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+            text/plain:
+              examples:
+                Result:
+                  value: '#<FatZebra::PaymentPlan:0x3fe2ae9e92f8 id=071-PP-EFI5O5E3> JSON: {...'
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":{},\n  \"errors\":[\"Could not find Payment Plan\"],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Payment Plan
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/payment_plans/071-PP-8389G3DA -u TEST:TEST
+        - language: ruby
+          code: FatZebra::PaymentPlan.find('071-PP-EFI5O5E3')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Payment Plans
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,93 @@
+openapi: 3.2.0
+info:
+  title: gateway Utlities API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Utlities
+paths:
+  /utlities/mastercard/click_to_pay/registration:
+    post:
+      summary: Create Registration
+      description: 'In order to start using Mastercard Click to Pay you must first register your account with Mastercard. To do this you can use the following API endpoint:'
+      operationId: mastercard-clicktopay-create-registration
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                OK - Pending:
+                  value: "{\n   \"errors\" : [],\n   \"response\" : {\n      \"registered\" : false,\n      \"status\" : \"Pending\"\n   },\n   \"successful\" : true,\n   \"test\" : true\n}"
+                OK - Active:
+                  value: "{\n   \"errors\" : [],\n   \"response\" : {\n      \"registered\" : true,\n      \"status\" : \"Active\"\n   },\n   \"successful\" : true,\n   \"test\" : true\n}"
+              schema:
+                oneOf:
+                - title: OK - Pending
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                    response:
+                      type: object
+                      properties:
+                        registered:
+                          type: boolean
+                          example: false
+                          default: true
+                        status:
+                          type: string
+                          example: Pending
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: OK - Active
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                    response:
+                      type: object
+                      properties:
+                        registered:
+                          type: boolean
+                          example: true
+                          default: true
+                        status:
+                          type: string
+                          example: Active
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl http://api.test/v1.0/utilities/mastercard/click_to_pay/registration -XPOST -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Utlities
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,76 @@
+openapi: 3.2.0
+info:
+  title: gateway Oauth Clients API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Oauth Clients
+paths:
+  /oauth_clients:
+    post:
+      summary: Create an OAuth Client
+      description: ''
+      operationId: create-an-oauth-client
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name for the OAuth Client, used to differentiate between different clients/keys
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"access_key\" : \"Bwq5112385pDtg==\",\n   \"access_secret\" : \"yekVasd23hqW_Fnodvt5-GZeCdXA=\"\n}"
+              schema:
+                type: object
+                properties:
+                  access_key:
+                    type: string
+                    example: Bwq5112385pDtg==
+                  access_secret:
+                    type: string
+                    example: yekVasd23hqW_Fnodvt5-GZeCdXA=
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"errors\" : [\n      \"already exists\"\n   ]\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: already exists
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl https://gateway.pmnts-sandbox.io/v1.0/oauth_clients -d ''{"name": "test-client"} -U TEST:TEST'
+        samples-languages:
+        - curl
+      tags:
+      - Oauth Clients
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,176 @@
+openapi: 3.2.0
+info:
+  title: Fat Zebra Health API
+  version: '1.0'
+  description: 'Operations tagged Health across 2 of this provider''s published API definitions: fat-zebra-gateway.json, fat-zebra-partner.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+- url: https://gateway.pmnts.io/v2/partners
+  description: Production
+- url: https://gateway.pmnts-sandbox.io/v2/partners
+  description: Sandbox
+- url: https://gateway.pmnts-staging.io/v2/partners
+  description: Staging
+- url: https://gateway.test/v2/partners
+  description: Local development
+tags:
+- name: Health
+paths:
+  /health:
+    get:
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  timestamp:
+                    type: integer
+                    example: 1769469514
+                    default: 0
+                  echo:
+                    type: string
+                    example: my_echo
+                    description: Returns the string supplied in the path , or `NONE` if no string is supplied
+              examples:
+                OK:
+                  summary: OK
+                  value:
+                    timestamp: 1769469514
+                    echo: NONE
+                OK - 1:
+                  summary: OK - 1
+                  value:
+                    timestamp: 1769469514
+                    echo: my_echo
+      parameters:
+      - in: query
+        name: echo
+        schema:
+          type: string
+          default: echo
+        description: An optional query string to be returned back by the API
+      operationId: get_health
+      tags:
+      - Health
+      security:
+      - sec0: []
+    servers:
+    - url: https://gateway.pmnts-sandbox.io/v1.0
+  /ping:
+    get:
+      tags:
+      - Health
+      summary: Auth + partner resolution canary
+      description: 'Smoke-tests auth and partner resolution. Returns `{ "ok": true }` on
+
+        success.
+
+        '
+      operationId: ping
+      responses:
+        '200':
+          description: Auth ok; partner resolved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      security:
+      - PartnerBasicAuth: []
+    servers:
+    - url: https://gateway.pmnts.io/v2/partners
+      description: Production
+    - url: https://gateway.pmnts-sandbox.io/v2/partners
+      description: Sandbox
+    - url: https://gateway.pmnts-staging.io/v2/partners
+      description: Staging
+    - url: https://gateway.test/v2/partners
+      description: Local development
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    PingResponse:
+      type: object
+      required:
+      - ok
+      properties:
+        ok:
+          type: boolean
+          const: true
+          description: Always `true` when the API is reachable and the token is valid.
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+    PartnerBasicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic. Send your reseller **username** as the Basic username and
+
+        your reseller API **token** as the Basic password. Required on every
+
+        endpoint.
+
+        '
+x-refined-from:
+- fat-zebra-gateway.json
+- fat-zebra-partner.json
+x-readme:
+  headers: []
+x-readme-fauxas: true

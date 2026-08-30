@@ -1,0 +1,80 @@
+openapi: 3.2.0
+info:
+  title: gateway Invoice Imports API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Invoice Imports
+paths:
+  /invoice_imports/4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8:
+    get:
+      summary: Check replacement status
+      description: ''
+      operationId: check-invoice-import-status
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"uuid\":\"4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8\",\n    \"status\":\"complete\",\n    \"error\":null,\n    \"invoice_count\":991\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      uuid:
+                        type: string
+                        example: 4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8
+                      status:
+                        type: string
+                        example: complete
+                      error: {}
+                      invoice_count:
+                        type: integer
+                        example: 991
+                        default: 0
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/invoice_imports/4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8 -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Invoice Imports
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

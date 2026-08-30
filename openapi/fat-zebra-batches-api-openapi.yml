@@ -1,0 +1,489 @@
+openapi: 3.2.0
+info:
+  title: gateway Batches API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Batches
+paths:
+  /batches/{filename}:
+    post:
+      summary: Create a batch
+      description: ''
+      operationId: create-a-batch
+      parameters:
+      - name: filename
+        in: path
+        description: Your CSV batch payments file name
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                RAW_BODY:
+                  type: string
+                  description: The batch CSV file format
+                  format: binary
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-BF-2H8VWBRN\",\n    \"filename\": \"BATCH-v1-PURCHASE-TEST-20180131-1516337064.csv\",\n    \"created_at\": \"2018-02-19T12:29:55+11:00\",\n    \"process_date\": \"2018-01-31\",\n    \"start_date\": null,\n    \"completed_date\": null,\n    \"status\": \"New\",\n    \"type\": \"PURCHASE\",\n    \"reference\": \"1516337064\"\n  },\n  \"errors\": [],\n  \"test\": false\n}"
+                Ruby:
+                  value: "{\n  \"id\": \"071-BF-NFIIDN7F\",\n  \"filename\": \"BATCH-v1-PURCHASE-TEST-20180131-1516337065.csv\",\n  \"created_at\": \"2018-02-19T12:36:20+11:00\",\n  \"process_date\": \"2018-01-31\",\n  \"start_date\": null,\n  \"completed_date\": null,\n  \"status\": \"New\",\n  \"type\": \"PURCHASE\",\n  \"reference\": \"1516337065\"\n}"
+              schema:
+                oneOf:
+                - title: cURL
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-BF-2H8VWBRN
+                        filename:
+                          type: string
+                          example: BATCH-v1-PURCHASE-TEST-20180131-1516337064.csv
+                        created_at:
+                          type: string
+                          example: '2018-02-19T12:29:55+11:00'
+                        process_date:
+                          type: string
+                          example: '2018-01-31'
+                        start_date: {}
+                        completed_date: {}
+                        status:
+                          type: string
+                          example: New
+                        type:
+                          type: string
+                          example: PURCHASE
+                        reference:
+                          type: string
+                          example: '1516337064'
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: false
+                      default: true
+                - title: Ruby
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 071-BF-NFIIDN7F
+                    filename:
+                      type: string
+                      example: BATCH-v1-PURCHASE-TEST-20180131-1516337065.csv
+                    created_at:
+                      type: string
+                      example: '2018-02-19T12:36:20+11:00'
+                    process_date:
+                      type: string
+                      example: '2018-01-31'
+                    start_date: {}
+                    completed_date: {}
+                    status:
+                      type: string
+                      example: New
+                    type:
+                      type: string
+                      example: PURCHASE
+                    reference:
+                      type: string
+                      example: '1516337065'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/batches/BATCH-v1-PURCHASE-TEST-20180131-1516337064.csv \\\n  -u TEST:TEST \\\n  --data-binary @tmp/batches/BATCH-v1-PURCHASE-TEST-20180131-1516337064.csv \\\n  -H \"Content-Type: text/csv\" \\"
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Batch.create(path: 'tmp/batches/BATCH-v1-PURCHASE-TEST-20180131-1516337065.csv', filename: 'BATCH-v1-PURCHASE-TEST-20180131-1516337065.csv')"
+          name: Ruby
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Batches
+  /batches/{id}:
+    delete:
+      summary: Delete a batch
+      description: ''
+      operationId: delete-a-batch
+      parameters:
+      - name: id
+        in: path
+        description: ID or Reference of the Batch
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n   \"successful\" : true,\n   \"test\" : true,\n   \"response\" : {\n      \"status\" : \"Cancelled\",\n      \"completed_date\" : null,\n      \"id\" : \"071-BF-HBOLDSDA\",\n      \"start_date\" : null,\n      \"type\" : \"DIRECTDEBIT\",\n      \"filename\" : \"BATCH-v1-DIRECTDEBIT-TEST-20180908-7607.csv\",\n      \"process_date\" : \"2018-09-08\",\n      \"created_at\" : \"2018-09-07T15:34:59+10:00\",\n      \"reference\" : \"7607\"\n   }\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: Cancelled
+                      completed_date: {}
+                      id:
+                        type: string
+                        example: 071-BF-HBOLDSDA
+                      start_date: {}
+                      type:
+                        type: string
+                        example: DIRECTDEBIT
+                      filename:
+                        type: string
+                        example: BATCH-v1-DIRECTDEBIT-TEST-20180908-7607.csv
+                      process_date:
+                        type: string
+                        example: '2018-09-08'
+                      created_at:
+                        type: string
+                        example: '2018-09-07T15:34:59+10:00'
+                      reference:
+                        type: string
+                        example: '7607'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST -XDELETE https://gateway.pmnts-sandbox.io/v1.0/batches/071-BF-Q0TVWI7K
+          name: cURL
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Batch.find('071-BF-68TU3VJM')"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Batches
+    get:
+      summary: Fetch a batch
+      description: ''
+      operationId: fetch-a-batch
+      parameters:
+      - name: id
+        in: path
+        description: ID or Reference of the Batch
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n   \"response\" : {\n      \"status\" : \"Completed\",\n      \"type\" : \"PURCHASE\",\n      \"process_date\" : \"2017-07-14\",\n      \"id\" : \"071-BF-Q0TVWI7K\",\n      \"created_at\" : \"2017-07-14T10:42:55+10:00\",\n      \"filename\" : \"BATCH-v1-PURCHASE-20170714-123456789012347.csv\",\n      \"completed_date\" : \"2017-07-14\",\n      \"reference\" : \"123456789012347\",\n      \"start_date\" : \"2017-07-14\"\n   },\n   \"successful\" : true,\n   \"errors\" : [],\n   \"test\" : true\n}"
+                Ruby:
+                  value: "{\n  \"id\": \"071-BF-68TU3VJM\",\n  \"filename\": \"BATCH-v1-PURCHASE-20170712-123456789012348.csv\",\n  \"created_at\": \"2017-07-12T15:49:49+10:00\",\n  \"process_date\": \"2017-07-12\",\n  \"start_date\": \"2017-07-12\",\n  \"completed_date\": \"2017-07-12\",\n  \"status\": \"Completed\",\n  \"type\": \"PURCHASE\",\n  \"reference\": \"123456789012348\"\n}"
+              schema:
+                oneOf:
+                - title: cURL
+                  type: object
+                  properties:
+                    response:
+                      type: object
+                      properties:
+                        status:
+                          type: string
+                          example: Completed
+                        type:
+                          type: string
+                          example: PURCHASE
+                        process_date:
+                          type: string
+                          example: '2017-07-14'
+                        id:
+                          type: string
+                          example: 071-BF-Q0TVWI7K
+                        created_at:
+                          type: string
+                          example: '2017-07-14T10:42:55+10:00'
+                        filename:
+                          type: string
+                          example: BATCH-v1-PURCHASE-20170714-123456789012347.csv
+                        completed_date:
+                          type: string
+                          example: '2017-07-14'
+                        reference:
+                          type: string
+                          example: '123456789012347'
+                        start_date:
+                          type: string
+                          example: '2017-07-14'
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Ruby
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 071-BF-68TU3VJM
+                    filename:
+                      type: string
+                      example: BATCH-v1-PURCHASE-20170712-123456789012348.csv
+                    created_at:
+                      type: string
+                      example: '2017-07-12T15:49:49+10:00'
+                    process_date:
+                      type: string
+                      example: '2017-07-12'
+                    start_date:
+                      type: string
+                      example: '2017-07-12'
+                    completed_date:
+                      type: string
+                      example: '2017-07-12'
+                    status:
+                      type: string
+                      example: Completed
+                    type:
+                      type: string
+                      example: PURCHASE
+                    reference:
+                      type: string
+                      example: '123456789012348'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/batches/071-BF-Q0TVWI7K
+          name: cURL
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Batch.find('071-BF-68TU3VJM')"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Batches
+  /batches/{id}/result.csv:
+    get:
+      summary: Retrieve batch result file
+      description: ''
+      operationId: retrieve-batch-result-file
+      parameters:
+      - name: id
+        in: path
+        description: ID or Reference of the Batch
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            text/plain:
+              examples:
+                cURL:
+                  value: 'Order42345,071-P-OEIHTOXT,Approved,00,Approved,826869,071POEIHTOXT,4000,AUD,John Doe 4,444433XXXXXX1111,2020-12-01,5bndwj3prob,Gizmo ABC 4
+
+                    Order22345,071-P-Z4NU1G1D,Declined,51,Insufficient Funds: Insufficient Funds,,,2051,AUD,John Doe 2,444433XXXXXX1111,2020-12-01,ch3mcxwyprk,Gizmo ABC 2
+
+                    Order32345,071-P-MQ3C98AD,Approved,00,Approved,241425,071PMQ3C98AD,3000,AUD,John Doe 3,444433XXXXXX1111,2020-12-01,azv46dwngzw,Gizmo ABC 3
+
+                    Order12345,071-P-9673W0M6,Rejected,"",Reference is already taken,"","",1000,"","","","","",Gizmo ABC 1'
+        '422':
+          description: '422'
+          content:
+            text/plain:
+              examples:
+                Result:
+                  value: Batch is not yet completed
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/batches/071-BF-Q0TVWI7K/result.csv
+          name: cURL
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Batch.find('071-BF-68TU3VJM')"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Batches
+  /batches:
+    get:
+      summary: List all batches
+      description: ''
+      operationId: list-all-batches
+      parameters:
+      - name: limit
+        in: query
+        description: The number of records to return per request (page) - the maximum per request is 50.
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The pagination offset. For example, offset=10, limit=10 will return records 100 to 110
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n   \"total_records\" : 2128,\n   \"page\" : 1,\n   \"errors\" : [],\n   \"successful\" : true,\n   \"test\" : true,\n   \"records\" : 2,\n   \"response\" : [\n      {\n         \"completed_date\" : null,\n         \"created_at\" : \"2018-01-30T01:58:52+11:00\",\n         \"id\" : \"071-BF-PGGSPBF1\",\n         \"start_date\" : null,\n         \"type\" : \"PURCHASE\",\n         \"status\" : \"Error\",\n         \"filename\" : \"BATCH-v1-PURCHASE-TEST-20180101-test4.csv\",\n         \"process_date\" : \"2018-01-01\",\n         \"reference\" : \"test4\"\n      },\n      {\n         \"start_date\" : \"2017-07-12\",\n         \"id\" : \"071-BF-68TU3VJM\",\n         \"completed_date\" : \"2017-07-12\",\n         \"created_at\" : \"2017-07-12T15:49:49+10:00\",\n         \"reference\" : \"123456789012348\",\n         \"process_date\" : \"2017-07-12\",\n         \"filename\" : \"BATCH-v1-PURCHASE-20170712-123456789012348.csv\",\n         \"status\" : \"Completed\",\n         \"type\" : \"PURCHASE\"\n      }\n   ],\n   \"total_pages\" : 1024\n}"
+                Ruby:
+                  value: "{\n  \"id\": \"071-BF-68TU3VJM\",\n  \"filename\": \"BATCH-v1-PURCHASE-20170712-123456789012348.csv\",\n  \"created_at\": \"2017-07-12T15:49:49+10:00\",\n  \"process_date\": \"2017-07-12\",\n  \"start_date\": \"2017-07-12\",\n  \"completed_date\": \"2017-07-12\",\n  \"status\": \"Completed\",\n  \"type\": \"PURCHASE\",\n  \"reference\": \"123456789012348\"\n}"
+              schema:
+                oneOf:
+                - title: cURL
+                  type: object
+                  properties:
+                    total_records:
+                      type: integer
+                      example: 2128
+                      default: 0
+                    page:
+                      type: integer
+                      example: 1
+                      default: 0
+                    errors:
+                      type: array
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                    records:
+                      type: integer
+                      example: 2
+                      default: 0
+                    response:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          completed_date: {}
+                          created_at:
+                            type: string
+                            example: '2018-01-30T01:58:52+11:00'
+                          id:
+                            type: string
+                            example: 071-BF-PGGSPBF1
+                          start_date: {}
+                          type:
+                            type: string
+                            example: PURCHASE
+                          status:
+                            type: string
+                            example: Error
+                          filename:
+                            type: string
+                            example: BATCH-v1-PURCHASE-TEST-20180101-test4.csv
+                          process_date:
+                            type: string
+                            example: '2018-01-01'
+                          reference:
+                            type: string
+                            example: test4
+                    total_pages:
+                      type: integer
+                      example: 1024
+                      default: 0
+                - title: Ruby
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 071-BF-68TU3VJM
+                    filename:
+                      type: string
+                      example: BATCH-v1-PURCHASE-20170712-123456789012348.csv
+                    created_at:
+                      type: string
+                      example: '2017-07-12T15:49:49+10:00'
+                    process_date:
+                      type: string
+                      example: '2017-07-12'
+                    start_date:
+                      type: string
+                      example: '2017-07-12'
+                    completed_date:
+                      type: string
+                      example: '2017-07-12'
+                    status:
+                      type: string
+                      example: Completed
+                    type:
+                      type: string
+                      example: PURCHASE
+                    reference:
+                      type: string
+                      example: '123456789012348'
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/batches?limit=2
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::Batch.search.data"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Batches
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

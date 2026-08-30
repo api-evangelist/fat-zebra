@@ -1,0 +1,137 @@
+openapi: 3.2.0
+info:
+  title: gateway Invoices API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Invoices
+paths:
+  /invoices/{reference}:
+    get:
+      summary: Fetch an invoice
+      description: Individual invoices can be retrieved by their reference.
+      operationId: fetch-an-invoice
+      parameters:
+      - name: reference
+        in: path
+        description: Reference of the invoice to be fetched.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"amount\": 7500,\n    \"currency\": \"AUD\",\n    \"description\": \"Animal Registrations\",\n    \"reference\": \"X2\",\n    \"payable\": true\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 7500
+                        default: 0
+                      currency:
+                        type: string
+                        example: AUD
+                      description:
+                        type: string
+                        example: Animal Registrations
+                      reference:
+                        type: string
+                        example: X2
+                      payable:
+                        type: boolean
+                        example: true
+                        default: true
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/invoices/X2 -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Invoices
+  /invoices:
+    put:
+      summary: Replace all invoices
+      description: '**Note: This action will replace all existing invoices.**'
+      operationId: import-invoices
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"uuid\":\"4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8\",\n    \"status\":\"pending\"\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      uuid:
+                        type: string
+                        example: 4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8
+                      status:
+                        type: string
+                        example: pending
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: 'curl -X PUT https://gateway.pmnts-sandbox.io/v1.0/invoices -u TEST:TEST --data-binary @invoices.csv -H "Content-Type: text/csv'
+        samples-languages:
+        - curl
+      tags:
+      - Invoices
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

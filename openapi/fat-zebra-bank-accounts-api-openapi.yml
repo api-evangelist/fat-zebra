@@ -1,0 +1,274 @@
+openapi: 3.2.0
+info:
+  title: gateway Bank Accounts API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Bank Accounts
+paths:
+  /bank_accounts:
+    post:
+      summary: Create a bank account
+      description: ''
+      operationId: create-a-bank-account
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-B-2FOU6UFB\",\n    \"account_name\": \"Max Webber\",\n    \"account_number\": \"123456789\",\n    \"bsb\": \"083-832\",\n    \"created_at\": \"2018-01-18T17:45:45+11:00\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-B-2FOU6UFB
+                      account_name:
+                        type: string
+                        example: Max Webber
+                      account_number:
+                        type: string
+                        example: '123456789'
+                      bsb:
+                        type: string
+                        example: 083-832
+                      created_at:
+                        type: string
+                        example: '2018-01-18T17:45:45+11:00'
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+            text/plain:
+              examples:
+                Result:
+                  value: "=> #<FatZebra::BankAccount:0x3fe073bf5afc id=071-B-KZC9WJRP> JSON: {\n  \"id\": \"071-B-KZC9WJRP\",\n  \"account_name\": \"Max Webber\",\n  \"account_number\": \"123456789\",\n  \"bsb\": \"083-832\",\n  \"created_at\": \"2018-01-18T17:56:51+11:00\"\n}"
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":{\n    \"id\":\"071-B-FGCEWI9L\",\n    \"account_name\":\"Max Webber\",\n    \"account_number\":\"123456789\",\n    \"bsb\":\"INVALID-FORMAT\",\n    \"created_at\":null\n  },\n  \"errors\":[\n    \"Bsb is the incorrect format - please use 123-456\",\"BSB does not appear to be valid - Bank/State code does not exist\"\n  ],\n  \"test\":true\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-B-Z3DAYJJT
+                        account_name:
+                          type: string
+                          example: ''
+                        account_number:
+                          type: string
+                          example: '123456789'
+                        bsb:
+                          type: string
+                          example: 083-832
+                        created_at: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Name can't be blank
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-B-FGCEWI9L
+                        account_name:
+                          type: string
+                          example: Max Webber
+                        account_number:
+                          type: string
+                          example: '123456789'
+                        bsb:
+                          type: string
+                          example: INVALID-FORMAT
+                        created_at: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Bsb is the incorrect format - please use 123-456
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/bank_accounts -d'\n{ \n    \"account_name\": \"Max Webber\", \n    \"account_number\": \"123456789\", \n    \"bsb\": \"083-832\", \n    \"account_type\": \"AU\" \n}'"
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::BankAccount.create(\n  account_name: 'Max Webber',\n  account_number: '123456789',\n  bsb: '083-832',\n  account_type: 'AU'\n)"
+        - language: text
+          code: "curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/bank_accounts -d \"{ \\\n    \\\"account_number\\\": \\\"123456789\\\", \\\n    \\\"bsb\\\": \\\"083-832\\\", \\\n    \\\"account_type\\\": \\\"AU\\\" \\\n}\""
+          name: Error - incomplete arguments
+        - language: text
+          code: "curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/bank_accounts -d \"{ \\\n    \\\"account_name\\\": \\\"Max Webber\\\", \\\n    \\\"account_number\\\": \\\"123456789\\\", \\\n    \\\"bsb\\\": \\\"INVALID-FORMAT\\\", \\\n    \\\"account_type\\\": \\\"AU\\\" \\\n}\""
+          name: Error - invalid arguments
+        samples-languages:
+        - curl
+        - ruby
+        - text
+      tags:
+      - Bank Accounts
+    get:
+      summary: List bank accounts
+      description: ''
+      operationId: list-bank-accounts
+      parameters:
+      - name: offset
+        in: query
+        description: Page number to return
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Number of results to return
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the time at which the bank account was registered
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Upper bound for the time at which the bank account was registered
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"071-B-C2FJI049\",\n      \"account_name\": \"Test\",\n      \"account_number\": \"12312312\",\n      \"bsb\": \"123-123\",\n      \"created_at\": \"2018-01-18T10:31:09+11:00\"\n    },\n  ],\n  \"errors\": [],\n  \"test\": true,\n  \"records\": 10,\n  \"total_records\": 570,\n  \"page\": 1,\n  \"total_pages\": 57\n}"
+            text/plain:
+              examples:
+                Ruby:
+                  value: "=> [#<FatZebra::BankAccount:0x3fe0746c8768 id=071-B-C2FJI049> JSON: {\n  \"id\": \"071-B-C2FJI049\",\n  \"account_name\": \"Test\",\n  \"account_number\": \"12312312\",\n  \"bsb\": \"123-123\",\n  \"created_at\": \"2018-01-18T10:31:09+11:00\"\n},\n# ...\n]"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/bank_accounts?limit=1
+        - language: ruby
+          code: "require 'fat_zebra'\n\nFatZebra.configure do |config|\n  config.username = 'TEST'\n  config.token = 'TEST'\n  config.gateway = :sandbox\nend\n\nFatZebra::BankAccount.search.data"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Bank Accounts
+  /bank_accounts/{id}:
+    get:
+      summary: Fetch a bank account
+      description: ''
+      operationId: fetch-a-bank-account
+      parameters:
+      - name: id
+        in: path
+        description: The bank account record ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                cURL:
+                  value: "{\n   \"response\" : {\n      \"bsb\" : \"123-123\",\n      \"account_number\" : \"12312312\",\n      \"created_at\" : \"2018-01-18T10:31:09+11:00\",\n      \"id\" : \"071-B-C2FJI049\",\n      \"account_name\" : \"Test\"\n   },\n   \"errors\" : [],\n   \"test\" : true,\n   \"successful\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    properties:
+                      bsb:
+                        type: string
+                        example: 123-123
+                      account_number:
+                        type: string
+                        example: '12312312'
+                      created_at:
+                        type: string
+                        example: '2018-01-18T10:31:09+11:00'
+                      id:
+                        type: string
+                        example: 071-B-C2FJI049
+                      account_name:
+                        type: string
+                        example: Test
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -u TEST:TEST https://gateway.pmnts-sandbox.io/v1.0/bank_accounts/071-B-C2FJI049
+        samples-languages:
+        - curl
+      tags:
+      - Bank Accounts
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

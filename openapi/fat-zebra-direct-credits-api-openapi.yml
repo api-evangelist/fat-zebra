@@ -1,0 +1,603 @@
+openapi: 3.2.0
+info:
+  title: gateway Direct Credits API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Direct Credits
+paths:
+  /direct_credits:
+    post:
+      summary: Create a direct credit
+      description: ''
+      operationId: create-a-direct-credit
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - description
+              - amount
+              - bsb
+              - account_name
+              - account_number
+              properties:
+                description:
+                  type: string
+                  description: Recommended to be unique. Max 18 characters, allowed chars are A-Z, 0-9, period, hyphen, ampersand, and underscore. It is recommended you make this descriptive for your customer - e.g. Invoice ABCD123.
+                amount:
+                  type: number
+                  description: Amount. Minimum 0.01, positive only.
+                  format: float
+                bsb:
+                  type: string
+                  description: 'The destination account''s BSB number. Format: `###-###`'
+                account_name:
+                  type: string
+                  description: The destination account name. Max 32 characters.
+                account_number:
+                  type: string
+                  description: The destination account number. Max 9 digits.
+                date:
+                  type: string
+                  description: Date of the direct credit. Optional but recommended. Defaults to the next processing period (current day if before 17:00, next day if after). Must be in the future.
+                  format: date
+                reference:
+                  type: string
+                  description: Unique reference
+                metadata:
+                  type: object
+                  description: Metadata for the direct credit
+                  properties: {}
+                bank_account:
+                  type: string
+                  description: The Fat Zebra bank account ID to be used in place of `account_name`, `account_number`, and `bsb`. If `bank_account` is supplied, the other attributes should be omitted.
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-DC-IQ2X25I5\",\n    \"amount\": 42.0,\n    \"bsb\": \"123-123\",\n    \"account_number\": \"012345678\",\n    \"account_name\": \"Test\",\n    \"description\": \"Confirmation\",\n    \"reference\": \"071-DC-IQ2X25I5\",\n    \"date\": \"2018-09-14\",\n    \"process_date\": null,\n    \"status\": \"New\",\n    \"result\": null,\n    \"metadata\": null\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-DC-IQ2X25I5
+                      amount:
+                        type: integer
+                        example: 42
+                        default: 0
+                      bsb:
+                        type: string
+                        example: 123-123
+                      account_number:
+                        type: string
+                        example: 012345678
+                      account_name:
+                        type: string
+                        example: Test
+                      description:
+                        type: string
+                        example: Confirmation
+                      reference:
+                        type: string
+                        example: 071-DC-IQ2X25I5
+                      date:
+                        type: string
+                        example: '2018-09-14'
+                      process_date: {}
+                      status:
+                        type: string
+                        example: New
+                      result: {}
+                      metadata: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {\n    \"id\": null,\n    \"amount\": 42,\n    \"bsb\": \"123-123\",\n    \"account_number\": \"012345678\",\n    \"account_name\": \"Test\",\n    \"description\": \"Confirmation\",\n    \"reference\": \"071-DC-FYC4V7W4\",\n    \"date\": \"2018-09-14\",\n    \"process_date\": null,\n    \"status\": \"New\",\n    \"result\": null,\n    \"metadata\": null\n  },\n  \"errors\": [\n    \"Reference has already been taken\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id: {}
+                      amount:
+                        type: integer
+                        example: 42
+                        default: 0
+                      bsb:
+                        type: string
+                        example: 123-123
+                      account_number:
+                        type: string
+                        example: 012345678
+                      account_name:
+                        type: string
+                        example: Test
+                      description:
+                        type: string
+                        example: Confirmation
+                      reference:
+                        type: string
+                        example: 071-DC-FYC4V7W4
+                      date:
+                        type: string
+                        example: '2018-09-14'
+                      process_date: {}
+                      status:
+                        type: string
+                        example: New
+                      result: {}
+                      metadata: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Reference has already been taken
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/direct_credits -u TEST:TEST -d'\n  { \n    \"description\": \"Confirmation\", \n    \"amount\": 42, \n    \"bsb\": \"123-123\", \n    \"account_name\": \"Test\", \n    \"account_number\": \"012345678\" \n  }'"
+        - language: ruby
+          code: "FatZebra::DirectCredit.create(\n  description:    'Confirmation',\n  amount:         42,\n  bsb:            '123-123',\n  account_name:   'Test',\n  account_number: '012345678'\n)"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Direct Credits
+    get:
+      summary: List direct credits
+      description: ''
+      operationId: list-direct-credits
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: offset
+        in: query
+        description: Page number to return
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Max number of results to return
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the date at which the direct credit was created
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Upper bound for the date at which the direct credit was created
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"071-DC-RT8G3YV\",\n      \"amount\": 42,\n      \"bsb\": \"123-123\",\n      \"account_number\": \"000000000\",\n      \"account_name\": \"Test 2\",\n      \"description\": \"Confirmation\",\n      \"reference\": \"071-DC-RT8G3YV\",\n      \"date\": \"2018-09-14\",\n      \"process_date\": null,\n      \"status\": \"New\",\n      \"result\": null,\n      \"metadata\": null\n    },\n    {\n      \"id\": \"071-DC-7ASQS6M4\",\n      \"amount\": 10.06,\n      \"bsb\": \"123-123\",\n      \"account_number\": \"012345678\",\n      \"account_name\": \"Test\",\n      \"description\": \"Confirmation\",\n      \"reference\": \"071-DC-7ASQS6M4\",\n      \"date\": \"2018-09-13\",\n      \"process_date\": \"2018-09-13\",\n      \"status\": \"Pending\",\n      \"result\": \"Submitted to institution\",\n      \"metadata\": {\n        \"batch_id\": \"ced360\"\n      }\n    }\n  ],\n  \"errors\": [],\n  \"records\": 2,\n  \"total_records\": 685,\n  \"page\": 1,\n  \"total_pages\": 343,\n  \"test\": true,\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl 'https://gateway.pmnts-sandbox.io/v1.0/direct_credits?limit=2&offset=1' -u TEST:TEST
+        - language: ruby
+          code: FatZebra::DirectCredit.search
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Direct Credits
+  /direct_credits/{id}:
+    put:
+      summary: Update a direct credit
+      description: A direct credit can be updated if it has a status of `New`. Once direct credits have been submitted to the financial institution, they are locked and can only be updated by the Fat Zebra system.
+      operationId: update-a-direct-credit
+      parameters:
+      - name: id
+        in: path
+        description: ID of the direct credit
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: Max 18 characters, allowed chars are A-Z, 0-9, period, hyphen, ampersand, and underscore.
+                amount:
+                  type: number
+                  description: Amount. Minimum 0.01, positive only.
+                  format: float
+                bsb:
+                  type: string
+                  description: 'The destination account''s BSB number. Format: `###-###`'
+                account_name:
+                  type: string
+                  description: The destination account name. Max 32 characters.
+                account_number:
+                  type: string
+                  description: The destination account number. Max 9 digits.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-DC-IQ2X25I5\",\n    \"amount\": 42.0,\n    \"bsb\": \"123-123\",\n    \"account_number\": \"012345678\",\n    \"account_name\": \"Test 2\",\n    \"description\": \"Confirmation\",\n    \"reference\": \"071-DC-IQ2X25I5\",\n    \"date\": \"2018-09-14\",\n    \"process_date\": null,\n    \"status\": \"New\",\n    \"result\": null,\n    \"metadata\": null\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-DC-IQ2X25I5
+                      amount:
+                        type: integer
+                        example: 42
+                        default: 0
+                      bsb:
+                        type: string
+                        example: 123-123
+                      account_number:
+                        type: string
+                        example: 012345678
+                      account_name:
+                        type: string
+                        example: Test 2
+                      description:
+                        type: string
+                        example: Confirmation
+                      reference:
+                        type: string
+                        example: 071-DC-IQ2X25I5
+                      date:
+                        type: string
+                        example: '2018-09-14'
+                      process_date: {}
+                      status:
+                        type: string
+                        example: New
+                      result: {}
+                      metadata: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\n    \"Could not find bank account unknown\"\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find bank account unknown
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/direct_credits/071-DC-IQ2X25I5 -X PUT -u TEST:TEST -d'\n  {\n    \"account_name\": \"Test 2\"\n  }'"
+        - language: ruby
+          code: "FatZebra::DirectCredit.update(\n  \"071-DC-FYC4V7W4\",\n  account_name: 'Test 2'\n)"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Direct Credits
+    delete:
+      summary: Delete a direct credit
+      description: A direct credit can be deleted if it has a status of `New`. Deleting a direct credit will update its status to `Deleted`, however the data will not be removed from Fat Zebra's systems.
+      operationId: delete-a-direct-credit
+      parameters:
+      - name: id
+        in: path
+        description: ID of the direct credit
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-DC-RT8G3YV\",\n    \"amount\": 42,\n    \"bsb\": \"123-123\",\n    \"account_number\": \"000000000\",\n    \"account_name\": \"Test 2\",\n    \"description\": \"Confirmation\",\n    \"reference\": \"071-DC-RT8G3YV\",\n    \"date\": \"2018-09-14\",\n    \"process_date\": null,\n    \"status\": \"Deleted\",\n    \"result\": null,\n    \"metadata\": null\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-DC-RT8G3YV
+                      amount:
+                        type: integer
+                        example: 42
+                        default: 0
+                      bsb:
+                        type: string
+                        example: 123-123
+                      account_number:
+                        type: string
+                        example: '000000000'
+                      account_name:
+                        type: string
+                        example: Test 2
+                      description:
+                        type: string
+                        example: Confirmation
+                      reference:
+                        type: string
+                        example: 071-DC-RT8G3YV
+                      date:
+                        type: string
+                        example: '2018-09-14'
+                      process_date: {}
+                      status:
+                        type: string
+                        example: Deleted
+                      result: {}
+                      metadata: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": null,\n  \"errors\": [\n    \"Direct Credit 071-DC-ABC123 could not be found.\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Direct Credit 071-DC-ABC123 could not be found.
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/direct_credits/071-DC-RT8G3YV -X DELETE -u TEST:TEST
+        - language: ruby
+          code: FatZebra::DirectCredit.delete('071-DC-5DYN6M21')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Direct Credits
+  /direct_credits/{id_or_reference}:
+    get:
+      summary: Fetch a direct credit
+      description: ''
+      operationId: fetch-a-direct-credit
+      parameters:
+      - name: id_or_reference
+        in: path
+        description: ID or reference of the direct credit
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-DC-5DYN6M21\",\n    \"amount\": 42,\n    \"bsb\": \"123-123\",\n    \"account_number\": \"012345678\",\n    \"account_name\": \"Test\",\n    \"description\": \"Confirmation\",\n    \"reference\": \"071-DC-5DYN6M21\",\n    \"date\": \"2017-06-27\",\n    \"process_date\": \"2017-06-27\",\n    \"status\": \"Completed\",\n    \"result\": \"Submitted to institution\",\n    \"metadata\": {}\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-DC-5DYN6M21
+                      amount:
+                        type: integer
+                        example: 42
+                        default: 0
+                      bsb:
+                        type: string
+                        example: 123-123
+                      account_number:
+                        type: string
+                        example: 012345678
+                      account_name:
+                        type: string
+                        example: Test
+                      description:
+                        type: string
+                        example: Confirmation
+                      reference:
+                        type: string
+                        example: 071-DC-5DYN6M21
+                      date:
+                        type: string
+                        example: '2017-06-27'
+                      process_date:
+                        type: string
+                        example: '2017-06-27'
+                      status:
+                        type: string
+                        example: Completed
+                      result:
+                        type: string
+                        example: Submitted to institution
+                      metadata:
+                        type: object
+                        properties: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\n    \"Could not find Direct Entry\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Direct Entry
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/direct_credits/071-DC-5DYN6M21 -u TEST:TEST
+        - language: ruby
+          code: FatZebra::DirectCredit.find('071-DC-5DYN6M21')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Direct Credits
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

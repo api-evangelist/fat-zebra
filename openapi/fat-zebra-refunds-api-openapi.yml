@@ -1,0 +1,688 @@
+openapi: 3.2.0
+info:
+  title: gateway Refunds API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Refunds
+paths:
+  /refunds:
+    post:
+      summary: Issue a refund
+      description: Issue a refund against a purchase or standalone
+      operationId: issue-a-refund
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - reference
+              properties:
+                amount:
+                  type: integer
+                  description: A positive integer representing how much to refund, in the smallest currency unit (e.g. 100 to charge $1.00, or 100 to Charge ¥100, a zero decimal currency).
+                  format: int32
+                reference:
+                  type: string
+                  description: Merchant's reference for the refund. Must be unique per refund. Max length 255 characters.
+                transaction_id:
+                  type: string
+                  description: ID of the original transaction to be refunded (XXX-P-YYYYYY). Required for an associated refund.
+                card_token:
+                  type: string
+                  description: Token of the card being refunded. Required unless transaction_id or card details are provided.
+                card_number:
+                  type: string
+                  description: Number of the card being refunded. Required unless transaction_id or card_token are provided.
+                card_expiry:
+                  type: string
+                  description: Expiry of the card being refunded. Required unless transaction_id or card_token are provided.
+                card_holder:
+                  type: string
+                  description: Name on the card being refunded. Required unless transaction_id or card_token are provided.
+                description:
+                  type: string
+                  description: Description for the refund.
+                currency:
+                  type: string
+                  description: Currency being refunded. Ignored if transaction_id is present.
+                  default: AUD
+                descriptor:
+                  type: string
+                  description: Description that appears on the customer's statement.
+                extra:
+                  type: object
+                  description: Extra data for the refund.
+                  properties: {}
+                metadata:
+                  type: object
+                  description: Metadata for the refund.
+                  properties: {}
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"1536806650\",\n    \"id\": \"071-R-6RQJEWXV\",\n    \"amount\": 50,\n    \"refunded\": \"Approved\",\n    \"message\": \"Approved\",\n    \"card_holder\": \"Jim Smith\",\n    \"card_number\": \"512345XXXXXX2346\",\n    \"card_expiry\": \"2023-05-31\",\n    \"card_type\": \"MasterCard\",\n    \"transaction_id\": \"071-R-6RQJEWXV\",\n    \"reference\": \"ed67e06731a2f98e8f5b3f5bc8540b80\",\n    \"currency\": \"USD\",\n    \"successful\": true,\n    \"transaction_date\": \"2018-09-13T12:44:10+10:00\",\n    \"response_code\": \"00\",\n    \"settlement_date\": \"2018-09-14\",\n    \"metadata\": {},\n    \"standalone\": false,\n    \"rrn\": \"071R6RQJEWXV\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+                With missing parameter error:
+                  value: "{\n  \"successful\":false,\n  \"response\":{\n    \"authorization\":null,\n    \"id\":null,\n    \"amount\":null,\n    \"refunded\":\"Error\",\n    \"message\":null,\n    \"card_holder\":\"Jim Smith\",\n    \"card_number\":\"512345XXXXXX2346\",\n    \"card_expiry\":\"2023-05-31\",\n    \"card_type\":\"MasterCard\",\n    \"transaction_id\":null,\n    \"reference\":\"\",\n    \"currency\":\"USD\",\n    \"successful\":false,\n    \"transaction_date\":null,\n    \"response_code\":\"99\",\n    \"settlement_date\":null,\n    \"metadata\":{},\n    \"standalone\":false,\n    \"rrn\":null\n  },\n  \"errors\":[\n    \"Reference can't be blank\"\n  ],\n  \"test\":true\n}"
+                With invalid transaction ID:
+                  value: "{\n  \"successful\":false,\n  \"response\":{},\n  \"errors\":[\n  \t\"Original transaction could not be found\"\n  ],\n  \"test\":true\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        authorization:
+                          type: string
+                          example: '1536806650'
+                        id:
+                          type: string
+                          example: 071-R-6RQJEWXV
+                        amount:
+                          type: integer
+                          example: 50
+                          default: 0
+                        refunded:
+                          type: string
+                          example: Approved
+                        message:
+                          type: string
+                          example: Approved
+                        card_holder:
+                          type: string
+                          example: Jim Smith
+                        card_number:
+                          type: string
+                          example: 512345XXXXXX2346
+                        card_expiry:
+                          type: string
+                          example: '2023-05-31'
+                        card_type:
+                          type: string
+                          example: MasterCard
+                        transaction_id:
+                          type: string
+                          example: 071-R-6RQJEWXV
+                        reference:
+                          type: string
+                          example: ed67e06731a2f98e8f5b3f5bc8540b80
+                        currency:
+                          type: string
+                          example: USD
+                        successful:
+                          type: boolean
+                          example: true
+                          default: true
+                        transaction_date:
+                          type: string
+                          example: '2018-09-13T12:44:10+10:00'
+                        response_code:
+                          type: string
+                          example: '00'
+                        settlement_date:
+                          type: string
+                          example: '2018-09-14'
+                        metadata:
+                          type: object
+                          properties: {}
+                        standalone:
+                          type: boolean
+                          example: false
+                          default: true
+                        rrn:
+                          type: string
+                          example: 071R6RQJEWXV
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: With missing parameter error
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        authorization: {}
+                        id: {}
+                        amount: {}
+                        refunded:
+                          type: string
+                          example: Error
+                        message: {}
+                        card_holder:
+                          type: string
+                          example: Jim Smith
+                        card_number:
+                          type: string
+                          example: 512345XXXXXX2346
+                        card_expiry:
+                          type: string
+                          example: '2023-05-31'
+                        card_type:
+                          type: string
+                          example: MasterCard
+                        transaction_id: {}
+                        reference:
+                          type: string
+                          example: ''
+                        currency:
+                          type: string
+                          example: USD
+                        successful:
+                          type: boolean
+                          example: false
+                          default: true
+                        transaction_date: {}
+                        response_code:
+                          type: string
+                          example: '99'
+                        settlement_date: {}
+                        metadata:
+                          type: object
+                          properties: {}
+                        standalone:
+                          type: boolean
+                          example: false
+                          default: true
+                        rrn: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Reference can't be blank
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: With invalid transaction ID
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Original transaction could not be found
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/refunds -u TEST:TEST -d'\n{\n  \"transaction_id\": \"071-P-HEJJINFO\",\n  \"amount\": 50,\n  \"reference\": \"ed67e06731a2f98e8f5b3f5bc8540b80\"\n}'"
+          name: cURL - Associated
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/refunds -u TEST:TEST -d'\n{\n  \"card_token\": \"fke81qwe\",\n  \"amount\": 349,\n  \"reference\": \"18jfjh280\"\n}'"
+          name: cURL - Standalone
+        samples-languages:
+        - curl
+      tags:
+      - Refunds
+    get:
+      summary: List refunds
+      description: ''
+      operationId: list-refunds
+      parameters:
+      - name: offset
+        in: query
+        description: Page number to return
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Max number of results to return
+        schema:
+          type: integer
+          format: int32
+      - name: from
+        in: query
+        description: Lower bound for the time at which the refund was created
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Upper bound for the time at which the refund was created
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":[\n    {\n      \"authorization\":\"1531284422\",\n      \"id\":\"071-R-ZXZV2IQA\",\n      \"amount\":349,\n      \"refunded\":\"Approved\",\n      \"message\":\"Approved\",\n      \"card_holder\":\"Card Holder\",\n      \"card_number\":\"411111XXXXXX1111\",\n      \"card_expiry\":\"2022-12-31\",\n      \"card_type\":\"VISA\",\n      \"transaction_id\":\"071-R-ZXZV2IQA\",\n      \"reference\":\"18jfjh280\",\n      \"currency\":\"AUD\",\n      \"successful\":true,\n      \"transaction_date\":\"2018-07-11T14:47:02+10:00\",\n      \"response_code\":\"00\",\n      \"settlement_date\":\"2018-07-12\",\n      \"metadata\":{},\n      \"standalone\":true,\n      \"rrn\":\"071RZXZV2IQA\"\n    },\n    {\n      \"authorization\":\"1531280232\",\n      \"id\":\"071-R-PKC3V565\",\n      \"amount\":1,\n      \"refunded\":\"Approved\",\n      \"message\":\"Approved\",\n      \"card_holder\":\"Card holder name\",\n      \"card_number\":\"512345XXXXXX2346\",\n      \"card_expiry\":\"2023-05-31\",\n      \"card_type\":\"MasterCard\",\n      \"transaction_id\":\"071-R-PKC3V565\",\n      \"reference\":\"xxxxx\",\n      \"currency\":\"AUD\",\n      \"successful\":true,\n      \"transaction_date\":\"2018-07-11T13:37:12+10:00\",\n      \"response_code\":\"00\",\n      \"settlement_date\":\"2018-07-12\",\n      \"metadata\":{},\n      \"standalone\":false,\n      \"rrn\":\"071RPKC3V565\"\n    }\n  ],\n  \"errors\":[],\n  \"test\":true,\n  \"records\":2,\n  \"total_records\":23466,\n  \"page\":1,\n  \"total_pages\":11733\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        authorization:
+                          type: string
+                          example: '1531284422'
+                        id:
+                          type: string
+                          example: 071-R-ZXZV2IQA
+                        amount:
+                          type: integer
+                          example: 349
+                          default: 0
+                        refunded:
+                          type: string
+                          example: Approved
+                        message:
+                          type: string
+                          example: Approved
+                        card_holder:
+                          type: string
+                          example: Card Holder
+                        card_number:
+                          type: string
+                          example: 411111XXXXXX1111
+                        card_expiry:
+                          type: string
+                          example: '2022-12-31'
+                        card_type:
+                          type: string
+                          example: VISA
+                        transaction_id:
+                          type: string
+                          example: 071-R-ZXZV2IQA
+                        reference:
+                          type: string
+                          example: 18jfjh280
+                        currency:
+                          type: string
+                          example: AUD
+                        successful:
+                          type: boolean
+                          example: true
+                          default: true
+                        transaction_date:
+                          type: string
+                          example: '2018-07-11T14:47:02+10:00'
+                        response_code:
+                          type: string
+                          example: '00'
+                        settlement_date:
+                          type: string
+                          example: '2018-07-12'
+                        metadata:
+                          type: object
+                          properties: {}
+                        standalone:
+                          type: boolean
+                          example: true
+                          default: true
+                        rrn:
+                          type: string
+                          example: 071RZXZV2IQA
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+                  records:
+                    type: integer
+                    example: 2
+                    default: 0
+                  total_records:
+                    type: integer
+                    example: 23466
+                    default: 0
+                  page:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total_pages:
+                    type: integer
+                    example: 11733
+                    default: 0
+            text/plain:
+              examples:
+                Result:
+                  value: "[#<FatZebra::Refund:0x3fe2b0133e7c id=071-R-S6KCRS76> JSON: {\n  \"authorization\": \"1529728340\",\n  \"id\": \"071-R-S6KCRS76\",\n  \"amount\": 100,\n  \"refunded\": \"Approved\",\n  \"message\": \"Approved\",\n  \"card_holder\": \"Card Holder\",\n  \"card_number\": \"411111XXXXXX1111\",\n  \"card_expiry\": \"2022-12-31\",\n  \"card_type\": \"VISA\",\n  \"transaction_id\": \"071-R-S6KCRS76\",\n  \"reference\": \"gw9rvxvv\",\n  \"currency\": \"AUD\",\n  \"successful\": true,\n  \"transaction_date\": \"2018-06-23T14:32:20+10:00\",\n  \"response_code\": \"00\",\n  \"settlement_date\": \"2018-06-24\",\n  \"metadata\": {\n  },\n  \"standalone\": true,\n  \"rrn\": \"071RS6KCRS76\"\n}]"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/refunds?limit=2 -u TEST:TEST
+        - language: ruby
+          code: 'FatZebra::Refund.search(limit: 1).data'
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Refunds
+  /refunds/void:
+    post:
+      summary: Void a refund
+      description: ''
+      operationId: void-a-refund
+      parameters:
+      - name: id
+        in: query
+        description: ID of the refund
+        schema:
+          type: string
+      - name: reference
+        in: query
+        description: Reference of the refund
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":{\n    \"authorization\":\"1531280232\",\n    \"id\":\"071-R-PKC3V565\",\n    \"amount\":1,\n    \"refunded\":\"Voided\",\n    \"message\":\"Voided\",\n    \"card_holder\":\"Card holder name\",\n    \"card_number\":\"512345XXXXXX2346\",\n    \"card_expiry\":\"2023-05-31\",\n    \"card_type\":\"MasterCard\",\n    \"transaction_id\":\"071-R-PKC3V565\",\n    \"reference\":\"xxxxx\",\n    \"currency\":\"AUD\",\n    \"successful\":false,\n    \"transaction_date\":\"2018-07-11T13:37:12+10:00\",\n    \"response_code\":\"00\",\n    \"settlement_date\":\"2018-07-12\",\n    \"metadata\":{},\n    \"standalone\":false,\n    \"rrn\":\"071RPKC3V565\"\n  },\n  \"errors\":[],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      authorization:
+                        type: string
+                        example: '1531280232'
+                      id:
+                        type: string
+                        example: 071-R-PKC3V565
+                      amount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      refunded:
+                        type: string
+                        example: Voided
+                      message:
+                        type: string
+                        example: Voided
+                      card_holder:
+                        type: string
+                        example: Card holder name
+                      card_number:
+                        type: string
+                        example: 512345XXXXXX2346
+                      card_expiry:
+                        type: string
+                        example: '2023-05-31'
+                      card_type:
+                        type: string
+                        example: MasterCard
+                      transaction_id:
+                        type: string
+                        example: 071-R-PKC3V565
+                      reference:
+                        type: string
+                        example: xxxxx
+                      currency:
+                        type: string
+                        example: AUD
+                      successful:
+                        type: boolean
+                        example: false
+                        default: true
+                      transaction_date:
+                        type: string
+                        example: '2018-07-11T13:37:12+10:00'
+                      response_code:
+                        type: string
+                        example: '00'
+                      settlement_date:
+                        type: string
+                        example: '2018-07-12'
+                      metadata:
+                        type: object
+                        properties: {}
+                      standalone:
+                        type: boolean
+                        example: false
+                        default: true
+                      rrn:
+                        type: string
+                        example: 071RPKC3V565
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+            text/plain:
+              examples:
+                Result:
+                  value: "#<FatZebra::Refund:0x3fe2ad1373b8 id=071-R-6Y0X64V7> JSON: {\n  \"authorization\": \"1529707424\",\n  \"id\": \"071-R-6Y0X64V7\",\n  \"amount\": 100,\n  \"refunded\": \"Voided\",\n  \"message\": \"Voided\",\n  \"card_holder\": \"Card Holder\",\n  \"card_number\": \"411111XXXXXX1111\",\n  \"card_expiry\": \"2022-12-31\",\n  \"card_type\": \"VISA\",\n  \"transaction_id\": \"071-R-6Y0X64V7\",\n  \"reference\": \"00gtyw0b\",\n  \"currency\": \"AUD\",\n  \"successful\": false,\n  \"transaction_date\": \"2018-06-23T08:43:44+10:00\",\n  \"response_code\": \"00\",\n  \"settlement_date\": \"2018-06-24\",\n  \"metadata\": {\n  },\n  \"standalone\": true,\n  \"rrn\": \"071R6Y0X64V7\"\n}"
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":{},\n  \"errors\":[\n    \"Could not find Refund\"\n  ],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Refund
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/refunds/void?id=071-R-PKC3V565 -X POST -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Refund.void('071-R-6Y0X64V7')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Refunds
+  /refunds/{id}:
+    get:
+      summary: Fetch a refund
+      description: ''
+      operationId: fetch-a-refund
+      parameters:
+      - name: id
+        in: path
+        description: The ID or reference of the refund.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"1441241970\",\n    \"id\": \"071-R-KATMZP3\",\n    \"amount\": 349,\n    \"refunded\": \"Approved\",\n    \"message\": \"Approved\",\n    \"card_holder\": \"Jim Smith\",\n    \"card_number\": \"512345XXXXXX2346\",\n    \"card_expiry\": \"2023-05-31\",\n    \"card_type\": \"MasterCard\",\n    \"transaction_id\": \"071-R-KATMZP3\",\n    \"reference\": \"18280\",\n    \"currency\": \"USD\",\n    \"successful\": true,\n    \"transaction_date\": \"2015-09-03T10:59:30+10:00\",\n    \"response_code\": \"00\",\n    \"settlement_date\": \"2015-09-04\",\n    \"metadata\": {\n    },\n    \"standalone\": false,\n    \"rrn\": \"071RKATMZP3\"\n  },\n  \"errors\": [\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      authorization:
+                        type: string
+                        example: '1441241970'
+                      id:
+                        type: string
+                        example: 071-R-KATMZP3
+                      amount:
+                        type: integer
+                        example: 349
+                        default: 0
+                      refunded:
+                        type: string
+                        example: Approved
+                      message:
+                        type: string
+                        example: Approved
+                      card_holder:
+                        type: string
+                        example: Jim Smith
+                      card_number:
+                        type: string
+                        example: 512345XXXXXX2346
+                      card_expiry:
+                        type: string
+                        example: '2023-05-31'
+                      card_type:
+                        type: string
+                        example: MasterCard
+                      transaction_id:
+                        type: string
+                        example: 071-R-KATMZP3
+                      reference:
+                        type: string
+                        example: '18280'
+                      currency:
+                        type: string
+                        example: USD
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      transaction_date:
+                        type: string
+                        example: '2015-09-03T10:59:30+10:00'
+                      response_code:
+                        type: string
+                        example: '00'
+                      settlement_date:
+                        type: string
+                        example: '2015-09-04'
+                      metadata:
+                        type: object
+                        properties: {}
+                      standalone:
+                        type: boolean
+                        example: false
+                        default: true
+                      rrn:
+                        type: string
+                        example: 071RKATMZP3
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":{},\n  \"errors\":[\n    \"Refund could not be found\"\n  ],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Refund could not be found
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/refunds/071-R-KATMZP3 -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Refunds
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

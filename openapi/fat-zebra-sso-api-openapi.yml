@@ -1,0 +1,185 @@
+openapi: 3.2.0
+info:
+  title: Fat Zebra Partner SSO API
+  version: 1.0.0
+  summary: Partner-facing API for boarding and managing sub-merchants and their acquirer connections.
+  description: "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections. You pick an acquirer (your bank relationship); Fat Zebra\ndecides which processors carry it.\n\n## Base URL\n\n```\nhttps://gateway.pmnts.io/v2/partners\n```\n\nAll paths below are relative to that base. Sandbox and staging hosts are in\nthe server list; pick the one for your environment.\n\n## Auth\n\nHTTP Basic. Send your reseller **username** as the Basic username and your\nreseller API **token** as the Basic password\n(`Authorization: Basic <base64(username:token)>`). Every endpoint requires\nit.\n\n## Boarding is synchronous\n\nBoarding a merchant onto an acquirer is synchronous: an acquirer connection\nexists only once it is boarded, so it is always live. A board that can't\ncomplete is reported inline as the POST's `422` error response.\n\n## Envelopes\n\n* **Single resource** — returned as the resource itself, no wrapper.\n* **List** — `{ \"items\": [...], \"next_cursor\": <string|null> }`. A `null`\n  `next_cursor` means the last page; otherwise pass its value as\n  `starting_after` to fetch the next page. List query params are `limit`\n  (default 25, max 100) and `starting_after=<id>`.\n* **Error** — `{ \"error\": { \"type\", \"message\", \"fields\", \"request_id\" } }`.\n  `type` is the coarse class; the specific reason lives in `fields`, keyed by\n  a processor-agnostic field name (e.g. `mid`, `tid`, `currencies`) so you\n  never read a switch's native field paths. `type` values and statuses:\n  `authentication_error` (401), `not_found` (404), `conflict` (409),\n  `validation_error` (422 — something the caller can fix, including a\n  processor rejecting a field like the MID/TID), `processor_error` (422 —\n  an unactionable upstream failure: a processor was unreachable, busy, or\n  rejected us for a reason the caller can't fix; retry or escalate,\n  `fields` is empty).\n\nTimestamps are ISO 8601 UTC. Merchants and partners are addressed by their\n`username`. An acquirer connection's `id` is a derived merchant+acquirer\nvirtual id of the form `<merchant-id>-ACQ-<ACQUIRER-CODE>` (e.g.\n`042-ACQ-NAB`) — not a stored id. Wallets and users carry a stable generated\nid of the form `<owner-id>-<TYPE>-<random>` (e.g. `042-WAL-9f3k2m8q`).\nAcquirers are slug codes (e.g. `nab`, `cba`, `anz`).\n"
+servers:
+- url: https://gateway.pmnts.io/v2/partners
+  description: Production
+- url: https://gateway.pmnts-sandbox.io/v2/partners
+  description: Sandbox
+- url: https://gateway.pmnts-staging.io/v2/partners
+  description: Staging
+- url: https://gateway.test/v2/partners
+  description: Local development
+security:
+- PartnerBasicAuth: []
+tags:
+- name: SSO
+  description: Partner SSO enforcement — read state, enforce, disable.
+paths:
+  /sso:
+    get:
+      tags:
+      - SSO
+      summary: Show SSO enforcement state
+      description: 'Returns whether SSO is enforced for the partner, plus how many users
+
+        are linked to the IdP versus not.
+
+        '
+      operationId: showSso
+      responses:
+        '200':
+          description: The SSO enforcement state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoState'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sso/enforce:
+    post:
+      tags:
+      - SSO
+      summary: Enforce SSO
+      description: 'Turns on SSO enforcement for the partner. No body is expected. Returns
+
+        `409 conflict` when active users aren''t yet linked to the IdP — they''d
+
+        be locked out, so link them first.
+
+        '
+      operationId: enforceSso
+      responses:
+        '200':
+          description: The SSO enforcement state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoState'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /sso/disable:
+    post:
+      tags:
+      - SSO
+      summary: Disable SSO enforcement
+      description: 'Turns off SSO enforcement for the partner. No body is expected.
+
+        '
+      operationId: disableSso
+      responses:
+        '200':
+          description: The SSO enforcement state.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SsoState'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+    Conflict:
+      description: The request conflicts with the resource's current state.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            noActiveConnection:
+              value:
+                error:
+                  type: conflict
+                  message: merchant has no active processing connection
+                  fields: {}
+                  request_id: req_a1b2c3
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    SsoState:
+      type: object
+      description: 'The partner''s SSO enforcement state and IdP-link counts.
+
+        '
+      required:
+      - enforced
+      - users_total
+      - users_linked
+      - users_unlinked
+      properties:
+        enforced:
+          type: boolean
+          description: Whether SSO is enforced for the partner.
+        users_total:
+          type: integer
+          description: Total active users.
+        users_linked:
+          type: integer
+          description: Active users linked to the IdP.
+        users_unlinked:
+          type: integer
+          description: Active users not yet linked to the IdP.
+  securitySchemes:
+    PartnerBasicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic. Send your reseller **username** as the Basic username and
+
+        your reseller API **token** as the Basic password. Required on every
+
+        endpoint.
+
+        '

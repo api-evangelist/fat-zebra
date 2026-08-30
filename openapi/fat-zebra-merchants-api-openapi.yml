@@ -1,0 +1,1516 @@
+openapi: 3.2.0
+info:
+  title: Fat Zebra Merchants API
+  version: '1.0'
+  description: 'Operations tagged Merchants across 2 of this provider''s published API definitions: fat-zebra-fdms-tpp-merchant-onboarding.json, fat-zebra-partner.json. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://acquiring-sandbox.fatzebra.com.au/api/v1
+- url: https://gateway.pmnts.io/v2/partners
+  description: Production
+- url: https://gateway.pmnts-sandbox.io/v2/partners
+  description: Sandbox
+- url: https://gateway.pmnts-staging.io/v2/partners
+  description: Staging
+- url: https://gateway.test/v2/partners
+  description: Local development
+tags:
+- name: Merchants
+paths:
+  /merchants:
+    post:
+      summary: FDMS TPP Merchant Onboarding
+      description: ''
+      operationId: onboard-a-merchant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Merchant Name
+                trading_name:
+                  type: string
+                  description: Registered Trading Name (Free form text - 22 digit No special characters)
+                legal_name:
+                  type: string
+                  description: Registered Legal Business Name (Free form text - 35 limitations No special characters)
+                business_number:
+                  type: string
+                  description: Australian Business Number
+                company_number:
+                  type: string
+                  description: Australian Company Number
+                contact_website:
+                  type: string
+                  description: Company Website
+                business_type:
+                  type: string
+                  description: Option that best describes the business (sole trader, partnership, corporation)
+                merchant_category_code:
+                  type: string
+                  description: Merchant Category Code which best matches Customer type
+                ecommerce_enabled:
+                  type: boolean
+                  description: Yes or No, if they are an ecommerce merchant then yes else no
+                trading_address_contact_name:
+                  type: string
+                trading_address_line_1:
+                  type: string
+                trading_address_line_2:
+                  type: string
+                trading_address_line_3:
+                  type: string
+                trading_address_line_4:
+                  type: string
+                trading_address_city:
+                  type: string
+                trading_address_state:
+                  type: string
+                trading_address_postcode:
+                  type: string
+                trading_address_country:
+                  type: string
+                legal_address_contact_name:
+                  type: string
+                legal_address_line_1:
+                  type: string
+                legal_address_line_2:
+                  type: string
+                legal_address_line_3:
+                  type: string
+                legal_address_line_4:
+                  type: string
+                legal_address_city:
+                  type: string
+                legal_address_state:
+                  type: string
+                legal_address_postcode:
+                  type: string
+                legal_address_country:
+                  type: string
+                signed_date:
+                  type: string
+                  description: Date of signed agreement
+                  format: date
+                total_annual_cash_or_credit_debit_turnover:
+                  type: integer
+                  description: Annual business turnover
+                  format: int32
+                total_annual_credit_turnover:
+                  type: integer
+                  description: Annual Credit Card turnover
+                  format: int32
+                average_ticket_or_sales_amount:
+                  type: integer
+                  description: Average sale size
+                  format: int32
+                card_present:
+                  type: boolean
+                  description: Is Merchant Card Present
+                deposit_required:
+                  type: boolean
+                  description: Deposit Required
+                deposit_percentage:
+                  type: integer
+                  format: int32
+                average_delivery_time:
+                  type: integer
+                  format: int32
+                recurring_transactions:
+                  type: boolean
+                terminal_type:
+                  type: string
+                config_code:
+                  type: string
+                term_quantity:
+                  type: integer
+                  format: int32
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://acquiring-sandbox.fatzebra.com.au/api/v1/merchants\n  {\n\t\"name\":\"test\",\n\t\"display_name\":\"test\",\n\t\"merchant_id\":\"1234567890123\",\n\t\"username\":\"testmerchant21e\",\n\t\"trading_name\":\"Joes Computers\",\n\t\"legal_name\":\"Joe Sampson IT\",\n\t\"business_number\":\"89154014777\",\n\t\"company_number\":\"343455432\",\n\t\"merchant_category_code\":\"8999\",\n\t\"timezone\":\"Sydney\",\n\t\"merchant_bank\":\"FDMS Australia\",\n\t\"currencies\":\"AUD\",\n\t\"enable_backup\":\"false\"\n\t\"card_acceptor_name\":\"Joes Computers\",\n\t\"card_acceptor_location\":\"Sydney\",\n\t\"card_acceptor_country\":\"AU\",\n\t\"trading_phone_number\":\"0298932425\",\n\t\"trading_email\":\"joe@joescomputers.com.au\",\n\t\"contact_website\":\"test.com\",\n\t\"type_of_business\":\"corporation\",\n\t\"trading_address_contact_name\":\"Joes Computers\",\n\t\"trading_address_line_1\":\"18 Anderson Lane\",\n\t\"trading_address_line_2\":null,\n\t\"trading_address_line_3\":null,\n\t\"trading_address_city\":\"Sydney\",\n\t\"trading_address_state\":\"NSW\",\n\t\"trading_address_postcode\":\"2000\",\n\t\"trading_address_country\":\"Australia\",\n\t\"ecommerce_enabled\":\"true\",\n\t\"legal_address_contact_name\":\"Joe Joe\",\n\t\"legal_address_line_1\":\"18 Anderson Lane\",\n\t\"legal_address_line_2\":null,\n\t\"legal_address_line_3\":null,\n\t\"legal_address_city\":\"Sydney\",\n\t\"legal_address_state\":\"NSW\",\n\t\"legal_address_postcode\":\"2000\",\n\t\"legal_address_country\":\"Australia\",\n\t\"signed_date\":\"2019-01-01\",\n\t\"total_annual_cash_or_credit_debit_turnover\":\"1000000\",\n\t\"total_annual_credit_turnover\":\"500000\",\n\t\"average_ticket_or_sales_amount\":\"200\",\n\t\"card_present\":\"false\",\n\t\"deposit_required\":\"false\",\n\t\"deposit_percentage\":\"0\",\n\t\"average_delivery_time\":\"7\",\n\t\"recurring_transactions\":\"false\",\n\t\"terminal_type\":\"519\",\n\t\"config_code\":\"Retail\",\n\t\"term_quantity\":\"1\",\n\t\"eftpos_processing_required\":\"false\",\n\t\"visa_processing_required\":\"true\",\n\t\"amex_processing\":\"true\",\n\t\"amex_processing_existing\":\"true\",\n\t\"amex_se_number\":\"888888888\",\n\t\"amex_new_required\":\"false\",\n\t\"diners_processing\":\"true\",\n\t\"diners_se_number\":\"888888888\",\n\t\"principals\": {\n\t\t\t\t\"first_name\":\"Joe\",\n\t\t\t\t\"middle_initial\":\"M\",\n\t\t\t\t\"surname\":\"Smith\",\n\t\t\t\t\"principal_type\":\"Beneficial Owner\",\n\t\t\t\t\"dob\":\"1999-01-01\",\n\t\t\t\t\"address_line_1\":\"1 Smith Street\",\n\t\t\t\t\"address_line_2\":null,\n\t\t\t\t\"address_line_3\":null,\n\t\t\t\t\"city\":\"Sydney\",\n\t\t\t\t\"state\":\"NSW\",\n\t\t\t\t\"postcode\":\"2000\",\n\t\t\t\t\"country\":\"Australia\",\n\t\t\t\t\"phone_number\":null,\n\t\t\t\t\"passport_number\":null,\n\t\t\t\t\"drivers_license\":null,\n\t\t\t\t\"drivers_license_state\":null\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"first_name\":\"Joe\",\n\t\t\t\t\"middle_initial\":\"M\",\n\t\t\t\t\"surname\":\"Smith\",\n\t\t\t\t\"principal_type\":\"Authorised Signatory\",\n\t\t\t\t\"dob\":\"1999-01-01\",\n\t\t\t\t\"address_line_1\":\"1 Smith Street\",\n\t\t\t\t\"address_line_2\":null,\n\t\t\t\t\"address_line_3\":null,\n\t\t\t\t\"city\":\"Sydney\",\n\t\t\t\t\"state\":\"NSW\",\n\t\t\t\t\"postcode\":\"2000\",\n\t\t\t\t\"country\":\"Australia\",\n\t\t\t\t\"phone_number\":null,\n\t\t\t\t\"passport_number\":null,\n\t\t\t\t\"drivers_license\":null,\n\t\t\t\t\"drivers_license_state\":null\n\t\t\t\t}\n}"
+        - language: ruby
+          code: 'require ''uri''
+
+            require ''net/http''
+
+            require ''openssl''
+
+
+            url = URI("https://acquiring-sandbox.fatzebra.com.au/api/v1/merchants")
+
+
+            http = Net::HTTP.new(url.host, url.port)
+
+            http.use_ssl = true
+
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+
+            request = Net::HTTP::Post.new(url)
+
+            request["accept"] = ''application/json''
+
+            request["content-type"] = ''application/json''
+
+            request.body = "{
+
+            \"name\":\"test\",
+
+            \"display_name\":\"test\",
+
+            \"username\":\"testmerchant21e\",
+
+            \"trading_name\":\"Joes Computers\",
+
+            \"legal_name\":\"Joe Sampson IT\",
+
+            \"business_number\":\"89154014777\",
+
+            \"company_number\":\"343455432\",
+
+            \"merchant_category_code\":\"8999\",
+
+            \"timezone\":\"Sydney\",
+
+            \"merchant_bank\":\"Commonwealth\",
+
+            \"card_acceptor_name\":\"Joes Computers\",
+
+            \"card_acceptor_location\":\"Sydney\",
+
+            \"card_acceptor_country\":\"AU\",
+
+            \"trading_phone_number\":\"0298932425\",
+
+            \"trading_email\":\"joe@joescomputers.com.au\",
+
+            \"contact_website\":\"test.com\",
+
+            \"type_of_business\":\"type business\",
+
+            \"trading_address_contact_name\":\"Joes Computers\",
+
+            \"trading_address_line_1\":\"18 Anderson Lane\",
+
+            \"trading_address_city\":\"Sydney\",
+
+            \"trading_address_state\":\"NSW\",
+
+            \"trading_address_postcode\":\"2000\",
+
+            \"trading_address_country\":\"Australia\"}"
+
+
+            response = http.request(request)
+
+            puts response.read_body'
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Merchants
+      security:
+      - sec0: []
+    get:
+      summary: List merchants
+      description: ''
+      operationId: list-merchants
+      parameters:
+      - name: filter[onboarded]
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"count\": 2,\n  \"response\": [\n    {\n      \"username\": \"TEST\",\n      \"tpp_id\": 400,\n      \"tpp_job_id\": \"NY4000MB\",\n      \"tpp_name\": \"Acme Inc.\"\n      ...\n    },\n    {\n      \"username\": \"WAT\",\n      \"tpp_id\": 400,\n      \"tpp_job_id\": \"NY4000MB\",\n      \"tpp_name\": \"Acme Inc.\"\n      ...\n    }\n  ],\n  \"pagination\": {\n    \"current\": 1,\n    \"previous\": null,\n    \"next\": null,\n    \"per_page\": 10,\n    \"pages\": 1,\n    \"count\": 2\n  }   \n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://apply.merchantsolutions.com.au/api/v1/merchants?onboarded=false
+        samples-languages:
+        - curl
+      tags:
+      - Merchants
+      security:
+      - sec0: []
+    servers:
+    - url: https://acquiring-sandbox.fatzebra.com.au/api/v1
+  /merchants/onboard:
+    post:
+      summary: Onboard merchants (internal)
+      description: ''
+      operationId: update-merchants
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - usernames
+              properties:
+                usernames:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              Request Example:
+                value:
+                  usernames:
+                  - TEST
+                  - WAT
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"merchants\": [\n    {\n      \"username\": \"TEST\",\n      \"onboarded_at: \"2018-01-01T23:51:17Z\"\n    },\n    {\n      \"username\": \"WAT\",\n      \"onboarded_at: \"2018-01-01T23:51:17Z\"\n    }\n  ]\n}"
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      tags:
+      - Merchants
+      security:
+      - sec0: []
+    servers:
+    - url: https://acquiring-sandbox.fatzebra.com.au/api/v1
+  /merchants/{username}:
+    parameters:
+    - $ref: '#/components/parameters/Username'
+    get:
+      tags:
+      - Merchants
+      summary: Show a merchant
+      operationId: showMerchant
+      responses:
+        '200':
+          description: The merchant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - PartnerBasicAuth: []
+    patch:
+      tags:
+      - Merchants
+      summary: Update a merchant
+      description: 'Updates the merchant''s identity/business details. `username`, `status`
+
+        and `credentials` are read-only here — use the lifecycle endpoints
+
+        (`/activate`, `/suspend`, `/cancel`) to change `status`, and
+
+        `/credentials/rotate` to rotate credentials.
+
+        '
+      operationId: updateMerchant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantUpdateRequest'
+      responses:
+        '200':
+          description: The updated merchant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      security:
+      - PartnerBasicAuth: []
+    put:
+      tags:
+      - Merchants
+      summary: Update a merchant (alias for PATCH)
+      description: 'Routes to the same update action as `PATCH /merchants/{username}`; same
+
+        behaviour and contract.
+
+        '
+      operationId: replaceMerchant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantUpdateRequest'
+      responses:
+        '200':
+          description: The updated merchant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+      security:
+      - PartnerBasicAuth: []
+    servers:
+    - url: https://gateway.pmnts.io/v2/partners
+      description: Production
+    - url: https://gateway.pmnts-sandbox.io/v2/partners
+      description: Sandbox
+    - url: https://gateway.pmnts-staging.io/v2/partners
+      description: Staging
+    - url: https://gateway.test/v2/partners
+      description: Local development
+  /merchants/{username}/activate:
+    parameters:
+    - $ref: '#/components/parameters/Username'
+    post:
+      tags:
+      - Merchants
+      summary: Activate a merchant
+      description: 'Transitions the merchant to `active` so it can transact. No body is
+
+        expected. Activating a merchant that has no active acquirer connection
+
+        is rejected with `409 conflict` ("merchant has no active processing
+
+        connection") — board an acquirer first.
+
+        '
+      operationId: activateMerchant
+      responses:
+        '200':
+          description: The activated merchant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      security:
+      - PartnerBasicAuth: []
+    servers:
+    - url: https://gateway.pmnts.io/v2/partners
+      description: Production
+    - url: https://gateway.pmnts-sandbox.io/v2/partners
+      description: Sandbox
+    - url: https://gateway.pmnts-staging.io/v2/partners
+      description: Staging
+    - url: https://gateway.test/v2/partners
+      description: Local development
+  /merchants/{username}/suspend:
+    parameters:
+    - $ref: '#/components/parameters/Username'
+    post:
+      tags:
+      - Merchants
+      summary: Suspend a merchant
+      description: 'Transitions the merchant to `suspended`. No body is expected.
+
+        '
+      operationId: suspendMerchant
+      responses:
+        '200':
+          description: The suspended merchant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - PartnerBasicAuth: []
+    servers:
+    - url: https://gateway.pmnts.io/v2/partners
+      description: Production
+    - url: https://gateway.pmnts-sandbox.io/v2/partners
+      description: Sandbox
+    - url: https://gateway.pmnts-staging.io/v2/partners
+      description: Staging
+    - url: https://gateway.test/v2/partners
+      description: Local development
+  /merchants/{username}/cancel:
+    parameters:
+    - $ref: '#/components/parameters/Username'
+    post:
+      tags:
+      - Merchants
+      summary: Cancel a merchant
+      description: 'Transitions the merchant to `closed`. No body is expected.
+
+        '
+      operationId: cancelMerchant
+      responses:
+        '200':
+          description: The closed merchant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Merchant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - PartnerBasicAuth: []
+    servers:
+    - url: https://gateway.pmnts.io/v2/partners
+      description: Production
+    - url: https://gateway.pmnts-sandbox.io/v2/partners
+      description: Sandbox
+    - url: https://gateway.pmnts-staging.io/v2/partners
+      description: Staging
+    - url: https://gateway.test/v2/partners
+      description: Local development
+  /merchants/{username}/credentials/rotate:
+    parameters:
+    - $ref: '#/components/parameters/Username'
+    post:
+      tags:
+      - Merchants
+      summary: Rotate a merchant's credentials
+      description: 'Rotates the merchant''s API `token` and its `signing_secret`. No body is
+
+        expected. The fresh values are returned once — the previous token stops
+
+        working immediately, so the caller must store the response.
+
+
+        The response is a bare credentials object: `username`, `token`,
+
+        `signing_secret`, `rotated_at`.
+
+        '
+      operationId: rotateMerchantCredentials
+      responses:
+        '200':
+          description: The rotated credentials (returned once).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantCredentials'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      security:
+      - PartnerBasicAuth: []
+    servers:
+    - url: https://gateway.pmnts.io/v2/partners
+      description: Production
+    - url: https://gateway.pmnts-sandbox.io/v2/partners
+      description: Sandbox
+    - url: https://gateway.pmnts-staging.io/v2/partners
+      description: Staging
+    - url: https://gateway.test/v2/partners
+      description: Local development
+components:
+  responses:
+    Conflict:
+      description: The request conflicts with the resource's current state.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            noActiveConnection:
+              value:
+                error:
+                  type: conflict
+                  message: merchant has no active processing connection
+                  fields: {}
+                  request_id: req_a1b2c3
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+    ValidationError:
+      description: 'The request couldn''t be completed. A `validation_error` is something the
+
+        caller can fix — a bad payload, a merchant that failed validation, or a
+
+        processor rejecting a field (e.g. the MID); the reason is in `fields`,
+
+        keyed by a processor-agnostic field name. A `processor_error` is an
+
+        unactionable upstream failure (a processor was unreachable, busy, or
+
+        errored); `fields` is empty and the caller should retry or escalate.
+
+        Raw upstream detail is never surfaced here — only a parsed,
+
+        processor-neutral reason.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            merchantValidation:
+              summary: The merchant details were rejected
+              value:
+                error:
+                  type: validation_error
+                  message: the merchant details were rejected
+                  fields:
+                    company_name:
+                    - can't be blank
+                    postcode:
+                    - is not a valid postcode
+                  request_id: req_a1b2c3
+            unsupportedCurrency:
+              summary: A currency the acquirer can't carry
+              value:
+                error:
+                  type: validation_error
+                  message: currency not supported by this acquirer
+                  fields:
+                    currencies:
+                    - NZD is not supported by this acquirer
+                  request_id: req_a1b2c3
+            missingConnectionFields:
+              summary: Missing a required connection field
+              value:
+                error:
+                  type: validation_error
+                  message: 'missing required connection fields: merchant_id, terminal_id'
+                  fields:
+                    merchant_id:
+                    - is required
+                    terminal_id:
+                    - is required
+                  request_id: req_a1b2c3
+            noSupportingProcessor:
+              summary: No processor can carry the acquirer for the requested currencies
+              value:
+                error:
+                  type: validation_error
+                  message: no processor can carry this acquirer for the requested currencies
+                  fields:
+                    acquirer:
+                    - cannot be boarded for the requested currencies
+                  request_id: req_a1b2c3
+            processorRejectedMid:
+              summary: A processor rejected a field (here, the MID) — caller-fixable
+              value:
+                error:
+                  type: validation_error
+                  message: the connection details were rejected
+                  fields:
+                    mid:
+                    - is not supported
+                  request_id: req_a1b2c3
+            processorUnavailable:
+              summary: A processor is busy/errored — not the caller's to fix
+              value:
+                error:
+                  type: processor_error
+                  message: a processor is temporarily unavailable
+                  fields: {}
+                  request_id: req_a1b2c3
+  schemas:
+    MerchantSummary:
+      type: object
+      description: 'The slim merchant shape returned in list responses — username only.
+
+        Fetch the full `Merchant` via `GET /merchants/{username}`.
+
+        '
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The merchant's username.
+    MerchantOnboardingResult:
+      type: object
+      description: 'Returned by a combined create (`POST /merchants` with `acquirers`).
+
+        A slim status payload — the merchant''s status, username and one-time
+
+        token, plus a per-acquirer boarding status list. When this result is
+
+        returned every requested acquirer boarded (`status: success`); a
+
+        boarding failure fails the whole create and returns an error instead.
+
+        Read the full merchant via `GET /merchants/{username}` and connections
+
+        via `GET /merchants/{username}/acquirers`.
+
+        '
+      required:
+      - status
+      - username
+      - acquirers
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - suspended
+          - closed
+          description: '`active` — every requested acquirer boarded and the merchant was activated.'
+        username:
+          type: string
+          description: The merchant's username.
+        token:
+          type:
+          - string
+          - 'null'
+          description: The one-time API token, revealed once on create.
+        acquirers:
+          type: array
+          description: Per-acquirer boarding outcome — one entry per requested acquirer, all `success`.
+          items:
+            type: object
+            required:
+            - acquirer
+            - status
+            properties:
+              acquirer:
+                type: string
+                description: The acquirer code from the request (e.g. `nab`).
+              status:
+                type: string
+                description: Always `success` on this result — a failure fails the whole create instead.
+                enum:
+                - success
+                - failed
+              reason:
+                type: string
+                description: Why boarding failed. Not populated on this result.
+    MerchantCredentials:
+      type: object
+      description: 'Returned once by `POST /merchants/{username}/credentials/rotate`. The
+
+        full `token` and `signing_secret` are shown here and never again.
+
+        '
+      required:
+      - username
+      - token
+      - signing_secret
+      - rotated_at
+      properties:
+        username:
+          type: string
+          description: The merchant's username (e.g. `acme-store`).
+        token:
+          type: string
+          description: The newly-generated API token (e.g. `tok_live_3b9c1d…`).
+        signing_secret:
+          type: string
+          description: The newly-generated signing secret — the merchant's paynow/HMAC secret.
+        rotated_at:
+          type: string
+          format: date-time
+          description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
+    MerchantCredentialsInline:
+      type: object
+      description: 'Credentials embedded on the merchant object. `token` is `null` on reads
+
+        and only populated once by create and credential-rotate.
+
+        '
+      required:
+      - username
+      - token
+      properties:
+        username:
+          type: string
+          description: The merchant's username (e.g. `acme-store`).
+        token:
+          type:
+          - string
+          - 'null'
+          description: The live API token (e.g. `tok_live_3b9c1d…`). `null` except on create / rotate.
+    Merchant:
+      type: object
+      description: A merchant under this partner.
+      required:
+      - id
+      - status
+      properties:
+        id:
+          type: string
+          description: The merchant's username (e.g. `acme-store`).
+        status:
+          type: string
+          description: The merchant's lifecycle state.
+          enum:
+          - pending
+          - active
+          - suspended
+          - closed
+        name:
+          type:
+          - string
+          - 'null'
+          description: The merchant's legal/registered business name (e.g. `Acme Pty Ltd`).
+        trading_name:
+          type:
+          - string
+          - 'null'
+          description: The name the merchant trades under (e.g. `Acme Store`).
+        company_number:
+          type:
+          - string
+          - 'null'
+          description: The merchant's company/business registration number (e.g. an Australian Business Number, `51824753556`).
+        website:
+          type:
+          - string
+          - 'null'
+          description: The merchant's website URL (e.g. `https://acme.example`).
+        mcc:
+          type:
+          - string
+          - 'null'
+          description: Merchant category code — ISO 18245, 4 digits (e.g. `5411`).
+        email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: Contact email address (e.g. `ops@acme.example`).
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Contact phone number in E.164 format (e.g. `+61730000000`).
+        address:
+          $ref: '#/components/schemas/Address'
+        three_d_secure_enabled:
+          type: boolean
+          description: Whether 3-D Secure is enabled for the merchant.
+        fraud_screening_enabled:
+          type: boolean
+          description: Whether fraud screening is enabled for the merchant.
+        network_tokenisation_enabled:
+          type: boolean
+          description: Whether network tokenisation (Visa VTS / Mastercard MDES) is enabled.
+        wallets:
+          type: array
+          description: Digital wallets enabled for the merchant.
+          items:
+            type: string
+            description: Wallet type slug (e.g. `apple_pay`, `google_pay`).
+        surcharging:
+          $ref: '#/components/schemas/MerchantSurcharging'
+        statement_descriptor:
+          type:
+          - string
+          - 'null'
+          description: Card-acceptor name shown on the cardholder's statement, max 25 chars (e.g. `ACME STORE`).
+        government_controlled:
+          type: boolean
+          description: Whether the merchant is a government-controlled entity.
+        country_of_origin:
+          type:
+          - string
+          - 'null'
+          description: ISO-3166 alpha-2 country of origin (e.g. `AU`).
+        country_code:
+          type:
+          - string
+          - 'null'
+          description: ISO-3166 numeric country code (e.g. `036` for Australia).
+        fee_program_indicator:
+          type:
+          - string
+          - 'null'
+          description: Scheme fee program indicator (e.g. `S`).
+        mastercard_iso_id:
+          type:
+          - string
+          - 'null'
+          description: Mastercard ISO/acquirer identifier (e.g. `00001234`).
+        visa_iso_id:
+          type:
+          - string
+          - 'null'
+          description: Visa ISO/acquirer identifier (e.g. `00005678`).
+        mastercard_assigned_id:
+          type:
+          - string
+          - 'null'
+          description: Mastercard Assigned ID (MAID) (e.g. `MAID12345`).
+        visa_merchant_verification_value:
+          type:
+          - string
+          - 'null'
+          description: Visa Merchant Verification Value (MVV) (e.g. `MVV98765`).
+        customer_support_phone:
+          type:
+          - string
+          - 'null'
+          description: Customer support phone number shown to cardholders (e.g. `+61 7 1234 5678`).
+        card_acceptor_name:
+          type:
+          - string
+          - 'null'
+          description: Card-acceptor name sent to the card schemes (e.g. `ACME STORE`).
+        card_acceptor_location:
+          type:
+          - string
+          - 'null'
+          description: Card-acceptor location/city sent to the card schemes (e.g. `BRISBANE`).
+        card_acceptor_country:
+          type:
+          - string
+          - 'null'
+          pattern: ^[A-Za-z]{2}$
+          description: Card-acceptor country, ISO-3166 alpha-2 (e.g. `AU`).
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: IANA timezone identifier the merchant operates in.
+          examples:
+          - Australia/Sydney
+          - Australia/Brisbane
+          - Australia/Perth
+          - Pacific/Auckland
+          - Europe/London
+          - America/New_York
+          - UTC
+        merchant_identifier:
+          type:
+          - string
+          - 'null'
+          description: A partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID) — this is a free-form label the partner uses to track the merchant in their own systems.
+        credentials:
+          $ref: '#/components/schemas/MerchantCredentialsInline'
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the merchant was created — ISO 8601 UTC (e.g. `2026-05-29T04:21:00Z`).
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the merchant was last updated — ISO 8601 UTC (e.g. `2026-05-29T04:21:00Z`).
+    AcquirerBoardRequest:
+      type: object
+      description: 'One acquirer to board in a combined create — same fields as the body of
+
+        `POST /merchants/{username}/acquirers`.
+
+        '
+      required:
+      - acquirer
+      - merchant_id
+      example:
+        acquirer: nab
+        merchant_id: MID0012345
+        terminal_id: '12345678'
+        currencies:
+        - AUD
+      properties:
+        acquirer:
+          type: string
+          description: Acquirer code (e.g. `bnz`). Must be available to the partner.
+        merchant_id:
+          type: string
+          description: Acquirer-assigned MID. Required.
+        terminal_id:
+          type: string
+          description: 'Acquirer-assigned TID. Optional. If you omit it, Fat Zebra generates
+
+            a deterministic 8-character placeholder from the merchant''s trading
+
+            name (e.g. `ACMEC001`) and uses it across every processor behind
+
+            this acquirer. The generated value is returned on subsequent reads,
+
+            and once set — supplied or generated — it is immutable.
+
+            '
+        currencies:
+          type: array
+          description: Optional. Defaults to everything the acquirer supports.
+          items:
+            type: string
+            pattern: ^[A-Za-z]{3}$
+            description: ISO-4217 currency code (e.g. `AUD`).
+        card_types:
+          type: array
+          description: 'Optional. Card schemes the connection should accept. Narrowed to
+
+            what this acquirer supports — schemes the acquirer can''t handle
+
+            are dropped rather than rejected. Omit to accept every scheme the
+
+            acquirer supports.
+
+            '
+          items:
+            type: string
+            description: Card scheme (e.g. `VISA`, `MasterCard`).
+        card_categories:
+          type: array
+          description: Optional. Card categories the link handles; overrides the link default.
+          items:
+            type: string
+            description: Card category (e.g. `CREDIT`, `DEBIT`).
+        merchant_tier:
+          type: string
+          description: Optional. Merchant tier; used by the EFTPOS Direct acquirer.
+        mpgs_byo_profile:
+          type: boolean
+          description: Optional. Marks the MPGS link as bring-your-own profile.
+    MerchantListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/MerchantSummary'
+    Address:
+      type: object
+      properties:
+        line1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address (e.g. `1 Market St`).
+        line2:
+          type:
+          - string
+          - 'null'
+          description: Second address line (e.g. `Level 4`).
+        city:
+          type:
+          - string
+          - 'null'
+          description: Suburb or city (e.g. `Sydney`).
+        state:
+          type:
+          - string
+          - 'null'
+          description: State or territory (e.g. `NSW`).
+        postcode:
+          type:
+          - string
+          - 'null'
+          description: Postal code (e.g. `2000`).
+        country:
+          type:
+          - string
+          - 'null'
+          pattern: ^[A-Za-z]{2}$
+          description: ISO-3166 alpha-2 country code (e.g. `AU`).
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    MerchantCreateRequest:
+      type: object
+      description: "Creates a merchant.\n\nRequired to CREATE: `name` and `mcc` only. `mcc` has NO default — the\nmerchant's category is never guessed; omitting it is a\n`422 validation_error`.\n\nTwo modes:\n\n- **Identity-only** (no `acquirers`): creates a `pending` stub with no\n  processing. Board acquirers later via\n  `POST /merchants/{username}/acquirers`. Returns a bare `Merchant`.\n- **Combined create** (with `acquirers`): also boards each listed\n  acquirer and activates the merchant if at least one boards. Boarding\n  is best-effort — failures don't fail the create; each acquirer's\n  outcome is reported in the `MerchantOnboardingResult`. The merchant is\n  `active` when ≥1 acquirer boards, else stays `pending`. Either way the\n  response is `201` with the token revealed once.\n\nReadiness — \"required to create\" is not \"required to transact\". To board\nan acquirer the merchant may need extra business details, depending on\nhow the acquirer is boarded:\n\nThe partner always supplies the acquirer-assigned MID on the\nconnection (TID is optional). Some acquirers also require additional\nbusiness details to board — `company_number`, `trading_name` and\n`address`. Missing fields surface as a `failed` acquirer entry\n(combined create) or a `422` on `POST /merchants/{username}/acquirers`.\n"
+      required:
+      - name
+      - mcc
+      example:
+        name: Acme Pty Ltd
+        mcc: '5411'
+        trading_name: Acme Store
+        company_number: '51824753556'
+        website: https://acme.example
+        email: ops@acme.example
+        phone: +61 7 3000 0000
+        address:
+          line1: 1 Market St
+          line2: Level 4
+          city: Brisbane
+          state: QLD
+          postcode: '4000'
+          country: AU
+        statement_descriptor: ACME STORE
+        government_controlled: false
+        country_of_origin: AU
+        country_code: '036'
+        fee_program_indicator: S
+        mastercard_iso_id: '00001234'
+        visa_iso_id: 00005678
+        mastercard_assigned_id: MAID12345
+        visa_merchant_verification_value: MVV98765
+        customer_support_phone: +61 7 1234 5678
+        card_acceptor_name: ACME STORE
+        card_acceptor_location: BRISBANE
+        card_acceptor_country: AU
+        acquirers:
+        - acquirer: nab
+          merchant_id: MID0012345
+          terminal_id: '12345678'
+          currencies:
+          - AUD
+      properties:
+        name:
+          type: string
+          description: Required. The merchant's legal/business name.
+        mcc:
+          type: string
+          pattern: ^\d{4}$
+          description: 'Required. Merchant category code (ISO 18245, 4 digits). No default —
+
+            omitting or blanking it returns `422 validation_error`.
+
+            '
+          example: '5411'
+        trading_name:
+          type: string
+          description: 'Optional at create (defaults to `name`). May be required to board
+
+            some acquirers.
+
+            '
+        company_number:
+          type: string
+          description: 'The merchant''s company/business registration number (e.g. an
+
+            Australian Business Number). Optional at create. May be required to
+
+            board some acquirers.
+
+            '
+        industry:
+          type: string
+          description: Optional. Free-text industry descriptor for the merchant.
+        contact:
+          type: string
+          description: Optional. Primary contact person's name.
+        website:
+          type: string
+          description: Optional.
+        email:
+          type: string
+          format: email
+          description: Optional.
+        accounts_email:
+          type: array
+          description: Optional. Accounts/billing email recipients.
+          items:
+            type: string
+            format: email
+        phone:
+          type: string
+          description: Optional.
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: 'Business address. Optional at create. May be required to board
+
+            some acquirers.
+
+            '
+        statement_descriptor:
+          type: string
+          maxLength: 25
+          description: Optional. Card-acceptor name. Defaults to the trading/business name, truncated to 25 chars.
+        government_controlled:
+          type: boolean
+          description: Optional. Whether the merchant is government-controlled. Defaults to false.
+        country_of_origin:
+          type: string
+          pattern: ^[A-Za-z]{2}$
+          description: Optional. ISO-3166 alpha-2 country of origin.
+        country_code:
+          type: string
+          description: Optional. ISO-3166 numeric country code.
+        fee_program_indicator:
+          type: string
+          description: Optional. Scheme fee program indicator.
+        mastercard_iso_id:
+          type: string
+          description: Optional. Mastercard ISO/acquirer identifier.
+        visa_iso_id:
+          type: string
+          description: Optional. Visa ISO/acquirer identifier.
+        mastercard_assigned_id:
+          type: string
+          description: Optional. Mastercard Assigned ID (MAID).
+        visa_merchant_verification_value:
+          type: string
+          description: Optional. Visa Merchant Verification Value (MVV).
+        visa_marketplace_identifier:
+          type: string
+          description: Optional. Visa Marketplace Identifier (MPI) for marketplace merchants.
+        visa_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+          description: Optional. Visa payment facilitator indicator for scheme rules.
+        mastercard_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+          description: Optional. Mastercard payment facilitator indicator for scheme rules.
+        bill_payment_provider:
+          type: boolean
+          description: 'Optional. Whether the merchant is a Bill Payment Service Provider
+
+            (BPSP). Defaults to false.
+
+            '
+        aggregator_fields_enabled:
+          type: boolean
+          description: 'Optional. Allow sub-merchant aggregator fields in transaction
+
+            requests (requires an aggregator agreement with the acquirer).
+
+            Defaults to false.
+
+            '
+        customer_support_phone:
+          type: string
+          description: Optional. Customer support phone number shown to cardholders.
+        card_acceptor_name:
+          type: string
+          description: 'Optional. Card-acceptor name sent to the card schemes. Defaults to
+
+            the statement descriptor / trading name when omitted.
+
+            '
+        card_acceptor_location:
+          type: string
+          description: Optional. Card-acceptor location (city) sent to the card schemes.
+        card_acceptor_country:
+          type: string
+          pattern: ^[A-Za-z]{2}$
+          description: Optional. Card-acceptor country, ISO-3166 alpha-2.
+        timezone:
+          type: string
+          description: 'Optional. IANA timezone identifier the merchant operates in.
+
+            '
+          examples:
+          - Australia/Sydney
+          - Australia/Brisbane
+          - Australia/Perth
+          - Pacific/Auckland
+          - Europe/London
+          - America/New_York
+          - UTC
+        merchant_identifier:
+          type: string
+          description: 'Optional. A partner-assigned identifier for the merchant. Distinct
+
+            from the acquirer-assigned `merchant_id` (MID) — this is a free-form
+
+            label the partner uses to track the merchant in their own systems.
+
+            '
+        username:
+          type: string
+          description: 'Optional. When omitted, one is derived from the trading/business
+
+            name. Either way the stored username is prefixed with the partner''s
+
+            reseller prefix. Immutable post-creation.
+
+            '
+        acquirers:
+          type: array
+          description: 'Optional. When present, boards the merchant onto each acquirer and
+
+            activates it (combined create). If any acquirer can''t be boarded
+
+            the whole create fails and nothing is created. See the response
+
+            `MerchantOnboardingResult`.
+
+            '
+          items:
+            $ref: '#/components/schemas/AcquirerBoardRequest'
+    MerchantUpdateRequest:
+      type: object
+      description: 'Any subset of the create business/identity fields. `username`, `status`
+
+        and `credentials` are read-only — use the lifecycle and credential-rotate
+
+        endpoints for those. `username` is immutable post-creation.
+
+        '
+      example:
+        trading_name: Acme Online
+        website: https://shop.acme.example
+        email: support@acme.example
+        statement_descriptor: ACME ONLINE
+        customer_support_phone: +61 7 1234 5678
+        card_acceptor_name: ACME ONLINE
+      properties:
+        name:
+          type: string
+        trading_name:
+          type: string
+        company_number:
+          type: string
+        industry:
+          type: string
+        contact:
+          type: string
+        mcc:
+          type: string
+          pattern: ^\d{4}$
+        website:
+          type: string
+        email:
+          type: string
+          format: email
+        accounts_email:
+          type: array
+          items:
+            type: string
+            format: email
+        phone:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        statement_descriptor:
+          type: string
+          maxLength: 25
+        government_controlled:
+          type: boolean
+        country_of_origin:
+          type: string
+          pattern: ^[A-Za-z]{2}$
+        country_code:
+          type: string
+        fee_program_indicator:
+          type: string
+        mastercard_iso_id:
+          type: string
+        visa_iso_id:
+          type: string
+        mastercard_assigned_id:
+          type: string
+        visa_merchant_verification_value:
+          type: string
+        visa_marketplace_identifier:
+          type: string
+        visa_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+        mastercard_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+        bill_payment_provider:
+          type: boolean
+        aggregator_fields_enabled:
+          type: boolean
+        customer_support_phone:
+          type: string
+        card_acceptor_name:
+          type: string
+        card_acceptor_location:
+          type: string
+        card_acceptor_country:
+          type: string
+          pattern: ^[A-Za-z]{2}$
+        timezone:
+          type: string
+          description: IANA timezone identifier.
+          examples:
+          - Australia/Sydney
+          - Australia/Brisbane
+          - Australia/Perth
+          - Pacific/Auckland
+          - Europe/London
+          - America/New_York
+          - UTC
+        merchant_identifier:
+          type: string
+          description: Partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID).
+    ListEnvelope:
+      type: object
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
+    MerchantSurcharging:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether card surcharging is enabled for the merchant.
+  parameters:
+    Username:
+      in: path
+      name: username
+      description: The merchant's username (e.g. `acme-store`).
+      required: true
+      schema:
+        type: string
+    StartingAfter:
+      in: query
+      name: starting_after
+      description: Cursor — the id of the last item from the previous page. Omit for the first page.
+      required: false
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      description: Page size. Defaults to 25, capped at 100.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+    PartnerBasicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic. Send your reseller **username** as the Basic username and
+
+        your reseller API **token** as the Basic password. Required on every
+
+        endpoint.
+
+        '
+x-refined-from:
+- fat-zebra-fdms-tpp-merchant-onboarding.json
+- fat-zebra-partner.json
+x-readme:
+  headers: []
+x-readme-fauxas: true

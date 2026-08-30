@@ -1,0 +1,419 @@
+openapi: 3.2.0
+info:
+  title: gateway Web Hooks API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Web Hooks
+paths:
+  /web_hooks:
+    post:
+      summary: Create a webhook
+      description: Create webhooks
+      operationId: create-a-webhook
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: A name for the web hook
+                mode:
+                  type: string
+                  description: 'The mode for the web hook. Possible values are: Test or Production'
+                address:
+                  type: string
+                  description: The URL for the web hook to target. This must start with http:// or https://
+                authentication_username:
+                  type: string
+                  description: The username for HTTP Basic authentication
+                  default: Optional
+                authentication_password:
+                  type: string
+                  description: The password for HTTP Basic authentication (optional)
+                  default: Optional
+                is_active:
+                  type: boolean
+                  description: Activation flag for the webhook
+                  default: false
+                events:
+                  type: string
+                  description: A list of events for the web hook to target. This is a comma separated list of events, and it is possible to use wildcards (e.g.`*` for all events, or `direct_entry:*` for all direct entry hooks, or `direct_entry:created,direct_entry:failed`)
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"address\": \"https://www.your-server.com/payment/hook\",\n    \"events\": \"*\",\n    \"mode\": \"Test\",\n    \"authentication_username\": null,\n    \"authentication_password\": \"\",\n    \"is_active\": true,\n    \"name\": \"Test Hook\",\n    \"id\": \"071-WH-ABCD1234\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: https://www.your-server.com/payment/hook
+                      events:
+                        type: string
+                        example: '*'
+                      mode:
+                        type: string
+                        example: Test
+                      authentication_username: {}
+                      authentication_password:
+                        type: string
+                        example: ''
+                      is_active:
+                        type: boolean
+                        example: true
+                        default: true
+                      name:
+                        type: string
+                        example: Test Hook
+                      id:
+                        type: string
+                        example: 071-WH-ABCD1234
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":{\n    \"address\":null,\n    \"events\":null,\n    \"mode\":null,\n    \"authentication_username\":null,\n    \"authentication_password\":\"\",\n    \"is_active\":null,\n    \"name\":null,\n    \"id\":null\n  },\n  \"errors\":[\n    \"Address can't be blank\",\n    \"Events is not included in the list\",\n    \"Mode is not included in the list\"\n  ],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      address: {}
+                      events: {}
+                      mode: {}
+                      authentication_username: {}
+                      authentication_password:
+                        type: string
+                        example: ''
+                      is_active: {}
+                      name: {}
+                      id: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Address can't be blank
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X POST https://gateway.pmnts-sandbox.io/v1.0/web_hooks -u TEST:TEST -d'\n  {\n    \"name\": \"Test Hook\",\n    \"mode\": \"Test\",\n    \"address\": \"https://www.your-server.com/payment/hook\",\n    \"authentication_username\": null,\n    \"authentication_password\": null,\n    \"is_active\": true,\n    \"events\": \"*\"\n  }'"
+        - language: ruby
+          code: "FatZebra::WebHook.create(\n  address: 'https://www.your-server.com/payment/hook',\n  events: '*',\n  mode: 'Test',\n  name: \"Test Hook\"\n)"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Web Hooks
+    get:
+      summary: List webhooks
+      description: List your installed webhooks
+      operationId: list-webhooks
+      parameters:
+      - name: limit
+        in: query
+        description: The number of records to return per request. The maximum records per request is 50
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The pagination offset for the request.
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"response\" : [\n      {\n         \"id\" : \"071-WH-LPN9BZVS\",\n         \"authentication_username\" : null,\n         \"mode\" : \"Test\",\n         \"events\" : \"*\",\n         \"is_active\" : null,\n         \"address\" : \"http://stage.example.com.au/v1/api/hook_listener\",\n         \"authentication_password\" : \"\",\n         \"name\" : \"New Test hook\"\n      }\n   ],\n   \"errors\" : [],\n   \"successful\" : true,\n   \"test\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-WH-LPN9BZVS
+                        authentication_username: {}
+                        mode:
+                          type: string
+                          example: Test
+                        events:
+                          type: string
+                          example: '*'
+                        is_active: {}
+                        address:
+                          type: string
+                          example: http://stage.example.com.au/v1/api/hook_listener
+                        authentication_password:
+                          type: string
+                          example: ''
+                        name:
+                          type: string
+                          example: New Test hook
+                  errors:
+                    type: array
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/web_hooks -u TEST:TEST
+        - language: ruby
+          code: FatZebra::WebHook.search.data
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Web Hooks
+  /web_hooks/{id}:
+    put:
+      summary: Update a webhook
+      description: Update a webhook
+      operationId: update-a-webhook
+      parameters:
+      - name: id
+        in: path
+        description: Id of the webhook
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The mode for the web hook. Possible values are: Test or Production'
+                mode:
+                  type: string
+                  description: 'The mode for the web hook. Possible values are: Test or Production'
+                address:
+                  type: string
+                  description: The URL for the web hook to target. This must start with http:// or https://
+                authentication_username:
+                  type: string
+                  description: The username for HTTP Basic authentication
+                  default: Optional
+                authentication_password:
+                  type: string
+                  description: The password for HTTP Basic authentication (optional)
+                  default: Optional
+                events:
+                  type: string
+                  description: A list of events for the web hook to target. This is a comma separated list of events, and it is possible to use wildcards (e.g. `*` for all events, or `direct_entry:*` for all direct entry hooks, or `direct_entry:created,direct_entry:failed`)
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"address\": \"https://www.your-server.com/payment/hook\",\n    \"events\": \"*\",\n    \"mode\": \"Test\",\n    \"authentication_username\": null,\n    \"authentication_password\": \"\",\n    \"is_active\": null,\n    \"name\": \"Test Hook Updated\",\n    \"id\": \"071-WH-ABCD1234\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: https://www.your-server.com/payment/hook
+                      events:
+                        type: string
+                        example: '*'
+                      mode:
+                        type: string
+                        example: Test
+                      authentication_username: {}
+                      authentication_password:
+                        type: string
+                        example: ''
+                      is_active: {}
+                      name:
+                        type: string
+                        example: Test Hook Updated
+                      id:
+                        type: string
+                        example: 071-WH-ABCD1234
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -X PUT https://gateway.pmnts-sandbox.io/v1.0/web_hooks/071-WH-ABCD1234 -u TEST:TEST -d '\n  {\n    \"name\": \"Test Hook Updated\" \n  }'"
+        samples-languages:
+        - curl
+      tags:
+      - Web Hooks
+    delete:
+      summary: Delete a webhook
+      description: Delete a webhook
+      operationId: delete-a-webhook
+      parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"address\": \"https://www.your-server.com/payment/hook\",\n    \"events\": \"*\",\n    \"mode\": \"Test\",\n    \"authentication_username\": null,\n    \"authentication_password\": \"\",\n    \"is_active\": null,\n    \"name\": \"Test Hook\",\n    \"id\": \"071-WH-ABCD1234\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                        example: https://www.your-server.com/payment/hook
+                      events:
+                        type: string
+                        example: '*'
+                      mode:
+                        type: string
+                        example: Test
+                      authentication_username: {}
+                      authentication_password:
+                        type: string
+                        example: ''
+                      is_active: {}
+                      name:
+                        type: string
+                        example: Test Hook
+                      id:
+                        type: string
+                        example: 071-WH-ABCD1234
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":false,\n  \"response\":null,\n  \"errors\":[\"Not Found\"],\n  \"test\":true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Not Found
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -X DELETE https://gateway.pmnts-sandbox.io/v1.0/web_hooks/071-WH-ABCD1234 -u TEST:TEST
+        - language: ruby
+          code: FatZebra::WebHook.delete('071-WH-QWV3JF36')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Web Hooks
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

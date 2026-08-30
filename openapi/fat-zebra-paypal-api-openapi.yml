@@ -1,0 +1,2494 @@
+openapi: 3.2.0
+info:
+  title: gateway Paypal API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Paypal
+paths:
+  /paypal/orders:
+    get:
+      summary: List orders
+      description: ''
+      operationId: paypal-list-orders
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: offset
+        in: query
+        description: Offset to start
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Number of records in the response
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Upper bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\":  [\n    {\n      \"id\": \"071-PPO-T2OBQZZEDUSYHW3M\",\n      \"reference\": \"ref_12345_486873\",\n      \"amount\": 12000,\n      \"decimal_amount\": 120.0,\n      \"successful\": true,\n      \"message\": \"Approved\",\n      \"currency\": \"AUD\",\n      \"transaction_id\": \"071-PPO-T2OBQZZEDUSYHW3M\",\n      \"transaction_date\": \"2020-08-28T15:39:16+10:00\",\n      \"intent\": \"Capture\",\n      \"paypal_reference\": \"ref_12345_486873\",\n      \"invoice_id\": \"ref_12345_486873\",\n      \"billing_agreement_id\": null,\n      \"status\": \"Completed\",\n      \"payment_source\": null,\n      \"authorized_amount\": 0.0,\n      \"captured_amount\": 120.0,\n      \"refunded_amount\": 0.0,\n      \"authorizations\": [],\n      \"captures\": [\n        {\n          \"id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n          \"status\": \"Completed\",\n          \"captured\": true,\n          \"amount\": 12000,\n          \"decimal_amount\": 120.0,\n          \"successful\": true,\n          \"currency\": \"AUD\",\n          \"transaction_id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n          \"transaction_date\": \"2020-08-28T15:39:16+10:00\",\n          \"invoice_id\": \"ref_12345_486873\",\n          \"paypal_fee\": 318,\n          \"seller_receivable_net_amount\": 11682,\n          \"note_to_payer\": \"Sporting Goods\",\n          \"is_final_capture\": true\n        }\n      ],\n      \"refunds\": [],\n      \"payer\": {\n        \"id\": \"SNGQ72BA8UA4W\",\n        \"email\": \"test-buyer@example.com\",\n        \"address\": { \"country_code\": \"AU\" }\n      },\n      \"payee\": {\n        \"id\": \"GE53HS375QX4J\",\n        \"email\": \"test-seller@example.com\"\n      }\n    }\n  ],\n  \"errors\": [],\n  \"records\": 2,\n  \"total_records\": 10,\n  \"page\": 1,\n  \"total_pages\": 1    \n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-PPO-T2OBQZZEDUSYHW3M
+                        reference:
+                          type: string
+                          example: ref_12345_486873
+                        amount:
+                          type: integer
+                          example: 12000
+                          default: 0
+                        decimal_amount:
+                          type: integer
+                          example: 120
+                          default: 0
+                        successful:
+                          type: boolean
+                          example: true
+                          default: true
+                        message:
+                          type: string
+                          example: Approved
+                        currency:
+                          type: string
+                          example: AUD
+                        transaction_id:
+                          type: string
+                          example: 071-PPO-T2OBQZZEDUSYHW3M
+                        transaction_date:
+                          type: string
+                          example: '2020-08-28T15:39:16+10:00'
+                        intent:
+                          type: string
+                          example: Capture
+                        paypal_reference:
+                          type: string
+                          example: ref_12345_486873
+                        invoice_id:
+                          type: string
+                          example: ref_12345_486873
+                        billing_agreement_id: {}
+                        status:
+                          type: string
+                          example: Completed
+                        payment_source: {}
+                        authorized_amount:
+                          type: integer
+                          example: 0
+                          default: 0
+                        captured_amount:
+                          type: integer
+                          example: 120
+                          default: 0
+                        refunded_amount:
+                          type: integer
+                          example: 0
+                          default: 0
+                        authorizations:
+                          type: array
+                        captures:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: 071-PPC-VJ9ZTJP55GXSVNC6
+                              status:
+                                type: string
+                                example: Completed
+                              captured:
+                                type: boolean
+                                example: true
+                                default: true
+                              amount:
+                                type: integer
+                                example: 12000
+                                default: 0
+                              decimal_amount:
+                                type: integer
+                                example: 120
+                                default: 0
+                              successful:
+                                type: boolean
+                                example: true
+                                default: true
+                              currency:
+                                type: string
+                                example: AUD
+                              transaction_id:
+                                type: string
+                                example: 071-PPC-VJ9ZTJP55GXSVNC6
+                              transaction_date:
+                                type: string
+                                example: '2020-08-28T15:39:16+10:00'
+                              invoice_id:
+                                type: string
+                                example: ref_12345_486873
+                              paypal_fee:
+                                type: integer
+                                example: 318
+                                default: 0
+                              seller_receivable_net_amount:
+                                type: integer
+                                example: 11682
+                                default: 0
+                              note_to_payer:
+                                type: string
+                                example: Sporting Goods
+                              is_final_capture:
+                                type: boolean
+                                example: true
+                                default: true
+                        refunds:
+                          type: array
+                        payer:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: SNGQ72BA8UA4W
+                            email:
+                              type: string
+                              example: test-buyer@example.com
+                            address:
+                              type: object
+                              properties:
+                                country_code:
+                                  type: string
+                                  example: AU
+                        payee:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: GE53HS375QX4J
+                            email:
+                              type: string
+                              example: test-seller@example.com
+                  errors:
+                    type: array
+                  records:
+                    type: integer
+                    example: 2
+                    default: 0
+                  total_records:
+                    type: integer
+                    example: 10
+                    default: 0
+                  page:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total_pages:
+                    type: integer
+                    example: 1
+                    default: 0
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/orders -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Order.search
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/orders/{id}:
+    get:
+      summary: Fetch an order
+      description: ''
+      operationId: paypal-fetch-an-order
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the order.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPO-T2OBQZZEDUSYHW3M\",\n    \"reference\": \"ref_12345_486873\",\n    \"amount\": 12000,\n    \"decimal_amount\": 120.0,\n    \"successful\": true,\n    \"message\": \"Approved\",\n    \"currency\": \"AUD\",\n    \"transaction_id\": \"071-PPO-T2OBQZZEDUSYHW3M\",\n    \"transaction_date\": \"2020-08-28T15:39:16+10:00\",\n    \"intent\": \"Capture\",\n    \"paypal_reference\": \"ref_12345_486873\",\n    \"invoice_id\": \"ref_12345_486873\",\n    \"billing_agreement_id\": null,\n    \"status\": \"Completed\",\n    \"payment_source\": null,\n    \"authorized_amount\": 0.0,\n    \"captured_amount\": 120.0,\n    \"refunded_amount\": 0.0,\n    \"authorizations\": [],\n    \"captures\": [\n      {\n        \"id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n        \"status\": \"Completed\",\n        \"captured\": true,\n        \"amount\": 12000,\n        \"decimal_amount\": 120.0,\n        \"successful\": true,\n        \"currency\": \"AUD\",\n        \"transaction_id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n        \"transaction_date\": \"2020-08-28T15:39:16+10:00\",\n        \"invoice_id\": \"ref_12345_486873\",\n        \"paypal_fee\": 318,\n        \"seller_receivable_net_amount\": 11682,\n        \"note_to_payer\": \"Sporting Goods\",\n        \"is_final_capture\": true\n      }\n    ],\n    \"refunds\": [],\n    \"payer\": {\n      \"id\": \"SNGQ72BA8UA4W\",\n      \"email\": \"test-buyer@example.com\",\n      \"address\": { \"country_code\": \"AU\" }\n    },\n    \"payee\": {\n      \"id\": \"GE53HS375QX4J\",\n      \"email\": \"test-seller@example.com\"\n    }\n  },\n  \"errors\": []\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PPO-T2OBQZZEDUSYHW3M
+                      reference:
+                        type: string
+                        example: ref_12345_486873
+                      amount:
+                        type: integer
+                        example: 12000
+                        default: 0
+                      decimal_amount:
+                        type: integer
+                        example: 120
+                        default: 0
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      message:
+                        type: string
+                        example: Approved
+                      currency:
+                        type: string
+                        example: AUD
+                      transaction_id:
+                        type: string
+                        example: 071-PPO-T2OBQZZEDUSYHW3M
+                      transaction_date:
+                        type: string
+                        example: '2020-08-28T15:39:16+10:00'
+                      intent:
+                        type: string
+                        example: Capture
+                      paypal_reference:
+                        type: string
+                        example: ref_12345_486873
+                      invoice_id:
+                        type: string
+                        example: ref_12345_486873
+                      billing_agreement_id: {}
+                      status:
+                        type: string
+                        example: Completed
+                      payment_source: {}
+                      authorized_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      captured_amount:
+                        type: integer
+                        example: 120
+                        default: 0
+                      refunded_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      authorizations:
+                        type: array
+                      captures:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 071-PPC-VJ9ZTJP55GXSVNC6
+                            status:
+                              type: string
+                              example: Completed
+                            captured:
+                              type: boolean
+                              example: true
+                              default: true
+                            amount:
+                              type: integer
+                              example: 12000
+                              default: 0
+                            decimal_amount:
+                              type: integer
+                              example: 120
+                              default: 0
+                            successful:
+                              type: boolean
+                              example: true
+                              default: true
+                            currency:
+                              type: string
+                              example: AUD
+                            transaction_id:
+                              type: string
+                              example: 071-PPC-VJ9ZTJP55GXSVNC6
+                            transaction_date:
+                              type: string
+                              example: '2020-08-28T15:39:16+10:00'
+                            invoice_id:
+                              type: string
+                              example: ref_12345_486873
+                            paypal_fee:
+                              type: integer
+                              example: 318
+                              default: 0
+                            seller_receivable_net_amount:
+                              type: integer
+                              example: 11682
+                              default: 0
+                            note_to_payer:
+                              type: string
+                              example: Sporting Goods
+                            is_final_capture:
+                              type: boolean
+                              example: true
+                              default: true
+                      refunds:
+                        type: array
+                      payer:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: SNGQ72BA8UA4W
+                          email:
+                            type: string
+                            example: test-buyer@example.com
+                          address:
+                            type: object
+                            properties:
+                              country_code:
+                                type: string
+                                example: AU
+                      payee:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: GE53HS375QX4J
+                          email:
+                            type: string
+                            example: test-seller@example.com
+                  errors:
+                    type: array
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Could not find Order\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Order
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/orders/071-PPO-39KSADSS7YTA8CHM -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Order.find('071-PPO-39KSADSS7YTA8CHM')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/authorizations:
+    get:
+      summary: List authorizations
+      description: ''
+      operationId: paypal-list-authorizations
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: offset
+        in: query
+        description: Offset to start
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Number of records in the response
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Upper bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\":  [\n    {\n      \"id\": \"071-PPA-0R71TAD4EYV0NPRA\",\n      \"amount\": 12000,\n      \"decimal_amount\": 120.0,\n      \"captured_amount\": 0,\n      \"successful\": true,\n      \"captured\": false,\n      \"currency\": \"AUD\",\n      \"transaction_id\": \"071-PPA-0R71TAD4EYV0NPRA\",\n      \"transaction_date\": \"2020-08-21T09:33:14+10:00\",\n      \"message\": \"Approved\",\n      \"status\": \"Created\",\n      \"reference\": \"ref_12345_603951\",\n      \"refunded_amount\": 0,\n      \"balance_available_for_capture\": 13800,\n      \"order\": \"071-PPO-SLNVOYHCWTEFWGB6\"\n    }\n  ],\n  \"errors\": [],\n  \"records\": 2,\n  \"total_records\": 10,\n  \"page\": 1,\n  \"total_pages\": 1    \n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-PPA-0R71TAD4EYV0NPRA
+                        amount:
+                          type: integer
+                          example: 12000
+                          default: 0
+                        decimal_amount:
+                          type: integer
+                          example: 120
+                          default: 0
+                        captured_amount:
+                          type: integer
+                          example: 0
+                          default: 0
+                        successful:
+                          type: boolean
+                          example: true
+                          default: true
+                        captured:
+                          type: boolean
+                          example: false
+                          default: true
+                        currency:
+                          type: string
+                          example: AUD
+                        transaction_id:
+                          type: string
+                          example: 071-PPA-0R71TAD4EYV0NPRA
+                        transaction_date:
+                          type: string
+                          example: '2020-08-21T09:33:14+10:00'
+                        message:
+                          type: string
+                          example: Approved
+                        status:
+                          type: string
+                          example: Created
+                        reference:
+                          type: string
+                          example: ref_12345_603951
+                        refunded_amount:
+                          type: integer
+                          example: 0
+                          default: 0
+                        balance_available_for_capture:
+                          type: integer
+                          example: 13800
+                          default: 0
+                        order:
+                          type: string
+                          example: 071-PPO-SLNVOYHCWTEFWGB6
+                  errors:
+                    type: array
+                  records:
+                    type: integer
+                    example: 2
+                    default: 0
+                  total_records:
+                    type: integer
+                    example: 10
+                    default: 0
+                  page:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total_pages:
+                    type: integer
+                    example: 1
+                    default: 0
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/authorizations -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Authorization.search
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/authorizations/{id}:
+    get:
+      summary: Fetch an authorization
+      description: ''
+      operationId: paypal-fetch-an-authorization
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the authorization.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPA-0R71TAD4EYV0NPRA\",\n    \"amount\": 12000,\n    \"decimal_amount\": 120.0,\n    \"captured_amount\": 0,\n    \"successful\": true,\n    \"captured\": false,\n    \"currency\": \"AUD\",\n    \"transaction_id\": \"071-PPA-0R71TAD4EYV0NPRA\",\n    \"transaction_date\": \"2020-08-21T09:33:14+10:00\",\n    \"message\": \"Approved\",\n    \"status\": \"Created\",\n    \"reference\": \"ref_12345_603951\",\n    \"refunded_amount\": 0,\n    \"balance_available_for_capture\": 13800,\n    \"order\": \"071-PPO-SLNVOYHCWTEFWGB6\"\n  },\n  \"errors\": []\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PPA-0R71TAD4EYV0NPRA
+                      amount:
+                        type: integer
+                        example: 12000
+                        default: 0
+                      decimal_amount:
+                        type: integer
+                        example: 120
+                        default: 0
+                      captured_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      captured:
+                        type: boolean
+                        example: false
+                        default: true
+                      currency:
+                        type: string
+                        example: AUD
+                      transaction_id:
+                        type: string
+                        example: 071-PPA-0R71TAD4EYV0NPRA
+                      transaction_date:
+                        type: string
+                        example: '2020-08-21T09:33:14+10:00'
+                      message:
+                        type: string
+                        example: Approved
+                      status:
+                        type: string
+                        example: Created
+                      reference:
+                        type: string
+                        example: ref_12345_603951
+                      refunded_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      balance_available_for_capture:
+                        type: integer
+                        example: 13800
+                        default: 0
+                      order:
+                        type: string
+                        example: 071-PPO-SLNVOYHCWTEFWGB6
+                  errors:
+                    type: array
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Could not find Authorization\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Authorization
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/auhtorizations/071-PPA-39KSADSS7YTA8CHM -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Authorization.find('071-PPA-39KSADSS7YTA8CHM')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/authorizations/{id}/capture:
+    post:
+      summary: Capture an authorization
+      description: ''
+      operationId: paypal-capture-an-authorization
+      parameters:
+      - name: id
+        in: path
+        description: ID of the authorization to be captured.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  description: Amount to be refunded in the smallest unit of the currency.
+                  format: int32
+                note_to_payer:
+                  type: string
+                  description: A note to be attached with the capture. Will be visible to the customer.
+                final_capture:
+                  type: boolean
+                  description: True if this is the final capture on this authorization. False if more captures are going to be made. When net-captured-amount on the authorization touches or exceeds the total_authorized_amount, final_capture is automatically set to True. Merchant can capture up to 115% of the authorized_amount.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPC-9JNQNPWCD3FSOHDG\",\n    \"amount\": 199,\n    \"decimal_amount\": 1.99,\n    \"captured_amount\": 199,\n    \"successful\": true,\n    \"message\": \"Approved\",\n    \"reference\": \"ref_12345_612515\",\n    \"captured\": true,\n    \"currency\": \"AUD\",\n    \"transaction_id\": \"071-PPC-9JNQNPWCD3FSOHDG\",\n    \"transaction_date\": \"2020-08-31T08:30:30+10:00\",\n    \"status\": \"Completed\",\n    \"invoice_id\": \"071-PPC-9JNQNPWCD3FSOHDG\",\n    \"paypal_fee\": 35,\n    \"seller_receivable_net_amount\": 164,\n    \"note_to_payer\": \"$1.99 partial capture\",\n    \"is_final_capture\": false,\n    \"refunded_amount\": 0,\n    \"balance_available_for_refund\": 199,\n    \"balance_available_for_capture\": 13601,\n    \"authorization\": \"071-PPA-6CQGSNJFKJ1UQF9J\",\n    \"order\": \"071-PPO-ZVCVMDEFCBX86RX2\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PPC-9JNQNPWCD3FSOHDG
+                      amount:
+                        type: integer
+                        example: 199
+                        default: 0
+                      decimal_amount:
+                        type: number
+                        example: 1.99
+                        default: 0
+                      captured_amount:
+                        type: integer
+                        example: 199
+                        default: 0
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      message:
+                        type: string
+                        example: Approved
+                      reference:
+                        type: string
+                        example: ref_12345_612515
+                      captured:
+                        type: boolean
+                        example: true
+                        default: true
+                      currency:
+                        type: string
+                        example: AUD
+                      transaction_id:
+                        type: string
+                        example: 071-PPC-9JNQNPWCD3FSOHDG
+                      transaction_date:
+                        type: string
+                        example: '2020-08-31T08:30:30+10:00'
+                      status:
+                        type: string
+                        example: Completed
+                      invoice_id:
+                        type: string
+                        example: 071-PPC-9JNQNPWCD3FSOHDG
+                      paypal_fee:
+                        type: integer
+                        example: 35
+                        default: 0
+                      seller_receivable_net_amount:
+                        type: integer
+                        example: 164
+                        default: 0
+                      note_to_payer:
+                        type: string
+                        example: $1.99 partial capture
+                      is_final_capture:
+                        type: boolean
+                        example: false
+                        default: true
+                      refunded_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      balance_available_for_refund:
+                        type: integer
+                        example: 199
+                        default: 0
+                      balance_available_for_capture:
+                        type: integer
+                        example: 13601
+                        default: 0
+                      authorization:
+                        type: string
+                        example: 071-PPA-6CQGSNJFKJ1UQF9J
+                      order:
+                        type: string
+                        example: 071-PPO-ZVCVMDEFCBX86RX2
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\n    \"Paypal Authorization status (Voided) does not allow capture anymore.\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Paypal Authorization status (Voided) does not allow capture anymore.
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"errors\": [\n    \"Incorrect Username or Token\"\n  ],\n  \"response\": null\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Incorrect Username or Token
+                  response: {}
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": null,\n  \"errors\": [\n    \"Could not find Authorization\"\n  ],\n  \"test\": true\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/paypal/authorizations/071-PPA-6CQGSNJFKJ1UQF9J/capture -u TEST:TEST -d'\n{\n\t\"amount\": 199,\n\t\"final_capture\": false,\n\t\"note_to_payer\": \"$1.99 partial capture\"\n}'"
+          name: cURL
+        - language: ruby
+          code: "FatZebra::Paypal::Authorization.capture(\n  '071-PPA-6CQGSNJFKJ1UQF9J', \n  {\n    \"amount\": 199,\n    \"final_capture\": false,\n    \"note_to_payer\": \"$1.99 partial capture\"\n\t}\n)"
+          name: Ruby
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/authorizations/{id}/void:
+    post:
+      summary: Void an authorization
+      description: ''
+      operationId: paypal-void-an-authorization
+      parameters:
+      - name: id
+        in: path
+        description: ID of the authorization to be voided.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPA-6CQGSNJFKJ1UQF9J\",\n    \"amount\": 12000,\n    \"decimal_amount\": 120.0,\n    \"captured_amount\": 199,\n    \"successful\": true,\n    \"captured\": false,\n    \"currency\": \"AUD\",\n    \"transaction_id\": \"071-PPA-6CQGSNJFKJ1UQF9J\",\n    \"transaction_date\": \"2020-08-31T08:10:52+10:00\",\n    \"message\": \"Approved\",\n    \"status\": \"Voided\",\n    \"reference\": \"ref_12345_612515\",\n    \"refunded_amount\": 0,\n    \"balance_available_for_capture\": 0,\n    \"order\": \"071-PPO-ZVCVMDEFCBX86RX2\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PPA-6CQGSNJFKJ1UQF9J
+                      amount:
+                        type: integer
+                        example: 12000
+                        default: 0
+                      decimal_amount:
+                        type: integer
+                        example: 120
+                        default: 0
+                      captured_amount:
+                        type: integer
+                        example: 199
+                        default: 0
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      captured:
+                        type: boolean
+                        example: false
+                        default: true
+                      currency:
+                        type: string
+                        example: AUD
+                      transaction_id:
+                        type: string
+                        example: 071-PPA-6CQGSNJFKJ1UQF9J
+                      transaction_date:
+                        type: string
+                        example: '2020-08-31T08:10:52+10:00'
+                      message:
+                        type: string
+                        example: Approved
+                      status:
+                        type: string
+                        example: Voided
+                      reference:
+                        type: string
+                        example: ref_12345_612515
+                      refunded_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      balance_available_for_capture:
+                        type: integer
+                        example: 0
+                        default: 0
+                      order:
+                        type: string
+                        example: 071-PPO-ZVCVMDEFCBX86RX2
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"errors\": [\n     \"Incorrect Username or Token\"\n  ],\n  \"response\": null\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Incorrect Username or Token
+                  response: {}
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\n     \"Record not found\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Record not found
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\n     \"Paypal Authorization expired on 2020-08-22T15:15:57+10:00\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Paypal Authorization expired on 2020-08-22T15:15:57+10:00
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/authorizations/071-PPA-6CQGSNJFKJ1UQF9J/void -u TEST:TEST -d
+        - language: ruby
+          code: FatZebra::Paypal::Authorization.void('071-PPA-6CQGSNJFKJ1UQF9J')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/captures:
+    get:
+      summary: List captures
+      description: ''
+      operationId: paypal-list-captures
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: offset
+        in: query
+        description: Offset to start
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Number of records in the response
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Upper bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\":  [\n    {\n      \"id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n      \"amount\": 12000,\n      \"decimal_amount\": 120.0,\n      \"captured_amount\": 12000,\n      \"successful\": true,\n      \"message\": \"Approved\",\n      \"reference\": \"ref_12345_486873\",\n      \"captured\": true,\n      \"currency\": \"AUD\",\n      \"transaction_id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n      \"transaction_date\": \"2020-08-28T15:39:16+10:00\",\n      \"status\": \"Completed\",\n      \"invoice_id\": \"ref_12345_486873\",\n      \"paypal_fee\": 318,\n      \"seller_receivable_net_amount\": 11682,\n      \"note_to_payer\": \"Sporting Goods\",\n      \"is_final_capture\": true,\n      \"refunded_amount\": 0,\n      \"balance_available_for_refund\": 12000,\n      \"balance_available_for_capture\": null,\n      \"authorization\": null,\n      \"order\": \"071-PPO-T2OBQZZEDUSYHW3M\"\n    }\n  ],\n  \"errors\": [],\n  \"records\": 2,\n  \"total_records\": 10,\n  \"page\": 1,\n  \"total_pages\": 1    \n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-PPC-VJ9ZTJP55GXSVNC6
+                        amount:
+                          type: integer
+                          example: 12000
+                          default: 0
+                        decimal_amount:
+                          type: integer
+                          example: 120
+                          default: 0
+                        captured_amount:
+                          type: integer
+                          example: 12000
+                          default: 0
+                        successful:
+                          type: boolean
+                          example: true
+                          default: true
+                        message:
+                          type: string
+                          example: Approved
+                        reference:
+                          type: string
+                          example: ref_12345_486873
+                        captured:
+                          type: boolean
+                          example: true
+                          default: true
+                        currency:
+                          type: string
+                          example: AUD
+                        transaction_id:
+                          type: string
+                          example: 071-PPC-VJ9ZTJP55GXSVNC6
+                        transaction_date:
+                          type: string
+                          example: '2020-08-28T15:39:16+10:00'
+                        status:
+                          type: string
+                          example: Completed
+                        invoice_id:
+                          type: string
+                          example: ref_12345_486873
+                        paypal_fee:
+                          type: integer
+                          example: 318
+                          default: 0
+                        seller_receivable_net_amount:
+                          type: integer
+                          example: 11682
+                          default: 0
+                        note_to_payer:
+                          type: string
+                          example: Sporting Goods
+                        is_final_capture:
+                          type: boolean
+                          example: true
+                          default: true
+                        refunded_amount:
+                          type: integer
+                          example: 0
+                          default: 0
+                        balance_available_for_refund:
+                          type: integer
+                          example: 12000
+                          default: 0
+                        balance_available_for_capture: {}
+                        authorization: {}
+                        order:
+                          type: string
+                          example: 071-PPO-T2OBQZZEDUSYHW3M
+                  errors:
+                    type: array
+                  records:
+                    type: integer
+                    example: 2
+                    default: 0
+                  total_records:
+                    type: integer
+                    example: 10
+                    default: 0
+                  page:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total_pages:
+                    type: integer
+                    example: 1
+                    default: 0
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/captures -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Capture.search
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/captures/{id}:
+    get:
+      summary: Fetch a capture
+      description: ''
+      operationId: paypal-fetch-a-capture
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the capture.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n    \"amount\": 12000,\n    \"decimal_amount\": 120.0,\n    \"captured_amount\": 12000,\n    \"successful\": true,\n    \"message\": \"Approved\",\n    \"reference\": \"ref_12345_486873\",\n    \"captured\": true,\n    \"currency\": \"AUD\",\n    \"transaction_id\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n    \"transaction_date\": \"2020-08-28T15:39:16+10:00\",\n    \"status\": \"Completed\",\n    \"invoice_id\": \"ref_12345_486873\",\n    \"paypal_fee\": 318,\n    \"seller_receivable_net_amount\": 11682,\n    \"note_to_payer\": \"Sporting Goods\",\n    \"is_final_capture\": true,\n    \"refunded_amount\": 0,\n    \"balance_available_for_refund\": 12000,\n    \"balance_available_for_capture\": null,\n    \"authorization\": null,\n    \"order\": \"071-PPO-T2OBQZZEDUSYHW3M\"\n  },\n  \"errors\": []\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PPC-VJ9ZTJP55GXSVNC6
+                      amount:
+                        type: integer
+                        example: 12000
+                        default: 0
+                      decimal_amount:
+                        type: integer
+                        example: 120
+                        default: 0
+                      captured_amount:
+                        type: integer
+                        example: 12000
+                        default: 0
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      message:
+                        type: string
+                        example: Approved
+                      reference:
+                        type: string
+                        example: ref_12345_486873
+                      captured:
+                        type: boolean
+                        example: true
+                        default: true
+                      currency:
+                        type: string
+                        example: AUD
+                      transaction_id:
+                        type: string
+                        example: 071-PPC-VJ9ZTJP55GXSVNC6
+                      transaction_date:
+                        type: string
+                        example: '2020-08-28T15:39:16+10:00'
+                      status:
+                        type: string
+                        example: Completed
+                      invoice_id:
+                        type: string
+                        example: ref_12345_486873
+                      paypal_fee:
+                        type: integer
+                        example: 318
+                        default: 0
+                      seller_receivable_net_amount:
+                        type: integer
+                        example: 11682
+                        default: 0
+                      note_to_payer:
+                        type: string
+                        example: Sporting Goods
+                      is_final_capture:
+                        type: boolean
+                        example: true
+                        default: true
+                      refunded_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      balance_available_for_refund:
+                        type: integer
+                        example: 12000
+                        default: 0
+                      balance_available_for_capture: {}
+                      authorization: {}
+                      order:
+                        type: string
+                        example: 071-PPO-T2OBQZZEDUSYHW3M
+                  errors:
+                    type: array
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Could not find Capture\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Capture
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/captures/071-PPC-39KSADSS7YTA8CHM -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Capture.find('071-PPC-39KSADSS7YTA8CHM')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/captures/{id}/refund:
+    post:
+      summary: Refund a capture
+      description: ''
+      operationId: paypal-refund-a-capture
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the capture to be refunded
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        description: application/json
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  description: Amount to be refunded in the smallest unit of the currency.
+                  format: int32
+                note_to_payer:
+                  type: string
+                  description: A note to be attached with the refund. Will be visible to the customer
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPR-TIBSYRFOTPSSRGDZ\",\n    \"amount\": 1,\n    \"refunded\": \"Approved\",\n    \"message\": \"Approved\",\n    \"transaction_id\": \"071-PPR-TIBSYRFOTPSSRGDZ\",\n    \"currency\": \"AUD\",\n    \"successful\": true,\n    \"transaction_date\": \"2020-08-31T14:59:53+10:00\",\n    \"status\": \"Completed\",\n    \"note_to_payer\": \"1 cent\",\n    \"invoice_id\": \"071-PPR-TIBSYRFOTPSSRGDZ\",\n    \"decimal_amount\": 0.01,\n    \"paypal_fee\": 0,\n    \"seller_payable_net_amount\": 1,\n    \"balance_available_for_refund\": 198,\n    \"capture\": \"071-PPC-9JNQNPWCD3FSOHDG\",\n    \"order\": \"071-PPO-ZVCVMDEFCBX86RX2\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PPR-TIBSYRFOTPSSRGDZ
+                      amount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      refunded:
+                        type: string
+                        example: Approved
+                      message:
+                        type: string
+                        example: Approved
+                      transaction_id:
+                        type: string
+                        example: 071-PPR-TIBSYRFOTPSSRGDZ
+                      currency:
+                        type: string
+                        example: AUD
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      transaction_date:
+                        type: string
+                        example: '2020-08-31T14:59:53+10:00'
+                      status:
+                        type: string
+                        example: Completed
+                      note_to_payer:
+                        type: string
+                        example: 1 cent
+                      invoice_id:
+                        type: string
+                        example: 071-PPR-TIBSYRFOTPSSRGDZ
+                      decimal_amount:
+                        type: number
+                        example: 0.01
+                        default: 0
+                      paypal_fee:
+                        type: integer
+                        example: 0
+                        default: 0
+                      seller_payable_net_amount:
+                        type: integer
+                        example: 1
+                        default: 0
+                      balance_available_for_refund:
+                        type: integer
+                        example: 198
+                        default: 0
+                      capture:
+                        type: string
+                        example: 071-PPC-9JNQNPWCD3FSOHDG
+                      order:
+                        type: string
+                        example: 071-PPO-ZVCVMDEFCBX86RX2
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\n     \"Paypal Capture status (Refunded) does not allow refunds anymore.\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Paypal Capture status (Refunded) does not allow refunds anymore.
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"errors\": [\n     \"Incorrect Username or Token\"\n  ],\n  \"response\": null\n}\uFEFF"
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\n     \"Could not find Capture\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Capture
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/paypal/captures/071-PPC-9JNQNPWCD3FSOHDG/refund -u TEST:TEST -d'\n  { \n    \"amount\": 1,\n    \"note_to_payer\": \"1 cent\"\n  }'"
+          name: cURL
+        - language: ruby
+          code: "FatZebra::Paypal::Capture.refund(\n  '071-PPC-9JNQNPWCD3FSOHDG', \n  { \n    \"amount\": 1,\n    \"note_to_payer\": \"1 cent refund\"\n  }\n)"
+          name: Ruby
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/refunds:
+    get:
+      summary: List refunds
+      description: ''
+      operationId: paypal-list-refunds
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: offset
+        in: query
+        description: Offset to start
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Number of records in the response
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Upper bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\":  [\n    {\n      \"id\": \"071-PPR-VJ9ZTJP55GXSVNC6\",\n      \"amount\": 12000,\n      \"refunded\": \"Approved\",\n      \"message\": \"Approved\",\n      \"transaction_id\": \"071-PPR-VJ9ZTJP55GXSVNC6\",\n      \"currency\": \"AUD\",\n      \"successful\": true,\n      \"transaction_date\": \"2020-08-28T15:39:16+10:00\",,\n      \"status\": \"Completed\",\n      \"note_to_payer\": \"\",\n      \"invoice_id\": \"ref_12345_486873\",,\n      \"decimal_amount\": 120.00,\n      \"paypal_fee\": 318,\n      \"seller_payable_net_amount\": 11682,\n      \"balance_available_for_refund\": 0.0,\n      \"capture\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n      \"order\": \"071-PPO-T2OBQZZEDUSYHW3M\"\n    }\n  ],\n  \"errors\": [],\n  \"records\": 2,\n  \"total_records\": 10,\n  \"page\": 1,\n  \"total_pages\": 1    \n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/refunds -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Refund.search
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/refunds/{id}:
+    get:
+      summary: Fetch a refund
+      description: ''
+      operationId: paypal-fetch-a-refund
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the refund.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPR-VJ9ZTJP55GXSVNC6\",\n    \"amount\": 12000,\n    \"refunded\": \"Approved\",\n    \"message\": \"Approved\",\n    \"transaction_id\": \"071-PPR-VJ9ZTJP55GXSVNC6\",\n    \"currency\": \"AUD\",\n    \"successful\": true,\n    \"transaction_date\": \"2020-08-28T15:39:16+10:00\",,\n    \"status\": \"Completed\",\n    \"note_to_payer\": \"\",\n    \"invoice_id\": \"ref_12345_486873\",,\n    \"decimal_amount\": 120.00,\n    \"paypal_fee\": 318,\n    \"seller_payable_net_amount\": 11682,\n    \"balance_available_for_refund\": 0.0,\n    \"capture\": \"071-PPC-VJ9ZTJP55GXSVNC6\",\n    \"order\": \"071-PPO-T2OBQZZEDUSYHW3M\"\n  },\n  \"errors\": []\n}"
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Could not find Refund\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Refund
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/refunds/071-PPR-39KSADSS7YTA8CHM -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::Refund.find('071-PPR-39KSADSS7YTA8CHM')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/billing_agreements:
+    get:
+      summary: List billing agreements
+      description: ''
+      operationId: paypal-list-billing-agreements
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      - name: offset
+        in: query
+        description: Offset to start
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Number of records in the response
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: Upper bound for the time at which the record was created
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\":  [\n    {\n      \"id\": \"071-PBA-ETCGSDAKH8TPIL99\",\n      \"name\": \"Sample Billing Agreement\",\n      \"description\": \"Stored PayPal account\",\n      \"state\": \"Active\",\n      \"payer\": {\n        \"payer_info\": {\n          \"email\": \"test-buyer@fatzebra.com.au\",\n          \"first_name\": \"FZ Test Buyer\",\n          \"last_name\": \"Buyer\",\n          \"payer_id\": \"SNGQ72BA8UA4W\"\n        }\n      },\n      \"shipping_address\": {\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\",\n        \"address_1\": \"100 Kent Street\",\n        \"address_2\": \"Cafe Lane\",\n        \"city\": \"Sydney\",\n        \"state\": \"NSW\",\n        \"postcode\": \"2000\",\n        \"country\": \"AU\"\n      },\n      \"merchant_custom_data\": \"UUID\",\n      \"created_at\": \"2020-08-28T15:37:35+10:00\"\n    }\n  ],\n  \"errors\": [],\n  \"records\": 2,\n  \"total_records\": 10,\n  \"page\": 1,\n  \"total_pages\": 1    \n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 071-PBA-ETCGSDAKH8TPIL99
+                        name:
+                          type: string
+                          example: Sample Billing Agreement
+                        description:
+                          type: string
+                          example: Stored PayPal account
+                        state:
+                          type: string
+                          example: Active
+                        payer:
+                          type: object
+                          properties:
+                            payer_info:
+                              type: object
+                              properties:
+                                email:
+                                  type: string
+                                  example: test-buyer@fatzebra.com.au
+                                first_name:
+                                  type: string
+                                  example: FZ Test Buyer
+                                last_name:
+                                  type: string
+                                  example: Buyer
+                                payer_id:
+                                  type: string
+                                  example: SNGQ72BA8UA4W
+                        shipping_address:
+                          type: object
+                          properties:
+                            first_name:
+                              type: string
+                              example: John
+                            last_name:
+                              type: string
+                              example: Doe
+                            address_1:
+                              type: string
+                              example: 100 Kent Street
+                            address_2:
+                              type: string
+                              example: Cafe Lane
+                            city:
+                              type: string
+                              example: Sydney
+                            state:
+                              type: string
+                              example: NSW
+                            postcode:
+                              type: string
+                              example: '2000'
+                            country:
+                              type: string
+                              example: AU
+                        merchant_custom_data:
+                          type: string
+                          example: UUID
+                        created_at:
+                          type: string
+                          example: '2020-08-28T15:37:35+10:00'
+                  errors:
+                    type: array
+                  records:
+                    type: integer
+                    example: 2
+                    default: 0
+                  total_records:
+                    type: integer
+                    example: 10
+                    default: 0
+                  page:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total_pages:
+                    type: integer
+                    example: 1
+                    default: 0
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::BillingAgreement.search
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/billing_agreements/{id}:
+    get:
+      summary: Fetch a billing agreement
+      description: ''
+      operationId: paypal-fetch-a-billing-agreement
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the billing agreement.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PBA-ETCGSDAKH8TPIL99\",\n    \"name\": \"Sample Billing Agreement\",\n    \"description\": \"Stored PayPal account\",\n    \"state\": \"Active\",\n    \"payer\": {\n      \"payer_info\": {\n        \"email\": \"test-buyer@example.com\",\n        \"first_name\": \"FZ Test Buyer\",\n        \"last_name\": \"Buyer\",\n        \"payer_id\": \"SNGQ72BA8UA4W\"\n      }\n    },\n    \"shipping_address\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\",\n      \"address_1\": \"100 Kent Street\",\n      \"address_2\": \"Cafe Lane\",\n      \"city\": \"Sydney\",\n      \"state\": \"NSW\",\n      \"postcode\": \"2000\",\n      \"country\": \"AU\"\n    },\n    \"merchant_custom_data\": \"UUID\",\n    \"created_at\": \"2020-08-28T15:37:35+10:00\"\n  },\n  \"errors\": []\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PBA-ETCGSDAKH8TPIL99
+                      name:
+                        type: string
+                        example: Sample Billing Agreement
+                      description:
+                        type: string
+                        example: Stored PayPal account
+                      state:
+                        type: string
+                        example: Active
+                      payer:
+                        type: object
+                        properties:
+                          payer_info:
+                            type: object
+                            properties:
+                              email:
+                                type: string
+                                example: test-buyer@example.com
+                              first_name:
+                                type: string
+                                example: FZ Test Buyer
+                              last_name:
+                                type: string
+                                example: Buyer
+                              payer_id:
+                                type: string
+                                example: SNGQ72BA8UA4W
+                      shipping_address:
+                        type: object
+                        properties:
+                          first_name:
+                            type: string
+                            example: John
+                          last_name:
+                            type: string
+                            example: Doe
+                          address_1:
+                            type: string
+                            example: 100 Kent Street
+                          address_2:
+                            type: string
+                            example: Cafe Lane
+                          city:
+                            type: string
+                            example: Sydney
+                          state:
+                            type: string
+                            example: NSW
+                          postcode:
+                            type: string
+                            example: '2000'
+                          country:
+                            type: string
+                            example: AU
+                      merchant_custom_data:
+                        type: string
+                        example: UUID
+                      created_at:
+                        type: string
+                        example: '2020-08-28T15:37:35+10:00'
+                  errors:
+                    type: array
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Could not find Billing Agreement\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Billing Agreement
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements/071-PBA-39KSADSS7YTA8CHM -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::BillingAgreement.find('071-PBA-39KSADSS7YTA8CHM')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/billing_agreements/{id}/cancel:
+    post:
+      summary: Cancel a billing agreement
+      description: ''
+      operationId: paypal-cancel-a-billing-agreement
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the billing agreement.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PBA-ETCGSDAKH8TPIL99\",\n    \"name\": \"Sample Billing Agreement\",\n    \"description\": \"Stored PayPal account\",\n    \"state\": \"Inactive\",\n    \"payer\": {\n      \"payer_info\": {\n        \"email\": \"test-buyer@example.com\",\n        \"first_name\": \"Test Buyer\",\n        \"last_name\": \"Buyer\",\n        \"payer_id\": \"SFGQGH2A8UA4W\"\n      }\n    },\n    \"shipping_address\": {\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\",\n      \"address_1\": \"100 Kent Street\",\n      \"address_2\": \"Cafe Lane\",\n      \"city\": \"Sydney\",\n      \"state\": \"NSW\",\n      \"postcode\": \"2000\",\n      \"country\": \"AU\"\n    },\n    \"merchant_custom_data\": \"UUID\",\n    \"created_at\": \"2020-08-28T15:37:35+10:00\"\n  },\n  \"errors\": []\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PBA-ETCGSDAKH8TPIL99
+                      name:
+                        type: string
+                        example: Sample Billing Agreement
+                      description:
+                        type: string
+                        example: Stored PayPal account
+                      state:
+                        type: string
+                        example: Inactive
+                      payer:
+                        type: object
+                        properties:
+                          payer_info:
+                            type: object
+                            properties:
+                              email:
+                                type: string
+                                example: test-buyer@example.com
+                              first_name:
+                                type: string
+                                example: Test Buyer
+                              last_name:
+                                type: string
+                                example: Buyer
+                              payer_id:
+                                type: string
+                                example: SFGQGH2A8UA4W
+                      shipping_address:
+                        type: object
+                        properties:
+                          first_name:
+                            type: string
+                            example: John
+                          last_name:
+                            type: string
+                            example: Doe
+                          address_1:
+                            type: string
+                            example: 100 Kent Street
+                          address_2:
+                            type: string
+                            example: Cafe Lane
+                          city:
+                            type: string
+                            example: Sydney
+                          state:
+                            type: string
+                            example: NSW
+                          postcode:
+                            type: string
+                            example: '2000'
+                          country:
+                            type: string
+                            example: AU
+                      merchant_custom_data:
+                        type: string
+                        example: UUID
+                      created_at:
+                        type: string
+                        example: '2020-08-28T15:37:35+10:00'
+                  errors:
+                    type: array
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Could not find Billing Agreement\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Billing Agreement
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Billing agreement is not approved\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Billing agreement is not approved
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl -XPOST https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements/071-PBA-39KSADSS7YTA8CHM/cancel -u TEST:TEST
+        - language: ruby
+          code: FatZebra::Paypal::BillingAgreement.cancel('071-PBA-39KSADSS7YTA8CHM')
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+  /paypal/billing_agreements/{id}/charge:
+    post:
+      summary: Charge a billing agreement
+      description: ''
+      operationId: paypal-charge-a-billing-agreement
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the billing agreement.
+        schema:
+          type: string
+        required: true
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+          default: application/json
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - reference
+              - currency
+              - purchases
+              properties:
+                amount:
+                  type: integer
+                  description: A positive integer representing how much to charge, in the smallest currency unit (eg., 100 to charge $1.00, or 100 to Charge ¥100, a zero decimal currency)
+                  format: int32
+                reference:
+                  type: string
+                  description: Reference of the transaction
+                currency:
+                  type: string
+                  description: Three letter [ISO currency code](https://pmnts.readme.io/v1.0/docs/iso-currency-codes-1), in UPPERCASE
+                  default: AUD
+                purchases:
+                  type: array
+                  description: An array representing purchases. Please note that currently one item is accepted in this array.
+                  items:
+                    properties:
+                      description:
+                        type: string
+                        description: Description of the purchase
+                      soft_descriptor:
+                        type: string
+                        description: The payment descriptor on account transactions on the customer's credit card statement, that PayPal sends to processors.
+                      items:
+                        type: array
+                        description: An array of items that the customer purchases from the merchant
+                        items:
+                          properties:
+                            name:
+                              type: string
+                              description: Item name
+                            unit_amount:
+                              type: integer
+                              description: Item unit amount
+                              format: int32
+                            qty:
+                              type: integer
+                              description: The item quantity
+                              format: int32
+                            tax:
+                              type: integer
+                              description: The item tax for each unit. If tax is specified, `purchase_units[].amount.breakdown.tax_total` is required. Must equal `tax * quantity` for all items.
+                              format: int32
+                            sku:
+                              type: string
+                              description: The stock keeping unit (SKU) for the item
+                            category:
+                              type: string
+                              description: 'Item category; Possible values: PHYSICAL_GOODS, DIGITAL_GOODS'
+                          required:
+                          - name
+                          - unit_amount
+                          - qty
+                          type: object
+                      shipping_address:
+                        type: object
+                        properties:
+                          method:
+                            type: string
+                            description: Shipping address method, e.g. `Australia Post`
+                          address:
+                            type: object
+                            required:
+                            - first_name
+                            - last_name
+                            - address_1
+                            - address_2
+                            - city
+                            - state
+                            - postcode
+                            - country
+                            properties:
+                              first_name:
+                                type: string
+                              last_name:
+                                type: string
+                              address_1:
+                                type: string
+                              address_2:
+                                type: string
+                              city:
+                                type: string
+                              state:
+                                type: string
+                              postcode:
+                                type: string
+                              country:
+                                type: string
+                      amount:
+                        type: object
+                        properties:
+                          amount.item_total:
+                            type: integer
+                            description: The subtotal for all items. Required if the request includes `purchase_units[].items[].unit_amount`. Must equal the sum of (`items[].unit_amount * items[].quantity`) for all items.
+                            format: int32
+                          amount.shipping:
+                            type: integer
+                            description: The shipping fee for all items
+                            format: int32
+                          amount.tax_total:
+                            type: integer
+                            description: The total tax for all items. Required if the request includes `purchase_units.items.tax`. Must equal the sum of (`items[].tax * items[].quantity`) for all items.
+                            format: int32
+                          amount.handling:
+                            type: integer
+                            description: The handling fee for all items
+                            format: int32
+                          amount.shipping_discount:
+                            type: integer
+                            description: The shipping discount for all items
+                            format: int32
+                          amount.discount:
+                            type: integer
+                            description: The discount for all items
+                            format: int32
+                          amount.insurance:
+                            type: integer
+                            description: The insurance fee for all items
+                            format: int32
+                    type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"071-PPO-8JGDRKEVMBBX6IQH\",\n    \"reference\": \"ref_12345_34636456\",\n    \"amount\": 12000,\n    \"decimal_amount\": 120.0,\n    \"successful\": true,\n    \"message\": \"Approved\",\n    \"currency\": \"AUD\",\n    \"transaction_id\": \"071-PPO-8JGDRKEVMBBX6IQH\",\n    \"transaction_date\": \"2020-10-13T12:54:02+11:00\",\n    \"intent\": \"Capture\",\n    \"paypal_reference\": \"ref_12345_34636456\",\n    \"invoice_id\": \"ref_12345_34636456\",\n    \"billing_agreement_id\": \"071-PBA-KIKSZHGXIQF5POME\",\n    \"status\": \"Completed\",\n    \"payment_source\": \"BILLING_AGREEMENT\",\n    \"authorized_amount\": 0.0,\n    \"captured_amount\": 120.0,\n    \"refunded_amount\": 0.0,\n    \"authorizations\": [],\n    \"captures\": [\n      {\n        \"id\": \"071-PPC-YS3DA76TDUBTJEHB\",\n        \"status\": \"Completed\",\n        \"captured\": true,\n        \"amount\": 12000,\n        \"decimal_amount\": 120.0,\n        \"successful\": true,\n        \"currency\": \"AUD\",\n        \"transaction_id\": \"071-PPC-YS3DA76TDUBTJEHB\",\n        \"transaction_date\": \"2020-10-13T12:54:03+11:00\",\n        \"invoice_id\": \"ref_12345_34636456\",\n        \"paypal_fee\": 318,\n        \"seller_receivable_net_amount\": 11682,\n        \"note_to_payer\": \"Sporting Goods\",\n        \"is_final_capture\": true\n      }\n    ],\n    \"refunds\": [],\n    \"payer\": {\n      \"id\": \"SNGQ72BA8UA4W\",\n      \"email\": \"test-buyer@example.com\",\n      \"address\": { \"country_code\": \"AU\" }\n    },\n    \"payee\": { \"id\": \"D5RX47YP2688U\", \"email\": null }\n  },\n  \"errors\": [],\n  \"test\": true\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 071-PPO-8JGDRKEVMBBX6IQH
+                      reference:
+                        type: string
+                        example: ref_12345_34636456
+                      amount:
+                        type: integer
+                        example: 12000
+                        default: 0
+                      decimal_amount:
+                        type: integer
+                        example: 120
+                        default: 0
+                      successful:
+                        type: boolean
+                        example: true
+                        default: true
+                      message:
+                        type: string
+                        example: Approved
+                      currency:
+                        type: string
+                        example: AUD
+                      transaction_id:
+                        type: string
+                        example: 071-PPO-8JGDRKEVMBBX6IQH
+                      transaction_date:
+                        type: string
+                        example: '2020-10-13T12:54:02+11:00'
+                      intent:
+                        type: string
+                        example: Capture
+                      paypal_reference:
+                        type: string
+                        example: ref_12345_34636456
+                      invoice_id:
+                        type: string
+                        example: ref_12345_34636456
+                      billing_agreement_id:
+                        type: string
+                        example: 071-PBA-KIKSZHGXIQF5POME
+                      status:
+                        type: string
+                        example: Completed
+                      payment_source:
+                        type: string
+                        example: BILLING_AGREEMENT
+                      authorized_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      captured_amount:
+                        type: integer
+                        example: 120
+                        default: 0
+                      refunded_amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      authorizations:
+                        type: array
+                      captures:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 071-PPC-YS3DA76TDUBTJEHB
+                            status:
+                              type: string
+                              example: Completed
+                            captured:
+                              type: boolean
+                              example: true
+                              default: true
+                            amount:
+                              type: integer
+                              example: 12000
+                              default: 0
+                            decimal_amount:
+                              type: integer
+                              example: 120
+                              default: 0
+                            successful:
+                              type: boolean
+                              example: true
+                              default: true
+                            currency:
+                              type: string
+                              example: AUD
+                            transaction_id:
+                              type: string
+                              example: 071-PPC-YS3DA76TDUBTJEHB
+                            transaction_date:
+                              type: string
+                              example: '2020-10-13T12:54:03+11:00'
+                            invoice_id:
+                              type: string
+                              example: ref_12345_34636456
+                            paypal_fee:
+                              type: integer
+                              example: 318
+                              default: 0
+                            seller_receivable_net_amount:
+                              type: integer
+                              example: 11682
+                              default: 0
+                            note_to_payer:
+                              type: string
+                              example: Sporting Goods
+                            is_final_capture:
+                              type: boolean
+                              example: true
+                              default: true
+                      refunds:
+                        type: array
+                      payer:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: SNGQ72BA8UA4W
+                          email:
+                            type: string
+                            example: test-buyer@example.com
+                          address:
+                            type: object
+                            properties:
+                              country_code:
+                                type: string
+                                example: AU
+                      payee:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: D5RX47YP2688U
+                          email: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Could not find Billing Agreement\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Could not find Billing Agreement
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Billing agreement is not approved\"]\n}\n"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Billing agreement is not approved
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl -XPOST https://gateway.pmnts-sandbox.io/v1.0/paypal/billing_agreements/071-PBA-39KSADSS7YTA8CHM/charge -u TEST:TEST -d '\n{\n  \"currency\": \"AUD\",\n  \"reference\": \"ref_12345_34636456\",\n  \"amount\": 12000,\n  \"purchases\": [\n    {\n      \"description\": \"Sporting Goods\",\n      \"soft_descriptor\": \"HighFashions\",\n      \"amount\": { \n      \t\"item_total\": 9000, \n        \"shipping\": 2000, \n        \"tax_total\": 1000 \n      },\n      \"items\": [\n        {\n          \"name\": \"T-Shirt\",\n          \"unit_amount\": 9000,\n          \"tax\": 1000,\n          \"qty\": 1,\n          \"sku\": \"sku01\",\n          \"category\": \"PHYSICAL_GOODS\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"United States Postal Service 1\",\n        \"address\": {\n          \"first_name\": \"John\",\n          \"last_name\": \"Doe\",\n          \"address_1\": \"100 Kent Street\",\n          \"address_2\": \"Cafe Lane\",\n          \"city\": \"Sydney\",\n          \"state\": \"NSW\",\n          \"postcode\": \"2000\",\n          \"country\": \"AU\"\n        }\n      }\n    }\n  ]\n}'"
+        - language: ruby
+          code: "FatZebra::Paypal::BillingAgreement.charge('071-PBA-39KSADSS7YTA8CHM', {\n  currency: \"AUD\",\n  reference: \"ref_12345_34636456\",\n  amount: 12000,\n  purchases: [\n    {\n      description: \"Sporting Goods\",\n      soft_descriptor: \"HighFashions\",\n      amount: { \n        item_total: 9000, \n        shipping: 2000, \n        tax_total: 1000 \n      },\n      items: [\n        {\n          name: \"T-Shirt\",\n          unit_amount: 9000,\n          tax: 1000,\n          qty: 1,\n          sku: \"sku01\",\n          category: \"PHYSICAL_GOODS\"\n        }\n      ],\n      shipping_address: {\n        method: \"United States Postal Service 1\",\n        address: {\n          first_name: \"John\",\n          last_name: \"Doe\",\n          address_1: \"100 Kent Street\",\n          address_2: \"Cafe Lane\",\n          city: \"Sydney\",\n          state: \"NSW\",\n          postcode: \"2000\",\n          country: \"AU\"\n        }\n      }\n    }\n  ]  \n})"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Paypal
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

@@ -1,0 +1,126 @@
+openapi: 3.2.0
+info:
+  title: gateway Settlement API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Settlement
+paths:
+  /settlement/totals:
+    get:
+      summary: Fetch settlement totals
+      description: ''
+      operationId: fetch-settlement-totals
+      parameters:
+      - name: date
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: currency
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"date\": \"2018-03-27\",\n    \"currency\": \"AUD\",\n    \"totals\": [\n      {\n        \"scheme\": \"AMEX\",\n        \"purchases\": {\n          \"amount\": 6000,\n          \"count\": 3\n        },\n        \"refunds\": {\n          \"amount\": 0,\n          \"count\": 0\n        },\n        \"total\": {\n          \"amount\": 6000,\n          \"count\": 3\n        }\n      },\n      {\n        \"scheme\": \"MasterCard\",\n        \"purchases\": {\n          \"amount\": 189259,\n          \"count\": 15\n        },\n        \"refunds\": {\n          \"amount\": 0,\n          \"count\": 0\n        },\n        \"total\": {\n          \"amount\": 189259,\n          \"count\": 15\n        }\n      },\n      {\n        \"scheme\": \"VISA\",\n        \"purchases\": {\n          \"amount\": 90800,\n          \"count\": 185\n        },\n        \"refunds\": {\n          \"amount\": -200,\n          \"count\": 2\n        },\n        \"total\": {\n          \"amount\": 90600,\n          \"count\": 187\n        }\n      }\n    ]\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      date:
+                        type: string
+                        example: '2018-03-27'
+                      currency:
+                        type: string
+                        example: AUD
+                      totals:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            scheme:
+                              type: string
+                              example: AMEX
+                            purchases:
+                              type: object
+                              properties:
+                                amount:
+                                  type: integer
+                                  example: 6000
+                                  default: 0
+                                count:
+                                  type: integer
+                                  example: 3
+                                  default: 0
+                            refunds:
+                              type: object
+                              properties:
+                                amount:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                                count:
+                                  type: integer
+                                  example: 0
+                                  default: 0
+                            total:
+                              type: object
+                              properties:
+                                amount:
+                                  type: integer
+                                  example: 6000
+                                  default: 0
+                                count:
+                                  type: integer
+                                  example: 3
+                                  default: 0
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/settlement/totals?currency=AUD&date=2018-03-27 -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Settlement
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

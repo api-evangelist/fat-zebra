@@ -1,0 +1,512 @@
+openapi: 3.2.0
+info:
+  title: Fat Zebra Partner Users API
+  version: 1.0.0
+  summary: Partner-facing API for boarding and managing sub-merchants and their acquirer connections.
+  description: "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections. You pick an acquirer (your bank relationship); Fat Zebra\ndecides which processors carry it.\n\n## Base URL\n\n```\nhttps://gateway.pmnts.io/v2/partners\n```\n\nAll paths below are relative to that base. Sandbox and staging hosts are in\nthe server list; pick the one for your environment.\n\n## Auth\n\nHTTP Basic. Send your reseller **username** as the Basic username and your\nreseller API **token** as the Basic password\n(`Authorization: Basic <base64(username:token)>`). Every endpoint requires\nit.\n\n## Boarding is synchronous\n\nBoarding a merchant onto an acquirer is synchronous: an acquirer connection\nexists only once it is boarded, so it is always live. A board that can't\ncomplete is reported inline as the POST's `422` error response.\n\n## Envelopes\n\n* **Single resource** — returned as the resource itself, no wrapper.\n* **List** — `{ \"items\": [...], \"next_cursor\": <string|null> }`. A `null`\n  `next_cursor` means the last page; otherwise pass its value as\n  `starting_after` to fetch the next page. List query params are `limit`\n  (default 25, max 100) and `starting_after=<id>`.\n* **Error** — `{ \"error\": { \"type\", \"message\", \"fields\", \"request_id\" } }`.\n  `type` is the coarse class; the specific reason lives in `fields`, keyed by\n  a processor-agnostic field name (e.g. `mid`, `tid`, `currencies`) so you\n  never read a switch's native field paths. `type` values and statuses:\n  `authentication_error` (401), `not_found` (404), `conflict` (409),\n  `validation_error` (422 — something the caller can fix, including a\n  processor rejecting a field like the MID/TID), `processor_error` (422 —\n  an unactionable upstream failure: a processor was unreachable, busy, or\n  rejected us for a reason the caller can't fix; retry or escalate,\n  `fields` is empty).\n\nTimestamps are ISO 8601 UTC. Merchants and partners are addressed by their\n`username`. An acquirer connection's `id` is a derived merchant+acquirer\nvirtual id of the form `<merchant-id>-ACQ-<ACQUIRER-CODE>` (e.g.\n`042-ACQ-NAB`) — not a stored id. Wallets and users carry a stable generated\nid of the form `<owner-id>-<TYPE>-<random>` (e.g. `042-WAL-9f3k2m8q`).\nAcquirers are slug codes (e.g. `nab`, `cba`, `anz`).\n"
+servers:
+- url: https://gateway.pmnts.io/v2/partners
+  description: Production
+- url: https://gateway.pmnts-sandbox.io/v2/partners
+  description: Sandbox
+- url: https://gateway.pmnts-staging.io/v2/partners
+  description: Staging
+- url: https://gateway.test/v2/partners
+  description: Local development
+security:
+- PartnerBasicAuth: []
+tags:
+- name: Users
+  description: Partner dashboard users — CRUD plus deactivate/reactivate.
+paths:
+  /users:
+    get:
+      tags:
+      - Users
+      summary: List the partner's dashboard users
+      description: 'Returns the partner''s dashboard user ids newest-first in the list
+
+        envelope. Fetch the full user via `GET /users/{id}`.
+
+        '
+      operationId: listUsers
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/StartingAfter'
+      responses:
+        '200':
+          description: Users list envelope.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags:
+      - Users
+      summary: Create a dashboard user
+      description: 'Creates a dashboard user under the partner. The `password` is
+
+        write-only — it is accepted here but never returned on reads.
+
+        '
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '201':
+          description: The created user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /users/{id}:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    get:
+      tags:
+      - Users
+      summary: Show a user
+      operationId: showUser
+      responses:
+        '200':
+          description: The user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+      - Users
+      summary: Update a user
+      description: 'Updates the user''s `name`, `email`, `role` or `password`. The
+
+        `password` is write-only — it is accepted here but never returned.
+
+        '
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: The updated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+    delete:
+      tags:
+      - Users
+      summary: Remove a user
+      description: 'Deletes the user. Returns `204` with no content.
+
+        '
+      operationId: deleteUser
+      responses:
+        '204':
+          description: The user was removed.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{id}/deactivate:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    post:
+      tags:
+      - Users
+      summary: Deactivate a user
+      description: 'Locks the account so the user can''t sign in. No body is expected.
+
+        '
+      operationId: deactivateUser
+      responses:
+        '200':
+          description: The deactivated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /users/{id}/reactivate:
+    parameters:
+    - $ref: '#/components/parameters/UserId'
+    post:
+      tags:
+      - Users
+      summary: Reactivate a user
+      description: 'Unlocks the account so the user can sign in again. No body is expected.
+
+        '
+      operationId: reactivateUser
+      responses:
+        '200':
+          description: The reactivated user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    StartingAfter:
+      in: query
+      name: starting_after
+      description: Cursor — the id of the last item from the previous page. Omit for the first page.
+      required: false
+      schema:
+        type: string
+    UserId:
+      in: path
+      name: id
+      description: User id (e.g. `123-RU-9f3k2m8q`).
+      required: true
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      description: Page size. Defaults to 25, capped at 100.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    UserCreateRequest:
+      type: object
+      required:
+      - name
+      - email
+      - password
+      example:
+        email: dana@partner.example
+        password: S3curePassw0rd!
+        name: Dana Ops
+        role: admin
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+          description: Accepted on write only; never returned on reads.
+        role:
+          type: string
+          enum:
+          - admin
+          - member
+          default: member
+    User:
+      type: object
+      description: A partner dashboard user.
+      required:
+      - id
+      - name
+      - email
+      - role
+      - status
+      properties:
+        id:
+          type: string
+          description: User id (e.g. `123-RU-9f3k2m8q`).
+        name:
+          type: string
+          description: The user's full name (e.g. `Jane Smith`).
+        email:
+          type: string
+          format: email
+          description: The user's email address (e.g. `jane@acme.example`).
+        role:
+          type: string
+          description: The user's access level.
+          enum:
+          - admin
+          - member
+        status:
+          type: string
+          description: The user's account status.
+          enum:
+          - active
+          - locked
+          - reset_requested
+        mfa_enabled:
+          type: boolean
+          description: Whether multi-factor authentication is enabled for the user.
+        sso_linked:
+          type: boolean
+          description: Whether the user is linked to the partner's IdP.
+        last_login_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the user last logged in — ISO 8601 UTC (e.g. `2026-06-01T09:30:00Z`). `null` if never.
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the user was created — ISO 8601 UTC (e.g. `2026-05-01T00:00:00Z`).
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the user was last updated — ISO 8601 UTC (e.g. `2026-05-15T00:00:00Z`).
+    UserListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/UserSummary'
+    UserUpdateRequest:
+      type: object
+      description: 'Any subset of the user''s `name`, `email`, `role` or `password`. The
+
+        `password` is write-only.
+
+        '
+      example:
+        name: Dana Operations
+        role: member
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+          description: Accepted on write only; never returned on reads.
+        role:
+          type: string
+          enum:
+          - admin
+          - member
+    UserSummary:
+      type: object
+      description: 'The slim user shape returned in list responses — id only. Fetch the
+
+        full `User` via `GET /users/{id}`.
+
+        '
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The user's id (e.g. `123-RU-9f3k2m8q`).
+    ListEnvelope:
+      type: object
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
+  responses:
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+    ValidationError:
+      description: 'The request couldn''t be completed. A `validation_error` is something the
+
+        caller can fix — a bad payload, a merchant that failed validation, or a
+
+        processor rejecting a field (e.g. the MID); the reason is in `fields`,
+
+        keyed by a processor-agnostic field name. A `processor_error` is an
+
+        unactionable upstream failure (a processor was unreachable, busy, or
+
+        errored); `fields` is empty and the caller should retry or escalate.
+
+        Raw upstream detail is never surfaced here — only a parsed,
+
+        processor-neutral reason.
+
+        '
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            merchantValidation:
+              summary: The merchant details were rejected
+              value:
+                error:
+                  type: validation_error
+                  message: the merchant details were rejected
+                  fields:
+                    company_name:
+                    - can't be blank
+                    postcode:
+                    - is not a valid postcode
+                  request_id: req_a1b2c3
+            unsupportedCurrency:
+              summary: A currency the acquirer can't carry
+              value:
+                error:
+                  type: validation_error
+                  message: currency not supported by this acquirer
+                  fields:
+                    currencies:
+                    - NZD is not supported by this acquirer
+                  request_id: req_a1b2c3
+            missingConnectionFields:
+              summary: Missing a required connection field
+              value:
+                error:
+                  type: validation_error
+                  message: 'missing required connection fields: merchant_id, terminal_id'
+                  fields:
+                    merchant_id:
+                    - is required
+                    terminal_id:
+                    - is required
+                  request_id: req_a1b2c3
+            noSupportingProcessor:
+              summary: No processor can carry the acquirer for the requested currencies
+              value:
+                error:
+                  type: validation_error
+                  message: no processor can carry this acquirer for the requested currencies
+                  fields:
+                    acquirer:
+                    - cannot be boarded for the requested currencies
+                  request_id: req_a1b2c3
+            processorRejectedMid:
+              summary: A processor rejected a field (here, the MID) — caller-fixable
+              value:
+                error:
+                  type: validation_error
+                  message: the connection details were rejected
+                  fields:
+                    mid:
+                    - is not supported
+                  request_id: req_a1b2c3
+            processorUnavailable:
+              summary: A processor is busy/errored — not the caller's to fix
+              value:
+                error:
+                  type: processor_error
+                  message: a processor is temporarily unavailable
+                  fields: {}
+                  request_id: req_a1b2c3
+  securitySchemes:
+    PartnerBasicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic. Send your reseller **username** as the Basic username and
+
+        your reseller API **token** as the Basic password. Required on every
+
+        endpoint.
+
+        '

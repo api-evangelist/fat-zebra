@@ -1,0 +1,205 @@
+openapi: 3.2.0
+info:
+  title: Fat Zebra Partner Acquirers API
+  version: 1.0.0
+  summary: Partner-facing API for boarding and managing sub-merchants and their acquirer connections.
+  description: "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections. You pick an acquirer (your bank relationship); Fat Zebra\ndecides which processors carry it.\n\n## Base URL\n\n```\nhttps://gateway.pmnts.io/v2/partners\n```\n\nAll paths below are relative to that base. Sandbox and staging hosts are in\nthe server list; pick the one for your environment.\n\n## Auth\n\nHTTP Basic. Send your reseller **username** as the Basic username and your\nreseller API **token** as the Basic password\n(`Authorization: Basic <base64(username:token)>`). Every endpoint requires\nit.\n\n## Boarding is synchronous\n\nBoarding a merchant onto an acquirer is synchronous: an acquirer connection\nexists only once it is boarded, so it is always live. A board that can't\ncomplete is reported inline as the POST's `422` error response.\n\n## Envelopes\n\n* **Single resource** — returned as the resource itself, no wrapper.\n* **List** — `{ \"items\": [...], \"next_cursor\": <string|null> }`. A `null`\n  `next_cursor` means the last page; otherwise pass its value as\n  `starting_after` to fetch the next page. List query params are `limit`\n  (default 25, max 100) and `starting_after=<id>`.\n* **Error** — `{ \"error\": { \"type\", \"message\", \"fields\", \"request_id\" } }`.\n  `type` is the coarse class; the specific reason lives in `fields`, keyed by\n  a processor-agnostic field name (e.g. `mid`, `tid`, `currencies`) so you\n  never read a switch's native field paths. `type` values and statuses:\n  `authentication_error` (401), `not_found` (404), `conflict` (409),\n  `validation_error` (422 — something the caller can fix, including a\n  processor rejecting a field like the MID/TID), `processor_error` (422 —\n  an unactionable upstream failure: a processor was unreachable, busy, or\n  rejected us for a reason the caller can't fix; retry or escalate,\n  `fields` is empty).\n\nTimestamps are ISO 8601 UTC. Merchants and partners are addressed by their\n`username`. An acquirer connection's `id` is a derived merchant+acquirer\nvirtual id of the form `<merchant-id>-ACQ-<ACQUIRER-CODE>` (e.g.\n`042-ACQ-NAB`) — not a stored id. Wallets and users carry a stable generated\nid of the form `<owner-id>-<TYPE>-<random>` (e.g. `042-WAL-9f3k2m8q`).\nAcquirers are slug codes (e.g. `nab`, `cba`, `anz`).\n"
+servers:
+- url: https://gateway.pmnts.io/v2/partners
+  description: Production
+- url: https://gateway.pmnts-sandbox.io/v2/partners
+  description: Sandbox
+- url: https://gateway.pmnts-staging.io/v2/partners
+  description: Staging
+- url: https://gateway.test/v2/partners
+  description: Local development
+security:
+- PartnerBasicAuth: []
+tags:
+- name: Acquirers
+  description: The acquirer catalogue this partner may board onto.
+paths:
+  /acquirers:
+    get:
+      tags:
+      - Acquirers
+      summary: List acquirers this partner may board onto
+      description: 'Scoped to the partner''s allowed set (derived from the processors behind
+
+        each acquirer). Returns the list shape; `next_cursor` is always `null`
+
+        (the catalogue is small and unpaginated).
+
+        '
+      operationId: listAcquirers
+      responses:
+        '200':
+          description: Acquirer catalogue list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AcquirerListEnvelope'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /acquirers/{code}:
+    parameters:
+    - $ref: '#/components/parameters/AcquirerCode'
+    get:
+      tags:
+      - Acquirers
+      summary: Show one acquirer's detail
+      description: 'Returns the acquirer''s `supported_currencies` and `supported_schemes`.
+
+
+        An unknown or non-boardable acquirer code returns `404`.
+
+        '
+      operationId: showAcquirer
+      responses:
+        '200':
+          description: Acquirer detail.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Acquirer'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    AcquirerListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Acquirer'
+    Acquirer:
+      type: object
+      description: 'A catalogue entry describing one acquirer the partner may board onto.
+
+        '
+      required:
+      - code
+      - name
+      properties:
+        code:
+          type: string
+          description: Acquirer code (e.g. `nab`).
+        name:
+          type: string
+          description: The acquirer's display name (e.g. `NAB`).
+        supported_currencies:
+          type: array
+          description: Currencies this acquirer can settle.
+          items:
+            type: string
+            description: ISO-4217 currency code (e.g. `AUD`).
+        supported_schemes:
+          type: array
+          description: Card schemes this acquirer supports.
+          items:
+            type: string
+            description: Card scheme name (e.g. `Visa`, `Mastercard`).
+    ListEnvelope:
+      type: object
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
+  responses:
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+  parameters:
+    AcquirerCode:
+      in: path
+      name: code
+      description: Acquirer code (e.g. `nab`).
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    PartnerBasicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic. Send your reseller **username** as the Basic username and
+
+        your reseller API **token** as the Basic password. Required on every
+
+        endpoint.
+
+        '

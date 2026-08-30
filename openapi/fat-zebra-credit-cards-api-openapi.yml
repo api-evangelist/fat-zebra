@@ -1,0 +1,726 @@
+openapi: 3.2.0
+info:
+  title: gateway Credit Cards API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Credit Cards
+paths:
+  /credit_cards:
+    post:
+      summary: Tokenize a card
+      description: Tokenizes a card within the system, returning a token that can be used for subsequent transactions.
+      operationId: tokenize-a-card
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"token\": \"abcdef\",\n    \"card_holder\": \"Bob Smitch\",\n    \"card_number\": \"512345XXXXXX2346\",\n    \"card_expiry\": \"2030-05-31\",\n    \"card_type\": \"MasterCard\",\n    \"card_category\": \"Credit\",\n    \"card_subcategory\": \"Credit\",\n    \"card_issuer\": \"Westpac\",\n    \"card_country\": \"Australia\",\n    \"authorized\": true,\n    \"transaction_count\": 0,\n    \"alias\": null\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: abcdef
+                      card_holder:
+                        type: string
+                        example: Bob Smitch
+                      card_number:
+                        type: string
+                        example: 512345XXXXXX2346
+                      card_expiry:
+                        type: string
+                        example: '2030-05-31'
+                      card_type:
+                        type: string
+                        example: MasterCard
+                      card_category:
+                        type: string
+                        example: Credit
+                      card_subcategory:
+                        type: string
+                        example: Credit
+                      card_issuer:
+                        type: string
+                        example: Westpac
+                      card_country:
+                        type: string
+                        example: Australia
+                      authorized:
+                        type: boolean
+                        example: true
+                        default: true
+                      transaction_count:
+                        type: integer
+                        example: 0
+                        default: 0
+                      alias: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '422':
+          description: '422'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": {\n    \"token\": null,\n    \"card_holder\": \"\",\n    \"scheme_token_status\": \"Failed\",\n    \"scheme_token_ready\": false,\n    \"scheme_response_id\": \"16660930105abc\",\n    \"request_timestamp\": \"2022-10-18T11:36:51+00:00\",\n    \"issuer_decision\": null\n  },\n  \"errors\": [\n    \"Invalid Push Account Receipt\"\n  ],\n  \"test\": false\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      token: {}
+                      card_holder:
+                        type: string
+                        example: ''
+                      scheme_token_status:
+                        type: string
+                        example: Failed
+                      scheme_token_ready:
+                        type: boolean
+                        example: false
+                        default: true
+                      scheme_response_id:
+                        type: string
+                        example: 16660930105abc
+                      request_timestamp:
+                        type: string
+                        example: '2022-10-18T11:36:51+00:00'
+                      issuer_decision: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Invalid Push Account Receipt
+                  test:
+                    type: boolean
+                    example: false
+                    default: true
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                card_number:
+                  type: string
+                  description: Number on the card
+                card_holder:
+                  type: string
+                  description: Name on the card
+                card_expiry:
+                  type: string
+                  description: 'Card expiry date; format: MM/YYYY'
+                cvv:
+                  type: string
+                  description: CVV of the card
+                alias:
+                  type: string
+                  description: Alias to associate with the card
+                is_billing:
+                  type: boolean
+                  default: 'false'
+                  description: For Recurring transactions this field can be included set to true, which will make the cvv field optional
+                customer_id:
+                  type: string
+                  example: 071-C-ABC123
+                  description: The Fat Zebra ID of an existing customer to link this card to, in the form 071-C-ABC123. When supplied, the tokenized card is associated with that customer.
+                make_default:
+                  type: boolean
+                  default: false
+                  description: Only applies when customer_id is supplied. When true, this card becomes the customer's default credit card.
+              type: object
+              required:
+              - card_number
+              - card_holder
+              - card_expiry
+              - cvv
+      x-readme:
+        code-samples:
+        - code: "curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards -u TEST:TEST -d'\n {\n    \"card_number\": \"5123456789012346\",\n    \"card_holder\": \"Bob Smith\",\n    \"card_expiry\": \"05/2030\",\n    \"cvv\": \"987\"\n }'"
+          language: shell
+          name: ''
+        - code: "curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards -u TEST:TEST -d'\n {\n    \"card_number\": \"5123456789012346\",\n    \"card_holder\": \"Bob Smith\",\n    \"card_expiry\": \"05/2030\",\n    \"cvv\": \"987\",\n    \"customer_id\": \"071-C-ABC123\",\n    \"make_default\": true\n }'"
+          language: shell
+          name: Link to a customer
+        - code: "FatZebra::Card.create(\n  card_holder: \"Bob Smith\",\n  card_number: \"5123456789012346\",\n  card_expiry: \"05/2030\",\n  cvv: \"987\"\n)"
+          language: ruby
+          name: ''
+        samples-languages:
+        - shell
+        - ruby
+      tags:
+      - Credit Cards
+    get:
+      summary: List tokenized cards
+      description: List tokenized cards
+      operationId: list-tokenized-cards
+      parameters:
+      - name: offset
+        in: query
+        description: Page number to return
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: limit
+        in: query
+        description: Max number of results to return
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: from
+        in: query
+        description: Lower bound for the time at which the card was tokenized
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Upper bound for the time at which the card was tokenized
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\":true,\n  \"response\":[\n    {\n      \"token\":\"fke8uf71\",\n      \"card_holder\":\"Joe Bloggs\",\n      \"card_number\":\"400555XXXXXX0001\",\n      \"card_expiry\":\"2023-11-30\",\n      \"card_type\":\"VISA\",\n      \"card_category\":\"Credit\",\n      \"card_subcategory\":\"Standard\",\n      \"card_issuer\":\"Jpmorgan Chase Bank, N.A.\",\n      \"card_country\":\"United States\",\n      \"authorized\":true,\n      \"transaction_count\":1,\n      \"alias\":\"NewAlias123\"\n    },\n    {\n      \"token\":\"fke8n04t\",\n      \"card_holder\":\"Bob Smith\",\n      \"card_number\":\"512345XXXXXX2346\",\n      \"card_expiry\":\"2030-05-31\",\n      \"card_type\":\"MasterCard\",\n      \"card_category\":\"Credit\",\n      \"card_subcategory\":\"Standard\",\n      \"card_issuer\":\"Banco Del Pichincha, C.A.\",\n      \"card_country\":\"Ecuador\",\n      \"authorized\":true,\n      \"transaction_count\":0,\n      \"alias\":null\n    }\n  ],\n  \"errors\":[],\n  \"test\":true,\n  \"records\":2,\n  \"total_records\":1529543,\n  \"page\":1,\n  \"total_pages\":764772\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        token:
+                          type: string
+                          example: fke8uf71
+                        card_holder:
+                          type: string
+                          example: Joe Bloggs
+                        card_number:
+                          type: string
+                          example: 400555XXXXXX0001
+                        card_expiry:
+                          type: string
+                          example: '2023-11-30'
+                        card_type:
+                          type: string
+                          example: VISA
+                        card_category:
+                          type: string
+                          example: Credit
+                        card_subcategory:
+                          type: string
+                          example: Standard
+                        card_issuer:
+                          type: string
+                          example: Jpmorgan Chase Bank, N.A.
+                        card_country:
+                          type: string
+                          example: United States
+                        authorized:
+                          type: boolean
+                          example: true
+                          default: true
+                        transaction_count:
+                          type: integer
+                          example: 1
+                          default: 0
+                        alias:
+                          type: string
+                          example: NewAlias123
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+                  records:
+                    type: integer
+                    example: 2
+                    default: 0
+                  total_records:
+                    type: integer
+                    example: 1529543
+                    default: 0
+                  page:
+                    type: integer
+                    example: 1
+                    default: 0
+                  total_pages:
+                    type: integer
+                    example: 764772
+                    default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards?limit=2 -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Credit Cards
+  /credit_cards/:
+    post:
+      summary: Tokenize a card with wallet credentials
+      description: ''
+      operationId: tokenize-a-card-with-wallet-credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: object
+                  required:
+                  - type
+                  properties:
+                    type:
+                      type: string
+                      description: The wallet type. Current accepted values are VISA, MASTERPASS, AMEX, GOOGLE, APPLE.
+                    callid:
+                      type: string
+                      description: (Visa Checkout only)
+                    checkout_identifier:
+                      type: string
+                      description: (Masterpass only)
+                    oauth_token:
+                      type: string
+                      description: (Masterpass only)
+                    oauth_verifier:
+                      type: string
+                      description: (Masterpass only)
+                    auth_code:
+                      type: string
+                      description: (Amex only)
+                    transaction_id:
+                      type: string
+                      description: (Amex only)
+                    wallet_id:
+                      type: string
+                      description: (Amex only)
+                    card_type:
+                      type: string
+                      description: (Amex only)
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"token\": \"3vcfuipz\",\n    \"card_holder\": \"Mark Smith\",\n    \"card_number\": \"424242XXXXXX4242\",\n    \"card_expiry\": \"2018-05-31T23:59:59+10:00\",\n    \"authorized\": true,\n    \"transaction_count\": 0,\n    \"wallet\": {\n      \"name\": {\n        \"first\": \"Mark\",\n        \"last\": \"Smith\"\n      },\n      \"address\": {\n        \"line_1\": \"1 Test Road\",\n        \"line_2\": null,\n        \"city\": \"Sydney\",\n        \"state\": \"NSW\",\n        \"postcode\": \"2000\",\n        \"phone\": \"0298985412\"\n      },\n      \"email\": \"email@example.com\",\n      \"card_source_reference\": \"4495316156201826481\"\n    }\n  },\n  \"errors\": [\n  ],\n  \"test\": false\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: 3vcfuipz
+                      card_holder:
+                        type: string
+                        example: Mark Smith
+                      card_number:
+                        type: string
+                        example: 424242XXXXXX4242
+                      card_expiry:
+                        type: string
+                        example: '2018-05-31T23:59:59+10:00'
+                      authorized:
+                        type: boolean
+                        example: true
+                        default: true
+                      transaction_count:
+                        type: integer
+                        example: 0
+                        default: 0
+                      wallet:
+                        type: object
+                        properties:
+                          name:
+                            type: object
+                            properties:
+                              first:
+                                type: string
+                                example: Mark
+                              last:
+                                type: string
+                                example: Smith
+                          address:
+                            type: object
+                            properties:
+                              line_1:
+                                type: string
+                                example: 1 Test Road
+                              line_2: {}
+                              city:
+                                type: string
+                                example: Sydney
+                              state:
+                                type: string
+                                example: NSW
+                              postcode:
+                                type: string
+                                example: '2000'
+                              phone:
+                                type: string
+                                example: 0298985412
+                          email:
+                            type: string
+                            example: email@example.com
+                          card_source_reference:
+                            type: string
+                            example: '4495316156201826481'
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: false
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards -u TEST:TEST -d'\n  {\n    \"wallet\": {\n      \"type\": \"VISA\",\n      \"callid\": \"4495316156201826481\"\n    }\n  }'"
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards -u TEST:TEST -d'\n  {\n    \"wallet\": {\n      \"type\": \"GOOGLE\",\n      \"token\": {\n        \"signature\": \"value\",\n        \"intermediateSigningKey\": {\n          \"signedKey\": \"value\",\n          \"signatures\": [\"value\"]\n        },\n        \"protocolVersion\": \"ECv2\",\n        \"signedMessage\": \"value\"\n      }\n    }\n  }'"
+          name: cURL (Google Pay™)
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards -u TEST:TEST -d'\n  {\n    \"wallet\": {\n      \"type\":\"APPLE\",\n      \"token\": {\n        \"paymentData\": {\n          \"test\" :\"value\"\n        }\n      }\n    }\n  }'"
+          name: cURL (Apple Pay)
+        samples-languages:
+        - curl
+      tags:
+      - Credit Cards
+  /credit_cards/{token_or_alias}:
+    put:
+      summary: Update a tokenized card
+      description: Update an existing card
+      operationId: update-a-tokenized-card
+      parameters:
+      - name: token_or_alias
+        in: path
+        description: Token or alias of the card to update
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                card_expiry:
+                  type: string
+                  description: Expiry on the card
+                alias:
+                  type: string
+                  description: 'Alias to associate with the card. **Note**: if the alias specified already exists on another card, it will be removed from the other card and added to this card.'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"token\": \"fke8jmra\",\n    \"card_holder\": \"Bob Smith\",\n    \"card_number\": \"512345XXXXXX2346\",\n    \"card_expiry\": \"2023-11-30\",\n    \"card_type\": \"MasterCard\",\n    \"card_category\": \"Credit\",\n    \"card_subcategory\": \"Standard\",\n    \"card_issuer\": \"Banco Del Pichincha, C.A.\",\n    \"card_country\": \"Ecuador\",\n    \"authorized\": true,\n    \"transaction_count\": 0,\n    \"alias\": \"NewAlias123\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: fke8jmra
+                      card_holder:
+                        type: string
+                        example: Bob Smith
+                      card_number:
+                        type: string
+                        example: 512345XXXXXX2346
+                      card_expiry:
+                        type: string
+                        example: '2023-11-30'
+                      card_type:
+                        type: string
+                        example: MasterCard
+                      card_category:
+                        type: string
+                        example: Credit
+                      card_subcategory:
+                        type: string
+                        example: Standard
+                      card_issuer:
+                        type: string
+                        example: Banco Del Pichincha, C.A.
+                      card_country:
+                        type: string
+                        example: Ecuador
+                      authorized:
+                        type: boolean
+                        example: true
+                        default: true
+                      transaction_count:
+                        type: integer
+                        example: 0
+                        default: 0
+                      alias:
+                        type: string
+                        example: NewAlias123
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards/fke8jmra -X PUT -u TEST:TEST -d'\n  {\n    \"card_expiry\": \"11/2023\",\n    \"alias\": \"NewAlias123\" \n  }'"
+        samples-languages:
+        - curl
+      tags:
+      - Credit Cards
+    get:
+      summary: Fetch a tokenized card
+      description: ''
+      operationId: fetch-a-tokenized-card
+      parameters:
+      - name: token_or_alias
+        in: path
+        description: Token or alias of the card
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"token\": \"fke81qwe\",\n    \"card_holder\": \"Card Holder\",\n    \"card_number\": \"411111XXXXXX1111\",\n    \"card_expiry\": \"2022-12-31\",\n    \"card_type\": \"VISA\",\n    \"card_category\": \"Credit\",\n    \"card_subcategory\": \"Credit\",\n    \"card_issuer\": \"Jpmorgan Chase Bank, N.A.\",\n    \"card_country\": \"United States\",\n    \"authorized\": true,\n    \"transaction_count\": 1,\n    \"alias\": null\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: fke81qwe
+                      card_holder:
+                        type: string
+                        example: Card Holder
+                      card_number:
+                        type: string
+                        example: 411111XXXXXX1111
+                      card_expiry:
+                        type: string
+                        example: '2022-12-31'
+                      card_type:
+                        type: string
+                        example: VISA
+                      card_category:
+                        type: string
+                        example: Credit
+                      card_subcategory:
+                        type: string
+                        example: Credit
+                      card_issuer:
+                        type: string
+                        example: Jpmorgan Chase Bank, N.A.
+                      card_country:
+                        type: string
+                        example: United States
+                      authorized:
+                        type: boolean
+                        example: true
+                        default: true
+                      transaction_count:
+                        type: integer
+                        example: 1
+                        default: 0
+                      alias: {}
+                  errors:
+                    type: array
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": false,\n  \"response\": null,\n  \"errors\": [\n    \"Record not found\"\n  ],\n  \"test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  response: {}
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Record not found
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/credit_cards/fke81qwe -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Credit Cards
+    delete:
+      summary: Delete an MDES Token Connect tokenized card
+      description: Deactivates a scheme-tokenized card. Currently only supported for cards tokenized via MDES Token Connect; other card types return a 400.
+      operationId: delete-an-mdes-token-connect-tokenized-card
+      parameters:
+      - name: token_or_alias
+        in: path
+        description: Token or alias of the card to delete
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"test\": true\n}"
+                nil response:
+                  value: "{\n    \"successful\": false,\n    \"response\": null,\n    \"errors\": [\n        \"Action is not supported for this card type\"\n    ],\n    \"test\": false\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: nil response
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Action is not supported for this card type
+                    test:
+                      type: boolean
+                      example: false
+                      default: true
+      deprecated: false
+      tags:
+      - Credit Cards
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

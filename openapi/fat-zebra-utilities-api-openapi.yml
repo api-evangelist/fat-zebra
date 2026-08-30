@@ -1,0 +1,345 @@
+openapi: 3.2.0
+info:
+  title: gateway Utilities API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Utilities
+paths:
+  /utilities/mastercard/click_to_pay/registration:
+    get:
+      summary: Check Registration
+      description: In order to check the status of your Mastercard Click to Pay Registration the following API endpoint can be used.
+      operationId: mastercard-clicktopay-check-registration
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                OK - Registered:
+                  value: "{\n   \"errors\" : [],\n   \"response\" : {\n      \"registered\" : true,\n      \"status\" : \"Active\"\n   },\n   \"successful\" : true,\n   \"test\" : true\n}"
+                OK - Not Registered:
+                  value: "{\n   \"errors\" : [],\n   \"response\" : {\n      \"registered\" : false,\n      \"status\" : \"Inactive\"\n   },\n   \"successful\" : true,\n   \"test\" : true\n}"
+              schema:
+                oneOf:
+                - title: OK - Registered
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                    response:
+                      type: object
+                      properties:
+                        registered:
+                          type: boolean
+                          example: true
+                          default: true
+                        status:
+                          type: string
+                          example: Active
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: OK - Not Registered
+                  type: object
+                  properties:
+                    errors:
+                      type: array
+                    response:
+                      type: object
+                      properties:
+                        registered:
+                          type: boolean
+                          example: false
+                          default: true
+                        status:
+                          type: string
+                          example: Inactive
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/utilities/mastercard/click_to_pay/registration -u TEST:TEST
+        samples-languages:
+        - curl
+      tags:
+      - Utilities
+  /utilities/apple_pay/domains/www.example.com:
+    post:
+      summary: Register (Create) an Apple Pay on the Web Domain
+      description: ''
+      operationId: register-create-an-apple-pay-on-the-web-domain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                async:
+                  type: boolean
+                  description: If true the request will return immediately. Merchants need to subscribe to webhooks, or poll the GET endpoint to get the updated status
+                  default: false
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"errors\" : [],\n   \"response\" : {\n      \"created_at\" : \"2021-04-17T22:28:44+10:00\",\n      \"domain\" : \"test.com\",\n      \"status\" : \"Active\",\n      \"updated_at\" : \"2021-04-17T12:28:45+00:00\"\n   },\n   \"successful\" : true,\n   \"test\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                  response:
+                    type: object
+                    properties:
+                      created_at:
+                        type: string
+                        example: '2021-04-17T22:28:44+10:00'
+                      domain:
+                        type: string
+                        example: test.com
+                      status:
+                        type: string
+                        example: Active
+                      updated_at:
+                        type: string
+                        example: '2021-04-17T12:28:45+00:00'
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"errors\" : [\n      \"Record for www.example.com not found\"\n   ],\n   \"response\" : {},\n   \"successful\" : false,\n   \"test\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Record for www.example.com not found
+                  response:
+                    type: object
+                    properties: {}
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      tags:
+      - Utilities
+    get:
+      summary: Check (Get) an Apple Pay on the Web Domain
+      description: ''
+      operationId: check-get-an-apple-pay-on-the-web-domain
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"errors\" : [],\n   \"response\" : {\n      \"created_at\" : \"2021-04-17T22:28:44+10:00\",\n      \"domain\" : \"test.com\",\n      \"status\" : \"Active\",\n      \"updated_at\" : \"2021-04-17T12:28:45+00:00\"\n   },\n   \"successful\" : true,\n   \"test\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                  response:
+                    type: object
+                    properties:
+                      created_at:
+                        type: string
+                        example: '2021-04-17T22:28:44+10:00'
+                      domain:
+                        type: string
+                        example: test.com
+                      status:
+                        type: string
+                        example: Active
+                      updated_at:
+                        type: string
+                        example: '2021-04-17T12:28:45+00:00'
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"errors\" : [\n      \"Record for www.example.com not found\"\n   ],\n   \"response\" : {},\n   \"successful\" : false,\n   \"test\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Record for www.example.com not found
+                  response:
+                    type: object
+                    properties: {}
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      tags:
+      - Utilities
+    delete:
+      summary: Remove (Delete) an Apple Pay on the Web Domain
+      description: ''
+      operationId: remove-delete-an-apple-pay-on-the-web-domain
+      responses:
+        '202':
+          description: '202'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"successful\": true,\n  \"response\": {},\n  \"errors\": [],\n  \"is_test\": true\n}"
+              schema:
+                type: object
+                properties:
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  response:
+                    type: object
+                    properties: {}
+                  errors:
+                    type: array
+                  is_test:
+                    type: boolean
+                    example: true
+                    default: true
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"errors\" : [\n      \"Record for www.example.com not found\"\n   ],\n   \"response\" : {},\n   \"successful\" : false,\n   \"test\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: Record for www.example.com not found
+                  response:
+                    type: object
+                    properties: {}
+                  successful:
+                    type: boolean
+                    example: false
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      tags:
+      - Utilities
+  /utilities/apple_pay/domains:
+    get:
+      summary: List Apple Pay (web) domains
+      description: ''
+      operationId: list-apple-pay-web-domains
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n   \"errors\" : [],\n   \"response\" : [{\n      \"domain\" : \"test.com\",\n      \"status\" : \"Active\"\n   }],\n   \"successful\" : true,\n   \"test\" : true\n}"
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                  response:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        domain:
+                          type: string
+                          example: test.com
+                        status:
+                          type: string
+                          example: Active
+                  successful:
+                    type: boolean
+                    example: true
+                    default: true
+                  test:
+                    type: boolean
+                    example: true
+                    default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: text
+          code: curl https://gateway.pmnts-sandbox.io/v1.0/utilities/apple_pay/domains
+        samples-languages:
+        - text
+      tags:
+      - Utilities
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

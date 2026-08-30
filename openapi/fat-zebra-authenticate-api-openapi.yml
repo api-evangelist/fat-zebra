@@ -1,0 +1,777 @@
+openapi: 3.2.0
+info:
+  title: gateway Authenticate API
+  version: '1.0'
+servers:
+- url: https://gateway.pmnts-sandbox.io/v1.0
+security:
+- sec0: []
+tags:
+- name: Authenticate
+paths:
+  /authenticate/session:
+    post:
+      summary: Generate a JWT token
+      description: This API generates a JWT token to initiate the SCA/3DS2 process.
+      operationId: generate-a-jwt-token
+      parameters:
+      - name: Content-Type
+        in: header
+        description: application/json
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  description: A positive integer representing how much to charge, in the smallest currency unit (eg., 100 to charge $1.00, or 100 to Charge ¥100, a zero decimal currency)
+                  format: int32
+                currency:
+                  type: string
+                  description: Three letter [ISO currency code](https://pmnts.readme.io/docs/iso-currency-codes), in UPPERCASE
+                  default: AUD
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"jwt\": \"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzYxMjcxMTEsImlhdCI6MTU3NjExMjcxMSwiaXNzIjoiNWRjM2VhMzVhZmE4MGQyZWEwZWUxMGU3IiwianRpIjoiMGE0ZTQ1ZjUtZjlmNi00NDNlLWI0OGYtM2IyMWIxMDUxNTg2IiwiT3JnVW5pdElkIjoiNWRiMTVhMzQwMDViOTMwZmM0MGM4OWVlIiwiT2JqZWN0aWZ5UGF5bG9hZCI6dHJ1ZSwiUGF5bG9hZCI6eyJPcmRlckRldGFpbHMiOnsiQ3VycmVuY3lDb2RlIjoiMDM2IiwiQW1vdW50IjoiMTAwIn19fQ.gtcM2t8VdMQcZmG2CJrRiGe0CfIycWwinVva4w-i8F4\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+                Invalid currency:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Currency XXX is not valid for this merchant. Permitted currencies: USD, EUR, GBP, AUD, CAD, JPY, CHF, HKD, NZD, SGD, and JPY\"],\n  \"test\": true\n}"
+                Invalid amount:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Amount is invalid\"],\n  \"test\": true\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        jwt:
+                          type: string
+                          example: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzYxMjcxMTEsImlhdCI6MTU3NjExMjcxMSwiaXNzIjoiNWRjM2VhMzVhZmE4MGQyZWEwZWUxMGU3IiwianRpIjoiMGE0ZTQ1ZjUtZjlmNi00NDNlLWI0OGYtM2IyMWIxMDUxNTg2IiwiT3JnVW5pdElkIjoiNWRiMTVhMzQwMDViOTMwZmM0MGM4OWVlIiwiT2JqZWN0aWZ5UGF5bG9hZCI6dHJ1ZSwiUGF5bG9hZCI6eyJPcmRlckRldGFpbHMiOnsiQ3VycmVuY3lDb2RlIjoiMDM2IiwiQW1vdW50IjoiMTAwIn19fQ.gtcM2t8VdMQcZmG2CJrRiGe0CfIycWwinVva4w-i8F4
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Invalid currency
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: 'Currency XXX is not valid for this merchant. Permitted currencies: USD, EUR, GBP, AUD, CAD, JPY, CHF, HKD, NZD, SGD, and JPY'
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Invalid amount
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Amount is invalid
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/authenticate/session -u TEST:TEST -d'\n  { \n    \"amount\": 1000, \n    \"currency\": \"USD\"\n  }'"
+        - language: ruby
+          code: "FatZebra::Authenticate.session(\n  amount: 100,\n  currency: 'AUS'\n)"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Authenticate
+  /authenticate/decode_session:
+    get:
+      summary: Decode a JWT token
+      description: ''
+      operationId: decode-a-jwt-token
+      parameters:
+      - name: Content-Type
+        in: header
+        description: application/json
+        schema:
+          type: string
+      - name: token
+        in: query
+        description: A JWT token to be decrypted
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n     \"consumer_session_id\": \"bfdfb337-abc5-4aa9-82cc-c837a7352c60\",\n     \"type\": \"CCA\",\n     \"processor_transaction_id\": \"5d3b3653336a85e4e411b37e1e0a97f6\",\n     \"error_number\": 0,\n     \"error_description\": \"Success\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+                Invalid token:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"The token is invalid\"],\n  \"test\": true\n}"
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        consumer_session_id:
+                          type: string
+                          example: bfdfb337-abc5-4aa9-82cc-c837a7352c60
+                        type:
+                          type: string
+                          example: CCA
+                        processor_transaction_id:
+                          type: string
+                          example: 5d3b3653336a85e4e411b37e1e0a97f6
+                        error_number:
+                          type: integer
+                          example: 0
+                          default: 0
+                        error_description:
+                          type: string
+                          example: Success
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Invalid token
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: The token is invalid
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/authenticate/decode_session -u TEST:TEST -d'\n  { \n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzYxMjcxMTEsImlhdCI6MTU3NjExMjcxMSwiaXNzIjoiNWRjM2VhMzVhZmE4MGQyZWEwZWUxMGU3IiwianRpIjoiMGE0ZTQ1ZjUtZjlmNi00NDNlLWI0OGYtM2IyMWIxMDUxNTg2IiwiT3JnVW5pdElkIjoiNWRiMTVhMzQwMDViOTMwZmM0MGM4OWVlIiwiT2JqZWN0aWZ5UGF5bG9hZCI6dHJ1ZSwiUGF5bG9hZCI6eyJPcmRlckRldGFpbHMiOnsiQ3VycmVuY3lDb2RlIjoiMDM2IiwiQW1vdW50IjoiMTAwIn19fQ.gtcM2t8VdMQcZmG2CJrRiGe0CfIycWwinVva4w-i8F4\"\n  }'"
+        - language: ruby
+          code: "FatZebra::Authenticate.decode_session(\n  token: \"eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NzYxMjcxMTEsImlhdCI6MTU3NjExMjcxMSwiaXNzIjoiNWRjM2VhMzVhZmE4MGQyZWEwZWUxMGU3IiwianRpIjoiMGE0ZTQ1ZjUtZjlmNi00NDNlLWI0OGYtM2IyMWIxMDUxNTg2IiwiT3JnVW5pdElkIjoiNWRiMTVhMzQwMDViOTMwZmM0MGM4OWVlIiwiT2JqZWN0aWZ5UGF5bG9hZCI6dHJ1ZSwiUGF5bG9hZCI6eyJPcmRlckRldGFpbHMiOnsiQ3VycmVuY3lDb2RlIjoiMDM2IiwiQW1vdW50IjoiMTAwIn19fQ.gtcM2t8VdMQcZmG2CJrRiGe0CfIycWwinVva4w-i8F4\"\n)"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Authenticate
+  /authenticate:
+    post:
+      summary: Authenticate a transaction
+      description: This API is used to authenticate a transaction. The first step is to call this API with sca.type = "enrollment" to check whether the transaction is frictionless or needs further challenge. After a successful challenge, this API should be called with sca.type = "validation" which will return 3DS2/SCA fields.
+      operationId: authenticate-a-transaction
+      parameters:
+      - name: Content-Type
+        in: header
+        description: application/json
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - card_token
+              - amount
+              - currency
+              properties:
+                card_token:
+                  type: string
+                amount:
+                  type: integer
+                  description: A positive integer representing how much to charge, in the smallest currency unit (eg., 100 to charge $1.00, or 100 to Charge ¥100, a zero decimal currency)
+                  format: int32
+                currency:
+                  type: string
+                  description: Three letter [ISO currency code](https://pmnts.readme.io/docs/iso-currency-codes), in UPPERCASE
+                  default: AUD
+                customer_ip:
+                  type: string
+                  description: RFC791-compliant IP address
+                sca:
+                  properties:
+                    type:
+                      type: string
+                      description: 'The authentication type: enrollment, validation'
+                    merchant_reference_code:
+                      type: string
+                      description: Merchant order reference
+                    customer:
+                      type: object
+                      description: Details about the customer
+                      required:
+                      - address_1
+                      - city
+                      - state
+                      - country
+                      - email
+                      - first_name
+                      - last_name
+                      - post_code
+                      properties:
+                        address_1:
+                          type: string
+                          description: The customer's primary address line
+                        address_2:
+                          type: string
+                          description: The customer's secondary address line (such as building name)
+                        city:
+                          type: string
+                          description: The customer's city
+                        state:
+                          type: string
+                          description: The customer's state
+                        country:
+                          type: string
+                          description: The ISO 3166 alpha-2 country code for the customer
+                        email:
+                          type: string
+                          description: The customer's email address
+                        first_name:
+                          type: string
+                          description: The customer's first name
+                        last_name:
+                          type: string
+                          description: The customer's last name
+                        post_code:
+                          type: string
+                          description: The customer's post code
+                        passport_number:
+                          type: string
+                          description: The customer's passport number
+                        passport_country:
+                          type: string
+                          description: The ISO 3166 numeric passport country
+                        account_changed_at:
+                          type: string
+                          description: 'Date the cardholder’s account was last changed (format: YYYYMMDD)'
+                        account_created_at:
+                          type: string
+                          description: 'Date the cardholder opened the account (format: YYYYMMDD)'
+                        account_password_changed_at:
+                          type: string
+                          description: 'Date the cardholder last changed or reset password on account (format: YYYYMMDD)'
+                    shipping_address:
+                      type: object
+                      description: Details about the shipping
+                      properties:
+                        address_1:
+                          type: string
+                          description: The shipping address primary address line
+                        address_2:
+                          type: string
+                          description: The shipping address secondary address line
+                        city:
+                          type: string
+                          description: The shipping address city or suburb
+                        state:
+                          type: string
+                          description: The shipping address state
+                        country:
+                          type: string
+                          description: The ISO 3166 alpha-2 country code for the shipping
+                        email:
+                          type: string
+                          description: The shipping email address
+                        first_name:
+                          type: string
+                          description: The shipping address first name
+                        last_name:
+                          type: string
+                          description: The shipping address last name
+                        home_phone:
+                          type: string
+                          description: The shipping phone number
+                        post_code:
+                          type: string
+                          description: The shipping post code
+                        method:
+                          type: string
+                          description: The shipping method for the product
+                        destination_code:
+                          type: string
+                          description: The destination chosen for the transaction
+                    custom:
+                      type: object
+                      description: Custom data for the SCA. Please discuss using these fields with Support should you require assistance. x may be numerical or a string.
+                      required:
+                      - transaction_mode
+                      - reference_id
+                      properties:
+                        transaction_mode:
+                          type: string
+                          description: 'Transaction mode identifier: moto, mobile, retail, computer, tablet'
+                        reference_id:
+                          type: string
+                          description: Reference ID that corresponds to the device fingerprinting data that was collected previously
+                        merchant_name:
+                          type: string
+                          description: Your company’s name as you want it to appear to the customer in the issuing bank’s authentication form
+                        merchant_new_customer:
+                          type: boolean
+                          description: Indicates whether the consumer is a new or existing customer with the merchant
+                        preorder:
+                          type: integer
+                          description: 'Indicates whether cardholder is placing an order with a future availability or release date: 0 (Merchandise available), 1 (Future availability)'
+                          format: int32
+                        http_accept:
+                          type: string
+                          description: Value of the Accept header sent by the customer’s web browser
+                        http_user_agent:
+                          type: string
+                          description: Value of the User-Agent header sent by the customer’s web browser
+                        http_user_accept:
+                          type: string
+                          description: The exact content of the HTTP accept header
+                        recurring_end_date:
+                          type: string
+                          description: 'The date after which no further recurring authorizations should be performed (format: YYYYMMDD)'
+                        recurring_frequency:
+                          type: integer
+                          description: Integer value indicating the minimum number of days between recurring authorizations. A frequency of monthly is indicated by the value 28. Multiple of 28 days will be used to indicate months.
+                          format: int32
+                        recurring_original_purchase_date:
+                          type: string
+                          description: 'Date of original purchase (format: YYYYMMDDHH:MM:SS)'
+                    items:
+                      type: array
+                      description: Details about purchased items
+                      items:
+                        properties:
+                          unit_price:
+                            type: number
+                            description: Price of the product
+                            format: float
+                          product_description:
+                            type: string
+                            description: Brief description of item
+                          product_name:
+                            type: string
+                            description: Name of the product
+                          quantity:
+                            type: integer
+                            description: Quantity of the product being purchased. The default value is 1.
+                            default: 1
+                            format: int32
+                          product_sku:
+                            type: string
+                            description: Merchant’s product identifier code
+                          passenger_first_name:
+                            type: string
+                            description: Passenger's first name
+                          passenger_last_name:
+                            type: string
+                            description: Passenger's last name
+                        type: object
+                    airline_data:
+                      type: object
+                      description: Details about the airline data
+                      properties:
+                        number_of_passengers:
+                          type: integer
+                          description: Number of passengers for whom the ticket was issued. The default value is 1 if no value is provided.
+                          format: int32
+                        passengers:
+                          type: array
+                          description: Details about passengers
+                          items:
+                            properties:
+                              first_name:
+                                type: string
+                                description: passenger's first name
+                              last_name:
+                                type: string
+                                description: Passenger's last name
+                            type: object
+                        legs:
+                          type: array
+                          items:
+                            properties:
+                              carrier_code:
+                                type: string
+                                description: International Air Transport Association (IATA) code for the carrier for this leg of the trip. Required for each leg.
+                              departure_date:
+                                type: string
+                                description: 'Departure date for the first leg of the trip (format: YYYYMMDD)'
+                              destination:
+                                type: string
+                                description: International Air Transport Association (IATA) code for the destination airport for this leg of the trip. Required for each leg.
+                              originating_airport_code:
+                                type: string
+                                description: International Air Transport Association (IATA) code for the originating airport for the first leg of the trip.
+                            type: object
+                  required:
+                  - type
+                  - merchant_reference_code
+                  - customer
+                  type: object
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Frictionless:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n     \"action\": {\n        \"proceed\": true,\n        \"challenge\": false,\n        \"frictionless\": true,\n        \"bypass\": false\n     },\n     \"version\": \"2.2.0\",\n     \"enrolled\": \"Y\",\n     \"acs_url\": \"\",\n     \"pareq\": null,\n     \"pares\": \"Y\",\n     \"xid\": \"Y2FyZGluYWxjb21tZXJjZWF1dGg=\",\n     \"eci\": \"05\",\n     \"cavv\": \"Y2FyZGluYWxjb21tZXJjZWF1dGg=\",\n     \"aav\": null,\n     \"ucaf_collection_indicator\": null,\n     \"authentication_path\": null,\n     \"authentication_result\": \"0\",\n     \"authentication_transaction_id\": \"3gbaF10cRR3AKYlHWR70\",\n     \"authentication_status_message\": \"Success\",\n     \"card_bin\": \"400000\",\n     \"card_type_name\": \"VISA\",\n     \"commerce_indicator\": \"vbv\",\n     \"proxy_pan\": null,\n     \"currency\": null,\n     \"request_id\": \"5765389399326807603008\",\n     \"request_token\": \"AxjzbwSTOIrZyFh1GLdAAAoBUaf/fn4iEg6cQkhoZNJMvRivpPBAFAAA7gPd\",\n     \"decision\": \"ACCEPT\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+                Challenge:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"action\": {\n      \"proceed\": true,\n      \"challenge\": true,\n      \"frictionless\": false,\n      \"bypass\": false\n     },\n     \"version\": \"2.2.0\",\n     \"enrolled\": \"Y\",\n     \"acs_url\": \"https://example.com\",\n     \"pareq\": \"eyJtZXNzYWdlVHlwZSI6IkNSZXEiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJmMGRmZmJiZS01ZjI2LTQ1YWItOTBkYS0xYmE0NmE1Zjc4OTMiLCJhY3NUcmFuc0lEIjoiMmJkYmVmZDEtOGU1ZC00NmM2LWE3YzUtMzY1YzE4MWFiMzFmIiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjAyIn0\",\n     \"pares\": null,\n     \"xid\": null,\n     \"eci\": null,\n     \"cavv\": null,\n     \"aav\": null,\n     \"ucaf_collection_indicator\": null,\n     \"authentication_path\": null,\n     \"authentication_result\": null,\n     \"authentication_transaction_id\": \"Qc5RRD656zPXidZnTKT0\",\n     \"authentication_status_message\": null,\n     \"card_bin\": \"400000\",\n     \"card_type_name\": \"VISA\",\n     \"commerce_indicator\": null,\n     \"proxy_pan\": null,\n     \"currency\": null,\n     \"request_id\": \"5765392049476929003010\",\n     \"request_token\": \"AxjzbwSTOIrjMqSdrx4CAAoBUaf/foN6Eg6cQkhl29JMvRivpPBAPAAA8QJZ\",\n     \"decision\": \"REJECT\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+                Validation:
+                  value: "{\n  \"successful\": true,\n  \"response\": {\n    \"action\": {\n      \"proceed\": true\n    },\n    \"version\": \"2.2.0\",\n    \"enrolled\": null,\n    \"acs_url\": \"\",\n    \"pareq\": null,\n    \"pares\": \"Y\",\n    \"xid\": \"MTIzNDU2Nzg5MDEyMzQ1Njc4OTA=\",\n    \"eci\": \"05\",\n    \"cavv\": \"MTIzNDU2Nzg5MDEyMzQ1Njc4OTA=\",\n    \"aav\": null,\n    \"ucaf_collection_indicator\": null,\n    \"authentication_path\": null,\n    \"authentication_result\": \"0\",\n    \"authentication_transaction_id\": null,\n    \"authentication_status_message\": \"Success\",\n    \"card_bin\": \"400000\",\n    \"card_type_name\": \"VISA\",\n    \"commerce_indicator\": \"vbv\",\n    \"proxy_pan\": null,\n    \"currency\": null,\n    \"request_id\": \"5765394444636957403010\",\n    \"request_token\": \"0\",\n    \"decision\": \"ACCEPT\"\n  },\n  \"errors\": [],\n  \"test\": true\n}"
+                Invalid Currency:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Currency XXX is not valid for this merchant. Permitted currencies: USD, EUR, GBP, AUD, CAD, JPY, CHF, HKD, NZD, SGD, and JPY\"],\n  \"test\": true\n}"
+                Invalid Amount:
+                  value: "{\n  \"successful\": false,\n  \"response\": {},\n  \"errors\": [\"Amount is invalid\"],\n  \"test\": true\n}"
+              schema:
+                oneOf:
+                - title: Frictionless
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        action:
+                          type: object
+                          properties:
+                            proceed:
+                              type: boolean
+                              example: true
+                              default: true
+                            challenge:
+                              type: boolean
+                              example: false
+                              default: true
+                            frictionless:
+                              type: boolean
+                              example: true
+                              default: true
+                            bypass:
+                              type: boolean
+                              example: false
+                              default: true
+                        version:
+                          type: string
+                          example: 2.2.0
+                        enrolled:
+                          type: string
+                          example: Y
+                        acs_url:
+                          type: string
+                          example: ''
+                        pareq: {}
+                        pares:
+                          type: string
+                          example: Y
+                        xid:
+                          type: string
+                          example: Y2FyZGluYWxjb21tZXJjZWF1dGg=
+                        eci:
+                          type: string
+                          example: '05'
+                        cavv:
+                          type: string
+                          example: Y2FyZGluYWxjb21tZXJjZWF1dGg=
+                        aav: {}
+                        ucaf_collection_indicator: {}
+                        authentication_path: {}
+                        authentication_result:
+                          type: string
+                          example: '0'
+                        authentication_transaction_id:
+                          type: string
+                          example: 3gbaF10cRR3AKYlHWR70
+                        authentication_status_message:
+                          type: string
+                          example: Success
+                        card_bin:
+                          type: string
+                          example: '400000'
+                        card_type_name:
+                          type: string
+                          example: VISA
+                        commerce_indicator:
+                          type: string
+                          example: vbv
+                        proxy_pan: {}
+                        currency: {}
+                        request_id:
+                          type: string
+                          example: '5765389399326807603008'
+                        request_token:
+                          type: string
+                          example: AxjzbwSTOIrZyFh1GLdAAAoBUaf/fn4iEg6cQkhoZNJMvRivpPBAFAAA7gPd
+                        decision:
+                          type: string
+                          example: ACCEPT
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Challenge
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        action:
+                          type: object
+                          properties:
+                            proceed:
+                              type: boolean
+                              example: true
+                              default: true
+                            challenge:
+                              type: boolean
+                              example: true
+                              default: true
+                            frictionless:
+                              type: boolean
+                              example: false
+                              default: true
+                            bypass:
+                              type: boolean
+                              example: false
+                              default: true
+                        version:
+                          type: string
+                          example: 2.2.0
+                        enrolled:
+                          type: string
+                          example: Y
+                        acs_url:
+                          type: string
+                          example: https://example.com
+                        pareq:
+                          type: string
+                          example: eyJtZXNzYWdlVHlwZSI6IkNSZXEiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJmMGRmZmJiZS01ZjI2LTQ1YWItOTBkYS0xYmE0NmE1Zjc4OTMiLCJhY3NUcmFuc0lEIjoiMmJkYmVmZDEtOGU1ZC00NmM2LWE3YzUtMzY1YzE4MWFiMzFmIiwiY2hhbGxlbmdlV2luZG93U2l6ZSI6IjAyIn0
+                        pares: {}
+                        xid: {}
+                        eci: {}
+                        cavv: {}
+                        aav: {}
+                        ucaf_collection_indicator: {}
+                        authentication_path: {}
+                        authentication_result: {}
+                        authentication_transaction_id:
+                          type: string
+                          example: Qc5RRD656zPXidZnTKT0
+                        authentication_status_message: {}
+                        card_bin:
+                          type: string
+                          example: '400000'
+                        card_type_name:
+                          type: string
+                          example: VISA
+                        commerce_indicator: {}
+                        proxy_pan: {}
+                        currency: {}
+                        request_id:
+                          type: string
+                          example: '5765392049476929003010'
+                        request_token:
+                          type: string
+                          example: AxjzbwSTOIrjMqSdrx4CAAoBUaf/foN6Eg6cQkhl29JMvRivpPBAPAAA8QJZ
+                        decision:
+                          type: string
+                          example: REJECT
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Validation
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: true
+                      default: true
+                    response:
+                      type: object
+                      properties:
+                        action:
+                          type: object
+                          properties:
+                            proceed:
+                              type: boolean
+                              example: true
+                              default: true
+                        version:
+                          type: string
+                          example: 2.2.0
+                        enrolled: {}
+                        acs_url:
+                          type: string
+                          example: ''
+                        pareq: {}
+                        pares:
+                          type: string
+                          example: Y
+                        xid:
+                          type: string
+                          example: MTIzNDU2Nzg5MDEyMzQ1Njc4OTA=
+                        eci:
+                          type: string
+                          example: '05'
+                        cavv:
+                          type: string
+                          example: MTIzNDU2Nzg5MDEyMzQ1Njc4OTA=
+                        aav: {}
+                        ucaf_collection_indicator: {}
+                        authentication_path: {}
+                        authentication_result:
+                          type: string
+                          example: '0'
+                        authentication_transaction_id: {}
+                        authentication_status_message:
+                          type: string
+                          example: Success
+                        card_bin:
+                          type: string
+                          example: '400000'
+                        card_type_name:
+                          type: string
+                          example: VISA
+                        commerce_indicator:
+                          type: string
+                          example: vbv
+                        proxy_pan: {}
+                        currency: {}
+                        request_id:
+                          type: string
+                          example: '5765394444636957403010'
+                        request_token:
+                          type: string
+                          example: '0'
+                        decision:
+                          type: string
+                          example: ACCEPT
+                    errors:
+                      type: array
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Invalid Currency
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: 'Currency XXX is not valid for this merchant. Permitted currencies: USD, EUR, GBP, AUD, CAD, JPY, CHF, HKD, NZD, SGD, and JPY'
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Invalid Amount
+                  type: object
+                  properties:
+                    successful:
+                      type: boolean
+                      example: false
+                      default: true
+                    response:
+                      type: object
+                      properties: {}
+                    errors:
+                      type: array
+                      items:
+                        type: string
+                        example: Amount is invalid
+                    test:
+                      type: boolean
+                      example: true
+                      default: true
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://gateway.pmnts-sandbox.io/v1.0/authenticate -u TEST:TEST -d'\n  { \n    \"card_token\": \"fke8jmra\"\n    \"amount\": 100,\n    \"currency\": \"AUD\",\n    \"customer_ip\": \"111.111.111.111\",\n    \"sca\": {\n      \"type\": \"enrollment\",\n      \"merchant_reference_code\": \"2dffc05a-5e0d-4481-84a3-b1c005746263\",\n      \"customer\": {\n        \"address_1\": \"23 Smith Road\",\n        \"address_2\": \"North Shore\",\n        \"city\": \"Sydney\",\n        \"country\": \"AU\",\n        \"state\": \"ACT\",\n        \"email\": \"test@test.com\",\n        \"first_name\": \"James\",\n        \"last_name\": \"Smith\",\n        \"phone_number\": \"0444555666\",\n        \"post_code\": \"2000\",\n        \"passport_number\": \"X1234567890\",\n        \"passport_country\": \"036\",\n        \"account_changed_at\": \"20191210\",\n        \"account_created_at\": \"20191210\",\n        \"account_password_changed_at\": \"20191210\"\n      },\n      \"shipping_address\": {\n        \"address_1\": \"23 Smith Road\",\n        \"address_2\": \"North Shore\",\n        \"city\": \"Sydney\",\n        \"country\": \"AU\",\n        \"state\": \"NSW\",\n        \"email\": \"test@test.com\",\n        \"first_name\": \"James\",\n        \"last_name\": \"Smith\",\n        \"phone_number\": \"0444555666\",\n        \"post_code\": \"2000\",\n        \"method\": \"pickup\",\n        \"destination_code\": \"01\",\n      },\n      \"custom\": {\n        \"transaction_mode\": \"mobile\",\n        \"reference_id\": \"64420544-ffbb-4f62-b796-e6ce3e1d23ee\",\n        \"merchant_name\": \"TEST\",\n        \"merchant_new_customer\": true,\n        \"preorder\": 1,\n        \"http_accept\": \"text/html\",\n        \"http_user_agent\": \"Mozilla/5.0 (Windows NT 6.1; Win64; x64;)\",\n        \"recurring_end_date\": \"20201015\",\n        \"recurring_frequency\": 3,\n        \"recurring_original_purchase_date\": \"2019120112\":00\":00\"                \n      },\n      \"items\": [\n        { \n          \"unit_price\": 23.3,\n          \"product_description\": \"Widgets\",\n          \"product_name\": \"Watch\",\n          \"quantity\": 1,\n          \"product_sku\": \"9999\",\n          \"passenger_first_name\": \"john\",\n          \"passenger_last_name\": \"smith\",\n        }\n      ],\n      \"airline_data\": {\n        \"legs\": [\n          {\n            \"carrier_code\": \"code\",\n            \"departure_date\": \"20221012\",\n            \"destination\": \"SYD\",\n            \"originating_airport_code\": \"MEL\",\n          }\n        ],\n        \"number_of_passengers\": 2,\n        \"passengers\": [\n          {\n            \"first_name\": \"John\",\n            \"last_name\": \"Smith\",\n          },\n          {\n            \"first_name\": \"Megan\",\n            \"last_name\": \"Doe\",\n          }                    \n        ]\n      },\n    }\n  }'"
+        - language: ruby
+          code: "FatZebra::Authenticate.authenticate(\n  card_token: \"fke8jmra\"\n  amount: 100,\n  currency: \"AUD\",\n  customer_ip: \"111.111.111.111\",\n  sca: {\n    type: \"enrollment\",\n    merchant_reference_code: \"2dffc05a-5e0d-4481-84a3-b1c005746263\",\n    customer: {\n      address_1: \"23 Smith Road\",\n      address_2: \"North Shore\",\n      city: \"Sydney\",\n      country: \"AU\",\n      state: \"ACT\",\n      email: \"test@test.com\",\n      first_name: \"James\",\n      last_name: \"Smith\",\n      phone_number: \"0444555666\",\n      post_code: \"2000\",\n      passport_number: \"X1234567890\",\n      passport_country: \"036\",\n      account_changed_at: \"20191210\",\n      account_created_at: \"20191210\",\n      account_password_changed_at: \"20191210\"\n    },\n    shipping_address: {\n      address_1: \"23 Smith Road\",\n      address_2: \"North Shore\",\n      city: \"Sydney\",\n      country: \"AU\",\n      state: \"NSW\",\n      email: \"test@test.com\",\n      first_name: \"James\",\n      last_name: \"Smith\",\n      phone_number: \"0444555666\",\n      post_code: \"2000\",\n      method: \"pickup\",\n      destination_code: \"01\",\n    },\n    custom: {\n      transaction_mode: \"mobile\",\n      reference_id: \"64420544-ffbb-4f62-b796-e6ce3e1d23ee\",\n      merchant_name: \"TEST\",\n      merchant_new_customer: true,\n      preorder: 1,\n      http_accept: \"text/html\",\n      http_user_agent: \"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0)\",\n      recurring_end_date: \"20201201\",\n      recurring_frequency: 3,\n      recurring_original_purchase_date: \"2019120112:00:00\"                \n    },\n    items: [\n      { \n        unit_price: 23.3,\n        product_description: \"Widgets\",\n        product_name: \"Watch\",\n        quantity: 1,\n        product_sku: \"9999\",\n        passenger_first_name: \"john\",\n        passenger_last_name: \"smith\",\n      }\n    ],\n    airline_data: {\n      legs: [\n        {\n          carrier_code: \"code\",\n          departure_date: \"20221012\",\n          destination: \"SYD\",\n          originating_airport_code: \"MEL\",\n        }\n      ],\n      number_of_passengers: 2,\n      passengers: [\n        {\n          first_name: \"John\",\n          last_name: \"Smith\",\n        },\n        {\n          first_name: \"Megan\",\n          last_name: \"Doe\",\n        }                    \n      ]\n    },\n  }\n)"
+        samples-languages:
+        - curl
+        - ruby
+      tags:
+      - Authenticate
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

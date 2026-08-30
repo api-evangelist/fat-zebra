@@ -1,0 +1,234 @@
+openapi: 3.2.0
+info:
+  title: Fat Zebra Partner API
+  version: 1.0.0
+  summary: Partner-facing API for boarding and managing sub-merchants and their acquirer connections.
+  description: "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections. You pick an acquirer (your bank relationship); Fat Zebra\ndecides which processors carry it.\n\n## Base URL\n\n```\nhttps://gateway.pmnts.io/v2/partners\n```\n\nAll paths below are relative to that base. Sandbox and staging hosts are in\nthe server list; pick the one for your environment.\n\n## Auth\n\nHTTP Basic. Send your reseller **username** as the Basic username and your\nreseller API **token** as the Basic password\n(`Authorization: Basic <base64(username:token)>`). Every endpoint requires\nit.\n\n## Boarding is synchronous\n\nBoarding a merchant onto an acquirer is synchronous: an acquirer connection\nexists only once it is boarded, so it is always live. A board that can't\ncomplete is reported inline as the POST's `422` error response.\n\n## Envelopes\n\n* **Single resource** — returned as the resource itself, no wrapper.\n* **List** — `{ \"items\": [...], \"next_cursor\": <string|null> }`. A `null`\n  `next_cursor` means the last page; otherwise pass its value as\n  `starting_after` to fetch the next page. List query params are `limit`\n  (default 25, max 100) and `starting_after=<id>`.\n* **Error** — `{ \"error\": { \"type\", \"message\", \"fields\", \"request_id\" } }`.\n  `type` is the coarse class; the specific reason lives in `fields`, keyed by\n  a processor-agnostic field name (e.g. `mid`, `tid`, `currencies`) so you\n  never read a switch's native field paths. `type` values and statuses:\n  `authentication_error` (401), `not_found` (404), `conflict` (409),\n  `validation_error` (422 — something the caller can fix, including a\n  processor rejecting a field like the MID/TID), `processor_error` (422 —\n  an unactionable upstream failure: a processor was unreachable, busy, or\n  rejected us for a reason the caller can't fix; retry or escalate,\n  `fields` is empty).\n\nTimestamps are ISO 8601 UTC. Merchants and partners are addressed by their\n`username`. An acquirer connection's `id` is a derived merchant+acquirer\nvirtual id of the form `<merchant-id>-ACQ-<ACQUIRER-CODE>` (e.g.\n`042-ACQ-NAB`) — not a stored id. Wallets and users carry a stable generated\nid of the form `<owner-id>-<TYPE>-<random>` (e.g. `042-WAL-9f3k2m8q`).\nAcquirers are slug codes (e.g. `nab`, `cba`, `anz`).\n"
+servers:
+- url: https://gateway.pmnts.io/v2/partners
+  description: Production
+- url: https://gateway.pmnts-sandbox.io/v2/partners
+  description: Sandbox
+- url: https://gateway.pmnts-staging.io/v2/partners
+  description: Staging
+- url: https://gateway.test/v2/partners
+  description: Local development
+security:
+- PartnerBasicAuth: []
+tags:
+- name: Partner
+  description: The authenticated partner (self).
+paths:
+  /me:
+    get:
+      tags:
+      - Partner
+      summary: Show the authenticated partner (self)
+      description: 'Returns the partner object: id, name, status, environment, branding,
+
+        and defaults.
+
+        '
+      operationId: showSelf
+      responses:
+        '200':
+          description: The authenticated partner.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partner'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /me/credentials/rotate:
+    post:
+      tags:
+      - Partner
+      summary: Rotate the partner's own API token
+      description: 'Rotates the partner''s API `token`. No body is expected. The fresh value
+
+        is returned once — the previous token stops working immediately, so the
+
+        caller must store the response.
+
+        '
+      operationId: rotateSelfCredentials
+      responses:
+        '200':
+          description: The rotated credentials (returned once).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnerCredentials'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    PartnerCredentials:
+      type: object
+      description: 'Returned once by `POST /me/credentials/rotate`. The full `token` is
+
+        shown here and never again.
+
+        '
+      required:
+      - username
+      - token
+      - rotated_at
+      properties:
+        username:
+          type: string
+          description: The partner's username (e.g. `acme-partner`).
+        token:
+          type: string
+          description: The newly-generated API token (e.g. `sk_live_8f3a…`).
+        rotated_at:
+          type: string
+          format: date-time
+          description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
+    PartnerBranding:
+      type: object
+      properties:
+        display_name:
+          type:
+          - string
+          - 'null'
+          description: Partner brand name shown to merchants (e.g. `Acme Payments`).
+        logo_url:
+          type:
+          - string
+          - 'null'
+          description: Absolute URL of the partner logo (e.g. `https://acme.example/logo.png`).
+        support_email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: Support contact email (e.g. `support@acme.example`).
+        support_phone:
+          type:
+          - string
+          - 'null'
+          description: Support contact phone in E.164 format (e.g. `+61290000000`).
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    Partner:
+      type: object
+      description: 'The authenticated partner (self). Returned by `GET /me`.
+
+        '
+      required:
+      - id
+      - name
+      - status
+      - environment
+      properties:
+        id:
+          type: string
+          description: The partner's username (e.g. `acme-partner`).
+        name:
+          type:
+          - string
+          - 'null'
+          description: The partner's display name (e.g. `Acme Payments`).
+        status:
+          type: string
+          description: The partner's account status (e.g. `active`).
+        environment:
+          type: string
+          enum:
+          - live
+          - test
+          description: '`live` in production, `test` elsewhere.'
+        branding:
+          $ref: '#/components/schemas/PartnerBranding'
+        defaults:
+          $ref: '#/components/schemas/PartnerDefaults'
+    PartnerDefaults:
+      type: object
+      properties:
+        currencies:
+          type: array
+          description: Default currencies for the partner's merchants.
+          items:
+            type: string
+            description: ISO-4217 currency code (e.g. `AUD`).
+        card_types:
+          type: array
+          description: Default accepted card types.
+          items:
+            type: string
+            description: Card type slug (e.g. `visa`, `mastercard`).
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: IANA timezone identifier.
+          examples:
+          - Australia/Sydney
+          - Australia/Brisbane
+          - Australia/Perth
+          - Pacific/Auckland
+          - Europe/London
+          - America/New_York
+          - UTC
+  responses:
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+  securitySchemes:
+    PartnerBasicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic. Send your reseller **username** as the Basic username and
+
+        your reseller API **token** as the Basic password. Required on every
+
+        endpoint.
+
+        '
