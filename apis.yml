@@ -23,6 +23,20 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  - security
+  - sandbox
+  generated: '2026-09-03'
+  method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Payments
@@ -733,6 +747,9 @@ apis:
   - type: Documentation
     url: https://docs.fatzebra.com/
 common:
+- type: CapabilityMap
+  url: capabilities/fat-zebra-capability-edges.yml
+  name: Fat Zebra Business Capability Map
 - type: Overlay
   url: overlays/fat-zebra-gateway-overlay.yaml
 - type: Overlay
@@ -783,8 +800,9 @@ common:
   url: packages/fat-zebra-packages.yml
 - type: WellKnown
   url: well-known/fat-zebra-well-known.yml
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/fat-zebra-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: ToolCrosswalk
   url: mcp/fat-zebra-tool-crosswalk.yml
 - type: LLMsTxt
