@@ -496,30 +496,6 @@ apis:
     url: https://docs.fatzebra.com/reference/showself
   - type: Documentation
     url: https://docs.fatzebra.com/
-- aid: fat-zebra:fat-zebra-paypal-api
-  name: Fat Zebra Paypal API
-  description: The Paypal API from Fat Zebra — 15 operation(s) for paypal.
-  humanURL: https://docs.fatzebra.com/reference/purchases
-  baseURL: https://gateway.pmnts.io/v1.0
-  tags:
-  - PayPal
-  tags_raw:
-  - Paypal
-  properties:
-  - type: OpenAPI
-    url: openapi/fat-zebra-paypal-api-openapi.yml
-  - type: Documentation
-    url: https://docs.fatzebra.com/docs/purchases-overview
-  - type: APIReference
-    url: https://docs.fatzebra.com/reference/purchases
-  - type: Webhooks
-    url: asyncapi/fat-zebra-webhooks.yml
-  - type: Documentation
-    url: https://docs.fatzebra.com/docs/introduction
-  - type: APIReference
-    url: https://docs.fatzebra.com/reference/showself
-  - type: Documentation
-    url: https://docs.fatzebra.com/
 - aid: fat-zebra:fat-zebra-purchases-api
   name: Fat Zebra Purchases API
   description: The Purchases API from Fat Zebra — 11 operation(s) for purchases.
@@ -722,18 +698,38 @@ apis:
     url: https://docs.fatzebra.com/reference/showself
   - type: Documentation
     url: https://docs.fatzebra.com/
-- aid: fat-zebra:fat-zebra-web-hooks-api
-  name: Fat Zebra Web Hooks API
-  description: The Web Hooks API from Fat Zebra — 2 operation(s) for web hooks.
+- aid: fat-zebra:fat-zebra-pay-pal-api
+  name: Fat Zebra Pay Pal API
+  description: The Pay Pal API from Fat Zebra — 15 operation(s) for pay pal.
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
-  - Webhook
-  tags_raw:
-  - Web Hooks
+  - Pay Pal
   properties:
   - type: OpenAPI
-    url: openapi/fat-zebra-web-hooks-api-openapi.yml
+    url: openapi/fat-zebra-pay-pal-api-openapi.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/purchases-overview
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/purchases
+  - type: Webhooks
+    url: asyncapi/fat-zebra-webhooks.yml
+  - type: Documentation
+    url: https://docs.fatzebra.com/docs/introduction
+  - type: APIReference
+    url: https://docs.fatzebra.com/reference/showself
+  - type: Documentation
+    url: https://docs.fatzebra.com/
+- aid: fat-zebra:fat-zebra-webhooks-api
+  name: Fat Zebra Webhooks API
+  description: The Webhooks API from Fat Zebra — 2 operation(s) for webhooks.
+  humanURL: https://docs.fatzebra.com/reference/purchases
+  baseURL: https://gateway.pmnts.io/v1.0
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/fat-zebra-webhooks-api-openapi.yml
   - type: Documentation
     url: https://docs.fatzebra.com/docs/purchases-overview
   - type: APIReference
