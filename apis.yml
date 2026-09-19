@@ -458,6 +458,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - Partners
+  tags_raw:
   - Partner
   properties:
   - type: OpenAPI
@@ -704,6 +706,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - PayPal
+  tags_raw:
   - Pay Pal
   properties:
   - type: OpenAPI
@@ -726,6 +730,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
