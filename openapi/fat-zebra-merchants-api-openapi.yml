@@ -355,9 +355,7 @@ paths:
 
         (`/activate`, `/suspend`, `/cancel`) to change `status`, and
 
-        `/credentials/rotate` to rotate credentials.
-
-        '
+        `/credentials/rotate` to rotate credentials.'
       operationId: updateMerchant
       requestBody:
         required: true
@@ -386,9 +384,7 @@ paths:
       summary: Update a merchant (alias for PATCH)
       description: 'Routes to the same update action as `PATCH /merchants/{username}`; same
 
-        behaviour and contract.
-
-        '
+        behaviour and contract.'
       operationId: replaceMerchant
       requestBody:
         required: true
@@ -433,9 +429,7 @@ paths:
 
         is rejected with `409 conflict` ("merchant has no active processing
 
-        connection") — board an acquirer first.
-
-        '
+        connection") — board an acquirer first.'
       operationId: activateMerchant
       responses:
         '200':
@@ -468,9 +462,7 @@ paths:
       tags:
       - Merchants
       summary: Suspend a merchant
-      description: 'Transitions the merchant to `suspended`. No body is expected.
-
-        '
+      description: Transitions the merchant to `suspended`. No body is expected.
       operationId: suspendMerchant
       responses:
         '200':
@@ -501,9 +493,7 @@ paths:
       tags:
       - Merchants
       summary: Cancel a merchant
-      description: 'Transitions the merchant to `closed`. No body is expected.
-
-        '
+      description: Transitions the merchant to `closed`. No body is expected.
       operationId: cancelMerchant
       responses:
         '200':
@@ -543,9 +533,7 @@ paths:
 
         The response is a bare credentials object: `username`, `token`,
 
-        `signing_secret`, `rotated_at`.
-
-        '
+        `signing_secret`, `rotated_at`.'
       operationId: rotateMerchantCredentials
       responses:
         '200':
@@ -570,135 +558,209 @@ paths:
     - url: https://gateway.test/v2/partners
       description: Local development
 components:
-  responses:
-    Conflict:
-      description: The request conflicts with the resource's current state.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            noActiveConnection:
-              value:
-                error:
-                  type: conflict
-                  message: merchant has no active processing connection
-                  fields: {}
-                  request_id: req_a1b2c3
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notFound:
-              value:
-                error:
-                  type: not_found
-                  message: Couldn't find merchant
-                  fields: {}
-                  request_id: req_a1b2c3
-    ValidationError:
-      description: 'The request couldn''t be completed. A `validation_error` is something the
+  schemas:
+    MerchantUpdateRequest:
+      type: object
+      description: 'Any subset of the create business/identity fields. `username`, `status`
 
-        caller can fix — a bad payload, a merchant that failed validation, or a
+        and `credentials` are read-only — use the lifecycle and credential-rotate
 
-        processor rejecting a field (e.g. the MID); the reason is in `fields`,
-
-        keyed by a processor-agnostic field name. A `processor_error` is an
-
-        unactionable upstream failure (a processor was unreachable, busy, or
-
-        errored); `fields` is empty and the caller should retry or escalate.
-
-        Raw upstream detail is never surfaced here — only a parsed,
-
-        processor-neutral reason.
+        endpoints for those. `username` is immutable post-creation.
 
         '
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+      example:
+        trading_name: Acme Online
+        website: https://shop.acme.example
+        email: support@acme.example
+        statement_descriptor: ACME ONLINE
+        customer_support_phone: +61 7 1234 5678
+        card_acceptor_name: ACME ONLINE
+      properties:
+        name:
+          type: string
+        trading_name:
+          type: string
+        company_number:
+          type: string
+        industry:
+          type: string
+        contact:
+          type: string
+        mcc:
+          type: string
+          pattern: ^\d{4}$
+        website:
+          type: string
+        email:
+          type: string
+          format: email
+        accounts_email:
+          type: array
+          items:
+            type: string
+            format: email
+        phone:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        statement_descriptor:
+          type: string
+          maxLength: 25
+        government_controlled:
+          type: boolean
+        country_of_origin:
+          type: string
+          pattern: ^[A-Za-z]{2}$
+        country_code:
+          type: string
+        fee_program_indicator:
+          type: string
+        mastercard_iso_id:
+          type: string
+        visa_iso_id:
+          type: string
+        mastercard_assigned_id:
+          type: string
+        visa_merchant_verification_value:
+          type: string
+        visa_marketplace_identifier:
+          type: string
+        visa_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+        mastercard_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+        bill_payment_provider:
+          type: boolean
+        aggregator_fields_enabled:
+          type: boolean
+        customer_support_phone:
+          type: string
+        card_acceptor_name:
+          type: string
+        card_acceptor_location:
+          type: string
+        card_acceptor_country:
+          type: string
+          pattern: ^[A-Za-z]{2}$
+        timezone:
+          type: string
+          description: IANA timezone identifier.
           examples:
-            merchantValidation:
-              summary: The merchant details were rejected
-              value:
-                error:
-                  type: validation_error
-                  message: the merchant details were rejected
-                  fields:
-                    company_name:
-                    - can't be blank
-                    postcode:
-                    - is not a valid postcode
-                  request_id: req_a1b2c3
-            unsupportedCurrency:
-              summary: A currency the acquirer can't carry
-              value:
-                error:
-                  type: validation_error
-                  message: currency not supported by this acquirer
-                  fields:
-                    currencies:
-                    - NZD is not supported by this acquirer
-                  request_id: req_a1b2c3
-            missingConnectionFields:
-              summary: Missing a required connection field
-              value:
-                error:
-                  type: validation_error
-                  message: 'missing required connection fields: merchant_id, terminal_id'
-                  fields:
-                    merchant_id:
-                    - is required
-                    terminal_id:
-                    - is required
-                  request_id: req_a1b2c3
-            noSupportingProcessor:
-              summary: No processor can carry the acquirer for the requested currencies
-              value:
-                error:
-                  type: validation_error
-                  message: no processor can carry this acquirer for the requested currencies
-                  fields:
-                    acquirer:
-                    - cannot be boarded for the requested currencies
-                  request_id: req_a1b2c3
-            processorRejectedMid:
-              summary: A processor rejected a field (here, the MID) — caller-fixable
-              value:
-                error:
-                  type: validation_error
-                  message: the connection details were rejected
-                  fields:
-                    mid:
-                    - is not supported
-                  request_id: req_a1b2c3
-            processorUnavailable:
-              summary: A processor is busy/errored — not the caller's to fix
-              value:
-                error:
-                  type: processor_error
-                  message: a processor is temporarily unavailable
-                  fields: {}
-                  request_id: req_a1b2c3
-  schemas:
+          - Australia/Sydney
+          - Australia/Brisbane
+          - Australia/Perth
+          - Pacific/Auckland
+          - Europe/London
+          - America/New_York
+          - UTC
+        merchant_identifier:
+          type: string
+          description: Partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID).
+    AcquirerBoardRequest:
+      type: object
+      description: 'One acquirer to board in a combined create — same fields as the body of
+
+        `POST /merchants/{username}/acquirers`.
+
+        '
+      required:
+      - acquirer
+      - merchant_id
+      example:
+        acquirer: nab
+        merchant_id: MID0012345
+        terminal_id: '12345678'
+        currencies:
+        - AUD
+      properties:
+        acquirer:
+          type: string
+          description: Acquirer code (e.g. `bnz`). Must be available to the partner.
+        merchant_id:
+          type: string
+          description: Acquirer-assigned MID. Required.
+        terminal_id:
+          type: string
+          description: 'Acquirer-assigned TID. Optional. If you omit it, Fat Zebra generates
+
+            a deterministic 8-character placeholder from the merchant''s trading
+
+            name (e.g. `ACMEC001`) and uses it across every processor behind
+
+            this acquirer. The generated value is returned on subsequent reads,
+
+            and once set — supplied or generated — it is immutable.
+
+            '
+        currencies:
+          type: array
+          description: Optional. Defaults to everything the acquirer supports.
+          items:
+            type: string
+            pattern: ^[A-Za-z]{3}$
+            description: ISO-4217 currency code (e.g. `AUD`).
+        card_types:
+          type: array
+          description: 'Optional. Card schemes the connection should accept. Narrowed to
+
+            what this acquirer supports — schemes the acquirer can''t handle
+
+            are dropped rather than rejected. Omit to accept every scheme the
+
+            acquirer supports.
+
+            '
+          items:
+            type: string
+            description: Card scheme (e.g. `VISA`, `MasterCard`).
+        card_categories:
+          type: array
+          description: Optional. Card categories the link handles; overrides the link default.
+          items:
+            type: string
+            description: Card category (e.g. `CREDIT`, `DEBIT`).
+        merchant_tier:
+          type: string
+          description: Optional. Merchant tier; used by the EFTPOS Direct acquirer.
+        mpgs_byo_profile:
+          type: boolean
+          description: Optional. Marks the MPGS link as bring-your-own profile.
+    Address:
+      type: object
+      properties:
+        line1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address (e.g. `1 Market St`).
+        line2:
+          type:
+          - string
+          - 'null'
+          description: Second address line (e.g. `Level 4`).
+        city:
+          type:
+          - string
+          - 'null'
+          description: Suburb or city (e.g. `Sydney`).
+        state:
+          type:
+          - string
+          - 'null'
+          description: State or territory (e.g. `NSW`).
+        postcode:
+          type:
+          - string
+          - 'null'
+          description: Postal code (e.g. `2000`).
+        country:
+          type:
+          - string
+          - 'null'
+          pattern: ^[A-Za-z]{2}$
+          description: ISO-3166 alpha-2 country code (e.g. `AU`).
     MerchantSummary:
       type: object
       description: 'The slim merchant shape returned in list responses — username only.
@@ -712,65 +774,6 @@ components:
         id:
           type: string
           description: The merchant's username.
-    MerchantOnboardingResult:
-      type: object
-      description: 'Returned by a combined create (`POST /merchants` with `acquirers`).
-
-        A slim status payload — the merchant''s status, username and one-time
-
-        token, plus a per-acquirer boarding status list. When this result is
-
-        returned every requested acquirer boarded (`status: success`); a
-
-        boarding failure fails the whole create and returns an error instead.
-
-        Read the full merchant via `GET /merchants/{username}` and connections
-
-        via `GET /merchants/{username}/acquirers`.
-
-        '
-      required:
-      - status
-      - username
-      - acquirers
-      properties:
-        status:
-          type: string
-          enum:
-          - pending
-          - active
-          - suspended
-          - closed
-          description: '`active` — every requested acquirer boarded and the merchant was activated.'
-        username:
-          type: string
-          description: The merchant's username.
-        token:
-          type:
-          - string
-          - 'null'
-          description: The one-time API token, revealed once on create.
-        acquirers:
-          type: array
-          description: Per-acquirer boarding outcome — one entry per requested acquirer, all `success`.
-          items:
-            type: object
-            required:
-            - acquirer
-            - status
-            properties:
-              acquirer:
-                type: string
-                description: The acquirer code from the request (e.g. `nab`).
-              status:
-                type: string
-                description: Always `success` on this result — a failure fails the whole create instead.
-                enum:
-                - success
-                - failed
-              reason:
-                type: string
-                description: Why boarding failed. Not populated on this result.
     MerchantCredentials:
       type: object
       description: 'Returned once by `POST /merchants/{username}/credentials/rotate`. The
@@ -797,25 +800,6 @@ components:
           type: string
           format: date-time
           description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
-    MerchantCredentialsInline:
-      type: object
-      description: 'Credentials embedded on the merchant object. `token` is `null` on reads
-
-        and only populated once by create and credential-rotate.
-
-        '
-      required:
-      - username
-      - token
-      properties:
-        username:
-          type: string
-          description: The merchant's username (e.g. `acme-store`).
-        token:
-          type:
-          - string
-          - 'null'
-          description: The live API token (e.g. `tok_live_3b9c1d…`). `null` except on create / rotate.
     Merchant:
       type: object
       description: A merchant under this partner.
@@ -985,75 +969,6 @@ components:
           - 'null'
           format: date-time
           description: When the merchant was last updated — ISO 8601 UTC (e.g. `2026-05-29T04:21:00Z`).
-    AcquirerBoardRequest:
-      type: object
-      description: 'One acquirer to board in a combined create — same fields as the body of
-
-        `POST /merchants/{username}/acquirers`.
-
-        '
-      required:
-      - acquirer
-      - merchant_id
-      example:
-        acquirer: nab
-        merchant_id: MID0012345
-        terminal_id: '12345678'
-        currencies:
-        - AUD
-      properties:
-        acquirer:
-          type: string
-          description: Acquirer code (e.g. `bnz`). Must be available to the partner.
-        merchant_id:
-          type: string
-          description: Acquirer-assigned MID. Required.
-        terminal_id:
-          type: string
-          description: 'Acquirer-assigned TID. Optional. If you omit it, Fat Zebra generates
-
-            a deterministic 8-character placeholder from the merchant''s trading
-
-            name (e.g. `ACMEC001`) and uses it across every processor behind
-
-            this acquirer. The generated value is returned on subsequent reads,
-
-            and once set — supplied or generated — it is immutable.
-
-            '
-        currencies:
-          type: array
-          description: Optional. Defaults to everything the acquirer supports.
-          items:
-            type: string
-            pattern: ^[A-Za-z]{3}$
-            description: ISO-4217 currency code (e.g. `AUD`).
-        card_types:
-          type: array
-          description: 'Optional. Card schemes the connection should accept. Narrowed to
-
-            what this acquirer supports — schemes the acquirer can''t handle
-
-            are dropped rather than rejected. Omit to accept every scheme the
-
-            acquirer supports.
-
-            '
-          items:
-            type: string
-            description: Card scheme (e.g. `VISA`, `MasterCard`).
-        card_categories:
-          type: array
-          description: Optional. Card categories the link handles; overrides the link default.
-          items:
-            type: string
-            description: Card category (e.g. `CREDIT`, `DEBIT`).
-        merchant_tier:
-          type: string
-          description: Optional. Merchant tier; used by the EFTPOS Direct acquirer.
-        mpgs_byo_profile:
-          type: boolean
-          description: Optional. Marks the MPGS link as bring-your-own profile.
     MerchantListEnvelope:
       allOf:
       - $ref: '#/components/schemas/ListEnvelope'
@@ -1063,40 +978,90 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/MerchantSummary'
-    Address:
+    MerchantSurcharging:
       type: object
       properties:
-        line1:
+        enabled:
+          type: boolean
+          description: Whether card surcharging is enabled for the merchant.
+    MerchantOnboardingResult:
+      type: object
+      description: 'Returned by a combined create (`POST /merchants` with `acquirers`).
+
+        A slim status payload — the merchant''s status, username and one-time
+
+        token, plus a per-acquirer boarding status list. When this result is
+
+        returned every requested acquirer boarded (`status: success`); a
+
+        boarding failure fails the whole create and returns an error instead.
+
+        Read the full merchant via `GET /merchants/{username}` and connections
+
+        via `GET /merchants/{username}/acquirers`.
+
+        '
+      required:
+      - status
+      - username
+      - acquirers
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - suspended
+          - closed
+          description: '`active` — every requested acquirer boarded and the merchant was activated.'
+        username:
+          type: string
+          description: The merchant's username.
+        token:
           type:
           - string
           - 'null'
-          description: First line of the street address (e.g. `1 Market St`).
-        line2:
+          description: The one-time API token, revealed once on create.
+        acquirers:
+          type: array
+          description: Per-acquirer boarding outcome — one entry per requested acquirer, all `success`.
+          items:
+            type: object
+            required:
+            - acquirer
+            - status
+            properties:
+              acquirer:
+                type: string
+                description: The acquirer code from the request (e.g. `nab`).
+              status:
+                type: string
+                description: Always `success` on this result — a failure fails the whole create instead.
+                enum:
+                - success
+                - failed
+              reason:
+                type: string
+                description: Why boarding failed. Not populated on this result.
+    MerchantCredentialsInline:
+      type: object
+      description: 'Credentials embedded on the merchant object. `token` is `null` on reads
+
+        and only populated once by create and credential-rotate.
+
+        '
+      required:
+      - username
+      - token
+      properties:
+        username:
+          type: string
+          description: The merchant's username (e.g. `acme-store`).
+        token:
           type:
           - string
           - 'null'
-          description: Second address line (e.g. `Level 4`).
-        city:
-          type:
-          - string
-          - 'null'
-          description: Suburb or city (e.g. `Sydney`).
-        state:
-          type:
-          - string
-          - 'null'
-          description: State or territory (e.g. `NSW`).
-        postcode:
-          type:
-          - string
-          - 'null'
-          description: Postal code (e.g. `2000`).
-        country:
-          type:
-          - string
-          - 'null'
-          pattern: ^[A-Za-z]{2}$
-          description: ISO-3166 alpha-2 country code (e.g. `AU`).
+          description: The live API token (e.g. `tok_live_3b9c1d…`). `null` except on create / rotate.
     Error:
       type: object
       required:
@@ -1134,6 +1099,20 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    ListEnvelope:
+      type: object
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
     MerchantCreateRequest:
       type: object
       description: "Creates a merchant.\n\nRequired to CREATE: `name` and `mcc` only. `mcc` has NO default — the\nmerchant's category is never guessed; omitting it is a\n`422 validation_error`.\n\nTwo modes:\n\n- **Identity-only** (no `acquirers`): creates a `pending` stub with no\n  processing. Board acquirers later via\n  `POST /merchants/{username}/acquirers`. Returns a bare `Merchant`.\n- **Combined create** (with `acquirers`): also boards each listed\n  acquirer and activates the merchant if at least one boards. Boarding\n  is best-effort — failures don't fail the create; each acquirer's\n  outcome is reported in the `MerchantOnboardingResult`. The merchant is\n  `active` when ≥1 acquirer boards, else stays `pending`. Either way the\n  response is `201` with the token revealed once.\n\nReadiness — \"required to create\" is not \"required to transact\". To board\nan acquirer the merchant may need extra business details, depending on\nhow the acquirer is boarded:\n\nThe partner always supplies the acquirer-assigned MID on the\nconnection (TID is optional). Some acquirers also require additional\nbusiness details to board — `company_number`, `trading_name` and\n`address`. Missing fields surface as a `failed` acquirer entry\n(combined create) or a `422` on `POST /merchants/{username}/acquirers`.\n"
@@ -1350,138 +1329,140 @@ components:
             '
           items:
             $ref: '#/components/schemas/AcquirerBoardRequest'
-    MerchantUpdateRequest:
-      type: object
-      description: 'Any subset of the create business/identity fields. `username`, `status`
+  responses:
+    Conflict:
+      description: The request conflicts with the resource's current state.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            noActiveConnection:
+              value:
+                error:
+                  type: conflict
+                  message: merchant has no active processing connection
+                  fields: {}
+                  request_id: req_a1b2c3
+    ValidationError:
+      description: 'The request couldn''t be completed. A `validation_error` is something the
 
-        and `credentials` are read-only — use the lifecycle and credential-rotate
+        caller can fix — a bad payload, a merchant that failed validation, or a
 
-        endpoints for those. `username` is immutable post-creation.
+        processor rejecting a field (e.g. the MID); the reason is in `fields`,
+
+        keyed by a processor-agnostic field name. A `processor_error` is an
+
+        unactionable upstream failure (a processor was unreachable, busy, or
+
+        errored); `fields` is empty and the caller should retry or escalate.
+
+        Raw upstream detail is never surfaced here — only a parsed,
+
+        processor-neutral reason.
 
         '
-      example:
-        trading_name: Acme Online
-        website: https://shop.acme.example
-        email: support@acme.example
-        statement_descriptor: ACME ONLINE
-        customer_support_phone: +61 7 1234 5678
-        card_acceptor_name: ACME ONLINE
-      properties:
-        name:
-          type: string
-        trading_name:
-          type: string
-        company_number:
-          type: string
-        industry:
-          type: string
-        contact:
-          type: string
-        mcc:
-          type: string
-          pattern: ^\d{4}$
-        website:
-          type: string
-        email:
-          type: string
-          format: email
-        accounts_email:
-          type: array
-          items:
-            type: string
-            format: email
-        phone:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        statement_descriptor:
-          type: string
-          maxLength: 25
-        government_controlled:
-          type: boolean
-        country_of_origin:
-          type: string
-          pattern: ^[A-Za-z]{2}$
-        country_code:
-          type: string
-        fee_program_indicator:
-          type: string
-        mastercard_iso_id:
-          type: string
-        visa_iso_id:
-          type: string
-        mastercard_assigned_id:
-          type: string
-        visa_merchant_verification_value:
-          type: string
-        visa_marketplace_identifier:
-          type: string
-        visa_payment_facilitator_indicator:
-          type: string
-          maxLength: 11
-        mastercard_payment_facilitator_indicator:
-          type: string
-          maxLength: 11
-        bill_payment_provider:
-          type: boolean
-        aggregator_fields_enabled:
-          type: boolean
-        customer_support_phone:
-          type: string
-        card_acceptor_name:
-          type: string
-        card_acceptor_location:
-          type: string
-        card_acceptor_country:
-          type: string
-          pattern: ^[A-Za-z]{2}$
-        timezone:
-          type: string
-          description: IANA timezone identifier.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
           examples:
-          - Australia/Sydney
-          - Australia/Brisbane
-          - Australia/Perth
-          - Pacific/Auckland
-          - Europe/London
-          - America/New_York
-          - UTC
-        merchant_identifier:
-          type: string
-          description: Partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID).
-    ListEnvelope:
-      type: object
-      required:
-      - items
-      - next_cursor
-      properties:
-        items:
-          type: array
-          description: The page of results. Each list endpoint overrides the item type.
-        next_cursor:
-          type:
-          - string
-          - 'null'
-          description: Id to pass as `starting_after` for the next page; `null` on the last page.
-    MerchantSurcharging:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: Whether card surcharging is enabled for the merchant.
+            merchantValidation:
+              summary: The merchant details were rejected
+              value:
+                error:
+                  type: validation_error
+                  message: the merchant details were rejected
+                  fields:
+                    company_name:
+                    - can't be blank
+                    postcode:
+                    - is not a valid postcode
+                  request_id: req_a1b2c3
+            unsupportedCurrency:
+              summary: A currency the acquirer can't carry
+              value:
+                error:
+                  type: validation_error
+                  message: currency not supported by this acquirer
+                  fields:
+                    currencies:
+                    - NZD is not supported by this acquirer
+                  request_id: req_a1b2c3
+            missingConnectionFields:
+              summary: Missing a required connection field
+              value:
+                error:
+                  type: validation_error
+                  message: 'missing required connection fields: merchant_id, terminal_id'
+                  fields:
+                    merchant_id:
+                    - is required
+                    terminal_id:
+                    - is required
+                  request_id: req_a1b2c3
+            noSupportingProcessor:
+              summary: No processor can carry the acquirer for the requested currencies
+              value:
+                error:
+                  type: validation_error
+                  message: no processor can carry this acquirer for the requested currencies
+                  fields:
+                    acquirer:
+                    - cannot be boarded for the requested currencies
+                  request_id: req_a1b2c3
+            processorRejectedMid:
+              summary: A processor rejected a field (here, the MID) — caller-fixable
+              value:
+                error:
+                  type: validation_error
+                  message: the connection details were rejected
+                  fields:
+                    mid:
+                    - is not supported
+                  request_id: req_a1b2c3
+            processorUnavailable:
+              summary: A processor is busy/errored — not the caller's to fix
+              value:
+                error:
+                  type: processor_error
+                  message: a processor is temporarily unavailable
+                  fields: {}
+                  request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
   parameters:
     Username:
       in: path
       name: username
       description: The merchant's username (e.g. `acme-store`).
       required: true
-      schema:
-        type: string
-    StartingAfter:
-      in: query
-      name: starting_after
-      description: Cursor — the id of the last item from the previous page. Omit for the first page.
-      required: false
       schema:
         type: string
     Limit:
@@ -1494,6 +1475,13 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    StartingAfter:
+      in: query
+      name: starting_after
+      description: Cursor — the id of the last item from the previous page. Omit for the first page.
+      required: false
+      schema:
+        type: string
   securitySchemes:
     sec0:
       type: http

@@ -7,7 +7,7 @@ servers:
 security:
 - sec0: []
 tags:
-- name: Web Hooks
+- name: Webhooks
 paths:
   /web_hooks:
     post:
@@ -138,7 +138,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Web Hooks
+      - Webhooks
     get:
       summary: List webhooks
       description: List your installed webhooks
@@ -215,11 +215,10 @@ paths:
         - curl
         - ruby
       tags:
-      - Web Hooks
+      - Webhooks
   /web_hooks/{id}:
     put:
       summary: Update a webhook
-      description: Update a webhook
       operationId: update-a-webhook
       parameters:
       - name: id
@@ -316,10 +315,9 @@ paths:
         samples-languages:
         - curl
       tags:
-      - Web Hooks
+      - Webhooks
     delete:
       summary: Delete a webhook
-      description: Delete a webhook
       operationId: delete-a-webhook
       parameters:
       - name: id
@@ -406,7 +404,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Web Hooks
+      - Webhooks
 components:
   securitySchemes:
     sec0:

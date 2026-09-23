@@ -175,7 +175,6 @@ paths:
       - Credit Cards
     get:
       summary: List tokenized cards
-      description: List tokenized cards
       operationId: list-tokenized-cards
       parameters:
       - name: offset

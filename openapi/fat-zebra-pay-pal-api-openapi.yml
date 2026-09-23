@@ -7,7 +7,7 @@ servers:
 security:
 - sec0: []
 tags:
-- name: Paypal
+- name: Pay Pal
 paths:
   /paypal/orders:
     get:
@@ -233,7 +233,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/orders/{id}:
     get:
       summary: Fetch an order
@@ -442,7 +442,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/authorizations:
     get:
       summary: List authorizations
@@ -581,7 +581,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/authorizations/{id}:
     get:
       summary: Fetch an authorization
@@ -704,7 +704,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/authorizations/{id}/capture:
     post:
       summary: Capture an authorization
@@ -900,7 +900,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/authorizations/{id}/void:
     post:
       summary: Void an authorization
@@ -1072,7 +1072,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/captures:
     get:
       summary: List captures
@@ -1231,7 +1231,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/captures/{id}:
     get:
       summary: Fetch a capture
@@ -1374,7 +1374,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/captures/{id}/refund:
     post:
       summary: Refund a capture
@@ -1558,7 +1558,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/refunds:
     get:
       summary: List refunds
@@ -1615,7 +1615,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/refunds/{id}:
     get:
       summary: Fetch a refund
@@ -1674,7 +1674,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/billing_agreements:
     get:
       summary: List billing agreements
@@ -1824,7 +1824,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/billing_agreements/{id}:
     get:
       summary: Fetch a billing agreement
@@ -1958,7 +1958,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/billing_agreements/{id}/cancel:
     post:
       summary: Cancel a billing agreement
@@ -2114,7 +2114,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
   /paypal/billing_agreements/{id}/charge:
     post:
       summary: Charge a billing agreement
@@ -2481,7 +2481,7 @@ paths:
         - curl
         - ruby
       tags:
-      - Paypal
+      - Pay Pal
 components:
   securitySchemes:
     sec0:
