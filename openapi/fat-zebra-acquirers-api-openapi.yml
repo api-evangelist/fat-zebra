@@ -68,15 +68,33 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    AcquirerListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
+    Acquirer:
+      type: object
+      description: 'A catalogue entry describing one acquirer the partner may board onto.
+
+        '
+      required:
+      - code
+      - name
+      properties:
+        code:
+          type: string
+          description: Acquirer code (e.g. `nab`).
+        name:
+          type: string
+          description: The acquirer's display name (e.g. `NAB`).
+        supported_currencies:
+          type: array
+          description: Currencies this acquirer can settle.
           items:
-            type: array
-            items:
-              $ref: '#/components/schemas/Acquirer'
+            type: string
+            description: ISO-4217 currency code (e.g. `AUD`).
+        supported_schemes:
+          type: array
+          description: Card schemes this acquirer supports.
+          items:
+            type: string
+            description: Card scheme name (e.g. `Visa`, `Mastercard`).
     Error:
       type: object
       required:
@@ -114,6 +132,15 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    AcquirerListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Acquirer'
     ListEnvelope:
       type: object
       required:
@@ -128,48 +155,15 @@ components:
           - string
           - 'null'
           description: Id to pass as `starting_after` for the next page; `null` on the last page.
-    Acquirer:
-      type: object
-      description: 'A catalogue entry describing one acquirer the partner may board onto.
-
-        '
-      required:
-      - code
-      - name
-      properties:
-        code:
-          type: string
-          description: Acquirer code (e.g. `nab`).
-        name:
-          type: string
-          description: The acquirer's display name (e.g. `NAB`).
-        supported_currencies:
-          type: array
-          description: Currencies this acquirer can settle.
-          items:
-            type: string
-            description: ISO-4217 currency code (e.g. `AUD`).
-        supported_schemes:
-          type: array
-          description: Card schemes this acquirer supports.
-          items:
-            type: string
-            description: Card scheme name (e.g. `Visa`, `Mastercard`).
+  parameters:
+    AcquirerCode:
+      in: path
+      name: code
+      description: Acquirer code (e.g. `nab`).
+      required: true
+      schema:
+        type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
     NotFound:
       description: Resource not found.
       content:
@@ -184,14 +178,20 @@ components:
                   message: Couldn't find merchant
                   fields: {}
                   request_id: req_a1b2c3
-  parameters:
-    AcquirerCode:
-      in: path
-      name: code
-      description: Acquirer code (e.g. `nab`).
-      required: true
-      schema:
-        type: string
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
   securitySchemes:
     PartnerBasicAuth:
       type: http

@@ -62,22 +62,35 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
   schemas:
+    PartnerDefaults:
+      type: object
+      properties:
+        currencies:
+          type: array
+          description: Default currencies for the partner's merchants.
+          items:
+            type: string
+            description: ISO-4217 currency code (e.g. `AUD`).
+        card_types:
+          type: array
+          description: Default accepted card types.
+          items:
+            type: string
+            description: Card type slug (e.g. `visa`, `mastercard`).
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: IANA timezone identifier.
+          examples:
+          - Australia/Sydney
+          - Australia/Brisbane
+          - Australia/Perth
+          - Pacific/Auckland
+          - Europe/London
+          - America/New_York
+          - UTC
     Error:
       type: object
       required:
@@ -115,34 +128,30 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    PartnerDefaults:
+    PartnerBranding:
       type: object
       properties:
-        currencies:
-          type: array
-          description: Default currencies for the partner's merchants.
-          items:
-            type: string
-            description: ISO-4217 currency code (e.g. `AUD`).
-        card_types:
-          type: array
-          description: Default accepted card types.
-          items:
-            type: string
-            description: Card type slug (e.g. `visa`, `mastercard`).
-        timezone:
+        display_name:
           type:
           - string
           - 'null'
-          description: IANA timezone identifier.
-          examples:
-          - Australia/Sydney
-          - Australia/Brisbane
-          - Australia/Perth
-          - Pacific/Auckland
-          - Europe/London
-          - America/New_York
-          - UTC
+          description: Partner brand name shown to merchants (e.g. `Acme Payments`).
+        logo_url:
+          type:
+          - string
+          - 'null'
+          description: Absolute URL of the partner logo (e.g. `https://acme.example/logo.png`).
+        support_email:
+          type:
+          - string
+          - 'null'
+          format: email
+          description: Support contact email (e.g. `support@acme.example`).
+        support_phone:
+          type:
+          - string
+          - 'null'
+          description: Support contact phone in E.164 format (e.g. `+61290000000`).
     Partner:
       type: object
       description: 'The authenticated partner (self). Returned by `GET /me`.
@@ -197,30 +206,21 @@ components:
           type: string
           format: date-time
           description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
-    PartnerBranding:
-      type: object
-      properties:
-        display_name:
-          type:
-          - string
-          - 'null'
-          description: Partner brand name shown to merchants (e.g. `Acme Payments`).
-        logo_url:
-          type:
-          - string
-          - 'null'
-          description: Absolute URL of the partner logo (e.g. `https://acme.example/logo.png`).
-        support_email:
-          type:
-          - string
-          - 'null'
-          format: email
-          description: Support contact email (e.g. `support@acme.example`).
-        support_phone:
-          type:
-          - string
-          - 'null'
-          description: Support contact phone in E.164 format (e.g. `+61290000000`).
+  responses:
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
   securitySchemes:
     PartnerBasicAuth:
       type: http

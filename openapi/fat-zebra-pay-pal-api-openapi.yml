@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: gateway Paypal API
+  title: gateway PayPal API
   version: '1.0'
 servers:
 - url: https://gateway.pmnts-sandbox.io/v1.0
