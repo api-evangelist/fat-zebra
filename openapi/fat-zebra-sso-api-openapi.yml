@@ -80,36 +80,30 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Conflict:
-      description: The request conflicts with the resource's current state.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            noActiveConnection:
-              value:
-                error:
-                  type: conflict
-                  message: merchant has no active processing connection
-                  fields: {}
-                  request_id: req_a1b2c3
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
   schemas:
+    SsoState:
+      type: object
+      description: 'The partner''s SSO enforcement state and IdP-link counts.
+
+        '
+      required:
+      - enforced
+      - users_total
+      - users_linked
+      - users_unlinked
+      properties:
+        enforced:
+          type: boolean
+          description: Whether SSO is enforced for the partner.
+        users_total:
+          type: integer
+          description: Total active users.
+        users_linked:
+          type: integer
+          description: Active users linked to the IdP.
+        users_unlinked:
+          type: integer
+          description: Active users not yet linked to the IdP.
     Error:
       type: object
       required:
@@ -147,29 +141,35 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    SsoState:
-      type: object
-      description: 'The partner''s SSO enforcement state and IdP-link counts.
-
-        '
-      required:
-      - enforced
-      - users_total
-      - users_linked
-      - users_unlinked
-      properties:
-        enforced:
-          type: boolean
-          description: Whether SSO is enforced for the partner.
-        users_total:
-          type: integer
-          description: Total active users.
-        users_linked:
-          type: integer
-          description: Active users linked to the IdP.
-        users_unlinked:
-          type: integer
-          description: Active users not yet linked to the IdP.
+  responses:
+    Conflict:
+      description: The request conflicts with the resource's current state.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            noActiveConnection:
+              value:
+                error:
+                  type: conflict
+                  message: merchant has no active processing connection
+                  fields: {}
+                  request_id: req_a1b2c3
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
   securitySchemes:
     PartnerBasicAuth:
       type: http

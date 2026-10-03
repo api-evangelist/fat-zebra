@@ -169,105 +169,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    Limit:
-      in: query
-      name: limit
-      description: Page size. Defaults to 25, capped at 100.
-      required: false
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    StartingAfter:
-      in: query
-      name: starting_after
-      description: Cursor — the id of the last item from the previous page. Omit for the first page.
-      required: false
-      schema:
-        type: string
-    UserId:
-      in: path
-      name: id
-      description: User id (e.g. `123-RU-9f3k2m8q`).
-      required: true
-      schema:
-        type: string
   schemas:
-    UserCreateRequest:
-      type: object
-      required:
-      - name
-      - email
-      - password
-      example:
-        email: dana@partner.example
-        password: S3curePassw0rd!
-        name: Dana Ops
-        role: admin
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-          writeOnly: true
-          description: Accepted on write only; never returned on reads.
-        role:
-          type: string
-          enum:
-          - admin
-          - member
-          default: member
-    UserListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/UserSummary'
-    Error:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          required:
-          - type
-          - message
-          - fields
-          - request_id
-          properties:
-            type:
-              type: string
-              description: Machine-readable error category.
-              enum:
-              - authentication_error
-              - not_found
-              - conflict
-              - validation_error
-              - processor_error
-            message:
-              type: string
-              description: Human-readable explanation of the error.
-            fields:
-              type: object
-              additionalProperties:
-                type: array
-                items:
-                  type: string
-              description: Per-field validation messages. Empty object when not field-specific.
-            request_id:
-              type:
-              - string
-              - 'null'
-              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
     User:
       type: object
       description: A partner dashboard user.
@@ -325,19 +227,43 @@ components:
           - 'null'
           format: date-time
           description: When the user was last updated — ISO 8601 UTC (e.g. `2026-05-15T00:00:00Z`).
-    UserSummary:
+    Error:
       type: object
-      description: 'The slim user shape returned in list responses — id only. Fetch the
-
-        full `User` via `GET /users/{id}`.
-
-        '
       required:
-      - id
+      - error
       properties:
-        id:
-          type: string
-          description: The user's id (e.g. `123-RU-9f3k2m8q`).
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
     UserUpdateRequest:
       type: object
       description: 'Any subset of the user''s `name`, `email`, `role` or `password`. The
@@ -377,6 +303,55 @@ components:
           - string
           - 'null'
           description: Id to pass as `starting_after` for the next page; `null` on the last page.
+    UserSummary:
+      type: object
+      description: 'The slim user shape returned in list responses — id only. Fetch the
+
+        full `User` via `GET /users/{id}`.
+
+        '
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The user's id (e.g. `123-RU-9f3k2m8q`).
+    UserListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/UserSummary'
+    UserCreateRequest:
+      type: object
+      required:
+      - name
+      - email
+      - password
+      example:
+        email: dana@partner.example
+        password: S3curePassw0rd!
+        name: Dana Ops
+        role: admin
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          writeOnly: true
+          description: Accepted on write only; never returned on reads.
+        role:
+          type: string
+          enum:
+          - admin
+          - member
+          default: member
   responses:
     ValidationError:
       description: 'The request couldn''t be completed. A `validation_error` is something the
@@ -463,20 +438,6 @@ components:
                   message: a processor is temporarily unavailable
                   fields: {}
                   request_id: req_a1b2c3
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notFound:
-              value:
-                error:
-                  type: not_found
-                  message: Couldn't find merchant
-                  fields: {}
-                  request_id: req_a1b2c3
     Unauthorized:
       description: Missing or invalid HTTP Basic credentials.
       content:
@@ -491,6 +452,45 @@ components:
                   message: Invalid or missing token
                   fields: {}
                   request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+  parameters:
+    UserId:
+      in: path
+      name: id
+      description: User id (e.g. `123-RU-9f3k2m8q`).
+      required: true
+      schema:
+        type: string
+    StartingAfter:
+      in: query
+      name: starting_after
+      description: Cursor — the id of the last item from the previous page. Omit for the first page.
+      required: false
+      schema:
+        type: string
+    Limit:
+      in: query
+      name: limit
+      description: Page size. Defaults to 25, capped at 100.
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
   securitySchemes:
     PartnerBasicAuth:
       type: http

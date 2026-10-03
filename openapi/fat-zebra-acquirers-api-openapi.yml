@@ -132,15 +132,6 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    AcquirerListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/Acquirer'
     ListEnvelope:
       type: object
       required:
@@ -155,6 +146,15 @@ components:
           - string
           - 'null'
           description: Id to pass as `starting_after` for the next page; `null` on the last page.
+    AcquirerListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Acquirer'
   parameters:
     AcquirerCode:
       in: path
@@ -164,20 +164,6 @@ components:
       schema:
         type: string
   responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notFound:
-              value:
-                error:
-                  type: not_found
-                  message: Couldn't find merchant
-                  fields: {}
-                  request_id: req_a1b2c3
     Unauthorized:
       description: Missing or invalid HTTP Basic credentials.
       content:
@@ -190,6 +176,20 @@ components:
                 error:
                   type: authentication_error
                   message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
                   fields: {}
                   request_id: req_a1b2c3
   securitySchemes:

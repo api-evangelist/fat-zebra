@@ -218,16 +218,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    Limit:
-      in: query
-      name: limit
-      description: Page size. Defaults to 25, capped at 100.
-      required: false
+    Username:
+      in: path
+      name: username
+      description: The merchant's username (e.g. `acme-store`).
+      required: true
       schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
+        type: string
     StartingAfter:
       in: query
       name: starting_after
@@ -242,225 +239,16 @@ components:
       required: true
       schema:
         type: string
-    Username:
-      in: path
-      name: username
-      description: The merchant's username (e.g. `acme-store`).
-      required: true
+    Limit:
+      in: query
+      name: limit
+      description: Page size. Defaults to 25, capped at 100.
+      required: false
       schema:
-        type: string
-  schemas:
-    Error:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          required:
-          - type
-          - message
-          - fields
-          - request_id
-          properties:
-            type:
-              type: string
-              description: Machine-readable error category.
-              enum:
-              - authentication_error
-              - not_found
-              - conflict
-              - validation_error
-              - processor_error
-            message:
-              type: string
-              description: Human-readable explanation of the error.
-            fields:
-              type: object
-              additionalProperties:
-                type: array
-                items:
-                  type: string
-              description: Per-field validation messages. Empty object when not field-specific.
-            request_id:
-              type:
-              - string
-              - 'null'
-              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    AcquirerConnectionUpdateRequest:
-      type: object
-      description: 'Only `priority`, `currencies` and `card_types` are mutable. Changing
-
-        `currencies` / `card_types` re-evaluates which underlying processors
-
-        stay active. The `acquirer` and the MID/TID are immutable.
-
-        '
-      example:
-        priority: 10
-        currencies:
-        - AUD
-        - NZD
-        card_types:
-        - visa
-        - mastercard
-      properties:
-        priority:
-          type: integer
-        currencies:
-          type: array
-          items:
-            type: string
-            pattern: ^[A-Za-z]{3}$
-            description: ISO-4217 currency code (e.g. `AUD`).
-        card_types:
-          type: array
-          description: 'Narrowed to the acquirer''s routable set; schemes the acquirer can''t
-
-            settle are dropped rather than applied.
-
-            '
-          items:
-            type: string
-    AcquirerConnectionCreateRequest:
-      type: object
-      required:
-      - acquirer
-      - merchant_id
-      description: 'Board onto an acquirer. Name the `acquirer` and send the acquirer-assigned
-
-        `merchant_id` (MID); `terminal_id` (TID) is optional. Fat Zebra validates
-
-        the MID/TID and `currencies` against its config and boards the merchant
-
-        onto every supporting processor behind the acquirer — you never name a
-
-        processor.
-
-        '
-      example:
-        acquirer: nab
-        merchant_id: MID0012345
-        terminal_id: '12345678'
-        currencies:
-        - AUD
-      properties:
-        acquirer:
-          type: string
-          description: Required. Acquirer code (e.g. `nab`).
-        merchant_id:
-          type: string
-          description: The acquirer-assigned MID. Required.
-        terminal_id:
-          type: string
-          description: 'The acquirer-assigned TID. Optional. If omitted, Fat Zebra generates
-
-            a deterministic 8-character placeholder from the merchant''s trading
-
-            name (e.g. `ACMEC001`) and uses it across every processor behind
-
-            this acquirer. The generated value is returned on subsequent reads,
-
-            and once set — supplied or generated — it is immutable.
-
-            '
-        currencies:
-          type: array
-          description: Optional. Defaults to every currency the acquirer supports.
-          items:
-            type: string
-            pattern: ^[A-Za-z]{3}$
-            description: ISO-4217 currency code (e.g. `AUD`).
-    AcquirerConnectionListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/AcquirerConnection'
-    AcquirerConnection:
-      type: object
-      description: 'The combined state across every acquirer link provisioned for one
-
-        acquirer. Boarding is synchronous, so a connection that exists is
-
-        always boarded.
-
-        '
-      required:
-      - acquirer_name
-      - status
-      properties:
-        acquirer_name:
-          type:
-          - string
-          - 'null'
-          description: The acquirer's display name (e.g. `NAB`).
-        merchant_id:
-          type:
-          - string
-          - 'null'
-          description: The acquirer-assigned MID (e.g. `ent_a1b2c3d4`).
-        terminal_id:
-          type:
-          - string
-          - 'null'
-          description: 'The acquirer-assigned TID (e.g. `T0001`), or a Fat Zebra-generated
-
-            8-character placeholder (e.g. `ACMEC001`) if none was supplied at
-
-            board time. Immutable once set.
-
-            '
-        currencies:
-          type: array
-          description: Currencies the connection can transact.
-          items:
-            type: string
-            description: ISO-4217 currency code (e.g. `AUD`).
-        schemes:
-          type: array
-          description: Networks the merchant can transact for this acquirer.
-          items:
-            type: string
-            description: Card scheme name (e.g. `Visa`, `Mastercard`).
-        modes:
-          type: array
-          description: Transaction modes the connection supports.
-          items:
-            type: string
-            description: Transaction mode (e.g. `Purchase`, `Auth/Capture`).
-        wallets:
-          type: array
-          description: Wallets the connection accepts.
-          items:
-            type: string
-            description: Wallet type (e.g. `ApplePay`, `GooglePay`, or `ALL`).
-        three_ds_enabled:
-          type: boolean
-          description: Whether a boarded processor for this acquirer supports 3DS.
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
-          description: Routing toggle across the underlying links — disable to turn the connection off without deleting it.
-    ListEnvelope:
-      type: object
-      required:
-      - items
-      - next_cursor
-      properties:
-        items:
-          type: array
-          description: The page of results. Each list endpoint overrides the item type.
-        next_cursor:
-          type:
-          - string
-          - 'null'
-          description: Id to pass as `starting_after` for the next page; `null` on the last page.
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
   responses:
     ValidationError:
       description: 'The request couldn''t be completed. A `validation_error` is something the
@@ -547,20 +335,6 @@ components:
                   message: a processor is temporarily unavailable
                   fields: {}
                   request_id: req_a1b2c3
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notFound:
-              value:
-                error:
-                  type: not_found
-                  message: Couldn't find merchant
-                  fields: {}
-                  request_id: req_a1b2c3
     Unauthorized:
       description: Missing or invalid HTTP Basic credentials.
       content:
@@ -575,6 +349,232 @@ components:
                   message: Invalid or missing token
                   fields: {}
                   request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+  schemas:
+    AcquirerConnection:
+      type: object
+      description: 'The combined state across every acquirer link provisioned for one
+
+        acquirer. Boarding is synchronous, so a connection that exists is
+
+        always boarded.
+
+        '
+      required:
+      - acquirer_name
+      - status
+      properties:
+        acquirer_name:
+          type:
+          - string
+          - 'null'
+          description: The acquirer's display name (e.g. `NAB`).
+        merchant_id:
+          type:
+          - string
+          - 'null'
+          description: The acquirer-assigned MID (e.g. `ent_a1b2c3d4`).
+        terminal_id:
+          type:
+          - string
+          - 'null'
+          description: 'The acquirer-assigned TID (e.g. `T0001`), or a Fat Zebra-generated
+
+            8-character placeholder (e.g. `ACMEC001`) if none was supplied at
+
+            board time. Immutable once set.
+
+            '
+        currencies:
+          type: array
+          description: Currencies the connection can transact.
+          items:
+            type: string
+            description: ISO-4217 currency code (e.g. `AUD`).
+        schemes:
+          type: array
+          description: Networks the merchant can transact for this acquirer.
+          items:
+            type: string
+            description: Card scheme name (e.g. `Visa`, `Mastercard`).
+        modes:
+          type: array
+          description: Transaction modes the connection supports.
+          items:
+            type: string
+            description: Transaction mode (e.g. `Purchase`, `Auth/Capture`).
+        wallets:
+          type: array
+          description: Wallets the connection accepts.
+          items:
+            type: string
+            description: Wallet type (e.g. `ApplePay`, `GooglePay`, or `ALL`).
+        three_ds_enabled:
+          type: boolean
+          description: Whether a boarded processor for this acquirer supports 3DS.
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+          description: Routing toggle across the underlying links — disable to turn the connection off without deleting it.
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    AcquirerConnectionCreateRequest:
+      type: object
+      required:
+      - acquirer
+      - merchant_id
+      description: 'Board onto an acquirer. Name the `acquirer` and send the acquirer-assigned
+
+        `merchant_id` (MID); `terminal_id` (TID) is optional. Fat Zebra validates
+
+        the MID/TID and `currencies` against its config and boards the merchant
+
+        onto every supporting processor behind the acquirer — you never name a
+
+        processor.
+
+        '
+      example:
+        acquirer: nab
+        merchant_id: MID0012345
+        terminal_id: '12345678'
+        currencies:
+        - AUD
+      properties:
+        acquirer:
+          type: string
+          description: Required. Acquirer code (e.g. `nab`).
+        merchant_id:
+          type: string
+          description: The acquirer-assigned MID. Required.
+        terminal_id:
+          type: string
+          description: 'The acquirer-assigned TID. Optional. If omitted, Fat Zebra generates
+
+            a deterministic 8-character placeholder from the merchant''s trading
+
+            name (e.g. `ACMEC001`) and uses it across every processor behind
+
+            this acquirer. The generated value is returned on subsequent reads,
+
+            and once set — supplied or generated — it is immutable.
+
+            '
+        currencies:
+          type: array
+          description: Optional. Defaults to every currency the acquirer supports.
+          items:
+            type: string
+            pattern: ^[A-Za-z]{3}$
+            description: ISO-4217 currency code (e.g. `AUD`).
+    ListEnvelope:
+      type: object
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
+    AcquirerConnectionUpdateRequest:
+      type: object
+      description: 'Only `priority`, `currencies` and `card_types` are mutable. Changing
+
+        `currencies` / `card_types` re-evaluates which underlying processors
+
+        stay active. The `acquirer` and the MID/TID are immutable.
+
+        '
+      example:
+        priority: 10
+        currencies:
+        - AUD
+        - NZD
+        card_types:
+        - visa
+        - mastercard
+      properties:
+        priority:
+          type: integer
+        currencies:
+          type: array
+          items:
+            type: string
+            pattern: ^[A-Za-z]{3}$
+            description: ISO-4217 currency code (e.g. `AUD`).
+        card_types:
+          type: array
+          description: 'Narrowed to the acquirer''s routable set; schemes the acquirer can''t
+
+            settle are dropped rather than applied.
+
+            '
+          items:
+            type: string
+    AcquirerConnectionListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/AcquirerConnection'
   securitySchemes:
     PartnerBasicAuth:
       type: http

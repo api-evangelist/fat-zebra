@@ -63,71 +63,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    PartnerDefaults:
-      type: object
-      properties:
-        currencies:
-          type: array
-          description: Default currencies for the partner's merchants.
-          items:
-            type: string
-            description: ISO-4217 currency code (e.g. `AUD`).
-        card_types:
-          type: array
-          description: Default accepted card types.
-          items:
-            type: string
-            description: Card type slug (e.g. `visa`, `mastercard`).
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: IANA timezone identifier.
-          examples:
-          - Australia/Sydney
-          - Australia/Brisbane
-          - Australia/Perth
-          - Pacific/Auckland
-          - Europe/London
-          - America/New_York
-          - UTC
-    Error:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          required:
-          - type
-          - message
-          - fields
-          - request_id
-          properties:
-            type:
-              type: string
-              description: Machine-readable error category.
-              enum:
-              - authentication_error
-              - not_found
-              - conflict
-              - validation_error
-              - processor_error
-            message:
-              type: string
-              description: Human-readable explanation of the error.
-            fields:
-              type: object
-              additionalProperties:
-                type: array
-                items:
-                  type: string
-              description: Per-field validation messages. Empty object when not field-specific.
-            request_id:
-              type:
-              - string
-              - 'null'
-              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
     PartnerBranding:
       type: object
       properties:
@@ -184,6 +119,43 @@ components:
           $ref: '#/components/schemas/PartnerBranding'
         defaults:
           $ref: '#/components/schemas/PartnerDefaults'
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
     PartnerCredentials:
       type: object
       description: 'Returned once by `POST /me/credentials/rotate`. The full `token` is
@@ -206,6 +178,34 @@ components:
           type: string
           format: date-time
           description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
+    PartnerDefaults:
+      type: object
+      properties:
+        currencies:
+          type: array
+          description: Default currencies for the partner's merchants.
+          items:
+            type: string
+            description: ISO-4217 currency code (e.g. `AUD`).
+        card_types:
+          type: array
+          description: Default accepted card types.
+          items:
+            type: string
+            description: Card type slug (e.g. `visa`, `mastercard`).
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: IANA timezone identifier.
+          examples:
+          - Australia/Sydney
+          - Australia/Brisbane
+          - Australia/Perth
+          - Pacific/Auckland
+          - Europe/London
+          - America/New_York
+          - UTC
   responses:
     Unauthorized:
       description: Missing or invalid HTTP Basic credentials.

@@ -93,15 +93,6 @@ paths:
       description: Local development
 components:
   schemas:
-    PingResponse:
-      type: object
-      required:
-      - ok
-      properties:
-        ok:
-          type: boolean
-          const: true
-          description: Always `true` when the API is reachable and the token is valid.
     Error:
       type: object
       required:
@@ -139,6 +130,15 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    PingResponse:
+      type: object
+      required:
+      - ok
+      properties:
+        ok:
+          type: boolean
+          const: true
+          description: Always `true` when the API is reachable and the token is valid.
   responses:
     Unauthorized:
       description: Missing or invalid HTTP Basic credentials.
