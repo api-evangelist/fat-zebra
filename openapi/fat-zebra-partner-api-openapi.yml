@@ -62,6 +62,21 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
   schemas:
     PartnerBranding:
       type: object
@@ -119,6 +134,28 @@ components:
           $ref: '#/components/schemas/PartnerBranding'
         defaults:
           $ref: '#/components/schemas/PartnerDefaults'
+    PartnerCredentials:
+      type: object
+      description: 'Returned once by `POST /me/credentials/rotate`. The full `token` is
+
+        shown here and never again.
+
+        '
+      required:
+      - username
+      - token
+      - rotated_at
+      properties:
+        username:
+          type: string
+          description: The partner's username (e.g. `acme-partner`).
+        token:
+          type: string
+          description: The newly-generated API token (e.g. `sk_live_8f3a…`).
+        rotated_at:
+          type: string
+          format: date-time
+          description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
     Error:
       type: object
       required:
@@ -156,28 +193,6 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    PartnerCredentials:
-      type: object
-      description: 'Returned once by `POST /me/credentials/rotate`. The full `token` is
-
-        shown here and never again.
-
-        '
-      required:
-      - username
-      - token
-      - rotated_at
-      properties:
-        username:
-          type: string
-          description: The partner's username (e.g. `acme-partner`).
-        token:
-          type: string
-          description: The newly-generated API token (e.g. `sk_live_8f3a…`).
-        rotated_at:
-          type: string
-          format: date-time
-          description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
     PartnerDefaults:
       type: object
       properties:
@@ -206,21 +221,6 @@ components:
           - Europe/London
           - America/New_York
           - UTC
-  responses:
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
   securitySchemes:
     PartnerBasicAuth:
       type: http

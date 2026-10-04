@@ -559,277 +559,94 @@ paths:
       description: Local development
 components:
   schemas:
-    Address:
+    MerchantUpdateRequest:
       type: object
-      properties:
-        line1:
-          type:
-          - string
-          - 'null'
-          description: First line of the street address (e.g. `1 Market St`).
-        line2:
-          type:
-          - string
-          - 'null'
-          description: Second address line (e.g. `Level 4`).
-        city:
-          type:
-          - string
-          - 'null'
-          description: Suburb or city (e.g. `Sydney`).
-        state:
-          type:
-          - string
-          - 'null'
-          description: State or territory (e.g. `NSW`).
-        postcode:
-          type:
-          - string
-          - 'null'
-          description: Postal code (e.g. `2000`).
-        country:
-          type:
-          - string
-          - 'null'
-          pattern: ^[A-Za-z]{2}$
-          description: ISO-3166 alpha-2 country code (e.g. `AU`).
-    AcquirerBoardRequest:
-      type: object
-      description: 'One acquirer to board in a combined create — same fields as the body of
+      description: 'Any subset of the create business/identity fields. `username`, `status`
 
-        `POST /merchants/{username}/acquirers`.
+        and `credentials` are read-only — use the lifecycle and credential-rotate
+
+        endpoints for those. `username` is immutable post-creation.
 
         '
-      required:
-      - acquirer
-      - merchant_id
       example:
-        acquirer: nab
-        merchant_id: MID0012345
-        terminal_id: '12345678'
-        currencies:
-        - AUD
+        trading_name: Acme Online
+        website: https://shop.acme.example
+        email: support@acme.example
+        statement_descriptor: ACME ONLINE
+        customer_support_phone: +61 7 1234 5678
+        card_acceptor_name: ACME ONLINE
       properties:
-        acquirer:
-          type: string
-          description: Acquirer code (e.g. `bnz`). Must be available to the partner.
-        merchant_id:
-          type: string
-          description: Acquirer-assigned MID. Required.
-        terminal_id:
-          type: string
-          description: 'Acquirer-assigned TID. Optional. If you omit it, Fat Zebra generates
-
-            a deterministic 8-character placeholder from the merchant''s trading
-
-            name (e.g. `ACMEC001`) and uses it across every processor behind
-
-            this acquirer. The generated value is returned on subsequent reads,
-
-            and once set — supplied or generated — it is immutable.
-
-            '
-        currencies:
-          type: array
-          description: Optional. Defaults to everything the acquirer supports.
-          items:
-            type: string
-            pattern: ^[A-Za-z]{3}$
-            description: ISO-4217 currency code (e.g. `AUD`).
-        card_types:
-          type: array
-          description: 'Optional. Card schemes the connection should accept. Narrowed to
-
-            what this acquirer supports — schemes the acquirer can''t handle
-
-            are dropped rather than rejected. Omit to accept every scheme the
-
-            acquirer supports.
-
-            '
-          items:
-            type: string
-            description: Card scheme (e.g. `VISA`, `MasterCard`).
-        card_categories:
-          type: array
-          description: Optional. Card categories the link handles; overrides the link default.
-          items:
-            type: string
-            description: Card category (e.g. `CREDIT`, `DEBIT`).
-        merchant_tier:
-          type: string
-          description: Optional. Merchant tier; used by the EFTPOS Direct acquirer.
-        mpgs_byo_profile:
-          type: boolean
-          description: Optional. Marks the MPGS link as bring-your-own profile.
-    MerchantCredentials:
-      type: object
-      description: 'Returned once by `POST /merchants/{username}/credentials/rotate`. The
-
-        full `token` and `signing_secret` are shown here and never again.
-
-        '
-      required:
-      - username
-      - token
-      - signing_secret
-      - rotated_at
-      properties:
-        username:
-          type: string
-          description: The merchant's username (e.g. `acme-store`).
-        token:
-          type: string
-          description: The newly-generated API token (e.g. `tok_live_3b9c1d…`).
-        signing_secret:
-          type: string
-          description: The newly-generated signing secret — the merchant's paynow/HMAC secret.
-        rotated_at:
-          type: string
-          format: date-time
-          description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
-    Merchant:
-      type: object
-      description: A merchant under this partner.
-      required:
-      - id
-      - status
-      properties:
-        id:
-          type: string
-          description: The merchant's username (e.g. `acme-store`).
-        status:
-          type: string
-          description: The merchant's lifecycle state.
-          enum:
-          - pending
-          - active
-          - suspended
-          - closed
         name:
-          type:
-          - string
-          - 'null'
-          description: The merchant's legal/registered business name (e.g. `Acme Pty Ltd`).
+          type: string
         trading_name:
-          type:
-          - string
-          - 'null'
-          description: The name the merchant trades under (e.g. `Acme Store`).
+          type: string
         company_number:
-          type:
-          - string
-          - 'null'
-          description: The merchant's company/business registration number (e.g. an Australian Business Number, `51824753556`).
-        website:
-          type:
-          - string
-          - 'null'
-          description: The merchant's website URL (e.g. `https://acme.example`).
+          type: string
+        industry:
+          type: string
+        contact:
+          type: string
         mcc:
-          type:
-          - string
-          - 'null'
-          description: Merchant category code — ISO 18245, 4 digits (e.g. `5411`).
+          type: string
+          pattern: ^\d{4}$
+        website:
+          type: string
         email:
-          type:
-          - string
-          - 'null'
+          type: string
           format: email
-          description: Contact email address (e.g. `ops@acme.example`).
+        accounts_email:
+          type: array
+          items:
+            type: string
+            format: email
         phone:
-          type:
-          - string
-          - 'null'
-          description: Contact phone number in E.164 format (e.g. `+61730000000`).
+          type: string
         address:
           $ref: '#/components/schemas/Address'
-        three_d_secure_enabled:
-          type: boolean
-          description: Whether 3-D Secure is enabled for the merchant.
-        fraud_screening_enabled:
-          type: boolean
-          description: Whether fraud screening is enabled for the merchant.
-        network_tokenisation_enabled:
-          type: boolean
-          description: Whether network tokenisation (Visa VTS / Mastercard MDES) is enabled.
-        wallets:
-          type: array
-          description: Digital wallets enabled for the merchant.
-          items:
-            type: string
-            description: Wallet type slug (e.g. `apple_pay`, `google_pay`).
-        surcharging:
-          $ref: '#/components/schemas/MerchantSurcharging'
         statement_descriptor:
-          type:
-          - string
-          - 'null'
-          description: Card-acceptor name shown on the cardholder's statement, max 25 chars (e.g. `ACME STORE`).
+          type: string
+          maxLength: 25
         government_controlled:
           type: boolean
-          description: Whether the merchant is a government-controlled entity.
         country_of_origin:
-          type:
-          - string
-          - 'null'
-          description: ISO-3166 alpha-2 country of origin (e.g. `AU`).
-        country_code:
-          type:
-          - string
-          - 'null'
-          description: ISO-3166 numeric country code (e.g. `036` for Australia).
-        fee_program_indicator:
-          type:
-          - string
-          - 'null'
-          description: Scheme fee program indicator (e.g. `S`).
-        mastercard_iso_id:
-          type:
-          - string
-          - 'null'
-          description: Mastercard ISO/acquirer identifier (e.g. `00001234`).
-        visa_iso_id:
-          type:
-          - string
-          - 'null'
-          description: Visa ISO/acquirer identifier (e.g. `00005678`).
-        mastercard_assigned_id:
-          type:
-          - string
-          - 'null'
-          description: Mastercard Assigned ID (MAID) (e.g. `MAID12345`).
-        visa_merchant_verification_value:
-          type:
-          - string
-          - 'null'
-          description: Visa Merchant Verification Value (MVV) (e.g. `MVV98765`).
-        customer_support_phone:
-          type:
-          - string
-          - 'null'
-          description: Customer support phone number shown to cardholders (e.g. `+61 7 1234 5678`).
-        card_acceptor_name:
-          type:
-          - string
-          - 'null'
-          description: Card-acceptor name sent to the card schemes (e.g. `ACME STORE`).
-        card_acceptor_location:
-          type:
-          - string
-          - 'null'
-          description: Card-acceptor location/city sent to the card schemes (e.g. `BRISBANE`).
-        card_acceptor_country:
-          type:
-          - string
-          - 'null'
+          type: string
           pattern: ^[A-Za-z]{2}$
-          description: Card-acceptor country, ISO-3166 alpha-2 (e.g. `AU`).
+        country_code:
+          type: string
+        fee_program_indicator:
+          type: string
+        mastercard_iso_id:
+          type: string
+        visa_iso_id:
+          type: string
+        mastercard_assigned_id:
+          type: string
+        visa_merchant_verification_value:
+          type: string
+        visa_marketplace_identifier:
+          type: string
+        visa_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+        mastercard_payment_facilitator_indicator:
+          type: string
+          maxLength: 11
+        bill_payment_provider:
+          type: boolean
+        aggregator_fields_enabled:
+          type: boolean
+        customer_support_phone:
+          type: string
+        card_acceptor_name:
+          type: string
+        card_acceptor_location:
+          type: string
+        card_acceptor_country:
+          type: string
+          pattern: ^[A-Za-z]{2}$
         timezone:
-          type:
-          - string
-          - 'null'
-          description: IANA timezone identifier the merchant operates in.
+          type: string
+          description: IANA timezone identifier.
           examples:
           - Australia/Sydney
           - Australia/Brisbane
@@ -839,83 +656,8 @@ components:
           - America/New_York
           - UTC
         merchant_identifier:
-          type:
-          - string
-          - 'null'
-          description: A partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID) — this is a free-form label the partner uses to track the merchant in their own systems.
-        credentials:
-          $ref: '#/components/schemas/MerchantCredentialsInline'
-        created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the merchant was created — ISO 8601 UTC (e.g. `2026-05-29T04:21:00Z`).
-        updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the merchant was last updated — ISO 8601 UTC (e.g. `2026-05-29T04:21:00Z`).
-    MerchantOnboardingResult:
-      type: object
-      description: 'Returned by a combined create (`POST /merchants` with `acquirers`).
-
-        A slim status payload — the merchant''s status, username and one-time
-
-        token, plus a per-acquirer boarding status list. When this result is
-
-        returned every requested acquirer boarded (`status: success`); a
-
-        boarding failure fails the whole create and returns an error instead.
-
-        Read the full merchant via `GET /merchants/{username}` and connections
-
-        via `GET /merchants/{username}/acquirers`.
-
-        '
-      required:
-      - status
-      - username
-      - acquirers
-      properties:
-        status:
           type: string
-          enum:
-          - pending
-          - active
-          - suspended
-          - closed
-          description: '`active` — every requested acquirer boarded and the merchant was activated.'
-        username:
-          type: string
-          description: The merchant's username.
-        token:
-          type:
-          - string
-          - 'null'
-          description: The one-time API token, revealed once on create.
-        acquirers:
-          type: array
-          description: Per-acquirer boarding outcome — one entry per requested acquirer, all `success`.
-          items:
-            type: object
-            required:
-            - acquirer
-            - status
-            properties:
-              acquirer:
-                type: string
-                description: The acquirer code from the request (e.g. `nab`).
-              status:
-                type: string
-                description: Always `success` on this result — a failure fails the whole create instead.
-                enum:
-                - success
-                - failed
-              reason:
-                type: string
-                description: Why boarding failed. Not populated on this result.
+          description: Partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID).
     MerchantListEnvelope:
       allOf:
       - $ref: '#/components/schemas/ListEnvelope'
@@ -925,6 +667,19 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/MerchantSummary'
+    MerchantSummary:
+      type: object
+      description: 'The slim merchant shape returned in list responses — username only.
+
+        Fetch the full `Merchant` via `GET /merchants/{username}`.
+
+        '
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The merchant's username.
     MerchantCreateRequest:
       type: object
       description: "Creates a merchant.\n\nRequired to CREATE: `name` and `mcc` only. `mcc` has NO default — the\nmerchant's category is never guessed; omitting it is a\n`422 validation_error`.\n\nTwo modes:\n\n- **Identity-only** (no `acquirers`): creates a `pending` stub with no\n  processing. Board acquirers later via\n  `POST /merchants/{username}/acquirers`. Returns a bare `Merchant`.\n- **Combined create** (with `acquirers`): also boards each listed\n  acquirer and activates the merchant if at least one boards. Boarding\n  is best-effort — failures don't fail the create; each acquirer's\n  outcome is reported in the `MerchantOnboardingResult`. The merchant is\n  `active` when ≥1 acquirer boards, else stays `pending`. Either way the\n  response is `201` with the token revealed once.\n\nReadiness — \"required to create\" is not \"required to transact\". To board\nan acquirer the merchant may need extra business details, depending on\nhow the acquirer is boarded:\n\nThe partner always supplies the acquirer-assigned MID on the\nconnection (TID is optional). Some acquirers also require additional\nbusiness details to board — `company_number`, `trading_name` and\n`address`. Missing fields surface as a `failed` acquirer entry\n(combined create) or a `422` on `POST /merchants/{username}/acquirers`.\n"
@@ -1155,113 +910,148 @@ components:
           - string
           - 'null'
           description: Id to pass as `starting_after` for the next page; `null` on the last page.
-    MerchantSummary:
+    Merchant:
       type: object
-      description: 'The slim merchant shape returned in list responses — username only.
-
-        Fetch the full `Merchant` via `GET /merchants/{username}`.
-
-        '
+      description: A merchant under this partner.
       required:
       - id
+      - status
       properties:
         id:
           type: string
-          description: The merchant's username.
-    MerchantSurcharging:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: Whether card surcharging is enabled for the merchant.
-    MerchantUpdateRequest:
-      type: object
-      description: 'Any subset of the create business/identity fields. `username`, `status`
-
-        and `credentials` are read-only — use the lifecycle and credential-rotate
-
-        endpoints for those. `username` is immutable post-creation.
-
-        '
-      example:
-        trading_name: Acme Online
-        website: https://shop.acme.example
-        email: support@acme.example
-        statement_descriptor: ACME ONLINE
-        customer_support_phone: +61 7 1234 5678
-        card_acceptor_name: ACME ONLINE
-      properties:
+          description: The merchant's username (e.g. `acme-store`).
+        status:
+          type: string
+          description: The merchant's lifecycle state.
+          enum:
+          - pending
+          - active
+          - suspended
+          - closed
         name:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: The merchant's legal/registered business name (e.g. `Acme Pty Ltd`).
         trading_name:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: The name the merchant trades under (e.g. `Acme Store`).
         company_number:
-          type: string
-        industry:
-          type: string
-        contact:
-          type: string
-        mcc:
-          type: string
-          pattern: ^\d{4}$
+          type:
+          - string
+          - 'null'
+          description: The merchant's company/business registration number (e.g. an Australian Business Number, `51824753556`).
         website:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: The merchant's website URL (e.g. `https://acme.example`).
+        mcc:
+          type:
+          - string
+          - 'null'
+          description: Merchant category code — ISO 18245, 4 digits (e.g. `5411`).
         email:
-          type: string
+          type:
+          - string
+          - 'null'
           format: email
-        accounts_email:
-          type: array
-          items:
-            type: string
-            format: email
+          description: Contact email address (e.g. `ops@acme.example`).
         phone:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Contact phone number in E.164 format (e.g. `+61730000000`).
         address:
           $ref: '#/components/schemas/Address'
+        three_d_secure_enabled:
+          type: boolean
+          description: Whether 3-D Secure is enabled for the merchant.
+        fraud_screening_enabled:
+          type: boolean
+          description: Whether fraud screening is enabled for the merchant.
+        network_tokenisation_enabled:
+          type: boolean
+          description: Whether network tokenisation (Visa VTS / Mastercard MDES) is enabled.
+        wallets:
+          type: array
+          description: Digital wallets enabled for the merchant.
+          items:
+            type: string
+            description: Wallet type slug (e.g. `apple_pay`, `google_pay`).
+        surcharging:
+          $ref: '#/components/schemas/MerchantSurcharging'
         statement_descriptor:
-          type: string
-          maxLength: 25
+          type:
+          - string
+          - 'null'
+          description: Card-acceptor name shown on the cardholder's statement, max 25 chars (e.g. `ACME STORE`).
         government_controlled:
           type: boolean
+          description: Whether the merchant is a government-controlled entity.
         country_of_origin:
-          type: string
-          pattern: ^[A-Za-z]{2}$
+          type:
+          - string
+          - 'null'
+          description: ISO-3166 alpha-2 country of origin (e.g. `AU`).
         country_code:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: ISO-3166 numeric country code (e.g. `036` for Australia).
         fee_program_indicator:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Scheme fee program indicator (e.g. `S`).
         mastercard_iso_id:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Mastercard ISO/acquirer identifier (e.g. `00001234`).
         visa_iso_id:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Visa ISO/acquirer identifier (e.g. `00005678`).
         mastercard_assigned_id:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Mastercard Assigned ID (MAID) (e.g. `MAID12345`).
         visa_merchant_verification_value:
-          type: string
-        visa_marketplace_identifier:
-          type: string
-        visa_payment_facilitator_indicator:
-          type: string
-          maxLength: 11
-        mastercard_payment_facilitator_indicator:
-          type: string
-          maxLength: 11
-        bill_payment_provider:
-          type: boolean
-        aggregator_fields_enabled:
-          type: boolean
+          type:
+          - string
+          - 'null'
+          description: Visa Merchant Verification Value (MVV) (e.g. `MVV98765`).
         customer_support_phone:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Customer support phone number shown to cardholders (e.g. `+61 7 1234 5678`).
         card_acceptor_name:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Card-acceptor name sent to the card schemes (e.g. `ACME STORE`).
         card_acceptor_location:
-          type: string
+          type:
+          - string
+          - 'null'
+          description: Card-acceptor location/city sent to the card schemes (e.g. `BRISBANE`).
         card_acceptor_country:
-          type: string
+          type:
+          - string
+          - 'null'
           pattern: ^[A-Za-z]{2}$
+          description: Card-acceptor country, ISO-3166 alpha-2 (e.g. `AU`).
         timezone:
-          type: string
-          description: IANA timezone identifier.
+          type:
+          - string
+          - 'null'
+          description: IANA timezone identifier the merchant operates in.
           examples:
           - Australia/Sydney
           - Australia/Brisbane
@@ -1271,8 +1061,237 @@ components:
           - America/New_York
           - UTC
         merchant_identifier:
+          type:
+          - string
+          - 'null'
+          description: A partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID) — this is a free-form label the partner uses to track the merchant in their own systems.
+        credentials:
+          $ref: '#/components/schemas/MerchantCredentialsInline'
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the merchant was created — ISO 8601 UTC (e.g. `2026-05-29T04:21:00Z`).
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the merchant was last updated — ISO 8601 UTC (e.g. `2026-05-29T04:21:00Z`).
+    MerchantCredentialsInline:
+      type: object
+      description: 'Credentials embedded on the merchant object. `token` is `null` on reads
+
+        and only populated once by create and credential-rotate.
+
+        '
+      required:
+      - username
+      - token
+      properties:
+        username:
           type: string
-          description: Partner-assigned identifier for the merchant. Distinct from the acquirer-assigned `merchant_id` (MID).
+          description: The merchant's username (e.g. `acme-store`).
+        token:
+          type:
+          - string
+          - 'null'
+          description: The live API token (e.g. `tok_live_3b9c1d…`). `null` except on create / rotate.
+    MerchantSurcharging:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether card surcharging is enabled for the merchant.
+    AcquirerBoardRequest:
+      type: object
+      description: 'One acquirer to board in a combined create — same fields as the body of
+
+        `POST /merchants/{username}/acquirers`.
+
+        '
+      required:
+      - acquirer
+      - merchant_id
+      example:
+        acquirer: nab
+        merchant_id: MID0012345
+        terminal_id: '12345678'
+        currencies:
+        - AUD
+      properties:
+        acquirer:
+          type: string
+          description: Acquirer code (e.g. `bnz`). Must be available to the partner.
+        merchant_id:
+          type: string
+          description: Acquirer-assigned MID. Required.
+        terminal_id:
+          type: string
+          description: 'Acquirer-assigned TID. Optional. If you omit it, Fat Zebra generates
+
+            a deterministic 8-character placeholder from the merchant''s trading
+
+            name (e.g. `ACMEC001`) and uses it across every processor behind
+
+            this acquirer. The generated value is returned on subsequent reads,
+
+            and once set — supplied or generated — it is immutable.
+
+            '
+        currencies:
+          type: array
+          description: Optional. Defaults to everything the acquirer supports.
+          items:
+            type: string
+            pattern: ^[A-Za-z]{3}$
+            description: ISO-4217 currency code (e.g. `AUD`).
+        card_types:
+          type: array
+          description: 'Optional. Card schemes the connection should accept. Narrowed to
+
+            what this acquirer supports — schemes the acquirer can''t handle
+
+            are dropped rather than rejected. Omit to accept every scheme the
+
+            acquirer supports.
+
+            '
+          items:
+            type: string
+            description: Card scheme (e.g. `VISA`, `MasterCard`).
+        card_categories:
+          type: array
+          description: Optional. Card categories the link handles; overrides the link default.
+          items:
+            type: string
+            description: Card category (e.g. `CREDIT`, `DEBIT`).
+        merchant_tier:
+          type: string
+          description: Optional. Merchant tier; used by the EFTPOS Direct acquirer.
+        mpgs_byo_profile:
+          type: boolean
+          description: Optional. Marks the MPGS link as bring-your-own profile.
+    MerchantOnboardingResult:
+      type: object
+      description: 'Returned by a combined create (`POST /merchants` with `acquirers`).
+
+        A slim status payload — the merchant''s status, username and one-time
+
+        token, plus a per-acquirer boarding status list. When this result is
+
+        returned every requested acquirer boarded (`status: success`); a
+
+        boarding failure fails the whole create and returns an error instead.
+
+        Read the full merchant via `GET /merchants/{username}` and connections
+
+        via `GET /merchants/{username}/acquirers`.
+
+        '
+      required:
+      - status
+      - username
+      - acquirers
+      properties:
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - suspended
+          - closed
+          description: '`active` — every requested acquirer boarded and the merchant was activated.'
+        username:
+          type: string
+          description: The merchant's username.
+        token:
+          type:
+          - string
+          - 'null'
+          description: The one-time API token, revealed once on create.
+        acquirers:
+          type: array
+          description: Per-acquirer boarding outcome — one entry per requested acquirer, all `success`.
+          items:
+            type: object
+            required:
+            - acquirer
+            - status
+            properties:
+              acquirer:
+                type: string
+                description: The acquirer code from the request (e.g. `nab`).
+              status:
+                type: string
+                description: Always `success` on this result — a failure fails the whole create instead.
+                enum:
+                - success
+                - failed
+              reason:
+                type: string
+                description: Why boarding failed. Not populated on this result.
+    Address:
+      type: object
+      properties:
+        line1:
+          type:
+          - string
+          - 'null'
+          description: First line of the street address (e.g. `1 Market St`).
+        line2:
+          type:
+          - string
+          - 'null'
+          description: Second address line (e.g. `Level 4`).
+        city:
+          type:
+          - string
+          - 'null'
+          description: Suburb or city (e.g. `Sydney`).
+        state:
+          type:
+          - string
+          - 'null'
+          description: State or territory (e.g. `NSW`).
+        postcode:
+          type:
+          - string
+          - 'null'
+          description: Postal code (e.g. `2000`).
+        country:
+          type:
+          - string
+          - 'null'
+          pattern: ^[A-Za-z]{2}$
+          description: ISO-3166 alpha-2 country code (e.g. `AU`).
+    MerchantCredentials:
+      type: object
+      description: 'Returned once by `POST /merchants/{username}/credentials/rotate`. The
+
+        full `token` and `signing_secret` are shown here and never again.
+
+        '
+      required:
+      - username
+      - token
+      - signing_secret
+      - rotated_at
+      properties:
+        username:
+          type: string
+          description: The merchant's username (e.g. `acme-store`).
+        token:
+          type: string
+          description: The newly-generated API token (e.g. `tok_live_3b9c1d…`).
+        signing_secret:
+          type: string
+          description: The newly-generated signing secret — the merchant's paynow/HMAC secret.
+        rotated_at:
+          type: string
+          format: date-time
+          description: When the credentials were rotated — ISO 8601 UTC (e.g. `2026-06-02T00:00:00Z`).
     Error:
       type: object
       required:
@@ -1310,54 +1329,7 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    MerchantCredentialsInline:
-      type: object
-      description: 'Credentials embedded on the merchant object. `token` is `null` on reads
-
-        and only populated once by create and credential-rotate.
-
-        '
-      required:
-      - username
-      - token
-      properties:
-        username:
-          type: string
-          description: The merchant's username (e.g. `acme-store`).
-        token:
-          type:
-          - string
-          - 'null'
-          description: The live API token (e.g. `tok_live_3b9c1d…`). `null` except on create / rotate.
   responses:
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
-    Conflict:
-      description: The request conflicts with the resource's current state.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            noActiveConnection:
-              value:
-                error:
-                  type: conflict
-                  message: merchant has no active processing connection
-                  fields: {}
-                  request_id: req_a1b2c3
     NotFound:
       description: Resource not found.
       content:
@@ -1370,6 +1342,20 @@ components:
                 error:
                   type: not_found
                   message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
                   fields: {}
                   request_id: req_a1b2c3
     ValidationError:
@@ -1455,6 +1441,20 @@ components:
                 error:
                   type: processor_error
                   message: a processor is temporarily unavailable
+                  fields: {}
+                  request_id: req_a1b2c3
+    Conflict:
+      description: The request conflicts with the resource's current state.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            noActiveConnection:
+              value:
+                error:
+                  type: conflict
+                  message: merchant has no active processing connection
                   fields: {}
                   request_id: req_a1b2c3
   parameters:

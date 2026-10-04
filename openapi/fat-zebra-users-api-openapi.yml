@@ -170,63 +170,42 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    User:
+    ListEnvelope:
       type: object
-      description: A partner dashboard user.
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
+    UserListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/UserSummary'
+    UserSummary:
+      type: object
+      description: 'The slim user shape returned in list responses — id only. Fetch the
+
+        full `User` via `GET /users/{id}`.
+
+        '
       required:
       - id
-      - name
-      - email
-      - role
-      - status
       properties:
         id:
           type: string
-          description: User id (e.g. `123-RU-9f3k2m8q`).
-        name:
-          type: string
-          description: The user's full name (e.g. `Jane Smith`).
-        email:
-          type: string
-          format: email
-          description: The user's email address (e.g. `jane@acme.example`).
-        role:
-          type: string
-          description: The user's access level.
-          enum:
-          - admin
-          - member
-        status:
-          type: string
-          description: The user's account status.
-          enum:
-          - active
-          - locked
-          - reset_requested
-        mfa_enabled:
-          type: boolean
-          description: Whether multi-factor authentication is enabled for the user.
-        sso_linked:
-          type: boolean
-          description: Whether the user is linked to the partner's IdP.
-        last_login_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the user last logged in — ISO 8601 UTC (e.g. `2026-06-01T09:30:00Z`). `null` if never.
-        created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the user was created — ISO 8601 UTC (e.g. `2026-05-01T00:00:00Z`).
-        updated_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the user was last updated — ISO 8601 UTC (e.g. `2026-05-15T00:00:00Z`).
+          description: The user's id (e.g. `123-RU-9f3k2m8q`).
     Error:
       type: object
       required:
@@ -289,42 +268,63 @@ components:
           enum:
           - admin
           - member
-    ListEnvelope:
+    User:
       type: object
-      required:
-      - items
-      - next_cursor
-      properties:
-        items:
-          type: array
-          description: The page of results. Each list endpoint overrides the item type.
-        next_cursor:
-          type:
-          - string
-          - 'null'
-          description: Id to pass as `starting_after` for the next page; `null` on the last page.
-    UserSummary:
-      type: object
-      description: 'The slim user shape returned in list responses — id only. Fetch the
-
-        full `User` via `GET /users/{id}`.
-
-        '
+      description: A partner dashboard user.
       required:
       - id
+      - name
+      - email
+      - role
+      - status
       properties:
         id:
           type: string
-          description: The user's id (e.g. `123-RU-9f3k2m8q`).
-    UserListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/UserSummary'
+          description: User id (e.g. `123-RU-9f3k2m8q`).
+        name:
+          type: string
+          description: The user's full name (e.g. `Jane Smith`).
+        email:
+          type: string
+          format: email
+          description: The user's email address (e.g. `jane@acme.example`).
+        role:
+          type: string
+          description: The user's access level.
+          enum:
+          - admin
+          - member
+        status:
+          type: string
+          description: The user's account status.
+          enum:
+          - active
+          - locked
+          - reset_requested
+        mfa_enabled:
+          type: boolean
+          description: Whether multi-factor authentication is enabled for the user.
+        sso_linked:
+          type: boolean
+          description: Whether the user is linked to the partner's IdP.
+        last_login_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the user last logged in — ISO 8601 UTC (e.g. `2026-06-01T09:30:00Z`). `null` if never.
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the user was created — ISO 8601 UTC (e.g. `2026-05-01T00:00:00Z`).
+        updated_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the user was last updated — ISO 8601 UTC (e.g. `2026-05-15T00:00:00Z`).
     UserCreateRequest:
       type: object
       required:
@@ -353,6 +353,34 @@ components:
           - member
           default: member
   responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
     ValidationError:
       description: 'The request couldn''t be completed. A `validation_error` is something the
 
@@ -436,34 +464,6 @@ components:
                 error:
                   type: processor_error
                   message: a processor is temporarily unavailable
-                  fields: {}
-                  request_id: req_a1b2c3
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notFound:
-              value:
-                error:
-                  type: not_found
-                  message: Couldn't find merchant
                   fields: {}
                   request_id: req_a1b2c3
   parameters:

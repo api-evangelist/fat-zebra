@@ -68,6 +68,29 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ListEnvelope:
+      type: object
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
+    AcquirerListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/Acquirer'
     Acquirer:
       type: object
       description: 'A catalogue entry describing one acquirer the partner may board onto.
@@ -132,52 +155,7 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    ListEnvelope:
-      type: object
-      required:
-      - items
-      - next_cursor
-      properties:
-        items:
-          type: array
-          description: The page of results. Each list endpoint overrides the item type.
-        next_cursor:
-          type:
-          - string
-          - 'null'
-          description: Id to pass as `starting_after` for the next page; `null` on the last page.
-    AcquirerListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/Acquirer'
-  parameters:
-    AcquirerCode:
-      in: path
-      name: code
-      description: Acquirer code (e.g. `nab`).
-      required: true
-      schema:
-        type: string
   responses:
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            invalidToken:
-              value:
-                error:
-                  type: authentication_error
-                  message: Invalid or missing token
-                  fields: {}
-                  request_id: req_a1b2c3
     NotFound:
       description: Resource not found.
       content:
@@ -192,6 +170,28 @@ components:
                   message: Couldn't find merchant
                   fields: {}
                   request_id: req_a1b2c3
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            invalidToken:
+              value:
+                error:
+                  type: authentication_error
+                  message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+  parameters:
+    AcquirerCode:
+      in: path
+      name: code
+      description: Acquirer code (e.g. `nab`).
+      required: true
+      schema:
+        type: string
   securitySchemes:
     PartnerBasicAuth:
       type: http
