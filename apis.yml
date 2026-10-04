@@ -38,6 +38,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Payments
 - Australia
@@ -706,6 +709,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - PayPal
+  tags_raw:
   - Pay Pal
   properties:
   - type: OpenAPI
@@ -728,6 +733,8 @@ apis:
   humanURL: https://docs.fatzebra.com/reference/purchases
   baseURL: https://gateway.pmnts.io/v1.0
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
