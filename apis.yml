@@ -54,7 +54,7 @@ tags:
 - Hosted Payment Pages
 - Merchant Onboarding
 created: '2026-07-24'
-modified: '2026-07-24'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: fat-zebra:fat-zebra-acquirer-connections-api
@@ -748,6 +748,8 @@ apis:
   - type: Documentation
     url: https://docs.fatzebra.com/
 common:
+- url: https://www.fatzebra.com/blog/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/fat-zebra-capability-edges.yml
   name: Fat Zebra Business Capability Map
