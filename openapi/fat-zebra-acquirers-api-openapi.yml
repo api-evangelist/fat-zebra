@@ -68,20 +68,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ListEnvelope:
-      type: object
-      required:
-      - items
-      - next_cursor
-      properties:
-        items:
-          type: array
-          description: The page of results. Each list endpoint overrides the item type.
-        next_cursor:
-          type:
-          - string
-          - 'null'
-          description: Id to pass as `starting_after` for the next page; `null` on the last page.
     AcquirerListEnvelope:
       allOf:
       - $ref: '#/components/schemas/ListEnvelope'
@@ -118,6 +104,20 @@ components:
           items:
             type: string
             description: Card scheme name (e.g. `Visa`, `Mastercard`).
+    ListEnvelope:
+      type: object
+      required:
+      - items
+      - next_cursor
+      properties:
+        items:
+          type: array
+          description: The page of results. Each list endpoint overrides the item type.
+        next_cursor:
+          type:
+          - string
+          - 'null'
+          description: Id to pass as `starting_after` for the next page; `null` on the last page.
     Error:
       type: object
       required:
@@ -156,20 +156,6 @@ components:
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
   responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notFound:
-              value:
-                error:
-                  type: not_found
-                  message: Couldn't find merchant
-                  fields: {}
-                  request_id: req_a1b2c3
     Unauthorized:
       description: Missing or invalid HTTP Basic credentials.
       content:
@@ -182,6 +168,20 @@ components:
                 error:
                   type: authentication_error
                   message: Invalid or missing token
+                  fields: {}
+                  request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
                   fields: {}
                   request_id: req_a1b2c3
   parameters:

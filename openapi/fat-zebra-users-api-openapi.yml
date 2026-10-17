@@ -170,6 +170,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    UserListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/UserSummary'
     ListEnvelope:
       type: object
       required:
@@ -184,65 +193,6 @@ components:
           - string
           - 'null'
           description: Id to pass as `starting_after` for the next page; `null` on the last page.
-    UserListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/UserSummary'
-    UserSummary:
-      type: object
-      description: 'The slim user shape returned in list responses — id only. Fetch the
-
-        full `User` via `GET /users/{id}`.
-
-        '
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          description: The user's id (e.g. `123-RU-9f3k2m8q`).
-    Error:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          required:
-          - type
-          - message
-          - fields
-          - request_id
-          properties:
-            type:
-              type: string
-              description: Machine-readable error category.
-              enum:
-              - authentication_error
-              - not_found
-              - conflict
-              - validation_error
-              - processor_error
-            message:
-              type: string
-              description: Human-readable explanation of the error.
-            fields:
-              type: object
-              additionalProperties:
-                type: array
-                items:
-                  type: string
-              description: Per-field validation messages. Empty object when not field-specific.
-            request_id:
-              type:
-              - string
-              - 'null'
-              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
     UserUpdateRequest:
       type: object
       description: 'Any subset of the user''s `name`, `email`, `role` or `password`. The
@@ -352,21 +302,57 @@ components:
           - admin
           - member
           default: member
+    Error:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - type
+          - message
+          - fields
+          - request_id
+          properties:
+            type:
+              type: string
+              description: Machine-readable error category.
+              enum:
+              - authentication_error
+              - not_found
+              - conflict
+              - validation_error
+              - processor_error
+            message:
+              type: string
+              description: Human-readable explanation of the error.
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              description: Per-field validation messages. Empty object when not field-specific.
+            request_id:
+              type:
+              - string
+              - 'null'
+              description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
+    UserSummary:
+      type: object
+      description: 'The slim user shape returned in list responses — id only. Fetch the
+
+        full `User` via `GET /users/{id}`.
+
+        '
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The user's id (e.g. `123-RU-9f3k2m8q`).
   responses:
-    NotFound:
-      description: Resource not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          examples:
-            notFound:
-              value:
-                error:
-                  type: not_found
-                  message: Couldn't find merchant
-                  fields: {}
-                  request_id: req_a1b2c3
     Unauthorized:
       description: Missing or invalid HTTP Basic credentials.
       content:
@@ -466,14 +452,21 @@ components:
                   message: a processor is temporarily unavailable
                   fields: {}
                   request_id: req_a1b2c3
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            notFound:
+              value:
+                error:
+                  type: not_found
+                  message: Couldn't find merchant
+                  fields: {}
+                  request_id: req_a1b2c3
   parameters:
-    UserId:
-      in: path
-      name: id
-      description: User id (e.g. `123-RU-9f3k2m8q`).
-      required: true
-      schema:
-        type: string
     StartingAfter:
       in: query
       name: starting_after
@@ -491,6 +484,13 @@ components:
         minimum: 1
         maximum: 100
         default: 25
+    UserId:
+      in: path
+      name: id
+      description: User id (e.g. `123-RU-9f3k2m8q`).
+      required: true
+      schema:
+        type: string
   securitySchemes:
     PartnerBasicAuth:
       type: http

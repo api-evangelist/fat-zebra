@@ -299,6 +299,15 @@ components:
           - string
           - 'null'
           description: Id to pass as `starting_after` for the next page; `null` on the last page.
+    AcquirerConnectionListEnvelope:
+      allOf:
+      - $ref: '#/components/schemas/ListEnvelope'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/AcquirerConnection'
     AcquirerConnectionCreateRequest:
       type: object
       required:
@@ -420,28 +429,19 @@ components:
               - string
               - 'null'
               description: Correlation id for this request, for support and tracing (e.g. `req_a1b2c3`).
-    AcquirerConnectionListEnvelope:
-      allOf:
-      - $ref: '#/components/schemas/ListEnvelope'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/AcquirerConnection'
   responses:
-    NotFound:
-      description: Resource not found.
+    Unauthorized:
+      description: Missing or invalid HTTP Basic credentials.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
           examples:
-            notFound:
+            invalidToken:
               value:
                 error:
-                  type: not_found
-                  message: Couldn't find merchant
+                  type: authentication_error
+                  message: Invalid or missing token
                   fields: {}
                   request_id: req_a1b2c3
     ValidationError:
@@ -529,26 +529,26 @@ components:
                   message: a processor is temporarily unavailable
                   fields: {}
                   request_id: req_a1b2c3
-    Unauthorized:
-      description: Missing or invalid HTTP Basic credentials.
+    NotFound:
+      description: Resource not found.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
           examples:
-            invalidToken:
+            notFound:
               value:
                 error:
-                  type: authentication_error
-                  message: Invalid or missing token
+                  type: not_found
+                  message: Couldn't find merchant
                   fields: {}
                   request_id: req_a1b2c3
   parameters:
-    Username:
-      in: path
-      name: username
-      description: The merchant's username (e.g. `acme-store`).
-      required: true
+    StartingAfter:
+      in: query
+      name: starting_after
+      description: Cursor — the id of the last item from the previous page. Omit for the first page.
+      required: false
       schema:
         type: string
     Limit:
@@ -568,11 +568,11 @@ components:
       required: true
       schema:
         type: string
-    StartingAfter:
-      in: query
-      name: starting_after
-      description: Cursor — the id of the last item from the previous page. Omit for the first page.
-      required: false
+    Username:
+      in: path
+      name: username
+      description: The merchant's username (e.g. `acme-store`).
+      required: true
       schema:
         type: string
   securitySchemes:
