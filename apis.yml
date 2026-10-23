@@ -752,6 +752,8 @@ apis:
   - type: Documentation
     url: https://docs.fatzebra.com/
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/fat-zebra/overview
 - url: https://www.fatzebra.com/blog/rss.xml
   type: BlogRSS
 - type: CapabilityMap
