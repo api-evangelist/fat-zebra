@@ -1,0 +1,298 @@
+{
+  "info": {
+    "_postman_id": "01b1631e-4084-4f08-bd6a-06c5345f69ae",
+    "name": "Fat Zebra Partner API",
+    "description": "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:54:55.000Z",
+    "updatedAt": "2026-10-21T20:54:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-01b1631e-4084-4f08-bd6a-06c5345f69ae"
+  },
+  "item": [
+    {
+      "name": "me",
+      "item": [
+        {
+          "name": "credentials",
+          "item": [
+            {
+              "name": "rotate",
+              "item": [
+                {
+                  "name": "Rotate the partner's own API token",
+                  "id": "fefeb7c5-c42d-4003-afff-6cfb5cbd54a8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/me/credentials/rotate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "me",
+                        "credentials",
+                        "rotate"
+                      ]
+                    },
+                    "description": "Rotates the partner's API `token`. No body is expected. The fresh value\nis returned once \u2014 the previous token stops working immediately, so the\ncaller must store the response."
+                  },
+                  "response": [
+                    {
+                      "id": "d841d280-834e-4022-8b31-19a6567dbaa6",
+                      "name": "The rotated credentials (returned once).",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/me/credentials/rotate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "me",
+                            "credentials",
+                            "rotate"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"username\": \"<string>\",\n  \"token\": \"<string>\",\n  \"rotated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-21T20:54:56.000Z",
+                      "updatedAt": "2026-10-21T20:54:56.000Z",
+                      "uid": "35240-d841d280-834e-4022-8b31-19a6567dbaa6"
+                    },
+                    {
+                      "id": "8aac5252-06d8-4dd4-9aa4-5b1585b7779b",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/me/credentials/rotate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "me",
+                            "credentials",
+                            "rotate"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"sed2\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:54:56.000Z",
+                      "updatedAt": "2026-10-21T20:54:56.000Z",
+                      "uid": "35240-8aac5252-06d8-4dd4-9aa4-5b1585b7779b"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:54:56.000Z",
+                  "updatedAt": "2026-10-21T20:54:56.000Z",
+                  "uid": "35240-fefeb7c5-c42d-4003-afff-6cfb5cbd54a8"
+                }
+              ],
+              "id": "b5c88d4c-6167-49f2-b03b-78cdf7ca34f8",
+              "createdAt": "2026-10-21T20:54:56.000Z",
+              "updatedAt": "2026-10-21T20:54:56.000Z",
+              "uid": "35240-b5c88d4c-6167-49f2-b03b-78cdf7ca34f8"
+            }
+          ],
+          "id": "5ae2fb93-6754-4c1c-a811-32f66676ded3",
+          "createdAt": "2026-10-21T20:54:56.000Z",
+          "updatedAt": "2026-10-21T20:54:56.000Z",
+          "uid": "35240-5ae2fb93-6754-4c1c-a811-32f66676ded3"
+        },
+        {
+          "name": "Show the authenticated partner (self)",
+          "id": "68e8dd7c-09b8-4bf0-ae9e-3e4b78bd0847",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ]
+            },
+            "description": "Returns the partner object: id, name, status, environment, branding,\nand defaults."
+          },
+          "response": [
+            {
+              "id": "6a553ff2-0848-4db1-be3b-5909121f1e30",
+              "name": "The authenticated partner.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string,null>\",\n  \"status\": \"<string>\",\n  \"environment\": \"live\",\n  \"branding\": {\n    \"display_name\": \"<string,null>\",\n    \"logo_url\": \"<string,null>\",\n    \"support_email\": \"<string,null-email>\",\n    \"support_phone\": \"<string,null>\"\n  },\n  \"defaults\": {\n    \"currencies\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"card_types\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"timezone\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:54:56.000Z",
+              "updatedAt": "2026-10-21T20:54:56.000Z",
+              "uid": "35240-6a553ff2-0848-4db1-be3b-5909121f1e30"
+            },
+            {
+              "id": "0eaf0615-0a67-4492-8fd6-0e4eaf72dc37",
+              "name": "Missing or invalid HTTP Basic credentials.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"sed2\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:54:56.000Z",
+              "updatedAt": "2026-10-21T20:54:56.000Z",
+              "uid": "35240-0eaf0615-0a67-4492-8fd6-0e4eaf72dc37"
+            }
+          ],
+          "createdAt": "2026-10-21T20:54:56.000Z",
+          "updatedAt": "2026-10-21T20:54:56.000Z",
+          "uid": "35240-68e8dd7c-09b8-4bf0-ae9e-3e4b78bd0847"
+        }
+      ],
+      "id": "f94a281f-adb6-4457-9448-8aeff4556b05",
+      "createdAt": "2026-10-21T20:54:56.000Z",
+      "updatedAt": "2026-10-21T20:54:56.000Z",
+      "uid": "35240-f94a281f-adb6-4457-9448-8aeff4556b05"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts.io/v2/partners"
+    }
+  ]
+}

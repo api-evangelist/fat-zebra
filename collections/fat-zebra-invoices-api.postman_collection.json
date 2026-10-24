@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "c4936c03-1989-4a63-be47-086634fd43a6",
+    "name": "gateway Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:53:06.000Z",
+    "updatedAt": "2026-10-21T20:53:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c4936c03-1989-4a63-be47-086634fd43a6"
+  },
+  "item": [
+    {
+      "name": "invoices",
+      "item": [
+        {
+          "name": "{reference}",
+          "item": [
+            {
+              "name": "Fetch an invoice",
+              "id": "50f5b3ee-511c-44e1-9819-532e99db7f9a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices/:reference",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices",
+                    ":reference"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dc898cb2-a6b6-4f2b-bf10-e91787476d88",
+                      "key": "reference",
+                      "value": "<string>",
+                      "description": "(Required) Reference of the invoice to be fetched."
+                    }
+                  ]
+                },
+                "description": "Individual invoices can be retrieved by their reference."
+              },
+              "response": [
+                {
+                  "id": "d8842290-27ce-4e6d-bc89-c7c5587d6049",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoices/:reference",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoices",
+                        ":reference"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reference"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"amount\": 0,\n    \"currency\": \"<string>\",\n    \"description\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"payable\": true\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:53:06.000Z",
+                  "updatedAt": "2026-10-21T20:53:06.000Z",
+                  "uid": "35240-d8842290-27ce-4e6d-bc89-c7c5587d6049"
+                }
+              ],
+              "createdAt": "2026-10-21T20:53:06.000Z",
+              "updatedAt": "2026-10-21T20:53:06.000Z",
+              "uid": "35240-50f5b3ee-511c-44e1-9819-532e99db7f9a"
+            }
+          ],
+          "id": "56fbbc68-b96b-473f-89ea-ce0725fcf8ea",
+          "createdAt": "2026-10-21T20:53:06.000Z",
+          "updatedAt": "2026-10-21T20:53:06.000Z",
+          "uid": "35240-56fbbc68-b96b-473f-89ea-ce0725fcf8ea"
+        },
+        {
+          "name": "Replace all invoices",
+          "id": "88ae093f-f600-4608-9d68-50fad681ddf4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/invoices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "invoices"
+              ]
+            },
+            "description": "**Note: This action will replace all existing invoices.**"
+          },
+          "response": [
+            {
+              "id": "50bb6181-3afd-4406-b7b6-ecead4fd0619",
+              "name": "200",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"uuid\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:53:06.000Z",
+              "updatedAt": "2026-10-21T20:53:06.000Z",
+              "uid": "35240-50bb6181-3afd-4406-b7b6-ecead4fd0619"
+            },
+            {
+              "id": "6c5938c6-7e49-40b6-9144-8b887e8c7661",
+              "name": "400",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoices",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoices"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T20:53:06.000Z",
+              "updatedAt": "2026-10-21T20:53:06.000Z",
+              "uid": "35240-6c5938c6-7e49-40b6-9144-8b887e8c7661"
+            }
+          ],
+          "createdAt": "2026-10-21T20:53:06.000Z",
+          "updatedAt": "2026-10-21T20:53:06.000Z",
+          "uid": "35240-88ae093f-f600-4608-9d68-50fad681ddf4"
+        }
+      ],
+      "id": "1e40c207-d34e-44c0-8fdf-9b05b5bb4422",
+      "createdAt": "2026-10-21T20:53:06.000Z",
+      "updatedAt": "2026-10-21T20:53:06.000Z",
+      "uid": "35240-1e40c207-d34e-44c0-8fdf-9b05b5bb4422"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

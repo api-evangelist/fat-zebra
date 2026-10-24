@@ -1,0 +1,456 @@
+{
+  "info": {
+    "_postman_id": "c6fe5611-ed1b-46b0-a1ef-d696849c4cde",
+    "name": "Fat Zebra Partner SSO API",
+    "description": "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:16.000Z",
+    "updatedAt": "2026-10-21T20:55:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c6fe5611-ed1b-46b0-a1ef-d696849c4cde"
+  },
+  "item": [
+    {
+      "name": "sso",
+      "item": [
+        {
+          "name": "enforce",
+          "item": [
+            {
+              "name": "Enforce SSO",
+              "id": "f992f706-2c8a-4ce9-84c1-2dd1d968ed8a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sso/enforce",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sso",
+                    "enforce"
+                  ]
+                },
+                "description": "Turns on SSO enforcement for the partner. No body is expected. Returns\n`409 conflict` when active users aren't yet linked to the IdP \u2014 they'd\nbe locked out, so link them first."
+              },
+              "response": [
+                {
+                  "id": "662601f7-3e71-428e-af14-ac0da919cb7e",
+                  "name": "The SSO enforcement state.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sso/enforce",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sso",
+                        "enforce"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"enforced\": \"<boolean>\",\n  \"users_total\": \"<integer>\",\n  \"users_linked\": \"<integer>\",\n  \"users_unlinked\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:55:16.000Z",
+                  "updatedAt": "2026-10-21T20:55:16.000Z",
+                  "uid": "35240-662601f7-3e71-428e-af14-ac0da919cb7e"
+                },
+                {
+                  "id": "06dec4d1-1292-460e-9945-3a7666af4352",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sso/enforce",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sso",
+                        "enforce"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"conflict\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"deserunt_26\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"inf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:16.000Z",
+                  "updatedAt": "2026-10-21T20:55:16.000Z",
+                  "uid": "35240-06dec4d1-1292-460e-9945-3a7666af4352"
+                },
+                {
+                  "id": "34e3dcdd-438b-4db8-9e21-1fd5e0d79336",
+                  "name": "The request conflicts with the resource's current state.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sso/enforce",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sso",
+                        "enforce"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"conflict\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"deserunt_26\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"inf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:16.000Z",
+                  "updatedAt": "2026-10-21T20:55:16.000Z",
+                  "uid": "35240-34e3dcdd-438b-4db8-9e21-1fd5e0d79336"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:16.000Z",
+              "updatedAt": "2026-10-21T20:55:16.000Z",
+              "uid": "35240-f992f706-2c8a-4ce9-84c1-2dd1d968ed8a"
+            }
+          ],
+          "id": "d5c8f920-e1a8-488a-812c-9b8a1e5099da",
+          "createdAt": "2026-10-21T20:55:16.000Z",
+          "updatedAt": "2026-10-21T20:55:16.000Z",
+          "uid": "35240-d5c8f920-e1a8-488a-812c-9b8a1e5099da"
+        },
+        {
+          "name": "disable",
+          "item": [
+            {
+              "name": "Disable SSO enforcement",
+              "id": "2775203a-f30a-4117-ac18-24a1febf9652",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sso/disable",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sso",
+                    "disable"
+                  ]
+                },
+                "description": "Turns off SSO enforcement for the partner. No body is expected."
+              },
+              "response": [
+                {
+                  "id": "d08e286c-8f69-495b-be94-55fec674acbd",
+                  "name": "The SSO enforcement state.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sso/disable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sso",
+                        "disable"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"enforced\": \"<boolean>\",\n  \"users_total\": \"<integer>\",\n  \"users_linked\": \"<integer>\",\n  \"users_unlinked\": \"<integer>\"\n}",
+                  "createdAt": "2026-10-21T20:55:16.000Z",
+                  "updatedAt": "2026-10-21T20:55:16.000Z",
+                  "uid": "35240-d08e286c-8f69-495b-be94-55fec674acbd"
+                },
+                {
+                  "id": "20798c3e-d50d-4302-bec5-4b382a12090a",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sso/disable",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sso",
+                        "disable"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"conflict\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"deserunt_26\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"inf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:16.000Z",
+                  "updatedAt": "2026-10-21T20:55:16.000Z",
+                  "uid": "35240-20798c3e-d50d-4302-bec5-4b382a12090a"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:16.000Z",
+              "updatedAt": "2026-10-21T20:55:16.000Z",
+              "uid": "35240-2775203a-f30a-4117-ac18-24a1febf9652"
+            }
+          ],
+          "id": "b92b0c38-4fe0-4642-b0e7-a19684508b56",
+          "createdAt": "2026-10-21T20:55:16.000Z",
+          "updatedAt": "2026-10-21T20:55:16.000Z",
+          "uid": "35240-b92b0c38-4fe0-4642-b0e7-a19684508b56"
+        },
+        {
+          "name": "Show SSO enforcement state",
+          "id": "25b01b4a-7c9d-4b0d-bf6c-162c6407252f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sso",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sso"
+              ]
+            },
+            "description": "Returns whether SSO is enforced for the partner, plus how many users\nare linked to the IdP versus not."
+          },
+          "response": [
+            {
+              "id": "8f912f07-2879-4546-876b-e9b971b6223d",
+              "name": "The SSO enforcement state.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sso",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sso"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"enforced\": \"<boolean>\",\n  \"users_total\": \"<integer>\",\n  \"users_linked\": \"<integer>\",\n  \"users_unlinked\": \"<integer>\"\n}",
+              "createdAt": "2026-10-21T20:55:16.000Z",
+              "updatedAt": "2026-10-21T20:55:16.000Z",
+              "uid": "35240-8f912f07-2879-4546-876b-e9b971b6223d"
+            },
+            {
+              "id": "194b1e0b-a1aa-40a3-ad2c-0a687c0f7b96",
+              "name": "Missing or invalid HTTP Basic credentials.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sso",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sso"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"type\": \"conflict\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"deserunt_26\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"inf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:55:16.000Z",
+              "updatedAt": "2026-10-21T20:55:16.000Z",
+              "uid": "35240-194b1e0b-a1aa-40a3-ad2c-0a687c0f7b96"
+            }
+          ],
+          "createdAt": "2026-10-21T20:55:16.000Z",
+          "updatedAt": "2026-10-21T20:55:16.000Z",
+          "uid": "35240-25b01b4a-7c9d-4b0d-bf6c-162c6407252f"
+        }
+      ],
+      "id": "2ce536a6-8d05-4de7-a83c-89b9138b6845",
+      "createdAt": "2026-10-21T20:55:16.000Z",
+      "updatedAt": "2026-10-21T20:55:16.000Z",
+      "uid": "35240-2ce536a6-8d05-4de7-a83c-89b9138b6845"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts.io/v2/partners"
+    }
+  ]
+}

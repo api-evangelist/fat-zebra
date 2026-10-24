@@ -1,0 +1,593 @@
+{
+  "info": {
+    "_postman_id": "874462ab-aca8-4a25-b320-4d52d610b209",
+    "name": "gateway Batches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:00.000Z",
+    "updatedAt": "2026-10-21T20:52:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-874462ab-aca8-4a25-b320-4d52d610b209"
+  },
+  "item": [
+    {
+      "name": "batches",
+      "item": [
+        {
+          "name": "{filename}",
+          "item": [
+            {
+              "name": "Create a batch",
+              "id": "814fc325-88ee-4973-9995-7e4c6f55df04",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"RAW_BODY\": \"<binary>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/batches/:filename",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "batches",
+                    ":filename"
+                  ],
+                  "variable": [
+                    {
+                      "id": "94323247-9131-463a-8a41-214dea808a2b",
+                      "key": "filename",
+                      "value": "<string>",
+                      "description": "(Required) Your CSV batch payments file name"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4c51e7b9-8cbf-46e2-84d3-60cb09c67114",
+                  "name": "201",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"RAW_BODY\": \"<binary>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/batches/:filename",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "batches",
+                        ":filename"
+                      ],
+                      "variable": [
+                        {
+                          "key": "filename"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"filename\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"process_date\": \"<string>\",\n    \"start_date\": {},\n    \"completed_date\": {},\n    \"status\": \"<string>\",\n    \"type\": \"<string>\",\n    \"reference\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:01.000Z",
+                  "updatedAt": "2026-10-21T20:52:01.000Z",
+                  "uid": "35240-4c51e7b9-8cbf-46e2-84d3-60cb09c67114"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:01.000Z",
+              "updatedAt": "2026-10-21T20:52:01.000Z",
+              "uid": "35240-814fc325-88ee-4973-9995-7e4c6f55df04"
+            }
+          ],
+          "id": "c953fc3f-b520-4547-b0c0-7969ee9a2439",
+          "createdAt": "2026-10-21T20:52:01.000Z",
+          "updatedAt": "2026-10-21T20:52:01.000Z",
+          "uid": "35240-c953fc3f-b520-4547-b0c0-7969ee9a2439"
+        },
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "result.csv",
+              "item": [
+                {
+                  "name": "Retrieve batch result file",
+                  "id": "9ad7e62f-e1ae-4aac-a3f5-ce162a64d084",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/batches/:id/result.csv",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "batches",
+                        ":id",
+                        "result.csv"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d9cca9e1-4b95-4ec4-a547-12fc06543fe6",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID or Reference of the Batch"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e630fddf-d3b2-4b9e-a35f-8242bf705b5f",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/batches/:id/result.csv",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "batches",
+                            ":id",
+                            "result.csv"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"cURL\": {\n      \"value\": \"Order42345,071-P-OEIHTOXT,Approved,00,Approved,826869,071POEIHTOXT,4000,AUD,John Doe 4,444433XXXXXX1111,2020-12-01,5bndwj3prob,Gizmo ABC 4\\nOrder22345,071-P-Z4NU1G1D,Declined,51,Insufficient Funds: Insufficient Funds,,,2051,AUD,John Doe 2,444433XXXXXX1111,2020-12-01,ch3mcxwyprk,Gizmo ABC 2\\nOrder32345,071-P-MQ3C98AD,Approved,00,Approved,241425,071PMQ3C98AD,3000,AUD,John Doe 3,444433XXXXXX1111,2020-12-01,azv46dwngzw,Gizmo ABC 3\\nOrder12345,071-P-9673W0M6,Rejected,\\\"\\\",Reference is already taken,\\\"\\\",\\\"\\\",1000,\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",\\\"\\\",Gizmo ABC 1\"\n    }\n  }\n}",
+                      "createdAt": "2026-10-21T20:52:01.000Z",
+                      "updatedAt": "2026-10-21T20:52:01.000Z",
+                      "uid": "35240-e630fddf-d3b2-4b9e-a35f-8242bf705b5f"
+                    },
+                    {
+                      "id": "8a387f16-24dd-4aec-bd0b-4273a0ce0c1f",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/batches/:id/result.csv",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "batches",
+                            ":id",
+                            "result.csv"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"Batch is not yet completed\"\n    }\n  }\n}",
+                      "createdAt": "2026-10-21T20:52:01.000Z",
+                      "updatedAt": "2026-10-21T20:52:01.000Z",
+                      "uid": "35240-8a387f16-24dd-4aec-bd0b-4273a0ce0c1f"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:52:01.000Z",
+                  "updatedAt": "2026-10-21T20:52:01.000Z",
+                  "uid": "35240-9ad7e62f-e1ae-4aac-a3f5-ce162a64d084"
+                }
+              ],
+              "id": "eaf25c86-c4c7-4079-bb6f-aa80f0a0643d",
+              "createdAt": "2026-10-21T20:52:01.000Z",
+              "updatedAt": "2026-10-21T20:52:01.000Z",
+              "uid": "35240-eaf25c86-c4c7-4079-bb6f-aa80f0a0643d"
+            },
+            {
+              "name": "Delete a batch",
+              "id": "86434536-dff3-461c-abd4-4890f0abf65b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/batches/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "batches",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "876b5b5c-ef65-4221-96de-a9101ac8be64",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID or Reference of the Batch"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "00808311-39b2-4fea-895e-e6e0e07ec9d9",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/batches/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "batches",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"test\": true,\n  \"response\": {\n    \"status\": \"<string>\",\n    \"completed_date\": {},\n    \"id\": \"<string>\",\n    \"start_date\": {},\n    \"type\": \"<string>\",\n    \"filename\": \"<string>\",\n    \"process_date\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"reference\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:52:01.000Z",
+                  "updatedAt": "2026-10-21T20:52:01.000Z",
+                  "uid": "35240-00808311-39b2-4fea-895e-e6e0e07ec9d9"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:01.000Z",
+              "updatedAt": "2026-10-21T20:52:01.000Z",
+              "uid": "35240-86434536-dff3-461c-abd4-4890f0abf65b"
+            },
+            {
+              "name": "Fetch a batch",
+              "id": "d0ced713-fe61-46d2-b4ae-9d9d7174c1de",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/batches/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "batches",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "60e88023-bc7a-4d2f-bcd2-b0375755f31a",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID or Reference of the Batch"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "58a14d8c-76c8-4cc0-90d3-38b8b3737e4b",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/batches/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "batches",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"status\": \"<string>\",\n    \"type\": \"<string>\",\n    \"process_date\": \"<string>\",\n    \"id\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"filename\": \"<string>\",\n    \"completed_date\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"start_date\": \"<string>\"\n  },\n  \"successful\": true,\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:01.000Z",
+                  "updatedAt": "2026-10-21T20:52:01.000Z",
+                  "uid": "35240-58a14d8c-76c8-4cc0-90d3-38b8b3737e4b"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:01.000Z",
+              "updatedAt": "2026-10-21T20:52:01.000Z",
+              "uid": "35240-d0ced713-fe61-46d2-b4ae-9d9d7174c1de"
+            }
+          ],
+          "id": "450ea2e4-11c9-428d-9629-96b0a284ee1f",
+          "createdAt": "2026-10-21T20:52:01.000Z",
+          "updatedAt": "2026-10-21T20:52:01.000Z",
+          "uid": "35240-450ea2e4-11c9-428d-9629-96b0a284ee1f"
+        },
+        {
+          "name": "List all batches",
+          "id": "2175f8ad-d5e5-4f4e-bddf-3d75170e2618",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/batches?limit=10&offset=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "batches"
+              ],
+              "query": [
+                {
+                  "description": "The number of records to return per request (page) - the maximum per request is 50.",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "The pagination offset. For example, offset=10, limit=10 will return records 100 to 110",
+                  "key": "offset",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f7192099-61ca-443b-8508-9844ed509f2c",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/batches?limit=10&offset=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "batches"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of records to return per request (page) - the maximum per request is 50.",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "The pagination offset. For example, offset=10, limit=10 will return records 100 to 110",
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"total_records\": 0,\n  \"page\": 0,\n  \"errors\": \"<array>\",\n  \"successful\": true,\n  \"test\": true,\n  \"records\": 0,\n  \"response\": [\n    {\n      \"completed_date\": {},\n      \"created_at\": \"<string>\",\n      \"id\": \"<string>\",\n      \"start_date\": {},\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"process_date\": \"<string>\",\n      \"reference\": \"<string>\"\n    },\n    {\n      \"completed_date\": {},\n      \"created_at\": \"<string>\",\n      \"id\": \"<string>\",\n      \"start_date\": {},\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"filename\": \"<string>\",\n      \"process_date\": \"<string>\",\n      \"reference\": \"<string>\"\n    }\n  ],\n  \"total_pages\": 0\n}",
+              "createdAt": "2026-10-21T20:52:01.000Z",
+              "updatedAt": "2026-10-21T20:52:01.000Z",
+              "uid": "35240-f7192099-61ca-443b-8508-9844ed509f2c"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:01.000Z",
+          "updatedAt": "2026-10-21T20:52:01.000Z",
+          "uid": "35240-2175f8ad-d5e5-4f4e-bddf-3d75170e2618"
+        }
+      ],
+      "id": "b196c5b8-b709-4ed5-992b-1567c7e377b7",
+      "createdAt": "2026-10-21T20:52:01.000Z",
+      "updatedAt": "2026-10-21T20:52:01.000Z",
+      "uid": "35240-b196c5b8-b709-4ed5-992b-1567c7e377b7"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

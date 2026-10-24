@@ -1,0 +1,663 @@
+{
+  "info": {
+    "_postman_id": "5ab24c56-6471-420e-8cf8-b3a9e71f8adf",
+    "name": "gateway Utilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:27.000Z",
+    "updatedAt": "2026-10-21T20:55:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ab24c56-6471-420e-8cf8-b3a9e71f8adf"
+  },
+  "item": [
+    {
+      "name": "utilities",
+      "item": [
+        {
+          "name": "mastercard",
+          "item": [
+            {
+              "name": "click_to_pay",
+              "item": [
+                {
+                  "name": "registration",
+                  "item": [
+                    {
+                      "name": "Check Registration",
+                      "id": "a4d92c0d-05b9-41b6-9592-db9f72a10bb3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/mastercard/click_to_pay/registration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            "mastercard",
+                            "click_to_pay",
+                            "registration"
+                          ]
+                        },
+                        "description": "In order to check the status of your Mastercard Click to Pay Registration the following API endpoint can be used."
+                      },
+                      "response": [
+                        {
+                          "id": "db9d22d6-71cd-4107-b9e3-bff4505e324d",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/mastercard/click_to_pay/registration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                "mastercard",
+                                "click_to_pay",
+                                "registration"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": \"<array>\",\n  \"response\": {\n    \"registered\": true,\n    \"status\": \"<string>\"\n  },\n  \"successful\": true,\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:28.000Z",
+                          "updatedAt": "2026-10-21T20:55:28.000Z",
+                          "uid": "35240-db9d22d6-71cd-4107-b9e3-bff4505e324d"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:28.000Z",
+                      "updatedAt": "2026-10-21T20:55:28.000Z",
+                      "uid": "35240-a4d92c0d-05b9-41b6-9592-db9f72a10bb3"
+                    }
+                  ],
+                  "id": "2fe13b06-d5a6-4812-9077-5fb08a4ee838",
+                  "createdAt": "2026-10-21T20:55:28.000Z",
+                  "updatedAt": "2026-10-21T20:55:28.000Z",
+                  "uid": "35240-2fe13b06-d5a6-4812-9077-5fb08a4ee838"
+                }
+              ],
+              "id": "202de7b3-f287-4831-bee7-36cdb8201dea",
+              "createdAt": "2026-10-21T20:55:28.000Z",
+              "updatedAt": "2026-10-21T20:55:28.000Z",
+              "uid": "35240-202de7b3-f287-4831-bee7-36cdb8201dea"
+            }
+          ],
+          "id": "2dbb31c2-70da-4988-ad07-66b76a8a245c",
+          "createdAt": "2026-10-21T20:55:28.000Z",
+          "updatedAt": "2026-10-21T20:55:28.000Z",
+          "uid": "35240-2dbb31c2-70da-4988-ad07-66b76a8a245c"
+        },
+        {
+          "name": "apple_pay",
+          "item": [
+            {
+              "name": "domains",
+              "item": [
+                {
+                  "name": "www.example.com",
+                  "item": [
+                    {
+                      "name": "Register (Create) an Apple Pay on the Web Domain",
+                      "id": "ec335e4f-3efa-4403-8e0a-2c49809bb8d8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"async\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            "apple_pay",
+                            "domains",
+                            "www.example.com"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "186765f6-3f81-4aaa-bd04-d1c0f45deac7",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"async\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                "apple_pay",
+                                "domains",
+                                "www.example.com"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": \"<array>\",\n  \"response\": {\n    \"created_at\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"status\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  },\n  \"successful\": true,\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:28.000Z",
+                          "updatedAt": "2026-10-21T20:55:28.000Z",
+                          "uid": "35240-186765f6-3f81-4aaa-bd04-d1c0f45deac7"
+                        },
+                        {
+                          "id": "8d41daa9-8ca4-47d5-ab81-9d1634d60899",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"async\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                "apple_pay",
+                                "domains",
+                                "www.example.com"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response\": {},\n  \"successful\": true,\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:28.000Z",
+                          "updatedAt": "2026-10-21T20:55:28.000Z",
+                          "uid": "35240-8d41daa9-8ca4-47d5-ab81-9d1634d60899"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:28.000Z",
+                      "updatedAt": "2026-10-21T20:55:28.000Z",
+                      "uid": "35240-ec335e4f-3efa-4403-8e0a-2c49809bb8d8"
+                    },
+                    {
+                      "name": "Check (Get) an Apple Pay on the Web Domain",
+                      "id": "d2957bf9-c0fa-404a-8c8d-64fc49b64142",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            "apple_pay",
+                            "domains",
+                            "www.example.com"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "f4b2dfa7-24df-44f3-8192-85062d6a062b",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                "apple_pay",
+                                "domains",
+                                "www.example.com"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": \"<array>\",\n  \"response\": {\n    \"created_at\": \"<string>\",\n    \"domain\": \"<string>\",\n    \"status\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  },\n  \"successful\": true,\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:28.000Z",
+                          "updatedAt": "2026-10-21T20:55:28.000Z",
+                          "uid": "35240-f4b2dfa7-24df-44f3-8192-85062d6a062b"
+                        },
+                        {
+                          "id": "78ba71d9-6a80-4d6b-8b5f-1eb51c87c0e3",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                "apple_pay",
+                                "domains",
+                                "www.example.com"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response\": {},\n  \"successful\": true,\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:28.000Z",
+                          "updatedAt": "2026-10-21T20:55:28.000Z",
+                          "uid": "35240-78ba71d9-6a80-4d6b-8b5f-1eb51c87c0e3"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:28.000Z",
+                      "updatedAt": "2026-10-21T20:55:28.000Z",
+                      "uid": "35240-d2957bf9-c0fa-404a-8c8d-64fc49b64142"
+                    },
+                    {
+                      "name": "Remove (Delete) an Apple Pay on the Web Domain",
+                      "id": "07c99dce-38f9-4a2c-b6fb-379ef0537c9c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            "apple_pay",
+                            "domains",
+                            "www.example.com"
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8d059a14-1b26-4004-ad2b-61bfae798f94",
+                          "name": "202",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                "apple_pay",
+                                "domains",
+                                "www.example.com"
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": \"<array>\",\n  \"is_test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:28.000Z",
+                          "updatedAt": "2026-10-21T20:55:28.000Z",
+                          "uid": "35240-8d059a14-1b26-4004-ad2b-61bfae798f94"
+                        },
+                        {
+                          "id": "07d418cf-1043-4c71-89da-490b619aa4e0",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utilities/apple_pay/domains/www.example.com",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utilities",
+                                "apple_pay",
+                                "domains",
+                                "www.example.com"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response\": {},\n  \"successful\": true,\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:28.000Z",
+                          "updatedAt": "2026-10-21T20:55:28.000Z",
+                          "uid": "35240-07d418cf-1043-4c71-89da-490b619aa4e0"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:28.000Z",
+                      "updatedAt": "2026-10-21T20:55:28.000Z",
+                      "uid": "35240-07c99dce-38f9-4a2c-b6fb-379ef0537c9c"
+                    }
+                  ],
+                  "id": "c6353ffc-28d7-42cc-945d-1cac3c9711ba",
+                  "createdAt": "2026-10-21T20:55:28.000Z",
+                  "updatedAt": "2026-10-21T20:55:28.000Z",
+                  "uid": "35240-c6353ffc-28d7-42cc-945d-1cac3c9711ba"
+                },
+                {
+                  "name": "List Apple Pay (web) domains",
+                  "id": "8df7187c-d533-4f68-850d-e5ac780802bb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/utilities/apple_pay/domains",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "utilities",
+                        "apple_pay",
+                        "domains"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0a553daf-79f8-4d46-8e3c-d301a45049d4",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utilities/apple_pay/domains",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utilities",
+                            "apple_pay",
+                            "domains"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": \"<array>\",\n  \"response\": [\n    {\n      \"domain\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"domain\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"successful\": true,\n  \"test\": true\n}",
+                      "createdAt": "2026-10-21T20:55:28.000Z",
+                      "updatedAt": "2026-10-21T20:55:28.000Z",
+                      "uid": "35240-0a553daf-79f8-4d46-8e3c-d301a45049d4"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:28.000Z",
+                  "updatedAt": "2026-10-21T20:55:28.000Z",
+                  "uid": "35240-8df7187c-d533-4f68-850d-e5ac780802bb"
+                }
+              ],
+              "id": "b7066799-af7f-4339-995e-4f5b23c96fdc",
+              "createdAt": "2026-10-21T20:55:28.000Z",
+              "updatedAt": "2026-10-21T20:55:28.000Z",
+              "uid": "35240-b7066799-af7f-4339-995e-4f5b23c96fdc"
+            }
+          ],
+          "id": "9426eacd-5f34-44d0-b00d-6d514babfe37",
+          "createdAt": "2026-10-21T20:55:28.000Z",
+          "updatedAt": "2026-10-21T20:55:28.000Z",
+          "uid": "35240-9426eacd-5f34-44d0-b00d-6d514babfe37"
+        }
+      ],
+      "id": "11cf735e-8a1c-4a07-b3f7-0d36a99d0db8",
+      "createdAt": "2026-10-21T20:55:28.000Z",
+      "updatedAt": "2026-10-21T20:55:28.000Z",
+      "uid": "35240-11cf735e-8a1c-4a07-b3f7-0d36a99d0db8"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

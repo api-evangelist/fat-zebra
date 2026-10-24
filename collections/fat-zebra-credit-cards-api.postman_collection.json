@@ -1,0 +1,792 @@
+{
+  "info": {
+    "_postman_id": "403958c2-95cf-412f-98a7-42f3c8f6a2dc",
+    "name": "gateway Credit Cards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:12.000Z",
+    "updatedAt": "2026-10-21T20:52:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-403958c2-95cf-412f-98a7-42f3c8f6a2dc"
+  },
+  "item": [
+    {
+      "name": "credit_cards",
+      "item": [
+        {
+          "name": "{token_or_alias}",
+          "item": [
+            {
+              "name": "Update a tokenized card",
+              "id": "832417ba-0e7c-40e0-ae7d-15b9955f1889",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card_expiry\": \"<string>\",\n  \"alias\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit_cards",
+                    ":token_or_alias"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4dcd265a-42be-4b0d-9205-f44faaaba74b",
+                      "key": "token_or_alias",
+                      "value": "<string>",
+                      "description": "(Required) Token or alias of the card to update"
+                    }
+                  ]
+                },
+                "description": "Update an existing card"
+              },
+              "response": [
+                {
+                  "id": "ce2d83ea-4bc2-4c84-9251-cd769ac14697",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"card_expiry\": \"<string>\",\n  \"alias\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit_cards",
+                        ":token_or_alias"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token_or_alias"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"token\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"card_issuer\": \"<string>\",\n    \"card_country\": \"<string>\",\n    \"authorized\": true,\n    \"transaction_count\": 0,\n    \"alias\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:12.000Z",
+                  "updatedAt": "2026-10-21T20:52:12.000Z",
+                  "uid": "35240-ce2d83ea-4bc2-4c84-9251-cd769ac14697"
+                },
+                {
+                  "id": "8041da2f-7811-4357-83bb-9d71ad3d8051",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"card_expiry\": \"<string>\",\n  \"alias\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit_cards",
+                        ":token_or_alias"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token_or_alias"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:52:12.000Z",
+                  "updatedAt": "2026-10-21T20:52:12.000Z",
+                  "uid": "35240-8041da2f-7811-4357-83bb-9d71ad3d8051"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:12.000Z",
+              "updatedAt": "2026-10-21T20:52:12.000Z",
+              "uid": "35240-832417ba-0e7c-40e0-ae7d-15b9955f1889"
+            },
+            {
+              "name": "Fetch a tokenized card",
+              "id": "03fc7686-dbdc-4919-96dc-8a2dab242b4d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit_cards",
+                    ":token_or_alias"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fafab49d-a050-485d-9a51-42b70ca0d0ea",
+                      "key": "token_or_alias",
+                      "value": "<string>",
+                      "description": "(Required) Token or alias of the card"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "908720b7-4989-4658-a60c-7c9910c40309",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit_cards",
+                        ":token_or_alias"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token_or_alias"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"token\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"card_issuer\": \"<string>\",\n    \"card_country\": \"<string>\",\n    \"authorized\": true,\n    \"transaction_count\": 0,\n    \"alias\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:12.000Z",
+                  "updatedAt": "2026-10-21T20:52:12.000Z",
+                  "uid": "35240-908720b7-4989-4658-a60c-7c9910c40309"
+                },
+                {
+                  "id": "a22ca3b7-58e0-4029-a6db-c1408ae386c9",
+                  "name": "404",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit_cards",
+                        ":token_or_alias"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token_or_alias"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:12.000Z",
+                  "updatedAt": "2026-10-21T20:52:12.000Z",
+                  "uid": "35240-a22ca3b7-58e0-4029-a6db-c1408ae386c9"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:12.000Z",
+              "updatedAt": "2026-10-21T20:52:12.000Z",
+              "uid": "35240-03fc7686-dbdc-4919-96dc-8a2dab242b4d"
+            },
+            {
+              "name": "Delete an MDES Token Connect tokenized card",
+              "id": "c7defb26-bd48-4334-b740-1c1ff3214cdb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit_cards",
+                    ":token_or_alias"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4c372f23-ecaf-42f8-82d0-31b22dfd7ae7",
+                      "key": "token_or_alias",
+                      "value": "<string>",
+                      "description": "(Required) Token or alias of the card to delete"
+                    }
+                  ]
+                },
+                "description": "Deactivates a scheme-tokenized card. Currently only supported for cards tokenized via MDES Token Connect; other card types return a 400."
+              },
+              "response": [
+                {
+                  "id": "fee0a3a8-1f1b-48c8-a5b1-4395e95c635f",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/credit_cards/:token_or_alias",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "credit_cards",
+                        ":token_or_alias"
+                      ],
+                      "variable": [
+                        {
+                          "key": "token_or_alias"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:12.000Z",
+                  "updatedAt": "2026-10-21T20:52:12.000Z",
+                  "uid": "35240-fee0a3a8-1f1b-48c8-a5b1-4395e95c635f"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:12.000Z",
+              "updatedAt": "2026-10-21T20:52:12.000Z",
+              "uid": "35240-c7defb26-bd48-4334-b740-1c1ff3214cdb"
+            }
+          ],
+          "id": "e6d696f1-4945-4617-abc0-a146a50ad8bf",
+          "createdAt": "2026-10-21T20:52:12.000Z",
+          "updatedAt": "2026-10-21T20:52:12.000Z",
+          "uid": "35240-e6d696f1-4945-4617-abc0-a146a50ad8bf"
+        },
+        {
+          "name": "Tokenize a card with wallet credentials",
+          "id": "c3c47a50-4d01-409c-83e4-de4006559d48",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"checkout_identifier\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"auth_code\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"wallet_id\": \"<string>\",\n    \"card_type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/credit_cards/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "credit_cards",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa2d4fbc-b6fa-41b7-b9a0-e2a695a04d56",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"checkout_identifier\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"auth_code\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"wallet_id\": \"<string>\",\n    \"card_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit_cards/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit_cards",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"token\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"authorized\": true,\n    \"transaction_count\": 0,\n    \"wallet\": {\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\"\n      },\n      \"address\": {\n        \"line_1\": \"<string>\",\n        \"line_2\": {},\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postcode\": \"<string>\",\n        \"phone\": \"<string>\"\n      },\n      \"email\": \"<string>\",\n      \"card_source_reference\": \"<string>\"\n    }\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:52:12.000Z",
+              "updatedAt": "2026-10-21T20:52:12.000Z",
+              "uid": "35240-fa2d4fbc-b6fa-41b7-b9a0-e2a695a04d56"
+            },
+            {
+              "id": "3ede8e9f-b0bd-4908-98cf-2886a5494627",
+              "name": "400",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"checkout_identifier\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"auth_code\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"wallet_id\": \"<string>\",\n    \"card_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/credit_cards/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit_cards",
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T20:52:12.000Z",
+              "updatedAt": "2026-10-21T20:52:12.000Z",
+              "uid": "35240-3ede8e9f-b0bd-4908-98cf-2886a5494627"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:12.000Z",
+          "updatedAt": "2026-10-21T20:52:12.000Z",
+          "uid": "35240-c3c47a50-4d01-409c-83e4-de4006559d48"
+        },
+        {
+          "name": "List tokenized cards",
+          "id": "13f18902-a886-44af-a717-ad5a1df1914a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/credit_cards?offset=1&limit=10&from=<dateTime>&to=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "credit_cards"
+              ],
+              "query": [
+                {
+                  "description": "Page number to return",
+                  "key": "offset",
+                  "value": "1"
+                },
+                {
+                  "description": "Max number of results to return",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Lower bound for the time at which the card was tokenized",
+                  "key": "from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Upper bound for the time at which the card was tokenized",
+                  "key": "to",
+                  "value": "<dateTime>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c898481-ed5e-4ddd-b212-56d5285e7698",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit_cards?offset=1&limit=10&from=<dateTime>&to=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit_cards"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number to return",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Max number of results to return",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the card was tokenized",
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the card was tokenized",
+                      "key": "to",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"token\": \"<string>\",\n      \"card_holder\": \"<string>\",\n      \"card_number\": \"<string>\",\n      \"card_expiry\": \"<string>\",\n      \"card_type\": \"<string>\",\n      \"card_category\": \"<string>\",\n      \"card_subcategory\": \"<string>\",\n      \"card_issuer\": \"<string>\",\n      \"card_country\": \"<string>\",\n      \"authorized\": true,\n      \"transaction_count\": 0,\n      \"alias\": \"<string>\"\n    },\n    {\n      \"token\": \"<string>\",\n      \"card_holder\": \"<string>\",\n      \"card_number\": \"<string>\",\n      \"card_expiry\": \"<string>\",\n      \"card_type\": \"<string>\",\n      \"card_category\": \"<string>\",\n      \"card_subcategory\": \"<string>\",\n      \"card_issuer\": \"<string>\",\n      \"card_country\": \"<string>\",\n      \"authorized\": true,\n      \"transaction_count\": 0,\n      \"alias\": \"<string>\"\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"test\": true,\n  \"records\": 0,\n  \"total_records\": 0,\n  \"page\": 0,\n  \"total_pages\": 0\n}",
+              "createdAt": "2026-10-21T20:52:12.000Z",
+              "updatedAt": "2026-10-21T20:52:12.000Z",
+              "uid": "35240-7c898481-ed5e-4ddd-b212-56d5285e7698"
+            },
+            {
+              "id": "a9ec0298-a2d2-4d9f-b9ae-6d77922c21e4",
+              "name": "400",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/credit_cards?offset=1&limit=10&from=<dateTime>&to=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "credit_cards"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number to return",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Max number of results to return",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the card was tokenized",
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the card was tokenized",
+                      "key": "to",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T20:52:12.000Z",
+              "updatedAt": "2026-10-21T20:52:12.000Z",
+              "uid": "35240-a9ec0298-a2d2-4d9f-b9ae-6d77922c21e4"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:12.000Z",
+          "updatedAt": "2026-10-21T20:52:12.000Z",
+          "uid": "35240-13f18902-a886-44af-a717-ad5a1df1914a"
+        }
+      ],
+      "id": "663bc9c1-45e2-455f-9b5c-71fe016b287d",
+      "createdAt": "2026-10-21T20:52:12.000Z",
+      "updatedAt": "2026-10-21T20:52:12.000Z",
+      "uid": "35240-663bc9c1-45e2-455f-9b5c-71fe016b287d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

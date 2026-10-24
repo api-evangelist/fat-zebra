@@ -1,0 +1,369 @@
+{
+  "info": {
+    "_postman_id": "42c1934f-3d5e-4ad1-833d-27e8cae01095",
+    "name": "gateway Bank Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:51:52.000Z",
+    "updatedAt": "2026-10-21T20:51:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-42c1934f-3d5e-4ad1-833d-27e8cae01095"
+  },
+  "item": [
+    {
+      "name": "bank_accounts",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Fetch a bank account",
+              "id": "930191cb-0a99-4315-95b6-5cfa2b042eef",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bank_accounts/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bank_accounts",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "db32c579-b148-43ba-851f-e5c12d114a3f",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The bank account record ID"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "59ea16ef-72f6-417f-8c8f-26b9986e3779",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/bank_accounts/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "bank_accounts",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"response\": {\n    \"bsb\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"id\": \"<string>\",\n    \"account_name\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true,\n  \"successful\": true\n}",
+                  "createdAt": "2026-10-21T20:51:53.000Z",
+                  "updatedAt": "2026-10-21T20:51:53.000Z",
+                  "uid": "35240-59ea16ef-72f6-417f-8c8f-26b9986e3779"
+                }
+              ],
+              "createdAt": "2026-10-21T20:51:52.000Z",
+              "updatedAt": "2026-10-21T20:51:52.000Z",
+              "uid": "35240-930191cb-0a99-4315-95b6-5cfa2b042eef"
+            }
+          ],
+          "id": "3b3e719b-e301-494e-831f-5f0cfdb136ce",
+          "createdAt": "2026-10-21T20:51:52.000Z",
+          "updatedAt": "2026-10-21T20:51:52.000Z",
+          "uid": "35240-3b3e719b-e301-494e-831f-5f0cfdb136ce"
+        },
+        {
+          "name": "Create a bank account",
+          "id": "27c38fab-b428-48c8-93ed-ec5b19a675e2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/bank_accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bank_accounts"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "62de80a8-a4ee-4be3-9b44-579cef6fcad9",
+              "name": "201",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bank_accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bank_accounts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"account_name\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"bsb\": \"<string>\",\n    \"created_at\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:51:53.000Z",
+              "updatedAt": "2026-10-21T20:51:53.000Z",
+              "uid": "35240-62de80a8-a4ee-4be3-9b44-579cef6fcad9"
+            },
+            {
+              "id": "d7788546-6e63-4184-9fc8-be3db07eaa6e",
+              "name": "422",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bank_accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bank_accounts"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"account_name\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"bsb\": \"<string>\",\n    \"created_at\": {}\n  },\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:51:53.000Z",
+              "updatedAt": "2026-10-21T20:51:53.000Z",
+              "uid": "35240-d7788546-6e63-4184-9fc8-be3db07eaa6e"
+            }
+          ],
+          "createdAt": "2026-10-21T20:51:52.000Z",
+          "updatedAt": "2026-10-21T20:51:52.000Z",
+          "uid": "35240-27c38fab-b428-48c8-93ed-ec5b19a675e2"
+        },
+        {
+          "name": "List bank accounts",
+          "id": "d314badd-7755-44c5-8543-e235a2e03fd8",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/bank_accounts?offset=1&limit=10&from=<dateTime>&to=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "bank_accounts"
+              ],
+              "query": [
+                {
+                  "description": "Page number to return",
+                  "key": "offset",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of results to return",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Lower bound for the time at which the bank account was registered",
+                  "key": "from",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Upper bound for the time at which the bank account was registered",
+                  "key": "to",
+                  "value": "<dateTime>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d54eed86-d5eb-46f5-b85e-c9540f3ca620",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bank_accounts?offset=1&limit=10&from=<dateTime>&to=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "bank_accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number to return",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of results to return",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the bank account was registered",
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the bank account was registered",
+                      "key": "to",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"examples\": {\n    \"cURL\": {\n      \"value\": \"{\\n  \\\"successful\\\": true,\\n  \\\"response\\\": [\\n    {\\n      \\\"id\\\": \\\"071-B-C2FJI049\\\",\\n      \\\"account_name\\\": \\\"Test\\\",\\n      \\\"account_number\\\": \\\"12312312\\\",\\n      \\\"bsb\\\": \\\"123-123\\\",\\n      \\\"created_at\\\": \\\"2018-01-18T10:31:09+11:00\\\"\\n    },\\n  ],\\n  \\\"errors\\\": [],\\n  \\\"test\\\": true,\\n  \\\"records\\\": 10,\\n  \\\"total_records\\\": 570,\\n  \\\"page\\\": 1,\\n  \\\"total_pages\\\": 57\\n}\"\n    }\n  }\n}",
+              "createdAt": "2026-10-21T20:51:53.000Z",
+              "updatedAt": "2026-10-21T20:51:53.000Z",
+              "uid": "35240-d54eed86-d5eb-46f5-b85e-c9540f3ca620"
+            }
+          ],
+          "createdAt": "2026-10-21T20:51:52.000Z",
+          "updatedAt": "2026-10-21T20:51:52.000Z",
+          "uid": "35240-d314badd-7755-44c5-8543-e235a2e03fd8"
+        }
+      ],
+      "id": "c3698490-9685-45a4-88d3-b33162a6694c",
+      "createdAt": "2026-10-21T20:51:52.000Z",
+      "updatedAt": "2026-10-21T20:51:52.000Z",
+      "uid": "35240-c3698490-9685-45a4-88d3-b33162a6694c"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

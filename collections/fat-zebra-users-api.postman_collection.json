@@ -1,0 +1,1471 @@
+{
+  "info": {
+    "_postman_id": "8033f4d6-a13b-4480-959d-b49a71ee7d17",
+    "name": "Fat Zebra Partner Users API",
+    "description": "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:22.000Z",
+    "updatedAt": "2026-10-21T20:55:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8033f4d6-a13b-4480-959d-b49a71ee7d17"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "deactivate",
+              "item": [
+                {
+                  "name": "Deactivate a user",
+                  "id": "f33d682b-a0bf-4965-b6ec-9f6e83668755",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id/deactivate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id",
+                        "deactivate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1a245f7b-a1a1-4340-bcf1-21c7c54e2d48",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) User id (e.g. `123-RU-9f3k2m8q`)."
+                        }
+                      ]
+                    },
+                    "description": "Locks the account so the user can't sign in. No body is expected."
+                  },
+                  "response": [
+                    {
+                      "id": "c05cd9c5-2e22-41ab-ad5b-10b49c5c0e5f",
+                      "name": "The deactivated user.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"role\": \"member\",\n  \"status\": \"reset_requested\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"sso_linked\": \"<boolean>\",\n  \"last_login_at\": \"<string,null-date-time>\",\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                      "createdAt": "2026-10-21T20:55:23.000Z",
+                      "updatedAt": "2026-10-21T20:55:23.000Z",
+                      "uid": "35240-c05cd9c5-2e22-41ab-ad5b-10b49c5c0e5f"
+                    },
+                    {
+                      "id": "48617152-1e19-49d5-a745-d0d090a04b43",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:55:23.000Z",
+                      "updatedAt": "2026-10-21T20:55:23.000Z",
+                      "uid": "35240-48617152-1e19-49d5-a745-d0d090a04b43"
+                    },
+                    {
+                      "id": "06c13024-0caa-4fdd-a99f-20b9f6ac5c8a",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/deactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "deactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:55:23.000Z",
+                      "updatedAt": "2026-10-21T20:55:23.000Z",
+                      "uid": "35240-06c13024-0caa-4fdd-a99f-20b9f6ac5c8a"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-f33d682b-a0bf-4965-b6ec-9f6e83668755"
+                }
+              ],
+              "id": "b55e35f4-fa73-40f0-b140-69697fd20583",
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-b55e35f4-fa73-40f0-b140-69697fd20583"
+            },
+            {
+              "name": "reactivate",
+              "item": [
+                {
+                  "name": "Reactivate a user",
+                  "id": "0993d0a8-3e3f-491a-b1f2-b97c67a0a697",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id/reactivate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id",
+                        "reactivate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6e21fc97-b04b-448d-a0c9-8c324c0983c4",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) User id (e.g. `123-RU-9f3k2m8q`)."
+                        }
+                      ]
+                    },
+                    "description": "Unlocks the account so the user can sign in again. No body is expected."
+                  },
+                  "response": [
+                    {
+                      "id": "0c2c2dfd-58d0-4dc0-a693-deac76b660d2",
+                      "name": "The reactivated user.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/reactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "reactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"role\": \"member\",\n  \"status\": \"reset_requested\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"sso_linked\": \"<boolean>\",\n  \"last_login_at\": \"<string,null-date-time>\",\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                      "createdAt": "2026-10-21T20:55:23.000Z",
+                      "updatedAt": "2026-10-21T20:55:23.000Z",
+                      "uid": "35240-0c2c2dfd-58d0-4dc0-a693-deac76b660d2"
+                    },
+                    {
+                      "id": "68e5ea7f-5cce-4335-9059-06e0cd1576db",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/reactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "reactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:55:23.000Z",
+                      "updatedAt": "2026-10-21T20:55:23.000Z",
+                      "uid": "35240-68e5ea7f-5cce-4335-9059-06e0cd1576db"
+                    },
+                    {
+                      "id": "4ea2f389-b245-42af-abee-616fe47c9b40",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/reactivate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "reactivate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:55:23.000Z",
+                      "updatedAt": "2026-10-21T20:55:23.000Z",
+                      "uid": "35240-4ea2f389-b245-42af-abee-616fe47c9b40"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-0993d0a8-3e3f-491a-b1f2-b97c67a0a697"
+                }
+              ],
+              "id": "a16c534a-d002-4c68-90d3-424fa2b4abe0",
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-a16c534a-d002-4c68-90d3-424fa2b4abe0"
+            },
+            {
+              "name": "Show a user",
+              "id": "2b2b3d72-b7bb-4914-8827-1dc4c93e388d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "19e6de56-2aab-4e01-82d7-03b6f5e7c3a7",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) User id (e.g. `123-RU-9f3k2m8q`)."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "a29af298-02ad-4828-a6a5-92bdd3d2f341",
+                  "name": "The user.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"role\": \"member\",\n  \"status\": \"reset_requested\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"sso_linked\": \"<boolean>\",\n  \"last_login_at\": \"<string,null-date-time>\",\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-a29af298-02ad-4828-a6a5-92bdd3d2f341"
+                },
+                {
+                  "id": "de5d0399-edf4-47e0-bb98-d2e104383019",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-de5d0399-edf4-47e0-bb98-d2e104383019"
+                },
+                {
+                  "id": "ec3674a4-c1d5-43bf-be12-9d2697bd7851",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-ec3674a4-c1d5-43bf-be12-9d2697bd7851"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-2b2b3d72-b7bb-4914-8827-1dc4c93e388d"
+            },
+            {
+              "name": "Update a user",
+              "id": "3d0f492b-b69e-4390-a308-37ea20a6596f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2ac3b339-1b8c-4394-97a8-b661867360b8",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) User id (e.g. `123-RU-9f3k2m8q`)."
+                    }
+                  ]
+                },
+                "description": "Updates the user's `name`, `email`, `role` or `password`. The\n`password` is write-only \u2014 it is accepted here but never returned."
+              },
+              "response": [
+                {
+                  "id": "0c711037-e870-451c-8e77-dfe877df9215",
+                  "name": "The updated user.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"role\": \"member\",\n  \"status\": \"reset_requested\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"sso_linked\": \"<boolean>\",\n  \"last_login_at\": \"<string,null-date-time>\",\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-0c711037-e870-451c-8e77-dfe877df9215"
+                },
+                {
+                  "id": "e40b89c7-e87a-4824-9385-5f974bc122f8",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-e40b89c7-e87a-4824-9385-5f974bc122f8"
+                },
+                {
+                  "id": "4a9bb99d-3ebe-4de1-9917-7d6039231d90",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-4a9bb99d-3ebe-4de1-9917-7d6039231d90"
+                },
+                {
+                  "id": "1850e2ac-21b8-4340-a63b-4b5b3b9c5d52",
+                  "name": "The request couldn't be completed. A `validation_error` is something the\ncaller can fix \u2014 a bad payload, a merchant that failed validation, or a\nprocessor rejecting a field (e.g. the MID); the reason is in `fields`,\nkeyed by a processor-agnostic field nam",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-1850e2ac-21b8-4340-a63b-4b5b3b9c5d52"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-3d0f492b-b69e-4390-a308-37ea20a6596f"
+            },
+            {
+              "name": "Remove a user",
+              "id": "51456441-df4e-477e-9f26-d1e9757bd942",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "28bf89d8-cfe4-4161-adf5-7ce07529dd98",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) User id (e.g. `123-RU-9f3k2m8q`)."
+                    }
+                  ]
+                },
+                "description": "Deletes the user. Returns `204` with no content."
+              },
+              "response": [
+                {
+                  "id": "7fd81954-778c-43c3-ad78-76ac1ba516b0",
+                  "name": "The user was removed.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-7fd81954-778c-43c3-ad78-76ac1ba516b0"
+                },
+                {
+                  "id": "e1ea87ce-67cb-407b-8fa2-2291f91f2f25",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-e1ea87ce-67cb-407b-8fa2-2291f91f2f25"
+                },
+                {
+                  "id": "fce4d844-fb9f-4b5a-aba9-f32a335af2c7",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:23.000Z",
+                  "updatedAt": "2026-10-21T20:55:23.000Z",
+                  "uid": "35240-fce4d844-fb9f-4b5a-aba9-f32a335af2c7"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-51456441-df4e-477e-9f26-d1e9757bd942"
+            }
+          ],
+          "id": "79f66bf3-cc8b-4b36-9ba0-9c5117ecfc11",
+          "createdAt": "2026-10-21T20:55:23.000Z",
+          "updatedAt": "2026-10-21T20:55:23.000Z",
+          "uid": "35240-79f66bf3-cc8b-4b36-9ba0-9c5117ecfc11"
+        },
+        {
+          "name": "List the partner's dashboard users",
+          "id": "2f749b36-60fc-4b84-bf1a-1d0868d44820",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users?limit=25&starting_after=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "description": "Page size. Defaults to 25, capped at 100.",
+                  "key": "limit",
+                  "value": "25"
+                },
+                {
+                  "description": "Cursor \u2014 the id of the last item from the previous page. Omit for the first page.",
+                  "key": "starting_after",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns the partner's dashboard user ids newest-first in the list\nenvelope. Fetch the full user via `GET /users/{id}`."
+          },
+          "response": [
+            {
+              "id": "c181a1e1-8f70-40be-996c-a3c38a16ee0b",
+              "name": "Users list envelope.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?limit=25&starting_after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page size. Defaults to 25, capped at 100.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Cursor \u2014 the id of the last item from the previous page. Omit for the first page.",
+                      "key": "starting_after",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": \"<array>\",\n  \"next_cursor\": \"<string,null>\"\n}",
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-c181a1e1-8f70-40be-996c-a3c38a16ee0b"
+            },
+            {
+              "id": "81571bb2-1269-48b2-809b-b3f685375de1",
+              "name": "Missing or invalid HTTP Basic credentials.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users?limit=25&starting_after=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page size. Defaults to 25, capped at 100.",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Cursor \u2014 the id of the last item from the previous page. Omit for the first page.",
+                      "key": "starting_after",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-81571bb2-1269-48b2-809b-b3f685375de1"
+            }
+          ],
+          "createdAt": "2026-10-21T20:55:23.000Z",
+          "updatedAt": "2026-10-21T20:55:23.000Z",
+          "uid": "35240-2f749b36-60fc-4b84-bf1a-1d0868d44820"
+        },
+        {
+          "name": "Create a dashboard user",
+          "id": "f65e014a-41e6-4d5b-8e4b-0259ac2f8e92",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "Creates a dashboard user under the partner. The `password` is\nwrite-only \u2014 it is accepted here but never returned on reads."
+          },
+          "response": [
+            {
+              "id": "dfdcabfe-02fd-4f46-99e3-90c26e4850ce",
+              "name": "The created user.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"role\": \"member\",\n  \"status\": \"reset_requested\",\n  \"mfa_enabled\": \"<boolean>\",\n  \"sso_linked\": \"<boolean>\",\n  \"last_login_at\": \"<string,null-date-time>\",\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-dfdcabfe-02fd-4f46-99e3-90c26e4850ce"
+            },
+            {
+              "id": "a88ac1fe-24fe-4c61-ad30-95bff477f994",
+              "name": "Missing or invalid HTTP Basic credentials.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-a88ac1fe-24fe-4c61-ad30-95bff477f994"
+            },
+            {
+              "id": "35d8e819-5258-409b-834c-868fe72d3bf5",
+              "name": "The request couldn't be completed. A `validation_error` is something the\ncaller can fix \u2014 a bad payload, a merchant that failed validation, or a\nprocessor rejecting a field (e.g. the MID); the reason is in `fields`,\nkeyed by a processor-agnostic field nam",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"role\": \"member\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"anime\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:55:23.000Z",
+              "updatedAt": "2026-10-21T20:55:23.000Z",
+              "uid": "35240-35d8e819-5258-409b-834c-868fe72d3bf5"
+            }
+          ],
+          "createdAt": "2026-10-21T20:55:23.000Z",
+          "updatedAt": "2026-10-21T20:55:23.000Z",
+          "uid": "35240-f65e014a-41e6-4d5b-8e4b-0259ac2f8e92"
+        }
+      ],
+      "id": "48a75f4f-1468-47bb-80f8-c2589502c95d",
+      "createdAt": "2026-10-21T20:55:23.000Z",
+      "updatedAt": "2026-10-21T20:55:23.000Z",
+      "uid": "35240-48a75f4f-1468-47bb-80f8-c2589502c95d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts.io/v2/partners"
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "info": {
+    "_postman_id": "4c61a69a-f8e1-4fc0-9bbd-320791d6745e",
+    "name": "gateway Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:09.000Z",
+    "updatedAt": "2026-10-21T20:55:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4c61a69a-f8e1-4fc0-9bbd-320791d6745e"
+  },
+  "item": [
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "payouts",
+          "item": [
+            {
+              "name": "{date}",
+              "item": [
+                {
+                  "name": "transactions",
+                  "item": [
+                    {
+                      "name": "Fetch a payout's transactions for date",
+                      "id": "d024a61a-6955-403d-b85a-146c185ca3c4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/payouts/:date/transactions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            "payouts",
+                            ":date",
+                            "transactions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "325cf1ed-8383-44b0-a52e-d5192ae44ab4",
+                              "key": "date",
+                              "value": "2022-01-01",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "44fd503a-7241-428b-916d-ef9e5316fc4c",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/payouts/:date/transactions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                "payouts",
+                                ":date",
+                                "transactions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "date"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/plain"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"payout_date,transaction_date,amount,currency,txn_fee,payout_amount,transaction_type,card_type,Int/Domestic,card_category,reference,merchant_reference,receipt_number,payout_description,msf_fee,transaction_fee,interchange_fee,scheme_fee,fee_total\\n2024-01-01,2024-06-12,\\\"$1,500.00\\\",AUD,-$18.10,\\\"$1,500.00\\\",purchase,visa,International,Credit,001-P-NV0PZDZ3IINK3TEE,ref1422098896,75212PNV0PZD,FZ-20240613-C7OF8T,-$18.00,-$0.10,,,-$18.10\\n2024-01-01,2024-06-12,\\\"$5,000.00\\\",AUD,-$60.10,\\\"$5,000.00\\\",purchase,visa,International,Credit,001-P-EHVKBDVUUAGK4Q6C,ref633332999,75212PEHVKBD,FZ-20240613-C7OF8T,-$60.00,-$0.10,,,-$60.10\"\n    }\n  }\n}",
+                          "createdAt": "2026-10-21T20:55:10.000Z",
+                          "updatedAt": "2026-10-21T20:55:10.000Z",
+                          "uid": "35240-44fd503a-7241-428b-916d-ef9e5316fc4c"
+                        },
+                        {
+                          "id": "439239d8-c3b8-411d-9c29-7de270e8d34a",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/payouts/:date/transactions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                "payouts",
+                                ":date",
+                                "transactions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "date"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Invalid Date\": {\n      \"value\": \"{\\n\\t\\\"successful\\\": false,\\n\\t\\\"response\\\": null,\\n\\t\\\"errors\\\": [\\n\\t\\t\\\"Invalid date parameter\\\"\\n\\t],\\n}\"\n    }\n  }\n}",
+                          "createdAt": "2026-10-21T20:55:10.000Z",
+                          "updatedAt": "2026-10-21T20:55:10.000Z",
+                          "uid": "35240-439239d8-c3b8-411d-9c29-7de270e8d34a"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:10.000Z",
+                      "updatedAt": "2026-10-21T20:55:10.000Z",
+                      "uid": "35240-d024a61a-6955-403d-b85a-146c185ca3c4"
+                    }
+                  ],
+                  "id": "4d36da3f-ff0a-4060-848e-ae40be724d42",
+                  "createdAt": "2026-10-21T20:55:10.000Z",
+                  "updatedAt": "2026-10-21T20:55:10.000Z",
+                  "uid": "35240-4d36da3f-ff0a-4060-848e-ae40be724d42"
+                },
+                {
+                  "name": "Fetch a payout report for date",
+                  "id": "bcc20d3e-fbb2-4251-b1dc-a15f07ae2b45",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/payouts/:date",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "payouts",
+                        ":date"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e08bf3a-d4ac-4e2d-ac66-e616bcc1af02",
+                          "key": "date",
+                          "value": "2022-01-01",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "53fb84e4-e2ff-4cec-9cfb-c2b45916c6d6",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/payouts/:date",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            "payouts",
+                            ":date"
+                          ],
+                          "variable": [
+                            {
+                              "key": "date"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n\\t\\\"successful\\\": true,\\n\\t\\\"response\\\": {\\n\\t\\t\\\"payout_date\\\": \\\"2022-01-01\\\",\\n\\t\\t\\\"payouts\\\": [{\\n\\t\\t\\t\\\"method\\\": \\\"VISA/MASTERCARD\\\",\\n\\t\\t\\t\\\"funding_account\\\": {\\n\\t\\t\\t\\t\\\"bsb\\\": '123-345,\\n\\t\\t\\t\\t\\\"account_number\\\": '0123456789'\\n\\t\\t\\t},\\n\\t\\t\\t\\\"amount\\\": 1000.00,\\n\\t\\t\\t\\\"reference\\\": \\\"FZ-20220929-HWZIJX\\\",\\n\\t\\t\\t\\\"detail\\\": {\\n\\t\\t\\t\\t\\\"gross_processing_amount\\\": 1000.00,\\n\\t\\t\\t\\t\\\"transaction_count\\\": 1,\\n\\t\\t\\t\\t\\\"processing_fees_amount\\\": -10.00,\\n\\t\\t\\t\\t\\\"disputes_count\\\": 1,\\n\\t\\t\\t\\t\\\"disputes_amount\\\": -10.0\\n\\t\\t\\t}\\n\\t\\t}]\\n\\t},\\n\\t\\\"errors\\\": []\\n}\"\n    }\n  }\n}",
+                      "createdAt": "2026-10-21T20:55:10.000Z",
+                      "updatedAt": "2026-10-21T20:55:10.000Z",
+                      "uid": "35240-53fb84e4-e2ff-4cec-9cfb-c2b45916c6d6"
+                    },
+                    {
+                      "id": "a1882cd7-2e7e-4961-ae21-2f4a05badefd",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/payouts/:date",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            "payouts",
+                            ":date"
+                          ],
+                          "variable": [
+                            {
+                              "key": "date"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Invalid Date\": {\n      \"value\": \"{\\n\\t\\\"successful\\\": false,\\n\\t\\\"response\\\": null,\\n\\t\\\"errors\\\": [\\n\\t\\t\\\"Invalid date parameter\\\"\\n\\t],\\n}\"\n    }\n  }\n}",
+                      "createdAt": "2026-10-21T20:55:10.000Z",
+                      "updatedAt": "2026-10-21T20:55:10.000Z",
+                      "uid": "35240-a1882cd7-2e7e-4961-ae21-2f4a05badefd"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:10.000Z",
+                  "updatedAt": "2026-10-21T20:55:10.000Z",
+                  "uid": "35240-bcc20d3e-fbb2-4251-b1dc-a15f07ae2b45"
+                }
+              ],
+              "id": "185f9853-3dc7-49b5-a502-f8dcdcfa81a9",
+              "createdAt": "2026-10-21T20:55:10.000Z",
+              "updatedAt": "2026-10-21T20:55:10.000Z",
+              "uid": "35240-185f9853-3dc7-49b5-a502-f8dcdcfa81a9"
+            }
+          ],
+          "id": "486662d8-b5c1-4de4-a392-7ae8b3d5989d",
+          "createdAt": "2026-10-21T20:55:10.000Z",
+          "updatedAt": "2026-10-21T20:55:10.000Z",
+          "uid": "35240-486662d8-b5c1-4de4-a392-7ae8b3d5989d"
+        }
+      ],
+      "id": "9b80f723-cd43-46be-a830-ce11b237e784",
+      "createdAt": "2026-10-21T20:55:10.000Z",
+      "updatedAt": "2026-10-21T20:55:10.000Z",
+      "uid": "35240-9b80f723-cd43-46be-a830-ce11b237e784"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "info": {
+    "_postman_id": "903a28b3-5cd6-4cf4-ad3f-6156a2407752",
+    "name": "gateway Settlement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:13.000Z",
+    "updatedAt": "2026-10-21T20:55:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-903a28b3-5cd6-4cf4-ad3f-6156a2407752"
+  },
+  "item": [
+    {
+      "name": "settlement",
+      "item": [
+        {
+          "name": "totals",
+          "item": [
+            {
+              "name": "Fetch settlement totals",
+              "id": "a802543c-9a79-4068-bf95-b1da044d8d1b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/settlement/totals?date=<date>&currency=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settlement",
+                    "totals"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "19dfbaea-5af1-4690-97f5-dd8038c0d22a",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/settlement/totals?date=<date>&currency=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "settlement",
+                        "totals"
+                      ],
+                      "query": [
+                        {
+                          "key": "date",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "currency",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"date\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"totals\": [\n      {\n        \"scheme\": \"<string>\",\n        \"purchases\": {\n          \"amount\": 0,\n          \"count\": 0\n        },\n        \"refunds\": {\n          \"amount\": 0,\n          \"count\": 0\n        },\n        \"total\": {\n          \"amount\": 0,\n          \"count\": 0\n        }\n      },\n      {\n        \"scheme\": \"<string>\",\n        \"purchases\": {\n          \"amount\": 0,\n          \"count\": 0\n        },\n        \"refunds\": {\n          \"amount\": 0,\n          \"count\": 0\n        },\n        \"total\": {\n          \"amount\": 0,\n          \"count\": 0\n        }\n      }\n    ]\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:13.000Z",
+                  "updatedAt": "2026-10-21T20:55:13.000Z",
+                  "uid": "35240-19dfbaea-5af1-4690-97f5-dd8038c0d22a"
+                },
+                {
+                  "id": "539f968b-d095-4fc2-a51a-7739e0da39a2",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/settlement/totals?date=<date>&currency=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "settlement",
+                        "totals"
+                      ],
+                      "query": [
+                        {
+                          "key": "date",
+                          "value": "<date>"
+                        },
+                        {
+                          "key": "currency",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:55:13.000Z",
+                  "updatedAt": "2026-10-21T20:55:13.000Z",
+                  "uid": "35240-539f968b-d095-4fc2-a51a-7739e0da39a2"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:13.000Z",
+              "updatedAt": "2026-10-21T20:55:13.000Z",
+              "uid": "35240-a802543c-9a79-4068-bf95-b1da044d8d1b"
+            }
+          ],
+          "id": "7ef7418d-caa1-4c5c-97e7-4bdef90fe97a",
+          "createdAt": "2026-10-21T20:55:13.000Z",
+          "updatedAt": "2026-10-21T20:55:13.000Z",
+          "uid": "35240-7ef7418d-caa1-4c5c-97e7-4bdef90fe97a"
+        }
+      ],
+      "id": "625c666e-a417-4fde-a3a2-168e1ded949d",
+      "createdAt": "2026-10-21T20:55:13.000Z",
+      "updatedAt": "2026-10-21T20:55:13.000Z",
+      "uid": "35240-625c666e-a417-4fde-a3a2-168e1ded949d"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

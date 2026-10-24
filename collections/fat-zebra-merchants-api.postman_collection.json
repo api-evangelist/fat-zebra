@@ -1,0 +1,2281 @@
+{
+  "info": {
+    "_postman_id": "585286eb-f227-4410-b42c-41032c4c0a45",
+    "name": "Fat Zebra Merchants API",
+    "description": "Operations tagged Merchants across 2 of this provider's published API definitions: fat-zebra-fdms-tpp-merchant-onboarding.json, fat-zebra-partner.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:53:11.000Z",
+    "updatedAt": "2026-10-21T20:53:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-585286eb-f227-4410-b42c-41032c4c0a45"
+  },
+  "item": [
+    {
+      "name": "merchants",
+      "item": [
+        {
+          "name": "onboard",
+          "item": [
+            {
+              "name": "Onboard merchants (internal)",
+              "id": "2cb5fa3f-3595-4a6f-a51c-3016d4f0d8af",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants/onboard",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants",
+                    "onboard"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "27ffa499-a7bd-44c3-9513-5342845f3db7",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/onboard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        "onboard"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"merchants\\\": [\\n    {\\n      \\\"username\\\": \\\"TEST\\\",\\n      \\\"onboarded_at: \\\"2018-01-01T23:51:17Z\\\"\\n    },\\n    {\\n      \\\"username\\\": \\\"WAT\\\",\\n      \\\"onboarded_at: \\\"2018-01-01T23:51:17Z\\\"\\n    }\\n  ]\\n}\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-27ffa499-a7bd-44c3-9513-5342845f3db7"
+                },
+                {
+                  "id": "733a37ca-e254-489d-bcad-767127b22a74",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"usernames\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/onboard",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        "onboard"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-733a37ca-e254-489d-bcad-767127b22a74"
+                }
+              ],
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-2cb5fa3f-3595-4a6f-a51c-3016d4f0d8af"
+            }
+          ],
+          "id": "d314f551-60b6-4d4c-8629-72af925fae8d",
+          "createdAt": "2026-10-21T20:53:12.000Z",
+          "updatedAt": "2026-10-21T20:53:12.000Z",
+          "uid": "35240-d314f551-60b6-4d4c-8629-72af925fae8d"
+        },
+        {
+          "name": "{username}",
+          "item": [
+            {
+              "name": "activate",
+              "item": [
+                {
+                  "name": "Activate a merchant",
+                  "id": "9313c780-63eb-4051-9136-47192bb4b6a5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username/activate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username",
+                        "activate"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ba165ea1-acc1-416f-a784-e1f311921c0f",
+                          "key": "username",
+                          "value": "<string>",
+                          "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                        }
+                      ]
+                    },
+                    "description": "Transitions the merchant to `active` so it can transact. No body is\nexpected. Activating a merchant that has no active acquirer connection\nis rejected with `409 conflict` (\"merchant has no active processing\nconnection\") \u2014 board an acquirer first."
+                  },
+                  "response": [
+                    {
+                      "id": "e0d54934-4deb-4a9b-837d-28415fe36a62",
+                      "name": "The activated merchant.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"pending\",\n  \"name\": \"<string,null>\",\n  \"trading_name\": \"<string,null>\",\n  \"company_number\": \"<string,null>\",\n  \"website\": \"<string,null>\",\n  \"mcc\": \"<string,null>\",\n  \"email\": \"<string,null-email>\",\n  \"phone\": \"<string,null>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"DZ\"\n  },\n  \"three_d_secure_enabled\": \"<boolean>\",\n  \"fraud_screening_enabled\": \"<boolean>\",\n  \"network_tokenisation_enabled\": \"<boolean>\",\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"surcharging\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"statement_descriptor\": \"<string,null>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"<string,null>\",\n  \"country_code\": \"<string,null>\",\n  \"fee_program_indicator\": \"<string,null>\",\n  \"mastercard_iso_id\": \"<string,null>\",\n  \"visa_iso_id\": \"<string,null>\",\n  \"mastercard_assigned_id\": \"<string,null>\",\n  \"visa_merchant_verification_value\": \"<string,null>\",\n  \"customer_support_phone\": \"<string,null>\",\n  \"card_acceptor_name\": \"<string,null>\",\n  \"card_acceptor_location\": \"<string,null>\",\n  \"card_acceptor_country\": \"Vd\",\n  \"timezone\": \"<string,null>\",\n  \"merchant_identifier\": \"<string,null>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"token\": \"<string,null>\"\n  },\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-e0d54934-4deb-4a9b-837d-28415fe36a62"
+                    },
+                    {
+                      "id": "1a3a31c4-12aa-485c-8c37-15e6363df118",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-1a3a31c4-12aa-485c-8c37-15e6363df118"
+                    },
+                    {
+                      "id": "a5c073a7-354b-4756-bf25-2f3cb6b39817",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-a5c073a7-354b-4756-bf25-2f3cb6b39817"
+                    },
+                    {
+                      "id": "c1e0baad-944f-4798-8999-e5b2e85eadec",
+                      "name": "The request conflicts with the resource's current state.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "activate"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-c1e0baad-944f-4798-8999-e5b2e85eadec"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-9313c780-63eb-4051-9136-47192bb4b6a5"
+                }
+              ],
+              "id": "1110c855-006a-4072-b3c2-7e8e3d83d7d1",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-1110c855-006a-4072-b3c2-7e8e3d83d7d1"
+            },
+            {
+              "name": "suspend",
+              "item": [
+                {
+                  "name": "Suspend a merchant",
+                  "id": "5ebce1e2-b6d1-46a4-a168-600e8a7fc1dc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username/suspend",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username",
+                        "suspend"
+                      ],
+                      "variable": [
+                        {
+                          "id": "418a5724-c5a5-4547-99c1-860b32f8c24a",
+                          "key": "username",
+                          "value": "<string>",
+                          "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                        }
+                      ]
+                    },
+                    "description": "Transitions the merchant to `suspended`. No body is expected."
+                  },
+                  "response": [
+                    {
+                      "id": "1c902205-d8f1-483f-aee2-dbc4877979eb",
+                      "name": "The suspended merchant.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/suspend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "suspend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"pending\",\n  \"name\": \"<string,null>\",\n  \"trading_name\": \"<string,null>\",\n  \"company_number\": \"<string,null>\",\n  \"website\": \"<string,null>\",\n  \"mcc\": \"<string,null>\",\n  \"email\": \"<string,null-email>\",\n  \"phone\": \"<string,null>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"DZ\"\n  },\n  \"three_d_secure_enabled\": \"<boolean>\",\n  \"fraud_screening_enabled\": \"<boolean>\",\n  \"network_tokenisation_enabled\": \"<boolean>\",\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"surcharging\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"statement_descriptor\": \"<string,null>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"<string,null>\",\n  \"country_code\": \"<string,null>\",\n  \"fee_program_indicator\": \"<string,null>\",\n  \"mastercard_iso_id\": \"<string,null>\",\n  \"visa_iso_id\": \"<string,null>\",\n  \"mastercard_assigned_id\": \"<string,null>\",\n  \"visa_merchant_verification_value\": \"<string,null>\",\n  \"customer_support_phone\": \"<string,null>\",\n  \"card_acceptor_name\": \"<string,null>\",\n  \"card_acceptor_location\": \"<string,null>\",\n  \"card_acceptor_country\": \"Vd\",\n  \"timezone\": \"<string,null>\",\n  \"merchant_identifier\": \"<string,null>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"token\": \"<string,null>\"\n  },\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-1c902205-d8f1-483f-aee2-dbc4877979eb"
+                    },
+                    {
+                      "id": "7d0f4d61-27a6-43c4-8d8e-fc285e278660",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/suspend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "suspend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-7d0f4d61-27a6-43c4-8d8e-fc285e278660"
+                    },
+                    {
+                      "id": "4494e31a-2a33-4df9-afc7-48f018af1c57",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/suspend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "suspend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-4494e31a-2a33-4df9-afc7-48f018af1c57"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-5ebce1e2-b6d1-46a4-a168-600e8a7fc1dc"
+                }
+              ],
+              "id": "292cce44-a6cd-471e-9d06-331ef066aabc",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-292cce44-a6cd-471e-9d06-331ef066aabc"
+            },
+            {
+              "name": "cancel",
+              "item": [
+                {
+                  "name": "Cancel a merchant",
+                  "id": "b2ce6011-df2d-42e6-a8d2-4c8a6080ddf3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "basic",
+                      "basic": [
+                        {
+                          "key": "username",
+                          "value": "{{basicAuthUsername}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "{{basicAuthPassword}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fa15d9cd-9c37-454c-80c9-085ab802ecd9",
+                          "key": "username",
+                          "value": "<string>",
+                          "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                        }
+                      ]
+                    },
+                    "description": "Transitions the merchant to `closed`. No body is expected."
+                  },
+                  "response": [
+                    {
+                      "id": "7bae368a-e707-4403-9163-8050586ee84e",
+                      "name": "The closed merchant.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"pending\",\n  \"name\": \"<string,null>\",\n  \"trading_name\": \"<string,null>\",\n  \"company_number\": \"<string,null>\",\n  \"website\": \"<string,null>\",\n  \"mcc\": \"<string,null>\",\n  \"email\": \"<string,null-email>\",\n  \"phone\": \"<string,null>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"DZ\"\n  },\n  \"three_d_secure_enabled\": \"<boolean>\",\n  \"fraud_screening_enabled\": \"<boolean>\",\n  \"network_tokenisation_enabled\": \"<boolean>\",\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"surcharging\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"statement_descriptor\": \"<string,null>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"<string,null>\",\n  \"country_code\": \"<string,null>\",\n  \"fee_program_indicator\": \"<string,null>\",\n  \"mastercard_iso_id\": \"<string,null>\",\n  \"visa_iso_id\": \"<string,null>\",\n  \"mastercard_assigned_id\": \"<string,null>\",\n  \"visa_merchant_verification_value\": \"<string,null>\",\n  \"customer_support_phone\": \"<string,null>\",\n  \"card_acceptor_name\": \"<string,null>\",\n  \"card_acceptor_location\": \"<string,null>\",\n  \"card_acceptor_country\": \"Vd\",\n  \"timezone\": \"<string,null>\",\n  \"merchant_identifier\": \"<string,null>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"token\": \"<string,null>\"\n  },\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-7bae368a-e707-4403-9163-8050586ee84e"
+                    },
+                    {
+                      "id": "eacefead-2d52-4010-a264-a56391c799c9",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-eacefead-2d52-4010-a264-a56391c799c9"
+                    },
+                    {
+                      "id": "e7f05af3-13fb-495e-ade0-4151bbde300e",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-e7f05af3-13fb-495e-ade0-4151bbde300e"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-b2ce6011-df2d-42e6-a8d2-4c8a6080ddf3"
+                }
+              ],
+              "id": "2c69c6f9-2f42-47ce-9c24-a49aacab9e64",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-2c69c6f9-2f42-47ce-9c24-a49aacab9e64"
+            },
+            {
+              "name": "credentials",
+              "item": [
+                {
+                  "name": "rotate",
+                  "item": [
+                    {
+                      "name": "Rotate a merchant's credentials",
+                      "id": "165cbddb-3807-43d8-b95a-5dc304a48d37",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "basic",
+                          "basic": [
+                            {
+                              "key": "username",
+                              "value": "{{basicAuthUsername}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "password",
+                              "value": "{{basicAuthPassword}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/credentials/rotate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "credentials",
+                            "rotate"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fc3baea9-a382-4a31-a59c-5bc5a60af776",
+                              "key": "username",
+                              "value": "<string>",
+                              "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                            }
+                          ]
+                        },
+                        "description": "Rotates the merchant's API `token` and its `signing_secret`. No body is\nexpected. The fresh values are returned once \u2014 the previous token stops\nworking immediately, so the caller must store the response.\n\nThe response is a bare credentials object: `username`, `token`,\n`signing_secret`, `rotated_at`."
+                      },
+                      "response": [
+                        {
+                          "id": "09bca41d-b164-45c6-b204-fd3062c84c42",
+                          "name": "The rotated credentials (returned once).",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/credentials/rotate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "credentials",
+                                "rotate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"username\": \"<string>\",\n  \"token\": \"<string>\",\n  \"signing_secret\": \"<string>\",\n  \"rotated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-10-21T20:53:12.000Z",
+                          "updatedAt": "2026-10-21T20:53:12.000Z",
+                          "uid": "35240-09bca41d-b164-45c6-b204-fd3062c84c42"
+                        },
+                        {
+                          "id": "9fa69990-ca02-454f-bb4f-a49d707a60b9",
+                          "name": "Missing or invalid HTTP Basic credentials.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/credentials/rotate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "credentials",
+                                "rotate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:53:12.000Z",
+                          "updatedAt": "2026-10-21T20:53:12.000Z",
+                          "uid": "35240-9fa69990-ca02-454f-bb4f-a49d707a60b9"
+                        },
+                        {
+                          "id": "cd989810-c87f-4627-a46c-c38800d20467",
+                          "name": "Resource not found.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/credentials/rotate",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "credentials",
+                                "rotate"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:53:12.000Z",
+                          "updatedAt": "2026-10-21T20:53:12.000Z",
+                          "uid": "35240-cd989810-c87f-4627-a46c-c38800d20467"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:53:12.000Z",
+                      "updatedAt": "2026-10-21T20:53:12.000Z",
+                      "uid": "35240-165cbddb-3807-43d8-b95a-5dc304a48d37"
+                    }
+                  ],
+                  "id": "c24aec2b-8133-4159-930a-5f6000598a42",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-c24aec2b-8133-4159-930a-5f6000598a42"
+                }
+              ],
+              "id": "60f710f0-61fe-4636-b5bd-f4a7a030780c",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-60f710f0-61fe-4636-b5bd-f4a7a030780c"
+            },
+            {
+              "name": "Show a merchant",
+              "id": "98ee86b7-f5e7-45c2-bbf5-0afc2f1ff91a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants/:username",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants",
+                    ":username"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3d061690-a260-4811-8af2-69ec9bef06c6",
+                      "key": "username",
+                      "value": "<string>",
+                      "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "11f5ee18-54c6-4ff9-8c7c-01b688fd5ffb",
+                  "name": "The merchant.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"pending\",\n  \"name\": \"<string,null>\",\n  \"trading_name\": \"<string,null>\",\n  \"company_number\": \"<string,null>\",\n  \"website\": \"<string,null>\",\n  \"mcc\": \"<string,null>\",\n  \"email\": \"<string,null-email>\",\n  \"phone\": \"<string,null>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"DZ\"\n  },\n  \"three_d_secure_enabled\": \"<boolean>\",\n  \"fraud_screening_enabled\": \"<boolean>\",\n  \"network_tokenisation_enabled\": \"<boolean>\",\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"surcharging\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"statement_descriptor\": \"<string,null>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"<string,null>\",\n  \"country_code\": \"<string,null>\",\n  \"fee_program_indicator\": \"<string,null>\",\n  \"mastercard_iso_id\": \"<string,null>\",\n  \"visa_iso_id\": \"<string,null>\",\n  \"mastercard_assigned_id\": \"<string,null>\",\n  \"visa_merchant_verification_value\": \"<string,null>\",\n  \"customer_support_phone\": \"<string,null>\",\n  \"card_acceptor_name\": \"<string,null>\",\n  \"card_acceptor_location\": \"<string,null>\",\n  \"card_acceptor_country\": \"Vd\",\n  \"timezone\": \"<string,null>\",\n  \"merchant_identifier\": \"<string,null>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"token\": \"<string,null>\"\n  },\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-11f5ee18-54c6-4ff9-8c7c-01b688fd5ffb"
+                },
+                {
+                  "id": "8419521e-1c31-4a34-a255-f5a56a0b1213",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-8419521e-1c31-4a34-a255-f5a56a0b1213"
+                },
+                {
+                  "id": "b5b29016-a373-4921-870c-382bc8de92c5",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-b5b29016-a373-4921-870c-382bc8de92c5"
+                }
+              ],
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-98ee86b7-f5e7-45c2-bbf5-0afc2f1ff91a"
+            },
+            {
+              "name": "Update a merchant",
+              "id": "bf09cd6e-dc43-4187-bef1-d483da3a10bd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants/:username",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants",
+                    ":username"
+                  ],
+                  "variable": [
+                    {
+                      "id": "56206413-5999-4797-9208-f3bacf342d9c",
+                      "key": "username",
+                      "value": "<string>",
+                      "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                    }
+                  ]
+                },
+                "description": "Updates the merchant's identity/business details. `username`, `status`\nand `credentials` are read-only here \u2014 use the lifecycle endpoints\n(`/activate`, `/suspend`, `/cancel`) to change `status`, and\n`/credentials/rotate` to rotate credentials."
+              },
+              "response": [
+                {
+                  "id": "ee0d4b34-dc0e-49ae-ab32-6b0b17a5fd0d",
+                  "name": "The updated merchant.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"pending\",\n  \"name\": \"<string,null>\",\n  \"trading_name\": \"<string,null>\",\n  \"company_number\": \"<string,null>\",\n  \"website\": \"<string,null>\",\n  \"mcc\": \"<string,null>\",\n  \"email\": \"<string,null-email>\",\n  \"phone\": \"<string,null>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"DZ\"\n  },\n  \"three_d_secure_enabled\": \"<boolean>\",\n  \"fraud_screening_enabled\": \"<boolean>\",\n  \"network_tokenisation_enabled\": \"<boolean>\",\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"surcharging\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"statement_descriptor\": \"<string,null>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"<string,null>\",\n  \"country_code\": \"<string,null>\",\n  \"fee_program_indicator\": \"<string,null>\",\n  \"mastercard_iso_id\": \"<string,null>\",\n  \"visa_iso_id\": \"<string,null>\",\n  \"mastercard_assigned_id\": \"<string,null>\",\n  \"visa_merchant_verification_value\": \"<string,null>\",\n  \"customer_support_phone\": \"<string,null>\",\n  \"card_acceptor_name\": \"<string,null>\",\n  \"card_acceptor_location\": \"<string,null>\",\n  \"card_acceptor_country\": \"Vd\",\n  \"timezone\": \"<string,null>\",\n  \"merchant_identifier\": \"<string,null>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"token\": \"<string,null>\"\n  },\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-ee0d4b34-dc0e-49ae-ab32-6b0b17a5fd0d"
+                },
+                {
+                  "id": "98cb4615-5cdf-4cc0-aa24-ec97501246f8",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-98cb4615-5cdf-4cc0-aa24-ec97501246f8"
+                },
+                {
+                  "id": "eef5022d-2944-4b62-a4d7-885c51ae35eb",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-eef5022d-2944-4b62-a4d7-885c51ae35eb"
+                },
+                {
+                  "id": "b3f4d42b-5c5b-4bc3-9a21-775313942f96",
+                  "name": "The request couldn't be completed. A `validation_error` is something the\ncaller can fix \u2014 a bad payload, a merchant that failed validation, or a\nprocessor rejecting a field (e.g. the MID); the reason is in `fields`,\nkeyed by a processor-agnostic field nam",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-b3f4d42b-5c5b-4bc3-9a21-775313942f96"
+                }
+              ],
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-bf09cd6e-dc43-4187-bef1-d483da3a10bd"
+            },
+            {
+              "name": "Update a merchant (alias for PATCH)",
+              "id": "e4fedab4-cc66-4390-aa2d-5d4bbfd39003",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants/:username",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants",
+                    ":username"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3c4c9538-ddff-422e-859a-cccaa1a0f793",
+                      "key": "username",
+                      "value": "<string>",
+                      "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                    }
+                  ]
+                },
+                "description": "Routes to the same update action as `PATCH /merchants/{username}`; same\nbehaviour and contract."
+              },
+              "response": [
+                {
+                  "id": "21d0b90a-62d8-45b2-a499-463d85209b6a",
+                  "name": "The updated merchant.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"pending\",\n  \"name\": \"<string,null>\",\n  \"trading_name\": \"<string,null>\",\n  \"company_number\": \"<string,null>\",\n  \"website\": \"<string,null>\",\n  \"mcc\": \"<string,null>\",\n  \"email\": \"<string,null-email>\",\n  \"phone\": \"<string,null>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"DZ\"\n  },\n  \"three_d_secure_enabled\": \"<boolean>\",\n  \"fraud_screening_enabled\": \"<boolean>\",\n  \"network_tokenisation_enabled\": \"<boolean>\",\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"surcharging\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"statement_descriptor\": \"<string,null>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"<string,null>\",\n  \"country_code\": \"<string,null>\",\n  \"fee_program_indicator\": \"<string,null>\",\n  \"mastercard_iso_id\": \"<string,null>\",\n  \"visa_iso_id\": \"<string,null>\",\n  \"mastercard_assigned_id\": \"<string,null>\",\n  \"visa_merchant_verification_value\": \"<string,null>\",\n  \"customer_support_phone\": \"<string,null>\",\n  \"card_acceptor_name\": \"<string,null>\",\n  \"card_acceptor_location\": \"<string,null>\",\n  \"card_acceptor_country\": \"Vd\",\n  \"timezone\": \"<string,null>\",\n  \"merchant_identifier\": \"<string,null>\",\n  \"credentials\": {\n    \"username\": \"<string>\",\n    \"token\": \"<string,null>\"\n  },\n  \"created_at\": \"<string,null-date-time>\",\n  \"updated_at\": \"<string,null-date-time>\"\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-21d0b90a-62d8-45b2-a499-463d85209b6a"
+                },
+                {
+                  "id": "662f98ee-0477-4524-87db-5d0f1921eabd",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-662f98ee-0477-4524-87db-5d0f1921eabd"
+                },
+                {
+                  "id": "175b13cb-86c7-48f2-8cc2-18edddaa5fa9",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-175b13cb-86c7-48f2-8cc2-18edddaa5fa9"
+                },
+                {
+                  "id": "20218567-30f8-4d5b-8bed-391b57a4b356",
+                  "name": "The request couldn't be completed. A `validation_error` is something the\ncaller can fix \u2014 a bad payload, a merchant that failed validation, or a\nprocessor rejecting a field (e.g. the MID); the reason is in `fields`,\nkeyed by a processor-agnostic field nam",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"industry\": \"<string>\",\n  \"contact\": \"<string>\",\n  \"mcc\": \"6344\",\n  \"website\": \"<string>\",\n  \"email\": \"<email>\",\n  \"accounts_email\": [\n    \"<email>\",\n    \"<email>\"\n  ],\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string,null>\",\n    \"line2\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"postcode\": \"<string,null>\",\n    \"country\": \"kh\"\n  },\n  \"statement_descriptor\": \"<string>\",\n  \"government_controlled\": \"<boolean>\",\n  \"country_of_origin\": \"WM\",\n  \"country_code\": \"<string>\",\n  \"fee_program_indicator\": \"<string>\",\n  \"mastercard_iso_id\": \"<string>\",\n  \"visa_iso_id\": \"<string>\",\n  \"mastercard_assigned_id\": \"<string>\",\n  \"visa_merchant_verification_value\": \"<string>\",\n  \"visa_marketplace_identifier\": \"<string>\",\n  \"visa_payment_facilitator_indicator\": \"<string>\",\n  \"mastercard_payment_facilitator_indicator\": \"<string>\",\n  \"bill_payment_provider\": \"<boolean>\",\n  \"aggregator_fields_enabled\": \"<boolean>\",\n  \"customer_support_phone\": \"<string>\",\n  \"card_acceptor_name\": \"<string>\",\n  \"card_acceptor_location\": \"<string>\",\n  \"card_acceptor_country\": \"BO\",\n  \"timezone\": \"<string>\",\n  \"merchant_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:53:12.000Z",
+                  "updatedAt": "2026-10-21T20:53:12.000Z",
+                  "uid": "35240-20218567-30f8-4d5b-8bed-391b57a4b356"
+                }
+              ],
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-e4fedab4-cc66-4390-aa2d-5d4bbfd39003"
+            }
+          ],
+          "id": "7916979a-1f56-4960-8edc-97b33863387f",
+          "createdAt": "2026-10-21T20:53:12.000Z",
+          "updatedAt": "2026-10-21T20:53:12.000Z",
+          "uid": "35240-7916979a-1f56-4960-8edc-97b33863387f"
+        },
+        {
+          "name": "FDMS TPP Merchant Onboarding",
+          "id": "ecac1359-c564-4607-ade5-cc4e48dea693",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"legal_name\": \"<string>\",\n  \"business_number\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"contact_website\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"merchant_category_code\": \"<string>\",\n  \"ecommerce_enabled\": \"<boolean>\",\n  \"trading_address_contact_name\": \"<string>\",\n  \"trading_address_line_1\": \"<string>\",\n  \"trading_address_line_2\": \"<string>\",\n  \"trading_address_line_3\": \"<string>\",\n  \"trading_address_line_4\": \"<string>\",\n  \"trading_address_city\": \"<string>\",\n  \"trading_address_state\": \"<string>\",\n  \"trading_address_postcode\": \"<string>\",\n  \"trading_address_country\": \"<string>\",\n  \"legal_address_contact_name\": \"<string>\",\n  \"legal_address_line_1\": \"<string>\",\n  \"legal_address_line_2\": \"<string>\",\n  \"legal_address_line_3\": \"<string>\",\n  \"legal_address_line_4\": \"<string>\",\n  \"legal_address_city\": \"<string>\",\n  \"legal_address_state\": \"<string>\",\n  \"legal_address_postcode\": \"<string>\",\n  \"legal_address_country\": \"<string>\",\n  \"signed_date\": \"<date>\",\n  \"total_annual_cash_or_credit_debit_turnover\": \"<integer>\",\n  \"total_annual_credit_turnover\": \"<integer>\",\n  \"average_ticket_or_sales_amount\": \"<integer>\",\n  \"card_present\": \"<boolean>\",\n  \"deposit_required\": \"<boolean>\",\n  \"deposit_percentage\": \"<integer>\",\n  \"average_delivery_time\": \"<integer>\",\n  \"recurring_transactions\": \"<boolean>\",\n  \"terminal_type\": \"<string>\",\n  \"config_code\": \"<string>\",\n  \"term_quantity\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/merchants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "merchants"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "439ba19d-d197-4c51-aadf-98609671a60b",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"legal_name\": \"<string>\",\n  \"business_number\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"contact_website\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"merchant_category_code\": \"<string>\",\n  \"ecommerce_enabled\": \"<boolean>\",\n  \"trading_address_contact_name\": \"<string>\",\n  \"trading_address_line_1\": \"<string>\",\n  \"trading_address_line_2\": \"<string>\",\n  \"trading_address_line_3\": \"<string>\",\n  \"trading_address_line_4\": \"<string>\",\n  \"trading_address_city\": \"<string>\",\n  \"trading_address_state\": \"<string>\",\n  \"trading_address_postcode\": \"<string>\",\n  \"trading_address_country\": \"<string>\",\n  \"legal_address_contact_name\": \"<string>\",\n  \"legal_address_line_1\": \"<string>\",\n  \"legal_address_line_2\": \"<string>\",\n  \"legal_address_line_3\": \"<string>\",\n  \"legal_address_line_4\": \"<string>\",\n  \"legal_address_city\": \"<string>\",\n  \"legal_address_state\": \"<string>\",\n  \"legal_address_postcode\": \"<string>\",\n  \"legal_address_country\": \"<string>\",\n  \"signed_date\": \"<date>\",\n  \"total_annual_cash_or_credit_debit_turnover\": \"<integer>\",\n  \"total_annual_credit_turnover\": \"<integer>\",\n  \"average_ticket_or_sales_amount\": \"<integer>\",\n  \"card_present\": \"<boolean>\",\n  \"deposit_required\": \"<boolean>\",\n  \"deposit_percentage\": \"<integer>\",\n  \"average_delivery_time\": \"<integer>\",\n  \"recurring_transactions\": \"<boolean>\",\n  \"terminal_type\": \"<string>\",\n  \"config_code\": \"<string>\",\n  \"term_quantity\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-439ba19d-d197-4c51-aadf-98609671a60b"
+            },
+            {
+              "id": "5f5f1b25-bb21-4d82-9f66-4deb42dffd3f",
+              "name": "400",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trading_name\": \"<string>\",\n  \"legal_name\": \"<string>\",\n  \"business_number\": \"<string>\",\n  \"company_number\": \"<string>\",\n  \"contact_website\": \"<string>\",\n  \"business_type\": \"<string>\",\n  \"merchant_category_code\": \"<string>\",\n  \"ecommerce_enabled\": \"<boolean>\",\n  \"trading_address_contact_name\": \"<string>\",\n  \"trading_address_line_1\": \"<string>\",\n  \"trading_address_line_2\": \"<string>\",\n  \"trading_address_line_3\": \"<string>\",\n  \"trading_address_line_4\": \"<string>\",\n  \"trading_address_city\": \"<string>\",\n  \"trading_address_state\": \"<string>\",\n  \"trading_address_postcode\": \"<string>\",\n  \"trading_address_country\": \"<string>\",\n  \"legal_address_contact_name\": \"<string>\",\n  \"legal_address_line_1\": \"<string>\",\n  \"legal_address_line_2\": \"<string>\",\n  \"legal_address_line_3\": \"<string>\",\n  \"legal_address_line_4\": \"<string>\",\n  \"legal_address_city\": \"<string>\",\n  \"legal_address_state\": \"<string>\",\n  \"legal_address_postcode\": \"<string>\",\n  \"legal_address_country\": \"<string>\",\n  \"signed_date\": \"<date>\",\n  \"total_annual_cash_or_credit_debit_turnover\": \"<integer>\",\n  \"total_annual_credit_turnover\": \"<integer>\",\n  \"average_ticket_or_sales_amount\": \"<integer>\",\n  \"card_present\": \"<boolean>\",\n  \"deposit_required\": \"<boolean>\",\n  \"deposit_percentage\": \"<integer>\",\n  \"average_delivery_time\": \"<integer>\",\n  \"recurring_transactions\": \"<boolean>\",\n  \"terminal_type\": \"<string>\",\n  \"config_code\": \"<string>\",\n  \"term_quantity\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/merchants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-5f5f1b25-bb21-4d82-9f66-4deb42dffd3f"
+            }
+          ],
+          "createdAt": "2026-10-21T20:53:12.000Z",
+          "updatedAt": "2026-10-21T20:53:12.000Z",
+          "uid": "35240-ecac1359-c564-4607-ade5-cc4e48dea693"
+        },
+        {
+          "name": "List merchants",
+          "id": "a8f62495-d110-4651-be12-cd394fe631a9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/merchants?filter[onboarded]=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "merchants"
+              ],
+              "query": [
+                {
+                  "key": "filter[onboarded]",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "78010fdc-a1cd-4861-9f4c-2da47286e3ee",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants?filter[onboarded]=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[onboarded]",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"count\\\": 2,\\n  \\\"response\\\": [\\n    {\\n      \\\"username\\\": \\\"TEST\\\",\\n      \\\"tpp_id\\\": 400,\\n      \\\"tpp_job_id\\\": \\\"NY4000MB\\\",\\n      \\\"tpp_name\\\": \\\"Acme Inc.\\\"\\n      ...\\n    },\\n    {\\n      \\\"username\\\": \\\"WAT\\\",\\n      \\\"tpp_id\\\": 400,\\n      \\\"tpp_job_id\\\": \\\"NY4000MB\\\",\\n      \\\"tpp_name\\\": \\\"Acme Inc.\\\"\\n      ...\\n    }\\n  ],\\n  \\\"pagination\\\": {\\n    \\\"current\\\": 1,\\n    \\\"previous\\\": null,\\n    \\\"next\\\": null,\\n    \\\"per_page\\\": 10,\\n    \\\"pages\\\": 1,\\n    \\\"count\\\": 2\\n  }   \\n}\"\n    }\n  }\n}",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-78010fdc-a1cd-4861-9f4c-2da47286e3ee"
+            },
+            {
+              "id": "7866c24c-50dc-45ff-85f4-5f82ec82199b",
+              "name": "400",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchants?filter[onboarded]=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchants"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter[onboarded]",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T20:53:12.000Z",
+              "updatedAt": "2026-10-21T20:53:12.000Z",
+              "uid": "35240-7866c24c-50dc-45ff-85f4-5f82ec82199b"
+            }
+          ],
+          "createdAt": "2026-10-21T20:53:12.000Z",
+          "updatedAt": "2026-10-21T20:53:12.000Z",
+          "uid": "35240-a8f62495-d110-4651-be12-cd394fe631a9"
+        }
+      ],
+      "id": "ea671543-52cc-4f46-bf3b-9c757560bf5f",
+      "createdAt": "2026-10-21T20:53:12.000Z",
+      "updatedAt": "2026-10-21T20:53:12.000Z",
+      "uid": "35240-ea671543-52cc-4f46-bf3b-9c757560bf5f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://acquiring-sandbox.fatzebra.com.au/api/v1"
+    }
+  ]
+}

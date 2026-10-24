@@ -1,0 +1,209 @@
+{
+  "info": {
+    "_postman_id": "16cbcf62-aa9b-4675-b30e-ef748d4a5a40",
+    "name": "gateway Applicable Surcharge API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:51:39.000Z",
+    "updatedAt": "2026-10-21T20:51:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-16cbcf62-aa9b-4675-b30e-ef748d4a5a40"
+  },
+  "item": [
+    {
+      "name": "applicable_surcharge",
+      "item": [
+        {
+          "name": "Get applicable surcharge",
+          "id": "dfff4f04-a6ee-40e0-bf3a-a0dde5009118",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/applicable_surcharge?pan=<string>&amount=<integer>&currency=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "applicable_surcharge"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The card number of the debit or credit card",
+                  "key": "pan",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) Amount to be surcharged in the smallest currency unit",
+                  "key": "amount",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "(Required) Currency of the amount to be surcharged",
+                  "key": "currency",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get the applicable surcharge for a given amount, currency and card number."
+          },
+          "response": [
+            {
+              "id": "c840e82c-3a04-42eb-9aa3-4efbb8e7cc83",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applicable_surcharge?pan=<string>&amount=<integer>&currency=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applicable_surcharge"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The card number of the debit or credit card",
+                      "key": "pan",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Amount to be surcharged in the smallest currency unit",
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Currency of the amount to be surcharged",
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"card_description\": \"<string>\",\n    \"surcharge_amount\": 0,\n    \"surcharge_amount_description\": \"<string>\",\n    \"total_amount\": 0\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:51:40.000Z",
+              "updatedAt": "2026-10-21T20:51:40.000Z",
+              "uid": "35240-c840e82c-3a04-42eb-9aa3-4efbb8e7cc83"
+            },
+            {
+              "id": "9b752264-fe96-4f7c-aa82-dc525ce62634",
+              "name": "400",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/applicable_surcharge?pan=<string>&amount=<integer>&currency=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "applicable_surcharge"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The card number of the debit or credit card",
+                      "key": "pan",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) Amount to be surcharged in the smallest currency unit",
+                      "key": "amount",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) Currency of the amount to be surcharged",
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:51:40.000Z",
+              "updatedAt": "2026-10-21T20:51:40.000Z",
+              "uid": "35240-9b752264-fe96-4f7c-aa82-dc525ce62634"
+            }
+          ],
+          "createdAt": "2026-10-21T20:51:40.000Z",
+          "updatedAt": "2026-10-21T20:51:40.000Z",
+          "uid": "35240-dfff4f04-a6ee-40e0-bf3a-a0dde5009118"
+        }
+      ],
+      "id": "c2ecff56-c431-4f2c-98d9-24f7c3df1022",
+      "createdAt": "2026-10-21T20:51:40.000Z",
+      "updatedAt": "2026-10-21T20:51:40.000Z",
+      "uid": "35240-c2ecff56-c431-4f2c-98d9-24f7c3df1022"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

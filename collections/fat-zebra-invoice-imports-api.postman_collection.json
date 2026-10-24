@@ -1,0 +1,169 @@
+{
+  "info": {
+    "_postman_id": "31b9df98-b566-4a69-9973-9229a418fe04",
+    "name": "gateway Invoice Imports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:53:00.000Z",
+    "updatedAt": "2026-10-21T20:53:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-31b9df98-b566-4a69-9973-9229a418fe04"
+  },
+  "item": [
+    {
+      "name": "invoice_imports",
+      "item": [
+        {
+          "name": "4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8",
+          "item": [
+            {
+              "name": "Check replacement status",
+              "id": "a10b9029-ec4e-4ae7-b1dc-2fcaacacabb3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/invoice_imports/4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "invoice_imports",
+                    "4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bdcf4c98-9810-4b9a-90ea-c3639552654f",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoice_imports/4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoice_imports",
+                        "4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"uuid\": \"<string>\",\n    \"status\": \"<string>\",\n    \"error\": {},\n    \"invoice_count\": 0\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:53:01.000Z",
+                  "updatedAt": "2026-10-21T20:53:01.000Z",
+                  "uid": "35240-bdcf4c98-9810-4b9a-90ea-c3639552654f"
+                },
+                {
+                  "id": "d76bcabf-5a6d-4e3d-82e0-f03307152f59",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/invoice_imports/4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "invoice_imports",
+                        "4a70e8d5-1d7d-441d-9ea2-30d15ff0f2e8"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:53:01.000Z",
+                  "updatedAt": "2026-10-21T20:53:01.000Z",
+                  "uid": "35240-d76bcabf-5a6d-4e3d-82e0-f03307152f59"
+                }
+              ],
+              "createdAt": "2026-10-21T20:53:01.000Z",
+              "updatedAt": "2026-10-21T20:53:01.000Z",
+              "uid": "35240-a10b9029-ec4e-4ae7-b1dc-2fcaacacabb3"
+            }
+          ],
+          "id": "2b1378ab-fb01-4854-976e-ca70c00f9f59",
+          "createdAt": "2026-10-21T20:53:01.000Z",
+          "updatedAt": "2026-10-21T20:53:01.000Z",
+          "uid": "35240-2b1378ab-fb01-4854-976e-ca70c00f9f59"
+        }
+      ],
+      "id": "245d0501-a27e-4a16-ab0d-c62b720baf3b",
+      "createdAt": "2026-10-21T20:53:01.000Z",
+      "updatedAt": "2026-10-21T20:53:01.000Z",
+      "uid": "35240-245d0501-a27e-4a16-ab0d-c62b720baf3b"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

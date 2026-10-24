@@ -1,0 +1,352 @@
+{
+  "info": {
+    "_postman_id": "aea3e3c1-09c0-46ac-a343-2074e6ef2427",
+    "name": "Fat Zebra Partner Acquirers API",
+    "description": "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:51:27.000Z",
+    "updatedAt": "2026-10-21T20:51:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-aea3e3c1-09c0-46ac-a343-2074e6ef2427"
+  },
+  "item": [
+    {
+      "name": "acquirers",
+      "item": [
+        {
+          "name": "{code}",
+          "item": [
+            {
+              "name": "Show one acquirer's detail",
+              "id": "653aae8a-da8a-4df2-b34e-cd2ae5174d71",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/acquirers/:code",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "acquirers",
+                    ":code"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4e58f86f-7bb1-49a4-8626-a08f8c12e2a2",
+                      "key": "code",
+                      "value": "<string>",
+                      "description": "(Required) Acquirer code (e.g. `nab`)."
+                    }
+                  ]
+                },
+                "description": "Returns the acquirer's `supported_currencies` and `supported_schemes`.\n\nAn unknown or non-boardable acquirer code returns `404`."
+              },
+              "response": [
+                {
+                  "id": "02dbe4bf-f4fb-41c9-8970-36b81da8256d",
+                  "name": "Acquirer detail.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/acquirers/:code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "acquirers",
+                        ":code"
+                      ],
+                      "variable": [
+                        {
+                          "key": "code"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"name\": \"<string>\",\n  \"supported_currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"supported_schemes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-21T20:51:28.000Z",
+                  "updatedAt": "2026-10-21T20:51:28.000Z",
+                  "uid": "35240-02dbe4bf-f4fb-41c9-8970-36b81da8256d"
+                },
+                {
+                  "id": "261a3729-061a-46bf-82d0-73161ae20152",
+                  "name": "Missing or invalid HTTP Basic credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/acquirers/:code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "acquirers",
+                        ":code"
+                      ],
+                      "variable": [
+                        {
+                          "key": "code"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"conflict\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"Duis_3f\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"incididunt_c3\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enim5\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:51:28.000Z",
+                  "updatedAt": "2026-10-21T20:51:28.000Z",
+                  "uid": "35240-261a3729-061a-46bf-82d0-73161ae20152"
+                },
+                {
+                  "id": "b29412ce-c51c-4cd4-9e0e-686d24678539",
+                  "name": "Resource not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/acquirers/:code",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "acquirers",
+                        ":code"
+                      ],
+                      "variable": [
+                        {
+                          "key": "code"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"type\": \"conflict\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"Duis_3f\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"incididunt_c3\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enim5\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:51:28.000Z",
+                  "updatedAt": "2026-10-21T20:51:28.000Z",
+                  "uid": "35240-b29412ce-c51c-4cd4-9e0e-686d24678539"
+                }
+              ],
+              "createdAt": "2026-10-21T20:51:28.000Z",
+              "updatedAt": "2026-10-21T20:51:28.000Z",
+              "uid": "35240-653aae8a-da8a-4df2-b34e-cd2ae5174d71"
+            }
+          ],
+          "id": "776a2d1d-a39f-4059-a956-144e922537f5",
+          "createdAt": "2026-10-21T20:51:28.000Z",
+          "updatedAt": "2026-10-21T20:51:28.000Z",
+          "uid": "35240-776a2d1d-a39f-4059-a956-144e922537f5"
+        },
+        {
+          "name": "List acquirers this partner may board onto",
+          "id": "dc9e674f-5d55-4664-b2e8-4794e3b41371",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/acquirers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "acquirers"
+              ]
+            },
+            "description": "Scoped to the partner's allowed set (derived from the processors behind\neach acquirer). Returns the list shape; `next_cursor` is always `null`\n(the catalogue is small and unpaginated)."
+          },
+          "response": [
+            {
+              "id": "a841f03d-1b49-4437-b777-96b86b229d3d",
+              "name": "Acquirer catalogue list.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/acquirers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "acquirers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": \"<array>\",\n  \"next_cursor\": \"<string,null>\"\n}",
+              "createdAt": "2026-10-21T20:51:28.000Z",
+              "updatedAt": "2026-10-21T20:51:28.000Z",
+              "uid": "35240-a841f03d-1b49-4437-b777-96b86b229d3d"
+            },
+            {
+              "id": "b903d519-ee0c-4a53-a8c8-1099d6ec28e4",
+              "name": "Missing or invalid HTTP Basic credentials.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/acquirers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "acquirers"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"type\": \"conflict\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"Duis_3f\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"incididunt_c3\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enim5\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:51:28.000Z",
+              "updatedAt": "2026-10-21T20:51:28.000Z",
+              "uid": "35240-b903d519-ee0c-4a53-a8c8-1099d6ec28e4"
+            }
+          ],
+          "createdAt": "2026-10-21T20:51:28.000Z",
+          "updatedAt": "2026-10-21T20:51:28.000Z",
+          "uid": "35240-dc9e674f-5d55-4664-b2e8-4794e3b41371"
+        }
+      ],
+      "id": "c360d8b0-5ad4-45c0-9964-01cf4a5dfbca",
+      "createdAt": "2026-10-21T20:51:28.000Z",
+      "updatedAt": "2026-10-21T20:51:28.000Z",
+      "uid": "35240-c360d8b0-5ad4-45c0-9964-01cf4a5dfbca"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts.io/v2/partners"
+    }
+  ]
+}

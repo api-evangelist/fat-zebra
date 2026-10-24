@@ -1,0 +1,269 @@
+{
+  "info": {
+    "_postman_id": "27c85954-d79a-4ddd-b64f-9a79346a5ccc",
+    "name": "Fat Zebra Health API",
+    "description": "Operations tagged Health across 2 of this provider's published API definitions: fat-zebra-gateway.json, fat-zebra-partner.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:48.000Z",
+    "updatedAt": "2026-10-21T20:52:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-27c85954-d79a-4ddd-b64f-9a79346a5ccc"
+  },
+  "item": [
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "Get health",
+          "id": "b03891c6-8279-4478-98e7-56dc1bbe4841",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health?echo=echo",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ],
+              "query": [
+                {
+                  "description": "An optional query string to be returned back by the API",
+                  "key": "echo",
+                  "value": "echo"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dd1b73ce-6c8a-4953-b379-a634455b8b6e",
+              "name": "New Response",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health?echo=echo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ],
+                  "query": [
+                    {
+                      "description": "An optional query string to be returned back by the API",
+                      "key": "echo",
+                      "value": "echo"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"timestamp\": 0,\n  \"echo\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:52:48.000Z",
+              "updatedAt": "2026-10-21T20:52:48.000Z",
+              "uid": "35240-dd1b73ce-6c8a-4953-b379-a634455b8b6e"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:48.000Z",
+          "updatedAt": "2026-10-21T20:52:48.000Z",
+          "uid": "35240-b03891c6-8279-4478-98e7-56dc1bbe4841"
+        }
+      ],
+      "id": "185ff7ea-13a5-43e8-a381-5dcd545af8e2",
+      "createdAt": "2026-10-21T20:52:48.000Z",
+      "updatedAt": "2026-10-21T20:52:48.000Z",
+      "uid": "35240-185ff7ea-13a5-43e8-a381-5dcd545af8e2"
+    },
+    {
+      "name": "ping",
+      "item": [
+        {
+          "name": "Auth + partner resolution canary",
+          "id": "eb78f4a8-c178-4fff-9260-e403745687a4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}",
+                  "type": "string"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ping",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ping"
+              ]
+            },
+            "description": "Smoke-tests auth and partner resolution. Returns `{ \"ok\": true }` on\nsuccess."
+          },
+          "response": [
+            {
+              "id": "ebfb6abc-3f03-42cf-b8b8-19275a267130",
+              "name": "Auth ok; partner resolved.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ping",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ping"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ok\": \"<boolean>\"\n}",
+              "createdAt": "2026-10-21T20:52:48.000Z",
+              "updatedAt": "2026-10-21T20:52:48.000Z",
+              "uid": "35240-ebfb6abc-3f03-42cf-b8b8-19275a267130"
+            },
+            {
+              "id": "5a0232ad-f787-47ca-93a5-38f09ddf16a8",
+              "name": "Missing or invalid HTTP Basic credentials.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ping",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ping"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"type\": \"processor_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"qui_f08\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ad_8\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"consecteturebb\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"aliquip_0a4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"esse__65\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+              "createdAt": "2026-10-21T20:52:48.000Z",
+              "updatedAt": "2026-10-21T20:52:48.000Z",
+              "uid": "35240-5a0232ad-f787-47ca-93a5-38f09ddf16a8"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:48.000Z",
+          "updatedAt": "2026-10-21T20:52:48.000Z",
+          "uid": "35240-eb78f4a8-c178-4fff-9260-e403745687a4"
+        }
+      ],
+      "id": "d150c745-aa1f-44c5-9c9f-5de05c7d73df",
+      "createdAt": "2026-10-21T20:52:48.000Z",
+      "updatedAt": "2026-10-21T20:52:48.000Z",
+      "uid": "35240-d150c745-aa1f-44c5-9c9f-5de05c7d73df"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

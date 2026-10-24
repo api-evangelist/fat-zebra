@@ -1,0 +1,353 @@
+{
+  "info": {
+    "_postman_id": "b3eef836-021c-4971-8ce8-823b7ee74b9b",
+    "name": "gateway Authenticate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:51:45.000Z",
+    "updatedAt": "2026-10-21T20:51:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b3eef836-021c-4971-8ce8-823b7ee74b9b"
+  },
+  "item": [
+    {
+      "name": "authenticate",
+      "item": [
+        {
+          "name": "session",
+          "item": [
+            {
+              "name": "Generate a JWT token",
+              "id": "28514fda-5a99-4d03-8c23-632af85fc3a6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"AUD\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/authenticate/session",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authenticate",
+                    "session"
+                  ]
+                },
+                "description": "This API generates a JWT token to initiate the SCA/3DS2 process."
+              },
+              "response": [
+                {
+                  "id": "d597487d-3ad3-4bd4-8407-7c45a0be1f94",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"AUD\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/authenticate/session",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "authenticate",
+                        "session"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"jwt\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:51:46.000Z",
+                  "updatedAt": "2026-10-21T20:51:46.000Z",
+                  "uid": "35240-d597487d-3ad3-4bd4-8407-7c45a0be1f94"
+                }
+              ],
+              "createdAt": "2026-10-21T20:51:46.000Z",
+              "updatedAt": "2026-10-21T20:51:46.000Z",
+              "uid": "35240-28514fda-5a99-4d03-8c23-632af85fc3a6"
+            }
+          ],
+          "id": "4aaeb105-a928-49db-b497-e613ba36a549",
+          "createdAt": "2026-10-21T20:51:46.000Z",
+          "updatedAt": "2026-10-21T20:51:46.000Z",
+          "uid": "35240-4aaeb105-a928-49db-b497-e613ba36a549"
+        },
+        {
+          "name": "decode_session",
+          "item": [
+            {
+              "name": "Decode a JWT token",
+              "id": "eb26ec8c-00de-44b6-8997-6d757f1230cc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/authenticate/decode_session?token=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authenticate",
+                    "decode_session"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) A JWT token to be decrypted",
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "b9c6fe8e-4543-447c-ac09-60c2b8506d60",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/authenticate/decode_session?token=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "authenticate",
+                        "decode_session"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) A JWT token to be decrypted",
+                          "key": "token",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"consumer_session_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"processor_transaction_id\": \"<string>\",\n    \"error_number\": 0,\n    \"error_description\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:51:46.000Z",
+                  "updatedAt": "2026-10-21T20:51:46.000Z",
+                  "uid": "35240-b9c6fe8e-4543-447c-ac09-60c2b8506d60"
+                }
+              ],
+              "createdAt": "2026-10-21T20:51:46.000Z",
+              "updatedAt": "2026-10-21T20:51:46.000Z",
+              "uid": "35240-eb26ec8c-00de-44b6-8997-6d757f1230cc"
+            }
+          ],
+          "id": "093184d8-5177-48fe-a4fe-5aeb0be8ae4d",
+          "createdAt": "2026-10-21T20:51:46.000Z",
+          "updatedAt": "2026-10-21T20:51:46.000Z",
+          "uid": "35240-093184d8-5177-48fe-a4fe-5aeb0be8ae4d"
+        },
+        {
+          "name": "Authenticate a transaction",
+          "id": "b0e963f3-2026-4bc1-b5a0-080a49f9bb56",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"card_token\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"AUD\",\n  \"customer_ip\": \"<string>\",\n  \"sca\": {\n    \"type\": \"<string>\",\n    \"merchant_reference_code\": \"<string>\",\n    \"customer\": {\n      \"address_1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"post_code\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"passport_number\": \"<string>\",\n      \"passport_country\": \"<string>\",\n      \"account_changed_at\": \"<string>\",\n      \"account_created_at\": \"<string>\",\n      \"account_password_changed_at\": \"<string>\"\n    },\n    \"shipping_address\": {\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"home_phone\": \"<string>\",\n      \"post_code\": \"<string>\",\n      \"method\": \"<string>\",\n      \"destination_code\": \"<string>\"\n    },\n    \"custom\": {\n      \"transaction_mode\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"merchant_name\": \"<string>\",\n      \"merchant_new_customer\": \"<boolean>\",\n      \"preorder\": \"<integer>\",\n      \"http_accept\": \"<string>\",\n      \"http_user_agent\": \"<string>\",\n      \"http_user_accept\": \"<string>\",\n      \"recurring_end_date\": \"<string>\",\n      \"recurring_frequency\": \"<integer>\",\n      \"recurring_original_purchase_date\": \"<string>\"\n    },\n    \"items\": [\n      {\n        \"unit_price\": \"<float>\",\n        \"product_description\": \"<string>\",\n        \"product_name\": \"<string>\",\n        \"quantity\": 1,\n        \"product_sku\": \"<string>\",\n        \"passenger_first_name\": \"<string>\",\n        \"passenger_last_name\": \"<string>\"\n      },\n      {\n        \"unit_price\": \"<float>\",\n        \"product_description\": \"<string>\",\n        \"product_name\": \"<string>\",\n        \"quantity\": 1,\n        \"product_sku\": \"<string>\",\n        \"passenger_first_name\": \"<string>\",\n        \"passenger_last_name\": \"<string>\"\n      }\n    ],\n    \"airline_data\": {\n      \"number_of_passengers\": \"<integer>\",\n      \"passengers\": [\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        },\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        }\n      ],\n      \"legs\": [\n        {\n          \"carrier_code\": \"<string>\",\n          \"departure_date\": \"<string>\",\n          \"destination\": \"<string>\",\n          \"originating_airport_code\": \"<string>\"\n        },\n        {\n          \"carrier_code\": \"<string>\",\n          \"departure_date\": \"<string>\",\n          \"destination\": \"<string>\",\n          \"originating_airport_code\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/authenticate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "authenticate"
+              ]
+            },
+            "description": "This API is used to authenticate a transaction. The first step is to call this API with sca.type = \"enrollment\" to check whether the transaction is frictionless or needs further challenge. After a successful challenge, this API should be called with sca.type = \"validation\" which will return 3DS2/SCA fields."
+          },
+          "response": [
+            {
+              "id": "6676d2bb-03e9-47fc-9370-6f0070f15f45",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card_token\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"AUD\",\n  \"customer_ip\": \"<string>\",\n  \"sca\": {\n    \"type\": \"<string>\",\n    \"merchant_reference_code\": \"<string>\",\n    \"customer\": {\n      \"address_1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"post_code\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"passport_number\": \"<string>\",\n      \"passport_country\": \"<string>\",\n      \"account_changed_at\": \"<string>\",\n      \"account_created_at\": \"<string>\",\n      \"account_password_changed_at\": \"<string>\"\n    },\n    \"shipping_address\": {\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"home_phone\": \"<string>\",\n      \"post_code\": \"<string>\",\n      \"method\": \"<string>\",\n      \"destination_code\": \"<string>\"\n    },\n    \"custom\": {\n      \"transaction_mode\": \"<string>\",\n      \"reference_id\": \"<string>\",\n      \"merchant_name\": \"<string>\",\n      \"merchant_new_customer\": \"<boolean>\",\n      \"preorder\": \"<integer>\",\n      \"http_accept\": \"<string>\",\n      \"http_user_agent\": \"<string>\",\n      \"http_user_accept\": \"<string>\",\n      \"recurring_end_date\": \"<string>\",\n      \"recurring_frequency\": \"<integer>\",\n      \"recurring_original_purchase_date\": \"<string>\"\n    },\n    \"items\": [\n      {\n        \"unit_price\": \"<float>\",\n        \"product_description\": \"<string>\",\n        \"product_name\": \"<string>\",\n        \"quantity\": 1,\n        \"product_sku\": \"<string>\",\n        \"passenger_first_name\": \"<string>\",\n        \"passenger_last_name\": \"<string>\"\n      },\n      {\n        \"unit_price\": \"<float>\",\n        \"product_description\": \"<string>\",\n        \"product_name\": \"<string>\",\n        \"quantity\": 1,\n        \"product_sku\": \"<string>\",\n        \"passenger_first_name\": \"<string>\",\n        \"passenger_last_name\": \"<string>\"\n      }\n    ],\n    \"airline_data\": {\n      \"number_of_passengers\": \"<integer>\",\n      \"passengers\": [\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        },\n        {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\"\n        }\n      ],\n      \"legs\": [\n        {\n          \"carrier_code\": \"<string>\",\n          \"departure_date\": \"<string>\",\n          \"destination\": \"<string>\",\n          \"originating_airport_code\": \"<string>\"\n        },\n        {\n          \"carrier_code\": \"<string>\",\n          \"departure_date\": \"<string>\",\n          \"destination\": \"<string>\",\n          \"originating_airport_code\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/authenticate",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "authenticate"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"action\": {\n      \"proceed\": true,\n      \"challenge\": true,\n      \"frictionless\": true,\n      \"bypass\": true\n    },\n    \"version\": \"<string>\",\n    \"enrolled\": \"<string>\",\n    \"acs_url\": \"<string>\",\n    \"pareq\": {},\n    \"pares\": \"<string>\",\n    \"xid\": \"<string>\",\n    \"eci\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"aav\": {},\n    \"ucaf_collection_indicator\": {},\n    \"authentication_path\": {},\n    \"authentication_result\": \"<string>\",\n    \"authentication_transaction_id\": \"<string>\",\n    \"authentication_status_message\": \"<string>\",\n    \"card_bin\": \"<string>\",\n    \"card_type_name\": \"<string>\",\n    \"commerce_indicator\": \"<string>\",\n    \"proxy_pan\": {},\n    \"currency\": {},\n    \"request_id\": \"<string>\",\n    \"request_token\": \"<string>\",\n    \"decision\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:51:46.000Z",
+              "updatedAt": "2026-10-21T20:51:46.000Z",
+              "uid": "35240-6676d2bb-03e9-47fc-9370-6f0070f15f45"
+            }
+          ],
+          "createdAt": "2026-10-21T20:51:46.000Z",
+          "updatedAt": "2026-10-21T20:51:46.000Z",
+          "uid": "35240-b0e963f3-2026-4bc1-b5a0-080a49f9bb56"
+        }
+      ],
+      "id": "c301c667-80f3-4c41-8deb-4c0979db1714",
+      "createdAt": "2026-10-21T20:51:46.000Z",
+      "updatedAt": "2026-10-21T20:51:46.000Z",
+      "uid": "35240-c301c667-80f3-4c41-8deb-4c0979db1714"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

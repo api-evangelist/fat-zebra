@@ -1,0 +1,2759 @@
+{
+  "info": {
+    "_postman_id": "8730f4aa-8b07-4a66-ab76-7873ef5d685e",
+    "name": "gateway PayPal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:36.000Z",
+    "updatedAt": "2026-10-21T20:55:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8730f4aa-8b07-4a66-ab76-7873ef5d685e"
+  },
+  "item": [
+    {
+      "name": "paypal",
+      "item": [
+        {
+          "name": "orders",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Fetch an order",
+                  "id": "df4ca726-9b88-49f7-8948-899366bfd6c5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/orders/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "orders",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "03584aec-4a0b-4479-a32a-387ca59dd220",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the order."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "66b66c07-d9fa-4cf3-93a5-2627a0a237a0",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/orders/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "orders",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"intent\": \"<string>\",\n    \"paypal_reference\": \"<string>\",\n    \"invoice_id\": \"<string>\",\n    \"billing_agreement_id\": {},\n    \"status\": \"<string>\",\n    \"payment_source\": {},\n    \"authorized_amount\": 0,\n    \"captured_amount\": 0,\n    \"refunded_amount\": 0,\n    \"authorizations\": \"<array>\",\n    \"captures\": [\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"captured\": true,\n        \"amount\": 0,\n        \"decimal_amount\": 0,\n        \"successful\": true,\n        \"currency\": \"<string>\",\n        \"transaction_id\": \"<string>\",\n        \"transaction_date\": \"<string>\",\n        \"invoice_id\": \"<string>\",\n        \"paypal_fee\": 0,\n        \"seller_receivable_net_amount\": 0,\n        \"note_to_payer\": \"<string>\",\n        \"is_final_capture\": true\n      },\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"captured\": true,\n        \"amount\": 0,\n        \"decimal_amount\": 0,\n        \"successful\": true,\n        \"currency\": \"<string>\",\n        \"transaction_id\": \"<string>\",\n        \"transaction_date\": \"<string>\",\n        \"invoice_id\": \"<string>\",\n        \"paypal_fee\": 0,\n        \"seller_receivable_net_amount\": 0,\n        \"note_to_payer\": \"<string>\",\n        \"is_final_capture\": true\n      }\n    ],\n    \"refunds\": \"<array>\",\n    \"payer\": {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": {\n        \"country_code\": \"<string>\"\n      }\n    },\n    \"payee\": {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  },\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-66b66c07-d9fa-4cf3-93a5-2627a0a237a0"
+                    },
+                    {
+                      "id": "8298de58-b0d6-4090-9a1e-46de3a0b74a3",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/orders/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "orders",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-8298de58-b0d6-4090-9a1e-46de3a0b74a3"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-df4ca726-9b88-49f7-8948-899366bfd6c5"
+                }
+              ],
+              "id": "ecb011dd-2149-41d7-884f-7bb9beccbc1c",
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-ecb011dd-2149-41d7-884f-7bb9beccbc1c"
+            },
+            {
+              "name": "List orders",
+              "id": "58ad8ffb-7f92-434d-9879-d470f7709c39",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/paypal/orders?offset=1&limit=10&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "paypal",
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset to start",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records in the response",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the record was created",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the record was created",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "455bd927-408d-4739-a05c-8cdb47dc6a6c",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/orders?offset=1&limit=10&from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "orders"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset to start",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of records in the response",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Lower bound for the time at which the record was created",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Upper bound for the time at which the record was created",
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"successful\": true,\n      \"message\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"intent\": \"<string>\",\n      \"paypal_reference\": \"<string>\",\n      \"invoice_id\": \"<string>\",\n      \"billing_agreement_id\": {},\n      \"status\": \"<string>\",\n      \"payment_source\": {},\n      \"authorized_amount\": 0,\n      \"captured_amount\": 0,\n      \"refunded_amount\": 0,\n      \"authorizations\": \"<array>\",\n      \"captures\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"captured\": true,\n          \"amount\": 0,\n          \"decimal_amount\": 0,\n          \"successful\": true,\n          \"currency\": \"<string>\",\n          \"transaction_id\": \"<string>\",\n          \"transaction_date\": \"<string>\",\n          \"invoice_id\": \"<string>\",\n          \"paypal_fee\": 0,\n          \"seller_receivable_net_amount\": 0,\n          \"note_to_payer\": \"<string>\",\n          \"is_final_capture\": true\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"captured\": true,\n          \"amount\": 0,\n          \"decimal_amount\": 0,\n          \"successful\": true,\n          \"currency\": \"<string>\",\n          \"transaction_id\": \"<string>\",\n          \"transaction_date\": \"<string>\",\n          \"invoice_id\": \"<string>\",\n          \"paypal_fee\": 0,\n          \"seller_receivable_net_amount\": 0,\n          \"note_to_payer\": \"<string>\",\n          \"is_final_capture\": true\n        }\n      ],\n      \"refunds\": \"<array>\",\n      \"payer\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string>\",\n        \"address\": {\n          \"country_code\": \"<string>\"\n        }\n      },\n      \"payee\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"successful\": true,\n      \"message\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"intent\": \"<string>\",\n      \"paypal_reference\": \"<string>\",\n      \"invoice_id\": \"<string>\",\n      \"billing_agreement_id\": {},\n      \"status\": \"<string>\",\n      \"payment_source\": {},\n      \"authorized_amount\": 0,\n      \"captured_amount\": 0,\n      \"refunded_amount\": 0,\n      \"authorizations\": \"<array>\",\n      \"captures\": [\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"captured\": true,\n          \"amount\": 0,\n          \"decimal_amount\": 0,\n          \"successful\": true,\n          \"currency\": \"<string>\",\n          \"transaction_id\": \"<string>\",\n          \"transaction_date\": \"<string>\",\n          \"invoice_id\": \"<string>\",\n          \"paypal_fee\": 0,\n          \"seller_receivable_net_amount\": 0,\n          \"note_to_payer\": \"<string>\",\n          \"is_final_capture\": true\n        },\n        {\n          \"id\": \"<string>\",\n          \"status\": \"<string>\",\n          \"captured\": true,\n          \"amount\": 0,\n          \"decimal_amount\": 0,\n          \"successful\": true,\n          \"currency\": \"<string>\",\n          \"transaction_id\": \"<string>\",\n          \"transaction_date\": \"<string>\",\n          \"invoice_id\": \"<string>\",\n          \"paypal_fee\": 0,\n          \"seller_receivable_net_amount\": 0,\n          \"note_to_payer\": \"<string>\",\n          \"is_final_capture\": true\n        }\n      ],\n      \"refunds\": \"<array>\",\n      \"payer\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string>\",\n        \"address\": {\n          \"country_code\": \"<string>\"\n        }\n      },\n      \"payee\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"records\": 0,\n  \"total_records\": 0,\n  \"page\": 0,\n  \"total_pages\": 0\n}",
+                  "createdAt": "2026-10-21T20:55:37.000Z",
+                  "updatedAt": "2026-10-21T20:55:37.000Z",
+                  "uid": "35240-455bd927-408d-4739-a05c-8cdb47dc6a6c"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-58ad8ffb-7f92-434d-9879-d470f7709c39"
+            }
+          ],
+          "id": "df530ba5-281f-484b-b60b-cd9a94d7a1cf",
+          "createdAt": "2026-10-21T20:55:36.000Z",
+          "updatedAt": "2026-10-21T20:55:36.000Z",
+          "uid": "35240-df530ba5-281f-484b-b60b-cd9a94d7a1cf"
+        },
+        {
+          "name": "authorizations",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "capture",
+                  "item": [
+                    {
+                      "name": "Capture an authorization",
+                      "id": "ff184e7d-b5fb-4639-91bb-e84b4f0cb98f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\",\n  \"final_capture\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/authorizations/:id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "authorizations",
+                            ":id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1f16d4cf-0e8c-474f-98d8-e96b1b98aba2",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) ID of the authorization to be captured."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "e0c16995-47e4-4db0-9b3e-725e54220b1b",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\",\n  \"final_capture\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/capture",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "capture"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"captured_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"captured\": true,\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"status\": \"<string>\",\n    \"invoice_id\": \"<string>\",\n    \"paypal_fee\": 0,\n    \"seller_receivable_net_amount\": 0,\n    \"note_to_payer\": \"<string>\",\n    \"is_final_capture\": true,\n    \"refunded_amount\": 0,\n    \"balance_available_for_refund\": 0,\n    \"balance_available_for_capture\": 0,\n    \"authorization\": \"<string>\",\n    \"order\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-e0c16995-47e4-4db0-9b3e-725e54220b1b"
+                        },
+                        {
+                          "id": "ad3d84c3-53f7-47d5-97e6-a884717f64b7",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\",\n  \"final_capture\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/capture",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "capture"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-ad3d84c3-53f7-47d5-97e6-a884717f64b7"
+                        },
+                        {
+                          "id": "437b7fd3-55a8-4408-84f5-79da8083e1ca",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\",\n  \"final_capture\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/capture",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "capture"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response\": {}\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-437b7fd3-55a8-4408-84f5-79da8083e1ca"
+                        },
+                        {
+                          "id": "a3149b2e-d6cf-4b2a-96cf-1cfa878491aa",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\",\n  \"final_capture\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/capture",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "capture"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"successful\\\": false,\\n  \\\"response\\\": null,\\n  \\\"errors\\\": [\\n    \\\"Could not find Authorization\\\"\\n  ],\\n  \\\"test\\\": true\\n}\"\n    }\n  }\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-a3149b2e-d6cf-4b2a-96cf-1cfa878491aa"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:36.000Z",
+                      "updatedAt": "2026-10-21T20:55:36.000Z",
+                      "uid": "35240-ff184e7d-b5fb-4639-91bb-e84b4f0cb98f"
+                    }
+                  ],
+                  "id": "d405166d-384e-46b2-bae0-050e4a811615",
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-d405166d-384e-46b2-bae0-050e4a811615"
+                },
+                {
+                  "name": "void",
+                  "item": [
+                    {
+                      "name": "Void an authorization",
+                      "id": "8b90c507-1a38-4f7b-90fd-fdc703c78869",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/authorizations/:id/void",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "authorizations",
+                            ":id",
+                            "void"
+                          ],
+                          "variable": [
+                            {
+                              "id": "1651e361-41b6-4554-beae-339eae2e68ea",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) ID of the authorization to be voided."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "7105a0e5-2784-406a-b22a-c6d33e4afa7c",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/void",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "void"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"captured_amount\": 0,\n    \"successful\": true,\n    \"captured\": true,\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"refunded_amount\": 0,\n    \"balance_available_for_capture\": 0,\n    \"order\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-7105a0e5-2784-406a-b22a-c6d33e4afa7c"
+                        },
+                        {
+                          "id": "5314ffbc-ef47-4325-9b07-97949028b4d3",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/void",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "void"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response\": {}\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-5314ffbc-ef47-4325-9b07-97949028b4d3"
+                        },
+                        {
+                          "id": "ac49b871-c758-48ef-aff8-513162de18f0",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/void",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "void"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-ac49b871-c758-48ef-aff8-513162de18f0"
+                        },
+                        {
+                          "id": "8230d818-5024-481d-93d2-5b587467a8cb",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/authorizations/:id/void",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "authorizations",
+                                ":id",
+                                "void"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-8230d818-5024-481d-93d2-5b587467a8cb"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:36.000Z",
+                      "updatedAt": "2026-10-21T20:55:36.000Z",
+                      "uid": "35240-8b90c507-1a38-4f7b-90fd-fdc703c78869"
+                    }
+                  ],
+                  "id": "3244a055-5d21-4bde-85de-b324ac3ca1c2",
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-3244a055-5d21-4bde-85de-b324ac3ca1c2"
+                },
+                {
+                  "name": "Fetch an authorization",
+                  "id": "77ece2df-dd4c-4834-a35a-98cbe49601ca",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/authorizations/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "authorizations",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cc87d531-e059-41f1-b946-43ba92788b24",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the authorization."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "36387423-2acf-42b5-bb96-2aff5c10aed2",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/authorizations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "authorizations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"captured_amount\": 0,\n    \"successful\": true,\n    \"captured\": true,\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"message\": \"<string>\",\n    \"status\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"refunded_amount\": 0,\n    \"balance_available_for_capture\": 0,\n    \"order\": \"<string>\"\n  },\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-36387423-2acf-42b5-bb96-2aff5c10aed2"
+                    },
+                    {
+                      "id": "29036304-d4e8-4c30-8ce1-97a38f28c19c",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/authorizations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "authorizations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-29036304-d4e8-4c30-8ce1-97a38f28c19c"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-77ece2df-dd4c-4834-a35a-98cbe49601ca"
+                }
+              ],
+              "id": "027e4b04-b0e6-4819-9f73-a001e64cc341",
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-027e4b04-b0e6-4819-9f73-a001e64cc341"
+            },
+            {
+              "name": "List authorizations",
+              "id": "9d77b9e8-00e7-45d2-bfcf-e2dc8300a98e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/paypal/authorizations?offset=1&limit=10&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "paypal",
+                    "authorizations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset to start",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records in the response",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the record was created",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the record was created",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "272e22b3-e2d8-4f89-83d6-f6b8217cbb44",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/authorizations?offset=1&limit=10&from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "authorizations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset to start",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of records in the response",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Lower bound for the time at which the record was created",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Upper bound for the time at which the record was created",
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"captured_amount\": 0,\n      \"successful\": true,\n      \"captured\": true,\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"message\": \"<string>\",\n      \"status\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"refunded_amount\": 0,\n      \"balance_available_for_capture\": 0,\n      \"order\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"captured_amount\": 0,\n      \"successful\": true,\n      \"captured\": true,\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"message\": \"<string>\",\n      \"status\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"refunded_amount\": 0,\n      \"balance_available_for_capture\": 0,\n      \"order\": \"<string>\"\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"records\": 0,\n  \"total_records\": 0,\n  \"page\": 0,\n  \"total_pages\": 0\n}",
+                  "createdAt": "2026-10-21T20:55:37.000Z",
+                  "updatedAt": "2026-10-21T20:55:37.000Z",
+                  "uid": "35240-272e22b3-e2d8-4f89-83d6-f6b8217cbb44"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-9d77b9e8-00e7-45d2-bfcf-e2dc8300a98e"
+            }
+          ],
+          "id": "47d6df39-11f5-4a17-baf5-7a0cea32909b",
+          "createdAt": "2026-10-21T20:55:36.000Z",
+          "updatedAt": "2026-10-21T20:55:36.000Z",
+          "uid": "35240-47d6df39-11f5-4a17-baf5-7a0cea32909b"
+        },
+        {
+          "name": "captures",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "refund",
+                  "item": [
+                    {
+                      "name": "Refund a capture",
+                      "id": "baca550e-8bc3-48a4-a6c6-c51d11526512",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/captures/:id/refund",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "captures",
+                            ":id",
+                            "refund"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8126b3d4-a16d-404c-aa08-cff881701256",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the capture to be refunded"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "28b3b97d-fc49-40da-bec9-e9ab880a2df9",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/captures/:id/refund",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "captures",
+                                ":id",
+                                "refund"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"refunded\": \"<string>\",\n    \"message\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"successful\": true,\n    \"transaction_date\": \"<string>\",\n    \"status\": \"<string>\",\n    \"note_to_payer\": \"<string>\",\n    \"invoice_id\": \"<string>\",\n    \"decimal_amount\": 0,\n    \"paypal_fee\": 0,\n    \"seller_payable_net_amount\": 0,\n    \"balance_available_for_refund\": 0,\n    \"capture\": \"<string>\",\n    \"order\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-28b3b97d-fc49-40da-bec9-e9ab880a2df9"
+                        },
+                        {
+                          "id": "d7d9c5ad-8294-40cb-b3f2-9a394f04aacc",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/captures/:id/refund",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "captures",
+                                ":id",
+                                "refund"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-d7d9c5ad-8294-40cb-b3f2-9a394f04aacc"
+                        },
+                        {
+                          "id": "13440277-4f60-4a8f-8202-89d7c31e6a98",
+                          "name": "401",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/captures/:id/refund",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "captures",
+                                ":id",
+                                "refund"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"successful\\\": false,\\n  \\\"errors\\\": [\\n     \\\"Incorrect Username or Token\\\"\\n  ],\\n  \\\"response\\\": null\\n}\ufeff\"\n    }\n  }\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-13440277-4f60-4a8f-8202-89d7c31e6a98"
+                        },
+                        {
+                          "id": "d9d0f96d-e9ac-40a4-aed5-97197457c1a5",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"note_to_payer\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/captures/:id/refund",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "captures",
+                                ":id",
+                                "refund"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-d9d0f96d-e9ac-40a4-aed5-97197457c1a5"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:36.000Z",
+                      "updatedAt": "2026-10-21T20:55:36.000Z",
+                      "uid": "35240-baca550e-8bc3-48a4-a6c6-c51d11526512"
+                    }
+                  ],
+                  "id": "82933cda-ed9f-43b0-98ba-d1692848247a",
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-82933cda-ed9f-43b0-98ba-d1692848247a"
+                },
+                {
+                  "name": "Fetch a capture",
+                  "id": "f3f58ec7-80c9-4cbe-8f87-4fe3fcd6d3ac",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/captures/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "captures",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2061bda6-1e96-42ea-b11f-8ab62d4ce5a6",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the capture."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2fe50119-0bda-4a93-b954-6b86840ea0ca",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/captures/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "captures",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"captured_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"captured\": true,\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"status\": \"<string>\",\n    \"invoice_id\": \"<string>\",\n    \"paypal_fee\": 0,\n    \"seller_receivable_net_amount\": 0,\n    \"note_to_payer\": \"<string>\",\n    \"is_final_capture\": true,\n    \"refunded_amount\": 0,\n    \"balance_available_for_refund\": 0,\n    \"balance_available_for_capture\": {},\n    \"authorization\": {},\n    \"order\": \"<string>\"\n  },\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-2fe50119-0bda-4a93-b954-6b86840ea0ca"
+                    },
+                    {
+                      "id": "5ef730a0-f6ff-4860-a2db-e31c1f8e4f1e",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/captures/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "captures",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-5ef730a0-f6ff-4860-a2db-e31c1f8e4f1e"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-f3f58ec7-80c9-4cbe-8f87-4fe3fcd6d3ac"
+                }
+              ],
+              "id": "3f461dd0-d5a4-42d1-8ad8-f895e8a91620",
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-3f461dd0-d5a4-42d1-8ad8-f895e8a91620"
+            },
+            {
+              "name": "List captures",
+              "id": "6338d04e-609a-41e6-8270-e0e9d39d7428",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/paypal/captures?offset=1&limit=10&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "paypal",
+                    "captures"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset to start",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records in the response",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the record was created",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the record was created",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "e782a9aa-90f5-48c4-90ab-6eeccf203c11",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/captures?offset=1&limit=10&from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "captures"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset to start",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of records in the response",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Lower bound for the time at which the record was created",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Upper bound for the time at which the record was created",
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"captured_amount\": 0,\n      \"successful\": true,\n      \"message\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"captured\": true,\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"status\": \"<string>\",\n      \"invoice_id\": \"<string>\",\n      \"paypal_fee\": 0,\n      \"seller_receivable_net_amount\": 0,\n      \"note_to_payer\": \"<string>\",\n      \"is_final_capture\": true,\n      \"refunded_amount\": 0,\n      \"balance_available_for_refund\": 0,\n      \"balance_available_for_capture\": {},\n      \"authorization\": {},\n      \"order\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"captured_amount\": 0,\n      \"successful\": true,\n      \"message\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"captured\": true,\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"status\": \"<string>\",\n      \"invoice_id\": \"<string>\",\n      \"paypal_fee\": 0,\n      \"seller_receivable_net_amount\": 0,\n      \"note_to_payer\": \"<string>\",\n      \"is_final_capture\": true,\n      \"refunded_amount\": 0,\n      \"balance_available_for_refund\": 0,\n      \"balance_available_for_capture\": {},\n      \"authorization\": {},\n      \"order\": \"<string>\"\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"records\": 0,\n  \"total_records\": 0,\n  \"page\": 0,\n  \"total_pages\": 0\n}",
+                  "createdAt": "2026-10-21T20:55:37.000Z",
+                  "updatedAt": "2026-10-21T20:55:37.000Z",
+                  "uid": "35240-e782a9aa-90f5-48c4-90ab-6eeccf203c11"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-6338d04e-609a-41e6-8270-e0e9d39d7428"
+            }
+          ],
+          "id": "73d6c16b-f8f2-4bd1-af1a-9474488ce203",
+          "createdAt": "2026-10-21T20:55:36.000Z",
+          "updatedAt": "2026-10-21T20:55:36.000Z",
+          "uid": "35240-73d6c16b-f8f2-4bd1-af1a-9474488ce203"
+        },
+        {
+          "name": "refunds",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Fetch a refund",
+                  "id": "8827b426-39bb-4678-9777-519993be9554",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/refunds/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "refunds",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4ae9f36a-6ef8-41b7-bf72-0671896ea5ef",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the refund."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d60a0396-1047-43cd-a55a-1677b9cb8c91",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/refunds/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "refunds",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"successful\\\": true,\\n  \\\"response\\\": {\\n    \\\"id\\\": \\\"071-PPR-VJ9ZTJP55GXSVNC6\\\",\\n    \\\"amount\\\": 12000,\\n    \\\"refunded\\\": \\\"Approved\\\",\\n    \\\"message\\\": \\\"Approved\\\",\\n    \\\"transaction_id\\\": \\\"071-PPR-VJ9ZTJP55GXSVNC6\\\",\\n    \\\"currency\\\": \\\"AUD\\\",\\n    \\\"successful\\\": true,\\n    \\\"transaction_date\\\": \\\"2020-08-28T15:39:16+10:00\\\",,\\n    \\\"status\\\": \\\"Completed\\\",\\n    \\\"note_to_payer\\\": \\\"\\\",\\n    \\\"invoice_id\\\": \\\"ref_12345_486873\\\",,\\n    \\\"decimal_amount\\\": 120.00,\\n    \\\"paypal_fee\\\": 318,\\n    \\\"seller_payable_net_amount\\\": 11682,\\n    \\\"balance_available_for_refund\\\": 0.0,\\n    \\\"capture\\\": \\\"071-PPC-VJ9ZTJP55GXSVNC6\\\",\\n    \\\"order\\\": \\\"071-PPO-T2OBQZZEDUSYHW3M\\\"\\n  },\\n  \\\"errors\\\": []\\n}\"\n    }\n  }\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-d60a0396-1047-43cd-a55a-1677b9cb8c91"
+                    },
+                    {
+                      "id": "e08abe54-d62b-471c-a8e9-f8822d762e15",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/refunds/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "refunds",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-e08abe54-d62b-471c-a8e9-f8822d762e15"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-8827b426-39bb-4678-9777-519993be9554"
+                }
+              ],
+              "id": "91d1ad4d-ff84-4c9d-a8ff-59edaf57f755",
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-91d1ad4d-ff84-4c9d-a8ff-59edaf57f755"
+            },
+            {
+              "name": "List refunds",
+              "id": "19a29bb7-0af1-4aa6-ad01-dfc836b98078",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/paypal/refunds?offset=1&limit=10&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "paypal",
+                    "refunds"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset to start",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records in the response",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the record was created",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the record was created",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "af356050-a0da-472d-bf80-a8ed2fbb1ca0",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/refunds?offset=1&limit=10&from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "refunds"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset to start",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of records in the response",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Lower bound for the time at which the record was created",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Upper bound for the time at which the record was created",
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"successful\\\": true,\\n  \\\"response\\\":  [\\n    {\\n      \\\"id\\\": \\\"071-PPR-VJ9ZTJP55GXSVNC6\\\",\\n      \\\"amount\\\": 12000,\\n      \\\"refunded\\\": \\\"Approved\\\",\\n      \\\"message\\\": \\\"Approved\\\",\\n      \\\"transaction_id\\\": \\\"071-PPR-VJ9ZTJP55GXSVNC6\\\",\\n      \\\"currency\\\": \\\"AUD\\\",\\n      \\\"successful\\\": true,\\n      \\\"transaction_date\\\": \\\"2020-08-28T15:39:16+10:00\\\",,\\n      \\\"status\\\": \\\"Completed\\\",\\n      \\\"note_to_payer\\\": \\\"\\\",\\n      \\\"invoice_id\\\": \\\"ref_12345_486873\\\",,\\n      \\\"decimal_amount\\\": 120.00,\\n      \\\"paypal_fee\\\": 318,\\n      \\\"seller_payable_net_amount\\\": 11682,\\n      \\\"balance_available_for_refund\\\": 0.0,\\n      \\\"capture\\\": \\\"071-PPC-VJ9ZTJP55GXSVNC6\\\",\\n      \\\"order\\\": \\\"071-PPO-T2OBQZZEDUSYHW3M\\\"\\n    }\\n  ],\\n  \\\"errors\\\": [],\\n  \\\"records\\\": 2,\\n  \\\"total_records\\\": 10,\\n  \\\"page\\\": 1,\\n  \\\"total_pages\\\": 1    \\n}\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:37.000Z",
+                  "updatedAt": "2026-10-21T20:55:37.000Z",
+                  "uid": "35240-af356050-a0da-472d-bf80-a8ed2fbb1ca0"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-19a29bb7-0af1-4aa6-ad01-dfc836b98078"
+            }
+          ],
+          "id": "bf925ccb-5d6c-47e0-9449-aa68bf4dba1e",
+          "createdAt": "2026-10-21T20:55:36.000Z",
+          "updatedAt": "2026-10-21T20:55:36.000Z",
+          "uid": "35240-bf925ccb-5d6c-47e0-9449-aa68bf4dba1e"
+        },
+        {
+          "name": "billing_agreements",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "Cancel a billing agreement",
+                      "id": "e81b8f40-fa3a-44b9-85bc-fe0ddb23d838",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/billing_agreements/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "billing_agreements",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ccfbd9dc-46e3-4467-8dd9-0bcffeab9817",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the billing agreement."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "403d2366-a9ac-4048-bd05-0a06a8bd4663",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/billing_agreements/:id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "billing_agreements",
+                                ":id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"state\": \"<string>\",\n    \"payer\": {\n      \"payer_info\": {\n        \"email\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"payer_id\": \"<string>\"\n      }\n    },\n    \"shipping_address\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"merchant_custom_data\": \"<string>\",\n    \"created_at\": \"<string>\"\n  },\n  \"errors\": \"<array>\"\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-403d2366-a9ac-4048-bd05-0a06a8bd4663"
+                        },
+                        {
+                          "id": "14bea985-c5d6-46ff-a064-32488a05568b",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/billing_agreements/:id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "billing_agreements",
+                                ":id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-14bea985-c5d6-46ff-a064-32488a05568b"
+                        },
+                        {
+                          "id": "0d7cc3fd-af77-4c32-8011-7b288c967a1e",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/billing_agreements/:id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "billing_agreements",
+                                ":id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-0d7cc3fd-af77-4c32-8011-7b288c967a1e"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:36.000Z",
+                      "updatedAt": "2026-10-21T20:55:36.000Z",
+                      "uid": "35240-e81b8f40-fa3a-44b9-85bc-fe0ddb23d838"
+                    }
+                  ],
+                  "id": "87a29f61-cc90-461e-b2f2-7759a370c40b",
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-87a29f61-cc90-461e-b2f2-7759a370c40b"
+                },
+                {
+                  "name": "charge",
+                  "item": [
+                    {
+                      "name": "Charge a billing agreement",
+                      "id": "15b78efc-abe9-42e7-bacc-1cbc0e6a9c30",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"purchases\": [\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/billing_agreements/:id/charge",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "billing_agreements",
+                            ":id",
+                            "charge"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d7c24e75-d1e5-43db-93b5-dcd86e3c092c",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the billing agreement."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8848d9b2-51f7-4658-b64e-4365708f147b",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"purchases\": [\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/billing_agreements/:id/charge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "billing_agreements",
+                                ":id",
+                                "charge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"intent\": \"<string>\",\n    \"paypal_reference\": \"<string>\",\n    \"invoice_id\": \"<string>\",\n    \"billing_agreement_id\": \"<string>\",\n    \"status\": \"<string>\",\n    \"payment_source\": \"<string>\",\n    \"authorized_amount\": 0,\n    \"captured_amount\": 0,\n    \"refunded_amount\": 0,\n    \"authorizations\": \"<array>\",\n    \"captures\": [\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"captured\": true,\n        \"amount\": 0,\n        \"decimal_amount\": 0,\n        \"successful\": true,\n        \"currency\": \"<string>\",\n        \"transaction_id\": \"<string>\",\n        \"transaction_date\": \"<string>\",\n        \"invoice_id\": \"<string>\",\n        \"paypal_fee\": 0,\n        \"seller_receivable_net_amount\": 0,\n        \"note_to_payer\": \"<string>\",\n        \"is_final_capture\": true\n      },\n      {\n        \"id\": \"<string>\",\n        \"status\": \"<string>\",\n        \"captured\": true,\n        \"amount\": 0,\n        \"decimal_amount\": 0,\n        \"successful\": true,\n        \"currency\": \"<string>\",\n        \"transaction_id\": \"<string>\",\n        \"transaction_date\": \"<string>\",\n        \"invoice_id\": \"<string>\",\n        \"paypal_fee\": 0,\n        \"seller_receivable_net_amount\": 0,\n        \"note_to_payer\": \"<string>\",\n        \"is_final_capture\": true\n      }\n    ],\n    \"refunds\": \"<array>\",\n    \"payer\": {\n      \"id\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": {\n        \"country_code\": \"<string>\"\n      }\n    },\n    \"payee\": {\n      \"id\": \"<string>\",\n      \"email\": {}\n    }\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-8848d9b2-51f7-4658-b64e-4365708f147b"
+                        },
+                        {
+                          "id": "e3271682-92ec-4201-b53e-3a558cb597d2",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"purchases\": [\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/billing_agreements/:id/charge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "billing_agreements",
+                                ":id",
+                                "charge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-e3271682-92ec-4201-b53e-3a558cb597d2"
+                        },
+                        {
+                          "id": "a7740c69-5869-4460-b761-50b5c7092f0f",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"purchases\": [\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"soft_descriptor\": \"<string>\",\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"unit_amount\": \"<integer>\",\n          \"qty\": \"<integer>\",\n          \"tax\": \"<integer>\",\n          \"sku\": \"<string>\",\n          \"category\": \"<string>\"\n        }\n      ],\n      \"shipping_address\": {\n        \"method\": \"<string>\",\n        \"address\": {\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"address_1\": \"<string>\",\n          \"address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postcode\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      \"amount\": {\n        \"amount.item_total\": \"<integer>\",\n        \"amount.shipping\": \"<integer>\",\n        \"amount.tax_total\": \"<integer>\",\n        \"amount.handling\": \"<integer>\",\n        \"amount.shipping_discount\": \"<integer>\",\n        \"amount.discount\": \"<integer>\",\n        \"amount.insurance\": \"<integer>\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/paypal/billing_agreements/:id/charge",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "paypal",
+                                "billing_agreements",
+                                ":id",
+                                "charge"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-10-21T20:55:37.000Z",
+                          "updatedAt": "2026-10-21T20:55:37.000Z",
+                          "uid": "35240-a7740c69-5869-4460-b761-50b5c7092f0f"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:36.000Z",
+                      "updatedAt": "2026-10-21T20:55:36.000Z",
+                      "uid": "35240-15b78efc-abe9-42e7-bacc-1cbc0e6a9c30"
+                    }
+                  ],
+                  "id": "2856fe65-2df7-45d0-a798-2aa487fc5aa2",
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-2856fe65-2df7-45d0-a798-2aa487fc5aa2"
+                },
+                {
+                  "name": "Fetch a billing agreement",
+                  "id": "d5e43b4e-cca4-433e-88f3-a1ae8defa5ba",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/billing_agreements/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "billing_agreements",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f3dcdbe4-dfa3-4b3a-8054-45b627447c18",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the billing agreement."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "830ccd82-4bf0-4bf9-99e7-8ab605f201fb",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/billing_agreements/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "billing_agreements",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"state\": \"<string>\",\n    \"payer\": {\n      \"payer_info\": {\n        \"email\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"payer_id\": \"<string>\"\n      }\n    },\n    \"shipping_address\": {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"address_1\": \"<string>\",\n      \"address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"merchant_custom_data\": \"<string>\",\n    \"created_at\": \"<string>\"\n  },\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-830ccd82-4bf0-4bf9-99e7-8ab605f201fb"
+                    },
+                    {
+                      "id": "e8f7d487-e403-4ec9-a636-4da5aac51e4f",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/paypal/billing_agreements/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "paypal",
+                            "billing_agreements",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-10-21T20:55:37.000Z",
+                      "updatedAt": "2026-10-21T20:55:37.000Z",
+                      "uid": "35240-e8f7d487-e403-4ec9-a636-4da5aac51e4f"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:36.000Z",
+                  "updatedAt": "2026-10-21T20:55:36.000Z",
+                  "uid": "35240-d5e43b4e-cca4-433e-88f3-a1ae8defa5ba"
+                }
+              ],
+              "id": "30956d8a-65a2-4280-b94d-b2456aa158f2",
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-30956d8a-65a2-4280-b94d-b2456aa158f2"
+            },
+            {
+              "name": "List billing agreements",
+              "id": "0f79565e-df04-411f-9874-1a3135e45797",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/paypal/billing_agreements?offset=1&limit=10&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "paypal",
+                    "billing_agreements"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset to start",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of records in the response",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the record was created",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the record was created",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "c0a9b922-96b3-40df-bf99-c65b417757da",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/paypal/billing_agreements?offset=1&limit=10&from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "paypal",
+                        "billing_agreements"
+                      ],
+                      "query": [
+                        {
+                          "description": "Offset to start",
+                          "key": "offset",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of records in the response",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Lower bound for the time at which the record was created",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Upper bound for the time at which the record was created",
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"state\": \"<string>\",\n      \"payer\": {\n        \"payer_info\": {\n          \"email\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"payer_id\": \"<string>\"\n        }\n      },\n      \"shipping_address\": {\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"address_1\": \"<string>\",\n        \"address_2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postcode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"merchant_custom_data\": \"<string>\",\n      \"created_at\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"state\": \"<string>\",\n      \"payer\": {\n        \"payer_info\": {\n          \"email\": \"<string>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"payer_id\": \"<string>\"\n        }\n      },\n      \"shipping_address\": {\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"address_1\": \"<string>\",\n        \"address_2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postcode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"merchant_custom_data\": \"<string>\",\n      \"created_at\": \"<string>\"\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"records\": 0,\n  \"total_records\": 0,\n  \"page\": 0,\n  \"total_pages\": 0\n}",
+                  "createdAt": "2026-10-21T20:55:37.000Z",
+                  "updatedAt": "2026-10-21T20:55:37.000Z",
+                  "uid": "35240-c0a9b922-96b3-40df-bf99-c65b417757da"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:36.000Z",
+              "updatedAt": "2026-10-21T20:55:36.000Z",
+              "uid": "35240-0f79565e-df04-411f-9874-1a3135e45797"
+            }
+          ],
+          "id": "bbc368d5-a631-41f2-aca8-8e3712e9a638",
+          "createdAt": "2026-10-21T20:55:36.000Z",
+          "updatedAt": "2026-10-21T20:55:36.000Z",
+          "uid": "35240-bbc368d5-a631-41f2-aca8-8e3712e9a638"
+        }
+      ],
+      "id": "c45f02a8-c9ae-423e-b098-c8985b15557f",
+      "createdAt": "2026-10-21T20:55:36.000Z",
+      "updatedAt": "2026-10-21T20:55:36.000Z",
+      "uid": "35240-c45f02a8-c9ae-423e-b098-c8985b15557f"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

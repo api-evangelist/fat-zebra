@@ -1,0 +1,721 @@
+{
+  "info": {
+    "_postman_id": "1edfcaf6-36e9-4cc9-a6f8-b9801f189732",
+    "name": "Fat Zebra Customers API",
+    "description": "Operations tagged Customers across 2 of this provider's published API definitions: fat-zebra-billing.json, fat-zebra-gateway.json. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:18.000Z",
+    "updatedAt": "2026-10-21T20:52:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1edfcaf6-36e9-4cc9-a6f8-b9801f189732"
+  },
+  "item": [
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{customer_id}",
+          "item": [
+            {
+              "name": "usage_records",
+              "item": [
+                {
+                  "name": "batch",
+                  "item": [
+                    {
+                      "name": "Push usage",
+                      "id": "13c5924b-db72-47eb-924c-d5c98ff6d07b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"usage_records\": [\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    },\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:customer_id/usage_records/batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":customer_id",
+                            "usage_records",
+                            "batch"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6a860483-7b96-4e54-86dc-7a25f0b4f03b",
+                              "key": "customer_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "305831f3-1d25-43bc-9b25-6a58cf462578",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"usage_records\": [\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    },\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:customer_id/usage_records/batch",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":customer_id",
+                                "usage_records",
+                                "batch"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "customer_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-10-21T20:52:19.000Z",
+                          "updatedAt": "2026-10-21T20:52:19.000Z",
+                          "uid": "35240-305831f3-1d25-43bc-9b25-6a58cf462578"
+                        },
+                        {
+                          "id": "60ab3246-bed9-4d8d-b962-03fcbb411dde",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"usage_records\": [\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    },\n    {\n      \"unit\": \"<string>\",\n      \"volume\": \"<integer>\",\n      \"period_from\": \"<string>\",\n      \"period_to\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:customer_id/usage_records/batch",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":customer_id",
+                                "usage_records",
+                                "batch"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "customer_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-10-21T20:52:19.000Z",
+                          "updatedAt": "2026-10-21T20:52:19.000Z",
+                          "uid": "35240-60ab3246-bed9-4d8d-b962-03fcbb411dde"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:52:19.000Z",
+                      "updatedAt": "2026-10-21T20:52:19.000Z",
+                      "uid": "35240-13c5924b-db72-47eb-924c-d5c98ff6d07b"
+                    }
+                  ],
+                  "id": "bf91c235-35bf-4d71-a785-d396beffd847",
+                  "createdAt": "2026-10-21T20:52:19.000Z",
+                  "updatedAt": "2026-10-21T20:52:19.000Z",
+                  "uid": "35240-bf91c235-35bf-4d71-a785-d396beffd847"
+                }
+              ],
+              "id": "3a5b8fe5-a9a0-477d-bd48-4e262996d694",
+              "createdAt": "2026-10-21T20:52:19.000Z",
+              "updatedAt": "2026-10-21T20:52:19.000Z",
+              "uid": "35240-3a5b8fe5-a9a0-477d-bd48-4e262996d694"
+            }
+          ],
+          "id": "d68f3d88-ee3a-40ff-a886-88f4b4144a5e",
+          "createdAt": "2026-10-21T20:52:19.000Z",
+          "updatedAt": "2026-10-21T20:52:19.000Z",
+          "uid": "35240-d68f3d88-ee3a-40ff-a886-88f4b4144a5e"
+        },
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Update a customer",
+              "id": "0cbe4bb4-0906-4875-8852-1a94c6b19de1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ade49f4f-5a84-4220-9fa2-d18e8048c9fb",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID or Reference"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "548401c3-6559-4aa6-9622-c128f788e40c",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"email\": {},\n    \"reference\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"address\": {\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"card_token\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"bank_account\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:19.000Z",
+                  "updatedAt": "2026-10-21T20:52:19.000Z",
+                  "uid": "35240-548401c3-6559-4aa6-9622-c128f788e40c"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:19.000Z",
+              "updatedAt": "2026-10-21T20:52:19.000Z",
+              "uid": "35240-0cbe4bb4-0906-4875-8852-1a94c6b19de1"
+            },
+            {
+              "name": "Delete a customer",
+              "id": "2ba22117-b2bf-455f-b215-81f3704d6236",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d32452ec-cd58-4bcd-b4bc-a6e5f67324a7",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID or Reference"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "eafaa4a2-d116-4637-98f0-fca845ada5b8",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"email\": {},\n    \"reference\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"address\": {\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"card_token\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"bank_account\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:19.000Z",
+                  "updatedAt": "2026-10-21T20:52:19.000Z",
+                  "uid": "35240-eafaa4a2-d116-4637-98f0-fca845ada5b8"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:19.000Z",
+              "updatedAt": "2026-10-21T20:52:19.000Z",
+              "uid": "35240-2ba22117-b2bf-455f-b215-81f3704d6236"
+            },
+            {
+              "name": "Fetch a customer",
+              "id": "b84f91ce-5f79-4da6-a58c-7e56fdbedef4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "36f03c95-c89e-45b5-be4d-0a4eb447b19e",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID or Reference"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "460a0a12-c6f8-479f-ac18-e86945ee7ddd",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"address\": {\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"card_token\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"bank_account\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:19.000Z",
+                  "updatedAt": "2026-10-21T20:52:19.000Z",
+                  "uid": "35240-460a0a12-c6f8-479f-ac18-e86945ee7ddd"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:19.000Z",
+              "updatedAt": "2026-10-21T20:52:19.000Z",
+              "uid": "35240-b84f91ce-5f79-4da6-a58c-7e56fdbedef4"
+            }
+          ],
+          "id": "af48577e-9177-4433-94e9-16a70e20e3c0",
+          "createdAt": "2026-10-21T20:52:19.000Z",
+          "updatedAt": "2026-10-21T20:52:19.000Z",
+          "uid": "35240-af48577e-9177-4433-94e9-16a70e20e3c0"
+        },
+        {
+          "name": "Create a customer",
+          "id": "6867a133-8fcc-4c36-b9a6-c48f30bb47b9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"card\": {\n    \"card_holder\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"expiry_date\": \"<string>\",\n    \"cvv\": \"<string>\"\n  },\n  \"card_token\": \"<string>\",\n  \"bank_account\": {\n    \"account_name\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"bsb\": \"<string>\",\n    \"account_type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            },
+            "description": "Please note, one payment method field is required, either card, card_token or bank_account."
+          },
+          "response": [
+            {
+              "id": "4606fe65-8fb6-4973-86fb-576b65f49024",
+              "name": "201",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"reference\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"ip_address\": \"<string>\",\n  \"address\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"card\": {\n    \"card_holder\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"expiry_date\": \"<string>\",\n    \"cvv\": \"<string>\"\n  },\n  \"card_token\": \"<string>\",\n  \"bank_account\": {\n    \"account_name\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"bsb\": \"<string>\",\n    \"account_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"address\": {\n      \"address\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postcode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"card_token\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"bank_account\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:52:19.000Z",
+              "updatedAt": "2026-10-21T20:52:19.000Z",
+              "uid": "35240-4606fe65-8fb6-4973-86fb-576b65f49024"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:19.000Z",
+          "updatedAt": "2026-10-21T20:52:19.000Z",
+          "uid": "35240-6867a133-8fcc-4c36-b9a6-c48f30bb47b9"
+        },
+        {
+          "name": "List customers",
+          "id": "18ee6ed1-ab9b-40eb-b968-ab6d0fb27763",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customers?offset=<string>&limit=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ],
+              "query": [
+                {
+                  "description": "The page number of customers to be returned.",
+                  "key": "offset",
+                  "value": "<string>"
+                },
+                {
+                  "description": "The number of customers per page to be returned.",
+                  "key": "limit",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d37998d0-7a48-4cd5-8a79-28b8e68ec16a",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers?offset=<string>&limit=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "description": "The page number of customers to be returned.",
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The number of customers per page to be returned.",
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"examples\": {\n    \"cURL\": {\n      \"value\": \"{\\n  \\\"successful\\\": true,\\n  \\\"response\\\": [\\n    {\\n      \\\"id\\\": \\\"071-C-JE34F66V\\\",\\n      \\\"email\\\": \\\"jim@citizen.com\\\",\\n      \\\"reference\\\": \\\"CUST-98198\\\",\\n      \\\"first_name\\\": \\\"Jim\\\",\\n      \\\"last_name\\\": \\\"Smith\\\",\\n      \\\"created_at\\\": \\\"2017-12-04T21:51:11+11:00\\\",\\n      \\\"address\\\": {\\n        \\\"address\\\": \\\"\\\",\\n        \\\"city\\\": \\\"\\\",\\n        \\\"state\\\": \\\"\\\",\\n        \\\"postcode\\\": \\\"\\\",\\n        \\\"country\\\": \\\"\\\"\\n      },\\n      \\\"card_token\\\": \\\"fke89s3v\\\",\\n      \\\"card_number\\\": \\\"400555XXXXXX0001\\\",\\n      \\\"bank_account\\\": null,\\n      \\\"metadata\\\": {}\\n    },\\n    # ...\\n  ],\\n  \\\"errors\\\": [],\\n  \\\"test\\\": true,\\n  \\\"records\\\": 10,\\n  \\\"total_records\\\": 945,\\n  \\\"page\\\": 1,\\n  \\\"total_pages\\\": 95\\n}\"\n    }\n  }\n}",
+              "createdAt": "2026-10-21T20:52:19.000Z",
+              "updatedAt": "2026-10-21T20:52:19.000Z",
+              "uid": "35240-d37998d0-7a48-4cd5-8a79-28b8e68ec16a"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:19.000Z",
+          "updatedAt": "2026-10-21T20:52:19.000Z",
+          "uid": "35240-18ee6ed1-ab9b-40eb-b968-ab6d0fb27763"
+        }
+      ],
+      "id": "1103bda2-b69f-4b04-b06e-08b97778de83",
+      "createdAt": "2026-10-21T20:52:19.000Z",
+      "updatedAt": "2026-10-21T20:52:19.000Z",
+      "uid": "35240-1103bda2-b69f-4b04-b06e-08b97778de83"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://billing.pmnts-sandbox.io/api/v1/"
+    }
+  ]
+}

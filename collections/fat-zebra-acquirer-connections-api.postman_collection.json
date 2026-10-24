@@ -1,0 +1,1590 @@
+{
+  "info": {
+    "_postman_id": "32d7b4be-56b9-469b-975e-7104c183feb5",
+    "name": "Fat Zebra Partner Acquirer connections API",
+    "description": "The Partner API lets you (a Fat Zebra partner) create and manage your own\nmerchants, board them onto acquirers, and manage the resulting acquirer\nconnections.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:51:21.000Z",
+    "updatedAt": "2026-10-21T20:51:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-32d7b4be-56b9-469b-975e-7104c183feb5"
+  },
+  "item": [
+    {
+      "name": "merchants",
+      "item": [
+        {
+          "name": "{username}",
+          "item": [
+            {
+              "name": "acquirers",
+              "item": [
+                {
+                  "name": "{conn_id}",
+                  "item": [
+                    {
+                      "name": "enable",
+                      "item": [
+                        {
+                          "name": "Enable an acquirer connection",
+                          "id": "48e28707-5bbb-4e0e-bfb7-58f8dc0df03a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "f1362f08-b486-4e92-aca4-517589874b0d",
+                                  "key": "username",
+                                  "value": "<string>",
+                                  "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                                },
+                                {
+                                  "id": "50817c4b-896a-4838-b839-318629d6f394",
+                                  "key": "conn_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Acquirer-connection id \u2014 the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+                                }
+                              ]
+                            },
+                            "description": "Flips `enabled` to `true` across the underlying links. The routing\ntoggle only \u2014 config and MID/TID are untouched. No body is expected."
+                          },
+                          "response": [
+                            {
+                              "id": "707c97a0-fbde-49c8-b5f9-e22f592c1863",
+                              "name": "The enabled connection.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "merchants",
+                                    ":username",
+                                    "acquirers",
+                                    ":conn_id",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    },
+                                    {
+                                      "key": "conn_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"acquirer_name\": \"<string,null>\",\n  \"status\": \"disabled\",\n  \"merchant_id\": \"<string,null>\",\n  \"terminal_id\": \"<string,null>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"schemes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"three_ds_enabled\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-21T20:51:22.000Z",
+                              "updatedAt": "2026-10-21T20:51:22.000Z",
+                              "uid": "35240-707c97a0-fbde-49c8-b5f9-e22f592c1863"
+                            },
+                            {
+                              "id": "7045d68a-9bc7-4646-b501-2f602083287d",
+                              "name": "Missing or invalid HTTP Basic credentials.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "merchants",
+                                    ":username",
+                                    "acquirers",
+                                    ":conn_id",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    },
+                                    {
+                                      "key": "conn_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                              "createdAt": "2026-10-21T20:51:22.000Z",
+                              "updatedAt": "2026-10-21T20:51:22.000Z",
+                              "uid": "35240-7045d68a-9bc7-4646-b501-2f602083287d"
+                            },
+                            {
+                              "id": "f5a5b8e5-3b87-4da7-bd10-6155526e8547",
+                              "name": "Resource not found.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/enable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "merchants",
+                                    ":username",
+                                    "acquirers",
+                                    ":conn_id",
+                                    "enable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    },
+                                    {
+                                      "key": "conn_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                              "createdAt": "2026-10-21T20:51:22.000Z",
+                              "updatedAt": "2026-10-21T20:51:22.000Z",
+                              "uid": "35240-f5a5b8e5-3b87-4da7-bd10-6155526e8547"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-48e28707-5bbb-4e0e-bfb7-58f8dc0df03a"
+                        }
+                      ],
+                      "id": "f96fa2ad-0665-401e-b840-fb342de78581",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-f96fa2ad-0665-401e-b840-fb342de78581"
+                    },
+                    {
+                      "name": "disable",
+                      "item": [
+                        {
+                          "name": "Disable an acquirer connection",
+                          "id": "119dcdd5-fd65-424c-9e76-e6906cce05e9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "4e19975d-cbe7-4ef2-9f8b-253803adf8ff",
+                                  "key": "username",
+                                  "value": "<string>",
+                                  "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                                },
+                                {
+                                  "id": "1026a6eb-dfca-4ed6-b7b7-844227d6889d",
+                                  "key": "conn_id",
+                                  "value": "<string>",
+                                  "description": "(Required) Acquirer-connection id \u2014 the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+                                }
+                              ]
+                            },
+                            "description": "Flips `enabled` to `false` across the underlying links \u2014 turns a boarded\nconnection off for routing without deleting it. Config and MID/TID are\nuntouched. No body is expected."
+                          },
+                          "response": [
+                            {
+                              "id": "61db6ee8-e582-4164-95b4-b3a2397feff3",
+                              "name": "The disabled connection.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/disable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "merchants",
+                                    ":username",
+                                    "acquirers",
+                                    ":conn_id",
+                                    "disable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    },
+                                    {
+                                      "key": "conn_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"acquirer_name\": \"<string,null>\",\n  \"status\": \"disabled\",\n  \"merchant_id\": \"<string,null>\",\n  \"terminal_id\": \"<string,null>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"schemes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"three_ds_enabled\": \"<boolean>\"\n}",
+                              "createdAt": "2026-10-21T20:51:22.000Z",
+                              "updatedAt": "2026-10-21T20:51:22.000Z",
+                              "uid": "35240-61db6ee8-e582-4164-95b4-b3a2397feff3"
+                            },
+                            {
+                              "id": "0d82d04b-0e78-4fd1-86bf-3e18a55798f1",
+                              "name": "Missing or invalid HTTP Basic credentials.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/disable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "merchants",
+                                    ":username",
+                                    "acquirers",
+                                    ":conn_id",
+                                    "disable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    },
+                                    {
+                                      "key": "conn_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                              "createdAt": "2026-10-21T20:51:22.000Z",
+                              "updatedAt": "2026-10-21T20:51:22.000Z",
+                              "uid": "35240-0d82d04b-0e78-4fd1-86bf-3e18a55798f1"
+                            },
+                            {
+                              "id": "5b37e0d9-e6bf-4e97-b1ed-0f2c84ea674a",
+                              "name": "Resource not found.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id/disable",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "merchants",
+                                    ":username",
+                                    "acquirers",
+                                    ":conn_id",
+                                    "disable"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    },
+                                    {
+                                      "key": "conn_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                              "createdAt": "2026-10-21T20:51:22.000Z",
+                              "updatedAt": "2026-10-21T20:51:22.000Z",
+                              "uid": "35240-5b37e0d9-e6bf-4e97-b1ed-0f2c84ea674a"
+                            }
+                          ],
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-119dcdd5-fd65-424c-9e76-e6906cce05e9"
+                        }
+                      ],
+                      "id": "17807f2f-db30-4d92-b508-18f5099b7765",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-17807f2f-db30-4d92-b508-18f5099b7765"
+                    },
+                    {
+                      "name": "Show an acquirer connection",
+                      "id": "afd7a1d1-3f5f-48f2-ba7e-db7efa3e7822",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers",
+                            ":conn_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d1e166a9-4ce4-4987-9d4e-f3aac4802ce5",
+                              "key": "username",
+                              "value": "<string>",
+                              "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                            },
+                            {
+                              "id": "a04134ba-64bf-4588-aa4d-4138cd326516",
+                              "key": "conn_id",
+                              "value": "<string>",
+                              "description": "(Required) Acquirer-connection id \u2014 the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "0fb770ea-c0d8-440d-a6de-7dbf2f7dadd6",
+                          "name": "The acquirer connection.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                },
+                                {
+                                  "key": "conn_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"acquirer_name\": \"<string,null>\",\n  \"status\": \"disabled\",\n  \"merchant_id\": \"<string,null>\",\n  \"terminal_id\": \"<string,null>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"schemes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"three_ds_enabled\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-0fb770ea-c0d8-440d-a6de-7dbf2f7dadd6"
+                        },
+                        {
+                          "id": "9d82d8cb-aaed-4887-bf24-ee87d0cdd628",
+                          "name": "Missing or invalid HTTP Basic credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                },
+                                {
+                                  "key": "conn_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-9d82d8cb-aaed-4887-bf24-ee87d0cdd628"
+                        },
+                        {
+                          "id": "0df5e4a0-d652-458d-bf22-e28f2e06710b",
+                          "name": "Resource not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                },
+                                {
+                                  "key": "conn_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-0df5e4a0-d652-458d-bf22-e28f2e06710b"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-afd7a1d1-3f5f-48f2-ba7e-db7efa3e7822"
+                    },
+                    {
+                      "name": "Update an acquirer connection",
+                      "id": "beccf46b-bc22-4922-9369-ec3c889c1e00",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"priority\": \"<integer>\",\n  \"currencies\": [\n    \"uex\",\n    \"vwX\"\n  ],\n  \"card_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers",
+                            ":conn_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d3f0b9e9-a41e-470d-aa56-32d1c3f84e90",
+                              "key": "username",
+                              "value": "<string>",
+                              "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                            },
+                            {
+                              "id": "faf1da0a-c898-4871-bc54-04ca2e9d7152",
+                              "key": "conn_id",
+                              "value": "<string>",
+                              "description": "(Required) Acquirer-connection id \u2014 the derived merchant+acquirer virtual id (e.g. `042-ACQ-NAB`)."
+                            }
+                          ]
+                        },
+                        "description": "Patches the mutable fields only: `priority`, `currencies`,\n`card_types`. Changing `currencies` / `card_types` re-evaluates which\nunderlying processors stay active. `card_types` is narrowed to each\nprocessor's routable set, so a PATCH can't enable a scheme the acquirer\ncan't settle. The `acquirer` and the MID/TID (`merchant_id` /\n`terminal_id`) are immutable once the connection exists."
+                      },
+                      "response": [
+                        {
+                          "id": "50b2142b-72ad-4581-bf99-22030cb0e6bd",
+                          "name": "The updated connection.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"priority\": \"<integer>\",\n  \"currencies\": [\n    \"uex\",\n    \"vwX\"\n  ],\n  \"card_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                },
+                                {
+                                  "key": "conn_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"acquirer_name\": \"<string,null>\",\n  \"status\": \"disabled\",\n  \"merchant_id\": \"<string,null>\",\n  \"terminal_id\": \"<string,null>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"schemes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"three_ds_enabled\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-50b2142b-72ad-4581-bf99-22030cb0e6bd"
+                        },
+                        {
+                          "id": "b482f2a1-a8e3-45cc-9375-d036d05b5b9d",
+                          "name": "Missing or invalid HTTP Basic credentials.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"priority\": \"<integer>\",\n  \"currencies\": [\n    \"uex\",\n    \"vwX\"\n  ],\n  \"card_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                },
+                                {
+                                  "key": "conn_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-b482f2a1-a8e3-45cc-9375-d036d05b5b9d"
+                        },
+                        {
+                          "id": "0901d078-03bf-4d45-b286-d4bb8047dd72",
+                          "name": "Resource not found.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"priority\": \"<integer>\",\n  \"currencies\": [\n    \"uex\",\n    \"vwX\"\n  ],\n  \"card_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                },
+                                {
+                                  "key": "conn_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-0901d078-03bf-4d45-b286-d4bb8047dd72"
+                        },
+                        {
+                          "id": "f104c075-975e-485d-8ec9-2be00352efb5",
+                          "name": "The request couldn't be completed. A `validation_error` is something the\ncaller can fix \u2014 a bad payload, a merchant that failed validation, or a\nprocessor rejecting a field (e.g. the MID); the reason is in `fields`,\nkeyed by a processor-agnostic field nam",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"priority\": \"<integer>\",\n  \"currencies\": [\n    \"uex\",\n    \"vwX\"\n  ],\n  \"card_types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/merchants/:username/acquirers/:conn_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "merchants",
+                                ":username",
+                                "acquirers",
+                                ":conn_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "username"
+                                },
+                                {
+                                  "key": "conn_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-10-21T20:51:22.000Z",
+                          "updatedAt": "2026-10-21T20:51:22.000Z",
+                          "uid": "35240-f104c075-975e-485d-8ec9-2be00352efb5"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-beccf46b-bc22-4922-9369-ec3c889c1e00"
+                    }
+                  ],
+                  "id": "d6138845-d713-4137-a3df-1d7ecf439fbc",
+                  "createdAt": "2026-10-21T20:51:22.000Z",
+                  "updatedAt": "2026-10-21T20:51:22.000Z",
+                  "uid": "35240-d6138845-d713-4137-a3df-1d7ecf439fbc"
+                },
+                {
+                  "name": "List a merchant's acquirer connections",
+                  "id": "e3fcf821-1482-416f-9b23-4ae177f30eac",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username/acquirers?limit=25&starting_after=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username",
+                        "acquirers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Page size. Defaults to 25, capped at 100.",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Cursor \u2014 the id of the last item from the previous page. Omit for the first page.",
+                          "key": "starting_after",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "31dabdad-4913-4e97-8880-a2c84c6614a5",
+                          "key": "username",
+                          "value": "<string>",
+                          "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                        }
+                      ]
+                    },
+                    "description": "Returns the merchant's acquirer connections newest-first in the list\nenvelope."
+                  },
+                  "response": [
+                    {
+                      "id": "22957e9d-ce0a-4718-87c6-83d985dd28cf",
+                      "name": "Acquirer connections list envelope.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers?limit=25&starting_after=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page size. Defaults to 25, capped at 100.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Cursor \u2014 the id of the last item from the previous page. Omit for the first page.",
+                              "key": "starting_after",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": \"<array>\",\n  \"next_cursor\": \"<string,null>\"\n}",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-22957e9d-ce0a-4718-87c6-83d985dd28cf"
+                    },
+                    {
+                      "id": "c3b6166f-14dc-485a-9e2d-3d183e0f7194",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers?limit=25&starting_after=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page size. Defaults to 25, capped at 100.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Cursor \u2014 the id of the last item from the previous page. Omit for the first page.",
+                              "key": "starting_after",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-c3b6166f-14dc-485a-9e2d-3d183e0f7194"
+                    },
+                    {
+                      "id": "b9dbcbc3-ab44-401a-b8e3-40c0bdbd4524",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers?limit=25&starting_after=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Page size. Defaults to 25, capped at 100.",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Cursor \u2014 the id of the last item from the previous page. Omit for the first page.",
+                              "key": "starting_after",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-b9dbcbc3-ab44-401a-b8e3-40c0bdbd4524"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:51:22.000Z",
+                  "updatedAt": "2026-10-21T20:51:22.000Z",
+                  "uid": "35240-e3fcf821-1482-416f-9b23-4ae177f30eac"
+                },
+                {
+                  "name": "Board a merchant onto an acquirer (synchronous)",
+                  "id": "66c849b1-9365-4180-b47f-a92655c91446",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"acquirer\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"terminal_id\": \"<string>\",\n  \"currencies\": [\n    \"eNt\",\n    \"HCK\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/merchants/:username/acquirers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "merchants",
+                        ":username",
+                        "acquirers"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f9a73555-fbc2-412d-86d5-9ed0c6a340d3",
+                          "key": "username",
+                          "value": "<string>",
+                          "description": "(Required) The merchant's username (e.g. `acme-store`)."
+                        }
+                      ]
+                    },
+                    "description": "Boards the merchant onto an acquirer synchronously and returns the\nresulting connection with `201`. There is no pending state.\n\nYou name an `acquirer` (your bank relationship) and the\nacquirer-assigned `merchant_id` (MID), plus the\n`terminal_id` (TID) when the acquirer needs one. Fat Zebra validates the MID/TID and `currencies`\nagainst its config and boards the merchant onto every processor behind\nthat acquirer that can carry a requested currency \u2014 you never name a\nprocessor. Omit `currencies` to board everything the acquirer supports.\n\nBoarding is idempotent: re-posting the same acquirer returns the\nexisting connection rather than creating a duplicate.\n\nFailures are reported inline:\n\n* `422 validation_error` \u2014 an unsupported currency, a missing\n`merchant_id`, or no\nprocessor supports the acquirer for the requested currencies. The\noffending fields are listed under `error.fields`.\n* `422 processor_error` \u2014 an underlying processor board was rejected or\nerrored upstream.\n* `404 not_found` \u2014 the acquirer is unknown or not available to this\npartner."
+                  },
+                  "response": [
+                    {
+                      "id": "22112992-da99-4225-b51b-eab44a392533",
+                      "name": "The boarded connection.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"acquirer\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"terminal_id\": \"<string>\",\n  \"currencies\": [\n    \"eNt\",\n    \"HCK\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"acquirer_name\": \"<string,null>\",\n  \"status\": \"disabled\",\n  \"merchant_id\": \"<string,null>\",\n  \"terminal_id\": \"<string,null>\",\n  \"currencies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"schemes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"modes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"wallets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"three_ds_enabled\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-22112992-da99-4225-b51b-eab44a392533"
+                    },
+                    {
+                      "id": "d0889125-bdfc-451d-b79c-c70746e3f2ed",
+                      "name": "Missing or invalid HTTP Basic credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"acquirer\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"terminal_id\": \"<string>\",\n  \"currencies\": [\n    \"eNt\",\n    \"HCK\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-d0889125-bdfc-451d-b79c-c70746e3f2ed"
+                    },
+                    {
+                      "id": "96c462ef-2f40-437b-8734-43e3ca4bdd46",
+                      "name": "Resource not found.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"acquirer\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"terminal_id\": \"<string>\",\n  \"currencies\": [\n    \"eNt\",\n    \"HCK\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-96c462ef-2f40-437b-8734-43e3ca4bdd46"
+                    },
+                    {
+                      "id": "1c325bab-0742-4ab9-beae-c79f421aea30",
+                      "name": "The request couldn't be completed. A `validation_error` is something the\ncaller can fix \u2014 a bad payload, a merchant that failed validation, or a\nprocessor rejecting a field (e.g. the MID); the reason is in `fields`,\nkeyed by a processor-agnostic field nam",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"acquirer\": \"<string>\",\n  \"merchant_id\": \"<string>\",\n  \"terminal_id\": \"<string>\",\n  \"currencies\": [\n    \"eNt\",\n    \"HCK\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/merchants/:username/acquirers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "merchants",
+                            ":username",
+                            "acquirers"
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"type\": \"validation_error\",\n    \"message\": \"<string>\",\n    \"fields\": {\n      \"ipsum_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Excepteur_3\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"request_id\": \"<string,null>\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:51:22.000Z",
+                      "updatedAt": "2026-10-21T20:51:22.000Z",
+                      "uid": "35240-1c325bab-0742-4ab9-beae-c79f421aea30"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:51:22.000Z",
+                  "updatedAt": "2026-10-21T20:51:22.000Z",
+                  "uid": "35240-66c849b1-9365-4180-b47f-a92655c91446"
+                }
+              ],
+              "id": "1e78b739-c659-4da3-9ab9-f6414557eed9",
+              "createdAt": "2026-10-21T20:51:22.000Z",
+              "updatedAt": "2026-10-21T20:51:22.000Z",
+              "uid": "35240-1e78b739-c659-4da3-9ab9-f6414557eed9"
+            }
+          ],
+          "id": "a33ec2bf-982c-48c2-95d2-5dcdeb8c6c98",
+          "createdAt": "2026-10-21T20:51:22.000Z",
+          "updatedAt": "2026-10-21T20:51:22.000Z",
+          "uid": "35240-a33ec2bf-982c-48c2-95d2-5dcdeb8c6c98"
+        }
+      ],
+      "id": "d2cca6eb-6e51-4d70-ae57-b59418f4ee77",
+      "createdAt": "2026-10-21T20:51:22.000Z",
+      "updatedAt": "2026-10-21T20:51:22.000Z",
+      "uid": "35240-d2cca6eb-6e51-4d70-ae57-b59418f4ee77"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts.io/v2/partners"
+    }
+  ]
+}

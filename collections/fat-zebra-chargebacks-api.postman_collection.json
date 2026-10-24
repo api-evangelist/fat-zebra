@@ -1,0 +1,1000 @@
+{
+  "info": {
+    "_postman_id": "9b47e195-30eb-46f7-8a25-812b7cf2c8a4",
+    "name": "gateway Chargebacks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:06.000Z",
+    "updatedAt": "2026-10-21T20:52:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9b47e195-30eb-46f7-8a25-812b7cf2c8a4"
+  },
+  "item": [
+    {
+      "name": "chargebacks",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "notifications",
+              "item": [
+                {
+                  "name": "List chargeback notifications",
+                  "id": "6e80288d-fe49-4a08-bb8b-18d65e02b660",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/:id/notifications",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        ":id",
+                        "notifications"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8e7f5988-bd19-49cd-ad95-34a72e0a5f58",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) id of the chargeback"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "caacc6d6-b3e7-42ff-8093-b05b66ea6cf9",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chargebacks/:id/notifications",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chargebacks",
+                            ":id",
+                            "notifications"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"successful\\\": true,\\n  \\\"response\\\": [ \\n    {\\n      \\\"id\\\": \\\"071-CN-LBUNAQ4\\\",\\n      \\\"received_at\\\": \\\"2018-01-17T00:00:00.000Z\\\",\\n      \\\"merchant_status\\\": \\\"Read\\\",\\n      \\\"metadata\\\": {\\n        \\\"chargebackId\\\": \\\"141899\\\",\\n        \\\"chargebackRef\\\": \\\"C2BB3D60\\\",\\n        \\\"requestDate\\\": \\\"17-Jan-2018\\\",\\n        \\\"reasonForChargeback\\\": \\\"Cardholder disputes transaction\\\",\\n        \\\"respondToFaxNumber\\\" : \\\"(02) 9383 8848\\\",\\n        \\\"requestForDocumentation\\\": \\\"Request for documentation\\\",\\n        \\\"respondByDate\\\": \\\"31-Jan-2018\\\"\\n      },\\n      \\\"chargeback_id\\\": \\\"071-CB-MIP4SIHH\\\",\\n      \\\"created_at\\\": \\\"2018-01-17T15:02:46+10:00\\\",\\n      \\\"updated_at\\\": \\\"2018-01-17T15:02:46+10:00\\\"\\n    },\\n    {\\n      \\\"id\\\": \\\"071-CN-MCVPBR5\\\",\\n      \\\"received_at\\\": \\\"2018-02-05T00:00:00.000Z\\\",\\n      \\\"merchant_status\\\": \\\"Unread\\\",\\n      \\\"metadata\\\": {\\n        \\\"chargebackId\\\": \\\"150839\\\",\\n        \\\"chargebackDebitRef\\\": \\\"C2BB3D60\\\",\\n        \\\"requestDate\\\": \\\"05-Feb-2018\\\",\\n        \\\"reasonForChargeback\\\": \\\"Documentation not supplied in timeframe\\\",\\n        \\\"reasonCode\\\": \\\"4837\\\",\\n        \\\"chargebackDate\\\": \\\"05-Feb-2018\\\"\\n      },\\n      \\\"chargeback_id\\\": \\\"071-CB-MIP4SIHH\\\",      \\n      \\\"created_at\\\": \\\"2018-02-05T16:28:17+10:00\\\",\\n      \\\"updated_at\\\": \\\"2018-02-05T16:28:17+10:00\\\"    \\n    }\\n  ]                 \\n  },\\n  \\\"errors\\\": [\\n  ],\\n  \\\"test\\\": true \\n}\"\n    }\n  }\n}",
+                      "createdAt": "2026-10-21T20:52:07.000Z",
+                      "updatedAt": "2026-10-21T20:52:07.000Z",
+                      "uid": "35240-caacc6d6-b3e7-42ff-8093-b05b66ea6cf9"
+                    },
+                    {
+                      "id": "b7044b89-897b-4b96-ba71-42512124a128",
+                      "name": "400",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chargebacks/:id/notifications",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chargebacks",
+                            ":id",
+                            "notifications"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-10-21T20:52:07.000Z",
+                      "updatedAt": "2026-10-21T20:52:07.000Z",
+                      "uid": "35240-b7044b89-897b-4b96-ba71-42512124a128"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:52:07.000Z",
+                  "updatedAt": "2026-10-21T20:52:07.000Z",
+                  "uid": "35240-6e80288d-fe49-4a08-bb8b-18d65e02b660"
+                }
+              ],
+              "id": "0c6cc238-9a7c-4f88-9ef4-f9209988133b",
+              "createdAt": "2026-10-21T20:52:07.000Z",
+              "updatedAt": "2026-10-21T20:52:07.000Z",
+              "uid": "35240-0c6cc238-9a7c-4f88-9ef4-f9209988133b"
+            },
+            {
+              "name": "Fetch a chargeback",
+              "id": "3e920ba2-37de-4817-88ba-81f382492057",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/chargebacks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chargebacks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "919ff5c3-9230-45c5-b218-46d34d322110",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the chargeback"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5b68b0bd-8500-4ab6-8cb0-3fc001f36f01",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"successful\\\": true,\\n  \\\"response\\\": {    \\n    \\\"acquirer_merchant_id\\\": \\\"ABCDE12345\\\",\\n    \\\"id\\\": \\\"071-CB-MIP4SIHH\\\",\\n    \\\"reference\\\": \\\"C2BB3D60\\\",\\n    \\\"chargeback_control_number\\\": \\\"39875410\\\",\\n    \\\"amount\\\": 4000,\\n    \\\"reason_code\\\": null,\\n    \\\"reason_description\\\": \\\"Cardholder disputes transaction\\\",\\n    \\\"status\\\": \\\"Matched\\\",\\n    \\\"merchant_status\\\": \\\"In progress\\\",\\n    \\\"due_date\\\": \\\"2018-01-31\\\",\\n    \\\"metadata\\\": {\\n      \\\"transaction_date\\\": \\\"31-Dec-2018\\\",\\n      \\\"transaction_time\\\": \\\"14:13:00\\\"\\n\\t  },\\n    \\\"notifications\\\": [\\n      { \\n        ... \\n      },\\n      { \\n        ...\\n      }\\n    ],\\n    \\\"created_at\\\": \\\"2018-01-17T15:02:46+10:00\\\",\\n    \\\"updated_at\\\": \\\"2018-01-17T15:02:46+10:00\\\" \\n  },\\n  \\\"errors\\\": [\\n  ],\\n  \\\"test\\\": true \\n}\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-21T20:52:07.000Z",
+                  "updatedAt": "2026-10-21T20:52:07.000Z",
+                  "uid": "35240-5b68b0bd-8500-4ab6-8cb0-3fc001f36f01"
+                },
+                {
+                  "id": "7702cac6-09f6-49e9-8b14-5ac6ad6ee0ff",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:52:07.000Z",
+                  "updatedAt": "2026-10-21T20:52:07.000Z",
+                  "uid": "35240-7702cac6-09f6-49e9-8b14-5ac6ad6ee0ff"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:07.000Z",
+              "updatedAt": "2026-10-21T20:52:07.000Z",
+              "uid": "35240-3e920ba2-37de-4817-88ba-81f382492057"
+            },
+            {
+              "name": "Update a chargeback",
+              "id": "fd789ee6-2224-496b-870c-8c70439055b0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchant_status\": \"In progress\",\n  \"purchase_id\": \"<string>\",\n  \"metadata\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/chargebacks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chargebacks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "883e48da-5579-4ea4-bcb0-63735c92e994",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) id of the chargeback"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8552e29a-b05a-48aa-8ffe-9138c53b22d4",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"merchant_status\": \"In progress\",\n  \"purchase_id\": \"<string>\",\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"acquirer_merchant_id\": \"<string>\",\n    \"id\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"chargeback_control_number\": \"<string>\",\n    \"amount\": 0,\n    \"reason_code\": {},\n    \"reason_description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"merchant_status\": \"<string>\",\n    \"due_date\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"metadata\": {\n      \"transaction_date\": \"<string>\",\n      \"transaction_time\": \"<string>\"\n    },\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:07.000Z",
+                  "updatedAt": "2026-10-21T20:52:07.000Z",
+                  "uid": "35240-8552e29a-b05a-48aa-8ffe-9138c53b22d4"
+                },
+                {
+                  "id": "7829c89c-5ae8-4893-8807-ffa064308ba1",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"merchant_status\": \"In progress\",\n  \"purchase_id\": \"<string>\",\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chargebacks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chargebacks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:52:07.000Z",
+                  "updatedAt": "2026-10-21T20:52:07.000Z",
+                  "uid": "35240-7829c89c-5ae8-4893-8807-ffa064308ba1"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:07.000Z",
+              "updatedAt": "2026-10-21T20:52:07.000Z",
+              "uid": "35240-fd789ee6-2224-496b-870c-8c70439055b0"
+            }
+          ],
+          "id": "280ecb9f-f36a-4b3d-a2c9-6ccb6e9ceb52",
+          "createdAt": "2026-10-21T20:52:07.000Z",
+          "updatedAt": "2026-10-21T20:52:07.000Z",
+          "uid": "35240-280ecb9f-f36a-4b3d-a2c9-6ccb6e9ceb52"
+        },
+        {
+          "name": "{chargeback_id}",
+          "item": [
+            {
+              "name": "notifications",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Fetch a chargeback notification",
+                      "id": "be1c3e96-1c31-4cb2-bd8c-0d53397747fe",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chargebacks/:chargeback_id/notifications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chargebacks",
+                            ":chargeback_id",
+                            "notifications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3e55e7bc-1186-4210-b4d8-f8686afe5c91",
+                              "key": "chargeback_id",
+                              "value": "id of the chargeback",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "169df253-42ea-4422-9505-b9462aebc77b",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) id of the notification"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "8abdabb3-ba72-4497-8b5e-03dfc57d1a29",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/chargebacks/:chargeback_id/notifications/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chargebacks",
+                                ":chargeback_id",
+                                "notifications",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chargeback_id"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"received_at\": \"<string>\",\n    \"merchant_status\": \"<string>\",\n    \"metadata\": {\n      \"chargebackId\": \"<string>\",\n      \"respondByDate\": \"<string>\",\n      \"chargebackRef\": \"<string>\",\n      \"reasonForChargeback\": \"<string>\"\n    },\n    \"chargeback_id\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:52:07.000Z",
+                          "updatedAt": "2026-10-21T20:52:07.000Z",
+                          "uid": "35240-8abdabb3-ba72-4497-8b5e-03dfc57d1a29"
+                        },
+                        {
+                          "id": "08e33101-c002-422e-b9fa-d8bfc72d7087",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/chargebacks/:chargeback_id/notifications/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chargebacks",
+                                ":chargeback_id",
+                                "notifications",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chargeback_id"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-10-21T20:52:07.000Z",
+                          "updatedAt": "2026-10-21T20:52:07.000Z",
+                          "uid": "35240-08e33101-c002-422e-b9fa-d8bfc72d7087"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:52:07.000Z",
+                      "updatedAt": "2026-10-21T20:52:07.000Z",
+                      "uid": "35240-be1c3e96-1c31-4cb2-bd8c-0d53397747fe"
+                    },
+                    {
+                      "name": "Update a chargeback notification",
+                      "id": "03a8d2df-29cd-44e6-9f34-d6d54242a3d2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"merchant_status\": \"In progress\",\n  \"metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/chargebacks/:chargeback_id/notifications/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chargebacks",
+                            ":chargeback_id",
+                            "notifications",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2f674e20-6c02-4bc4-81a7-28f6df054a04",
+                              "key": "chargeback_id",
+                              "value": "<string>",
+                              "description": "(Required) id of the chargeback"
+                            },
+                            {
+                              "id": "b51c5e52-ee5b-431c-83f2-9a3afa7e1058",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) id of the notification"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "3bd0a28e-d07e-4605-8bef-4f4fe0818af6",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"merchant_status\": \"In progress\",\n  \"metadata\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/chargebacks/:chargeback_id/notifications/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chargebacks",
+                                ":chargeback_id",
+                                "notifications",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chargeback_id"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"chargeback_id\": \"<string>\",\n    \"received_at\": \"<string>\",\n    \"merchant_status\": \"<string>\",\n    \"metadata\": {\n      \"chargebackId\": \"<string>\",\n      \"respondByDate\": \"<string>\",\n      \"chargebackRef\": \"<string>\",\n      \"reasonForChargeback\": \"<string>\"\n    }\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:52:07.000Z",
+                          "updatedAt": "2026-10-21T20:52:07.000Z",
+                          "uid": "35240-3bd0a28e-d07e-4605-8bef-4f4fe0818af6"
+                        },
+                        {
+                          "id": "55ef61ae-cfd6-499e-b39e-6a716086c98c",
+                          "name": "400",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"merchant_status\": \"In progress\",\n  \"metadata\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/chargebacks/:chargeback_id/notifications/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chargebacks",
+                                ":chargeback_id",
+                                "notifications",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "chargeback_id"
+                                },
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{}",
+                          "createdAt": "2026-10-21T20:52:07.000Z",
+                          "updatedAt": "2026-10-21T20:52:07.000Z",
+                          "uid": "35240-55ef61ae-cfd6-499e-b39e-6a716086c98c"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:52:07.000Z",
+                      "updatedAt": "2026-10-21T20:52:07.000Z",
+                      "uid": "35240-03a8d2df-29cd-44e6-9f34-d6d54242a3d2"
+                    }
+                  ],
+                  "id": "3604e241-1672-4f60-a28a-95660b0d2d77",
+                  "createdAt": "2026-10-21T20:52:07.000Z",
+                  "updatedAt": "2026-10-21T20:52:07.000Z",
+                  "uid": "35240-3604e241-1672-4f60-a28a-95660b0d2d77"
+                }
+              ],
+              "id": "0582d587-ce3e-4ef1-ada9-49f2c51929f4",
+              "createdAt": "2026-10-21T20:52:07.000Z",
+              "updatedAt": "2026-10-21T20:52:07.000Z",
+              "uid": "35240-0582d587-ce3e-4ef1-ada9-49f2c51929f4"
+            }
+          ],
+          "id": "2f14a64e-aebd-499c-8e2c-c9111697057d",
+          "createdAt": "2026-10-21T20:52:07.000Z",
+          "updatedAt": "2026-10-21T20:52:07.000Z",
+          "uid": "35240-2f14a64e-aebd-499c-8e2c-c9111697057d"
+        },
+        {
+          "name": "List chargebacks",
+          "id": "335643af-143e-499a-ad7f-08e693915570",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/chargebacks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "chargebacks"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ce0ac2e-237b-40cf-a880-50d3c2e434ae",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/chargebacks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chargebacks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"acquirer_merchant_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"amount\": 0,\n      \"reason_code\": {},\n      \"reason_description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"merchant_status\": \"<string>\",\n      \"due_date\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"metadata\": {\n        \"transaction_date\": \"<string>\",\n        \"transaction_time\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    },\n    {\n      \"acquirer_merchant_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"amount\": 0,\n      \"reason_code\": {},\n      \"reason_description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"merchant_status\": \"<string>\",\n      \"due_date\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"metadata\": {\n        \"transaction_date\": \"<string>\",\n        \"transaction_time\": \"<string>\"\n      },\n      \"created_at\": \"<string>\",\n      \"updated_at\": \"<string>\"\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:52:07.000Z",
+              "updatedAt": "2026-10-21T20:52:07.000Z",
+              "uid": "35240-0ce0ac2e-237b-40cf-a880-50d3c2e434ae"
+            },
+            {
+              "id": "94a63061-3a1e-4c8d-b627-5f618b3330c8",
+              "name": "400",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/chargebacks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chargebacks"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{}",
+              "createdAt": "2026-10-21T20:52:07.000Z",
+              "updatedAt": "2026-10-21T20:52:07.000Z",
+              "uid": "35240-94a63061-3a1e-4c8d-b627-5f618b3330c8"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:07.000Z",
+          "updatedAt": "2026-10-21T20:52:07.000Z",
+          "uid": "35240-335643af-143e-499a-ad7f-08e693915570"
+        }
+      ],
+      "id": "7acdfc1f-ab85-44f7-b78d-556267cd5c02",
+      "createdAt": "2026-10-21T20:52:07.000Z",
+      "updatedAt": "2026-10-21T20:52:07.000Z",
+      "uid": "35240-7acdfc1f-ab85-44f7-b78d-556267cd5c02"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

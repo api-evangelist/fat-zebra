@@ -1,0 +1,149 @@
+{
+  "info": {
+    "_postman_id": "eac0fb27-c76d-490d-9f3a-1658033644f9",
+    "name": "gateway Utlities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:30.000Z",
+    "updatedAt": "2026-10-21T20:55:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-eac0fb27-c76d-490d-9f3a-1658033644f9"
+  },
+  "item": [
+    {
+      "name": "utlities",
+      "item": [
+        {
+          "name": "mastercard",
+          "item": [
+            {
+              "name": "click_to_pay",
+              "item": [
+                {
+                  "name": "registration",
+                  "item": [
+                    {
+                      "name": "Create Registration",
+                      "id": "6b1b817d-2eb3-4e84-b422-ccfb79500fd2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/utlities/mastercard/click_to_pay/registration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "utlities",
+                            "mastercard",
+                            "click_to_pay",
+                            "registration"
+                          ]
+                        },
+                        "description": "In order to start using Mastercard Click to Pay you must first register your account with Mastercard. To do this you can use the following API endpoint:"
+                      },
+                      "response": [
+                        {
+                          "id": "0110773f-fce1-4a8f-ac21-8337cf71fbd1",
+                          "name": "200",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/utlities/mastercard/click_to_pay/registration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "utlities",
+                                "mastercard",
+                                "click_to_pay",
+                                "registration"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": \"<array>\",\n  \"response\": {\n    \"registered\": true,\n    \"status\": \"<string>\"\n  },\n  \"successful\": true,\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:31.000Z",
+                          "updatedAt": "2026-10-21T20:55:31.000Z",
+                          "uid": "35240-0110773f-fce1-4a8f-ac21-8337cf71fbd1"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:31.000Z",
+                      "updatedAt": "2026-10-21T20:55:31.000Z",
+                      "uid": "35240-6b1b817d-2eb3-4e84-b422-ccfb79500fd2"
+                    }
+                  ],
+                  "id": "d7150dd0-9e45-4ea5-8636-5e3fcd3532e8",
+                  "createdAt": "2026-10-21T20:55:31.000Z",
+                  "updatedAt": "2026-10-21T20:55:31.000Z",
+                  "uid": "35240-d7150dd0-9e45-4ea5-8636-5e3fcd3532e8"
+                }
+              ],
+              "id": "46df69cd-a259-4b9f-ad6d-9cc89c918c49",
+              "createdAt": "2026-10-21T20:55:31.000Z",
+              "updatedAt": "2026-10-21T20:55:31.000Z",
+              "uid": "35240-46df69cd-a259-4b9f-ad6d-9cc89c918c49"
+            }
+          ],
+          "id": "b77b3592-e4a3-4dd9-8870-b70584f0eb14",
+          "createdAt": "2026-10-21T20:55:31.000Z",
+          "updatedAt": "2026-10-21T20:55:31.000Z",
+          "uid": "35240-b77b3592-e4a3-4dd9-8870-b70584f0eb14"
+        }
+      ],
+      "id": "69dc880b-5c71-4192-a742-4a2c9417b99c",
+      "createdAt": "2026-10-21T20:55:31.000Z",
+      "updatedAt": "2026-10-21T20:55:31.000Z",
+      "uid": "35240-69dc880b-5c71-4192-a742-4a2c9417b99c"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

@@ -1,0 +1,618 @@
+{
+  "info": {
+    "_postman_id": "8b588279-a4fd-4aee-bb16-e9a2e942f170",
+    "name": "gateway Web Hooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:40.000Z",
+    "updatedAt": "2026-10-21T20:55:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8b588279-a4fd-4aee-bb16-e9a2e942f170"
+  },
+  "item": [
+    {
+      "name": "web_hooks",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Update a webhook",
+              "id": "65fb9d13-f811-4418-aa8d-154f905d8420",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"authentication_username\": \"Optional\",\n  \"authentication_password\": \"Optional\",\n  \"events\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/web_hooks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "web_hooks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "413841e4-8193-478b-98fc-0ea7598c1f19",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Id of the webhook"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "142b2515-52df-476d-8ba4-fe72c774c943",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"authentication_username\": \"Optional\",\n  \"authentication_password\": \"Optional\",\n  \"events\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/web_hooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "web_hooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"address\": \"<string>\",\n    \"events\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"authentication_username\": {},\n    \"authentication_password\": \"<string>\",\n    \"is_active\": {},\n    \"name\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:41.000Z",
+                  "updatedAt": "2026-10-21T20:55:41.000Z",
+                  "uid": "35240-142b2515-52df-476d-8ba4-fe72c774c943"
+                },
+                {
+                  "id": "c0fa4e88-a2aa-4fe0-9ed3-573928a65709",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"authentication_username\": \"Optional\",\n  \"authentication_password\": \"Optional\",\n  \"events\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/web_hooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "web_hooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:55:41.000Z",
+                  "updatedAt": "2026-10-21T20:55:41.000Z",
+                  "uid": "35240-c0fa4e88-a2aa-4fe0-9ed3-573928a65709"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:41.000Z",
+              "updatedAt": "2026-10-21T20:55:41.000Z",
+              "uid": "35240-65fb9d13-f811-4418-aa8d-154f905d8420"
+            },
+            {
+              "name": "Delete a webhook",
+              "id": "9603890e-5dbb-4202-8a72-eacb97f72349",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/web_hooks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "web_hooks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "db95782d-0942-496f-a555-ec4cf74d133c",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0f414e8f-671b-4cc2-bd4b-4bba27751113",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/web_hooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "web_hooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"address\": \"<string>\",\n    \"events\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"authentication_username\": {},\n    \"authentication_password\": \"<string>\",\n    \"is_active\": {},\n    \"name\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:41.000Z",
+                  "updatedAt": "2026-10-21T20:55:41.000Z",
+                  "uid": "35240-0f414e8f-671b-4cc2-bd4b-4bba27751113"
+                },
+                {
+                  "id": "6908ae28-4720-4049-8516-c556a1e99a6e",
+                  "name": "404",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/web_hooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "web_hooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:41.000Z",
+                  "updatedAt": "2026-10-21T20:55:41.000Z",
+                  "uid": "35240-6908ae28-4720-4049-8516-c556a1e99a6e"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:41.000Z",
+              "updatedAt": "2026-10-21T20:55:41.000Z",
+              "uid": "35240-9603890e-5dbb-4202-8a72-eacb97f72349"
+            }
+          ],
+          "id": "c514955a-cea7-425a-a3c9-ab433234dc8b",
+          "createdAt": "2026-10-21T20:55:41.000Z",
+          "updatedAt": "2026-10-21T20:55:41.000Z",
+          "uid": "35240-c514955a-cea7-425a-a3c9-ab433234dc8b"
+        },
+        {
+          "name": "Create a webhook",
+          "id": "96876077-a126-4664-8bd0-cfd3d817c53f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"authentication_username\": \"Optional\",\n  \"authentication_password\": \"Optional\",\n  \"is_active\": false,\n  \"events\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/web_hooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "web_hooks"
+              ]
+            },
+            "description": "Create webhooks"
+          },
+          "response": [
+            {
+              "id": "55dd3b88-602c-4beb-94f6-eb2e561eeaea",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"authentication_username\": \"Optional\",\n  \"authentication_password\": \"Optional\",\n  \"is_active\": false,\n  \"events\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/web_hooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "web_hooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"address\": \"<string>\",\n    \"events\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"authentication_username\": {},\n    \"authentication_password\": \"<string>\",\n    \"is_active\": true,\n    \"name\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:55:41.000Z",
+              "updatedAt": "2026-10-21T20:55:41.000Z",
+              "uid": "35240-55dd3b88-602c-4beb-94f6-eb2e561eeaea"
+            },
+            {
+              "id": "d17f3edc-683a-43f4-9c1a-ee94e6308595",
+              "name": "422",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"mode\": \"<string>\",\n  \"address\": \"<string>\",\n  \"authentication_username\": \"Optional\",\n  \"authentication_password\": \"Optional\",\n  \"is_active\": false,\n  \"events\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/web_hooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "web_hooks"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"address\": {},\n    \"events\": {},\n    \"mode\": {},\n    \"authentication_username\": {},\n    \"authentication_password\": \"<string>\",\n    \"is_active\": {},\n    \"name\": {},\n    \"id\": {}\n  },\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:55:41.000Z",
+              "updatedAt": "2026-10-21T20:55:41.000Z",
+              "uid": "35240-d17f3edc-683a-43f4-9c1a-ee94e6308595"
+            }
+          ],
+          "createdAt": "2026-10-21T20:55:41.000Z",
+          "updatedAt": "2026-10-21T20:55:41.000Z",
+          "uid": "35240-96876077-a126-4664-8bd0-cfd3d817c53f"
+        },
+        {
+          "name": "List webhooks",
+          "id": "6de091b2-a267-4405-bf1e-91f25c3e10d0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/web_hooks?limit=10&offset=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "web_hooks"
+              ],
+              "query": [
+                {
+                  "description": "The number of records to return per request. The maximum records per request is 50",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "The pagination offset for the request.",
+                  "key": "offset",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "List your installed webhooks"
+          },
+          "response": [
+            {
+              "id": "60436c2b-7bfe-4ded-8f16-e21c7bfaedda",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/web_hooks?limit=10&offset=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "web_hooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of records to return per request. The maximum records per request is 50",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "The pagination offset for the request.",
+                      "key": "offset",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"authentication_username\": {},\n      \"mode\": \"<string>\",\n      \"events\": \"<string>\",\n      \"is_active\": {},\n      \"address\": \"<string>\",\n      \"authentication_password\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"authentication_username\": {},\n      \"mode\": \"<string>\",\n      \"events\": \"<string>\",\n      \"is_active\": {},\n      \"address\": \"<string>\",\n      \"authentication_password\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"successful\": true,\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:55:41.000Z",
+              "updatedAt": "2026-10-21T20:55:41.000Z",
+              "uid": "35240-60436c2b-7bfe-4ded-8f16-e21c7bfaedda"
+            }
+          ],
+          "createdAt": "2026-10-21T20:55:41.000Z",
+          "updatedAt": "2026-10-21T20:55:41.000Z",
+          "uid": "35240-6de091b2-a267-4405-bf1e-91f25c3e10d0"
+        }
+      ],
+      "id": "6c58920e-ab72-469d-9c40-05dba58174f8",
+      "createdAt": "2026-10-21T20:55:41.000Z",
+      "updatedAt": "2026-10-21T20:55:41.000Z",
+      "uid": "35240-6c58920e-ab72-469d-9c40-05dba58174f8"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

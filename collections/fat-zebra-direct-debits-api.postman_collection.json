@@ -1,0 +1,782 @@
+{
+  "info": {
+    "_postman_id": "f404b427-8c3b-4cde-a88e-cbba8d4e63e3",
+    "name": "gateway Direct Debits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:32.000Z",
+    "updatedAt": "2026-10-21T20:52:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f404b427-8c3b-4cde-a88e-cbba8d4e63e3"
+  },
+  "item": [
+    {
+      "name": "direct_debits",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Update a direct debit",
+              "id": "18a02fd6-ca07-48fc-95f4-6cdc205457c8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"bsb\": \"<string>\",\n  \"account_name\": \"<string>\",\n  \"account_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/direct_debits/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "direct_debits",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f901b9ba-98c5-453d-8aa5-e3ea36bf3fc9",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the direct debit"
+                    }
+                  ]
+                },
+                "description": "A direct debit can be updated if it has a status of `New`. Once direct debits have been submitted to the financial institution, they are locked and can only be updated by the Fat Zebra system."
+              },
+              "response": [
+                {
+                  "id": "9c6bb413-6189-4f8f-832d-c456d9b071e5",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"bsb\": \"<string>\",\n  \"account_name\": \"<string>\",\n  \"account_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/direct_debits/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "direct_debits",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"bsb\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"account_name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"date\": \"<string>\",\n    \"process_date\": {},\n    \"status\": \"<string>\",\n    \"result\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:33.000Z",
+                  "updatedAt": "2026-10-21T20:52:33.000Z",
+                  "uid": "35240-9c6bb413-6189-4f8f-832d-c456d9b071e5"
+                },
+                {
+                  "id": "88c31aff-07bc-4e8a-be7b-0efe4cefc69e",
+                  "name": "422",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"bsb\": \"<string>\",\n  \"account_name\": \"<string>\",\n  \"account_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/direct_debits/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "direct_debits",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-21T20:52:33.000Z",
+                  "updatedAt": "2026-10-21T20:52:33.000Z",
+                  "uid": "35240-88c31aff-07bc-4e8a-be7b-0efe4cefc69e"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:33.000Z",
+              "updatedAt": "2026-10-21T20:52:33.000Z",
+              "uid": "35240-18a02fd6-ca07-48fc-95f4-6cdc205457c8"
+            },
+            {
+              "name": "Delete a direct debit",
+              "id": "926e67a4-b875-4337-80b6-5ee01c43b513",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/direct_debits/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "direct_debits",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "97e9c375-16bd-4bb2-85fe-6d79be1e88a3",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the direct debit"
+                    }
+                  ]
+                },
+                "description": "A direct debit can be deleted if it has a status of `New`. Deleting a direct debit will update its status to `Deleted`, however the data will not be removed from Fat Zebra's systems."
+              },
+              "response": [
+                {
+                  "id": "b1d9719b-8da2-465b-9521-6a4232f7cbbf",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/direct_debits/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "direct_debits",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"bsb\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"account_name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"date\": \"<string>\",\n    \"process_date\": {},\n    \"status\": \"<string>\",\n    \"result\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:33.000Z",
+                  "updatedAt": "2026-10-21T20:52:33.000Z",
+                  "uid": "35240-b1d9719b-8da2-465b-9521-6a4232f7cbbf"
+                },
+                {
+                  "id": "6e5a45ee-f8b6-4e01-a18b-094c707eb099",
+                  "name": "404",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/direct_debits/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "direct_debits",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:33.000Z",
+                  "updatedAt": "2026-10-21T20:52:33.000Z",
+                  "uid": "35240-6e5a45ee-f8b6-4e01-a18b-094c707eb099"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:33.000Z",
+              "updatedAt": "2026-10-21T20:52:33.000Z",
+              "uid": "35240-926e67a4-b875-4337-80b6-5ee01c43b513"
+            }
+          ],
+          "id": "3c16874e-47f3-4a22-ba9e-cde1e53241fd",
+          "createdAt": "2026-10-21T20:52:33.000Z",
+          "updatedAt": "2026-10-21T20:52:33.000Z",
+          "uid": "35240-3c16874e-47f3-4a22-ba9e-cde1e53241fd"
+        },
+        {
+          "name": "{id_or_reference}",
+          "item": [
+            {
+              "name": "Fetch a direct debit",
+              "id": "94291fcc-018d-432b-be9c-e356bb1c3a1a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/direct_debits/:id_or_reference",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "direct_debits",
+                    ":id_or_reference"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0b6e4a8e-7eb3-4e96-b151-33df8df5946d",
+                      "key": "id_or_reference",
+                      "value": "<string>",
+                      "description": "(Required) ID or reference of the direct debit"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "617d775f-d5d9-4e9c-84dd-8ee720b48b1a",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/direct_debits/:id_or_reference",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "direct_debits",
+                        ":id_or_reference"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id_or_reference"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"bsb\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"account_name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"date\": \"<string>\",\n    \"process_date\": {},\n    \"status\": \"<string>\",\n    \"result\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:33.000Z",
+                  "updatedAt": "2026-10-21T20:52:33.000Z",
+                  "uid": "35240-617d775f-d5d9-4e9c-84dd-8ee720b48b1a"
+                },
+                {
+                  "id": "ea3d6c0c-685f-47c9-a427-320db3640565",
+                  "name": "404",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/direct_debits/:id_or_reference",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "direct_debits",
+                        ":id_or_reference"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id_or_reference"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:52:33.000Z",
+                  "updatedAt": "2026-10-21T20:52:33.000Z",
+                  "uid": "35240-ea3d6c0c-685f-47c9-a427-320db3640565"
+                }
+              ],
+              "createdAt": "2026-10-21T20:52:33.000Z",
+              "updatedAt": "2026-10-21T20:52:33.000Z",
+              "uid": "35240-94291fcc-018d-432b-be9c-e356bb1c3a1a"
+            }
+          ],
+          "id": "e0e77299-18ad-4725-90c8-b8c0f72af8d7",
+          "createdAt": "2026-10-21T20:52:33.000Z",
+          "updatedAt": "2026-10-21T20:52:33.000Z",
+          "uid": "35240-e0e77299-18ad-4725-90c8-b8c0f72af8d7"
+        },
+        {
+          "name": "Create a direct debit",
+          "id": "4380812e-8535-44b8-9770-6aa9df9d14c7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"bsb\": \"<string>\",\n  \"account_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"date\": \"<date>\",\n  \"reference\": \"<string>\",\n  \"metadata\": {},\n  \"bank_account\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/direct_debits",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "direct_debits"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1e1c4f49-5e92-49db-a738-252927c87326",
+              "name": "201",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"bsb\": \"<string>\",\n  \"account_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"date\": \"<date>\",\n  \"reference\": \"<string>\",\n  \"metadata\": {},\n  \"bank_account\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/direct_debits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "direct_debits"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"id\": \"<string>\",\n    \"amount\": 0,\n    \"bsb\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"account_name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"date\": \"<string>\",\n    \"process_date\": {},\n    \"status\": \"<string>\",\n    \"result\": {},\n    \"metadata\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:52:33.000Z",
+              "updatedAt": "2026-10-21T20:52:33.000Z",
+              "uid": "35240-1e1c4f49-5e92-49db-a738-252927c87326"
+            },
+            {
+              "id": "eb5859da-5624-4700-aed3-8236fc02ef64",
+              "name": "422",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"amount\": \"<float>\",\n  \"bsb\": \"<string>\",\n  \"account_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"date\": \"<date>\",\n  \"reference\": \"<string>\",\n  \"metadata\": {},\n  \"bank_account\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/direct_debits",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "direct_debits"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:52:33.000Z",
+              "updatedAt": "2026-10-21T20:52:33.000Z",
+              "uid": "35240-eb5859da-5624-4700-aed3-8236fc02ef64"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:33.000Z",
+          "updatedAt": "2026-10-21T20:52:33.000Z",
+          "uid": "35240-4380812e-8535-44b8-9770-6aa9df9d14c7"
+        },
+        {
+          "name": "List direct debits",
+          "id": "c58190b1-8765-45fa-8a37-376251799eb0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/direct_debits?offset=1&limit=10&from=<date>&to=<date>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "direct_debits"
+              ],
+              "query": [
+                {
+                  "description": "Page number to return",
+                  "key": "offset",
+                  "value": "1"
+                },
+                {
+                  "description": "Max number of results to return",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Lower bound for the time at which the direct debit was created",
+                  "key": "from",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Upper bound for the time at which the direct debit was created",
+                  "key": "to",
+                  "value": "<date>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "27cd5e84-402d-4e9c-a4c7-d7983b8242d5",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/direct_debits?offset=1&limit=10&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "direct_debits"
+                  ],
+                  "query": [
+                    {
+                      "description": "Page number to return",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Max number of results to return",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the direct debit was created",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the direct debit was created",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": 0,\n      \"bsb\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"account_name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"date\": \"<string>\",\n      \"process_date\": {},\n      \"status\": \"<string>\",\n      \"result\": {},\n      \"metadata\": {}\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": 0,\n      \"bsb\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"account_name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"date\": \"<string>\",\n      \"process_date\": {},\n      \"status\": \"<string>\",\n      \"result\": {},\n      \"metadata\": {}\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"test\": true,\n  \"records\": 0,\n  \"total_records\": 0,\n  \"page\": 0,\n  \"total_pages\": 0\n}",
+              "createdAt": "2026-10-21T20:52:33.000Z",
+              "updatedAt": "2026-10-21T20:52:33.000Z",
+              "uid": "35240-27cd5e84-402d-4e9c-a4c7-d7983b8242d5"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:33.000Z",
+          "updatedAt": "2026-10-21T20:52:33.000Z",
+          "uid": "35240-c58190b1-8765-45fa-8a37-376251799eb0"
+        }
+      ],
+      "id": "72a55f83-fe65-434a-a658-6eb5d10fa90a",
+      "createdAt": "2026-10-21T20:52:33.000Z",
+      "updatedAt": "2026-10-21T20:52:33.000Z",
+      "uid": "35240-72a55f83-fe65-434a-a658-6eb5d10fa90a"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

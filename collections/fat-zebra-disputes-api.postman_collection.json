@@ -1,0 +1,283 @@
+{
+  "info": {
+    "_postman_id": "310c79a4-ad1a-45ea-b726-1307393d07d4",
+    "name": "gateway Disputes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:40.000Z",
+    "updatedAt": "2026-10-21T20:52:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-310c79a4-ad1a-45ea-b726-1307393d07d4"
+  },
+  "item": [
+    {
+      "name": "disputes",
+      "item": [
+        {
+          "name": "List disputes",
+          "id": "3d698673-5f14-4202-8e72-2e924889fea1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/disputes?from=90 days ago&to=today&search=<string>&status=<string>&order_by=opened_on&order_direction=desc&offset=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "disputes"
+              ],
+              "query": [
+                {
+                  "description": "Return disputes that were opened on or after this date, provided in the format 'YYYY-DD-MM'.",
+                  "key": "from",
+                  "value": "90 days ago"
+                },
+                {
+                  "description": "Return disputes that were opened up to and on this date, provided in the format 'YYYY-MM-DD'.",
+                  "key": "to",
+                  "value": "today"
+                },
+                {
+                  "description": "Dispute reference or transaction fatzebra ID to search on.",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Disputes of any status will be returned if this is not provided. Acceptable values: open, lost, won, expired, accepted.",
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Acceptable values: opened_on, next_due_date.",
+                  "key": "order_by",
+                  "value": "opened_on"
+                },
+                {
+                  "description": "Acceptable values: asc, desc.",
+                  "key": "order_direction",
+                  "value": "desc"
+                },
+                {
+                  "description": "Page number.",
+                  "key": "offset",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of disputes to return per page.",
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "49809558-fa67-4936-9158-c253e020b825",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/disputes?from=90 days ago&to=today&search=<string>&status=<string>&order_by=opened_on&order_direction=desc&offset=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "disputes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Return disputes that were opened on or after this date, provided in the format 'YYYY-DD-MM'.",
+                      "key": "from",
+                      "value": "90 days ago"
+                    },
+                    {
+                      "description": "Return disputes that were opened up to and on this date, provided in the format 'YYYY-MM-DD'.",
+                      "key": "to",
+                      "value": "today"
+                    },
+                    {
+                      "description": "Dispute reference or transaction fatzebra ID to search on.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Disputes of any status will be returned if this is not provided. Acceptable values: open, lost, won, expired, accepted.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Acceptable values: opened_on, next_due_date.",
+                      "key": "order_by",
+                      "value": "opened_on"
+                    },
+                    {
+                      "description": "Acceptable values: asc, desc.",
+                      "key": "order_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Page number.",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of disputes to return per page.",
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"has_more\": true,\n    \"records\": 0,\n    \"total_records\": 0,\n    \"page\": 0,\n    \"total_pages\": 0,\n    \"disputes\": [\n      {\n        \"opened_on\": \"<string>\",\n        \"transaction_id\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"reason_code\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"amount_cents\": 0,\n        \"amount_currency\": \"<string>\",\n        \"next_due_date\": \"<string>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"opened_on\": \"<string>\",\n        \"transaction_id\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"reason_code\": \"<string>\",\n        \"reason_description\": \"<string>\",\n        \"amount_cents\": 0,\n        \"amount_currency\": \"<string>\",\n        \"next_due_date\": \"<string>\",\n        \"status\": \"<string>\"\n      }\n    ]\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:52:40.000Z",
+              "updatedAt": "2026-10-21T20:52:40.000Z",
+              "uid": "35240-49809558-fa67-4936-9158-c253e020b825"
+            },
+            {
+              "id": "239d982d-2c21-40f4-a221-d9a96c399c57",
+              "name": "422",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/disputes?from=90 days ago&to=today&search=<string>&status=<string>&order_by=opened_on&order_direction=desc&offset=1&limit=10",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "disputes"
+                  ],
+                  "query": [
+                    {
+                      "description": "Return disputes that were opened on or after this date, provided in the format 'YYYY-DD-MM'.",
+                      "key": "from",
+                      "value": "90 days ago"
+                    },
+                    {
+                      "description": "Return disputes that were opened up to and on this date, provided in the format 'YYYY-MM-DD'.",
+                      "key": "to",
+                      "value": "today"
+                    },
+                    {
+                      "description": "Dispute reference or transaction fatzebra ID to search on.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Disputes of any status will be returned if this is not provided. Acceptable values: open, lost, won, expired, accepted.",
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Acceptable values: opened_on, next_due_date.",
+                      "key": "order_by",
+                      "value": "opened_on"
+                    },
+                    {
+                      "description": "Acceptable values: asc, desc.",
+                      "key": "order_direction",
+                      "value": "desc"
+                    },
+                    {
+                      "description": "Page number.",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of disputes to return per page.",
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:52:40.000Z",
+              "updatedAt": "2026-10-21T20:52:40.000Z",
+              "uid": "35240-239d982d-2c21-40f4-a221-d9a96c399c57"
+            }
+          ],
+          "createdAt": "2026-10-21T20:52:40.000Z",
+          "updatedAt": "2026-10-21T20:52:40.000Z",
+          "uid": "35240-3d698673-5f14-4202-8e72-2e924889fea1"
+        }
+      ],
+      "id": "46526406-3400-43c4-bba7-0a691e17fc49",
+      "createdAt": "2026-10-21T20:52:40.000Z",
+      "updatedAt": "2026-10-21T20:52:40.000Z",
+      "uid": "35240-46526406-3400-43c4-bba7-0a691e17fc49"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

@@ -1,0 +1,448 @@
+{
+  "info": {
+    "_postman_id": "37e70912-a9ac-4597-901f-1b89effa762d",
+    "name": "gateway Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:19.000Z",
+    "updatedAt": "2026-10-21T20:55:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37e70912-a9ac-4597-901f-1b89effa762d"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "{transaction_fatzebra_id}",
+          "item": [
+            {
+              "name": "dispute",
+              "item": [
+                {
+                  "name": "accept",
+                  "item": [
+                    {
+                      "name": "Accept dispute",
+                      "id": "22bf53e5-d99d-43cc-b448-584b41552c45",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute/accept",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_fatzebra_id",
+                            "dispute",
+                            "accept"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d4189def-cf0f-4632-aefd-c49e11e7eba2",
+                              "key": "transaction_fatzebra_id",
+                              "value": "<string>",
+                              "description": "(Required) The fatzebra id of the transaction."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "bf510ef2-cbe2-4660-91f6-16656ffffb84",
+                          "name": "201",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "transactions",
+                                ":transaction_fatzebra_id",
+                                "dispute",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "transaction_fatzebra_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:20.000Z",
+                          "updatedAt": "2026-10-21T20:55:20.000Z",
+                          "uid": "35240-bf510ef2-cbe2-4660-91f6-16656ffffb84"
+                        },
+                        {
+                          "id": "dc74be48-5a85-4713-b7a0-44502f0a9df2",
+                          "name": "404",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "transactions",
+                                ":transaction_fatzebra_id",
+                                "dispute",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "transaction_fatzebra_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                          "createdAt": "2026-10-21T20:55:20.000Z",
+                          "updatedAt": "2026-10-21T20:55:20.000Z",
+                          "uid": "35240-dc74be48-5a85-4713-b7a0-44502f0a9df2"
+                        },
+                        {
+                          "id": "bdf3ee01-af6a-42e1-b1fb-958f876792bd",
+                          "name": "422",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute/accept",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "transactions",
+                                ":transaction_fatzebra_id",
+                                "dispute",
+                                "accept"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "transaction_fatzebra_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n    \\\"successful\\\": false,\\n    \\\"response\\\": {},\\n    \\\"errors\\\" => ['Dispute has already been closed']\\n    \\\"test\\\": true\\n}\"\n    }\n  }\n}",
+                          "createdAt": "2026-10-21T20:55:20.000Z",
+                          "updatedAt": "2026-10-21T20:55:20.000Z",
+                          "uid": "35240-bdf3ee01-af6a-42e1-b1fb-958f876792bd"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:55:20.000Z",
+                      "updatedAt": "2026-10-21T20:55:20.000Z",
+                      "uid": "35240-22bf53e5-d99d-43cc-b448-584b41552c45"
+                    }
+                  ],
+                  "id": "074bf9c4-0b9f-4f3b-941f-7ff1aba0ba85",
+                  "createdAt": "2026-10-21T20:55:19.000Z",
+                  "updatedAt": "2026-10-21T20:55:19.000Z",
+                  "uid": "35240-074bf9c4-0b9f-4f3b-941f-7ff1aba0ba85"
+                },
+                {
+                  "name": "Fetch dispute",
+                  "id": "6acd407a-08a2-420f-8fd4-1c13e8bbdc1c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transaction_fatzebra_id",
+                        "dispute"
+                      ],
+                      "variable": [
+                        {
+                          "id": "af3d7268-86c2-4c97-bbc7-7f4417960c8b",
+                          "key": "transaction_fatzebra_id",
+                          "value": "<string>",
+                          "description": "(Required) The fatzebra id of the transaction."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "820ba38b-a00c-4f49-85ce-188ba001f54e",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_fatzebra_id",
+                            "dispute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_fatzebra_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"disputed\": true,\n    \"dispute\": {\n      \"opened_on\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"amount_cents\": 0,\n      \"amount_currency\": \"<string>\",\n      \"next_due_date\": \"<string>\",\n      \"status\": \"<string>\",\n      \"reason_code\": \"<string>\",\n      \"reason_description\": \"<string>\",\n      \"dispute_events\": [\n        {\n          \"acquirer_event_code\": \"<string>\",\n          \"acquirer_event_description\": \"<string>\",\n          \"posting_date\": \"<string>\"\n        },\n        {\n          \"acquirer_event_code\": \"<string>\",\n          \"acquirer_event_description\": \"<string>\",\n          \"posting_date\": \"<string>\"\n        }\n      ]\n    }\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                      "createdAt": "2026-10-21T20:55:20.000Z",
+                      "updatedAt": "2026-10-21T20:55:20.000Z",
+                      "uid": "35240-820ba38b-a00c-4f49-85ce-188ba001f54e"
+                    },
+                    {
+                      "id": "39da4584-2224-4f24-aab0-5181b8a693be",
+                      "name": "404",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_fatzebra_id",
+                            "dispute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_fatzebra_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                      "createdAt": "2026-10-21T20:55:20.000Z",
+                      "updatedAt": "2026-10-21T20:55:20.000Z",
+                      "uid": "35240-39da4584-2224-4f24-aab0-5181b8a693be"
+                    },
+                    {
+                      "id": "22779868-c133-4a1a-b798-dd169ba9bbd3",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transactions/:transaction_fatzebra_id/dispute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transactions",
+                            ":transaction_fatzebra_id",
+                            "dispute"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transaction_fatzebra_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                      "createdAt": "2026-10-21T20:55:20.000Z",
+                      "updatedAt": "2026-10-21T20:55:20.000Z",
+                      "uid": "35240-22779868-c133-4a1a-b798-dd169ba9bbd3"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:20.000Z",
+                  "updatedAt": "2026-10-21T20:55:20.000Z",
+                  "uid": "35240-6acd407a-08a2-420f-8fd4-1c13e8bbdc1c"
+                }
+              ],
+              "id": "0ecca875-46db-48d6-9a90-2e259e4dd875",
+              "createdAt": "2026-10-21T20:55:19.000Z",
+              "updatedAt": "2026-10-21T20:55:19.000Z",
+              "uid": "35240-0ecca875-46db-48d6-9a90-2e259e4dd875"
+            }
+          ],
+          "id": "c8be1b19-ed68-43e0-ab5e-08c8dd88d29d",
+          "createdAt": "2026-10-21T20:55:19.000Z",
+          "updatedAt": "2026-10-21T20:55:19.000Z",
+          "uid": "35240-c8be1b19-ed68-43e0-ab5e-08c8dd88d29d"
+        }
+      ],
+      "id": "f54696e7-ab2e-4ced-a360-d84d3d40d480",
+      "createdAt": "2026-10-21T20:55:19.000Z",
+      "updatedAt": "2026-10-21T20:55:19.000Z",
+      "uid": "35240-f54696e7-ab2e-4ced-a360-d84d3d40d480"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

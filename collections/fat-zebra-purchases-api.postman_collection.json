@@ -1,0 +1,1862 @@
+{
+  "info": {
+    "_postman_id": "6b186c63-9ce8-4291-bc7d-c4631aee6806",
+    "name": "gateway Purchases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:55:03.000Z",
+    "updatedAt": "2026-10-21T20:55:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6b186c63-9ce8-4291-bc7d-c4631aee6806"
+  },
+  "item": [
+    {
+      "name": "purchases",
+      "item": [
+        {
+          "name": " \u200b",
+          "item": [
+            {
+              "name": "Create a purchase using a network token passthrough",
+              "id": "4f0ec698-a561-46af-af93-3065aaacbb03",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"cryptogram\": \"<string>\",\n  \"network_eci\": \"07\",\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"capture\": true,\n  \"extra\": {\n    \"ecm\": \"31\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/ \u200b",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    " \u200b"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "45330267-602e-4ad4-92f1-06691df8a555",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"cryptogram\": \"<string>\",\n  \"network_eci\": \"07\",\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"capture\": true,\n  \"extra\": {\n    \"ecm\": \"31\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/ \u200b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        " \u200b"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-45330267-602e-4ad4-92f1-06691df8a555"
+                },
+                {
+                  "id": "5b5071a8-6b32-496a-b4bf-180a59aff285",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"cryptogram\": \"<string>\",\n  \"network_eci\": \"07\",\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"capture\": true,\n  \"extra\": {\n    \"ecm\": \"31\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/ \u200b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        " \u200b"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": {},\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": {},\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": {},\n    \"transaction_date\": {},\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": {},\n    \"rrn\": {},\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-5b5071a8-6b32-496a-b4bf-180a59aff285"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-4f0ec698-a561-46af-af93-3065aaacbb03"
+            }
+          ],
+          "id": "3ac70dcd-344b-4362-9798-2cbc4e7cda10",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-3ac70dcd-344b-4362-9798-2cbc4e7cda10"
+        },
+        {
+          "name": " \u200b\u200b",
+          "item": [
+            {
+              "name": "Create a purchase using a wallet passthrough",
+              "id": "04e947bf-096c-48c2-8830-3fa68b93b18b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"cryptogram\": \"<string>\"\n  },\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"capture\": \"<boolean>\",\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/ \u200b\u200b",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    " \u200b\u200b"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "48f8cff5-7949-46fb-89c6-a5bbf236e486",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"cryptogram\": \"<string>\"\n  },\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"capture\": \"<boolean>\",\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/ \u200b\u200b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        " \u200b\u200b"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-48f8cff5-7949-46fb-89c6-a5bbf236e486"
+                },
+                {
+                  "id": "6c00a1eb-a565-4521-bd99-e9c932b9c809",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"cryptogram\": \"<string>\"\n  },\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"capture\": \"<boolean>\",\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/ \u200b\u200b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        " \u200b\u200b"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": {},\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": {},\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": {},\n    \"transaction_date\": {},\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": {},\n    \"rrn\": {},\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-6c00a1eb-a565-4521-bd99-e9c932b9c809"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-04e947bf-096c-48c2-8830-3fa68b93b18b"
+            }
+          ],
+          "id": "cd9d2126-561b-4769-937b-3563104f89ba",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-cd9d2126-561b-4769-937b-3563104f89ba"
+        },
+        {
+          "name": " \u200b\u200b\u200b",
+          "item": [
+            {
+              "name": "Create a purchase with a token",
+              "id": "030a4ce3-407d-42fd-a1cf-c045baa2d203",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_token\": \"<string>\",\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"billing_address\": {\n    \"address\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\",\n    \"xid\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"par\": \"<string>\",\n    \"ver\": \"<string>\",\n    \"threeds_version\": \"<string>\",\n    \"directory_server_txn_id\": \"<string>\",\n    \"card_on_file\": false,\n    \"auth_reason\": \"<string>\",\n    \"stored_credential_indicator\": \"<string>\",\n    \"authorization_tracking_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/ \u200b\u200b\u200b",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    " \u200b\u200b\u200b"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "35753c92-8812-4223-ac16-0c8b5ba70ed5",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_token\": \"<string>\",\n  \"test\": false,\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"billing_address\": {\n    \"address\": \"<string>\",\n    \"postcode\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\",\n    \"xid\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"par\": \"<string>\",\n    \"ver\": \"<string>\",\n    \"threeds_version\": \"<string>\",\n    \"directory_server_txn_id\": \"<string>\",\n    \"card_on_file\": false,\n    \"auth_reason\": \"<string>\",\n    \"stored_credential_indicator\": \"<string>\",\n    \"authorization_tracking_id\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/ \u200b\u200b\u200b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        " \u200b\u200b\u200b"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-35753c92-8812-4223-ac16-0c8b5ba70ed5"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-030a4ce3-407d-42fd-a1cf-c045baa2d203"
+            }
+          ],
+          "id": "747994ea-38ed-4547-b81b-94c577828fc1",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-747994ea-38ed-4547-b81b-94c577828fc1"
+        },
+        {
+          "name": " \u200b\u200b\u200b\u200b",
+          "item": [
+            {
+              "name": "Create a purchase, with fraud screening",
+              "id": "f76e96e4-14b5-4aff-a7f1-cb72ef23758a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_holder\": \"<string>\",\n  \"cvv\": \"<string>\",\n  \"test\": false,\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"encPaymentData\": \"<string>\",\n    \"encKey\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"origin_url\": \"<string>\",\n    \"card_id\": \"<string>\",\n    \"address_id\": \"<string>\",\n    \"checkout_resource_url\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"checkout_id\": \"<string>\",\n    \"account_id\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/ \u200b\u200b\u200b\u200b",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    " \u200b\u200b\u200b\u200b"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9c2a6bf1-e782-4df9-94e7-610d78fac568",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_holder\": \"<string>\",\n  \"cvv\": \"<string>\",\n  \"test\": false,\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"encPaymentData\": \"<string>\",\n    \"encKey\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"origin_url\": \"<string>\",\n    \"card_id\": \"<string>\",\n    \"address_id\": \"<string>\",\n    \"checkout_resource_url\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"checkout_id\": \"<string>\",\n    \"account_id\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/ \u200b\u200b\u200b\u200b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        " \u200b\u200b\u200b\u200b"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-9c2a6bf1-e782-4df9-94e7-610d78fac568"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-f76e96e4-14b5-4aff-a7f1-cb72ef23758a"
+            }
+          ],
+          "id": "7597dfa9-eb62-4076-94d5-53d93e7fdaa7",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-7597dfa9-eb62-4076-94d5-53d93e7fdaa7"
+        },
+        {
+          "name": " \u200b\u200b\u200b\u200b\u200b",
+          "item": [
+            {
+              "name": "Create an authorization",
+              "id": "c9abe4f5-7680-47d4-b7d9-291c05f5b30d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"capture\": true,\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"card_token\": \"<string>\",\n  \"cvv\": \"<string>\",\n  \"test\": false,\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"encPaymentData\": \"<string>\",\n    \"encKey\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"origin_url\": \"<string>\",\n    \"card_id\": \"<string>\",\n    \"address_id\": \"<string>\",\n    \"checkout_resource_url\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"checkout_id\": \"<string>\",\n    \"account_id\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"final\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/ \u200b\u200b\u200b\u200b\u200b",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    " \u200b\u200b\u200b\u200b\u200b"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2011c4cd-1e0f-4c3a-8beb-b51131853deb",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"capture\": true,\n  \"card_number\": \"<string>\",\n  \"card_holder\": \"<string>\",\n  \"card_expiry\": \"<string>\",\n  \"card_token\": \"<string>\",\n  \"cvv\": \"<string>\",\n  \"test\": false,\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"encPaymentData\": \"<string>\",\n    \"encKey\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"origin_url\": \"<string>\",\n    \"card_id\": \"<string>\",\n    \"address_id\": \"<string>\",\n    \"checkout_resource_url\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"checkout_id\": \"<string>\",\n    \"account_id\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"final\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/ \u200b\u200b\u200b\u200b\u200b",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        " \u200b\u200b\u200b\u200b\u200b"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-2011c4cd-1e0f-4c3a-8beb-b51131853deb"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-c9abe4f5-7680-47d4-b7d9-291c05f5b30d"
+            }
+          ],
+          "id": "b9196f0d-f2ee-4c72-b152-0679dc299a9e",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-b9196f0d-f2ee-4c72-b152-0679dc299a9e"
+        },
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "capture",
+              "item": [
+                {
+                  "name": "Capture an authorization",
+                  "id": "f0f76e47-7540-4bc7-a5c6-f9da609d4d6f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"metadata\": {},\n  \"addendum_data\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/:id/capture",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        ":id",
+                        "capture"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ba098b6-bfd0-4e86-8c7f-055d5e144468",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) id of the purchase"
+                        }
+                      ]
+                    },
+                    "description": "Please note, If the outer successful field is false, it means the capture was rejected at the gateway level and the errors array needs to be looked at to confirm why it failed."
+                  },
+                  "response": [
+                    {
+                      "id": "2087d8f7-9512-40ab-8bf4-51631fa485d5",
+                      "name": "200",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"metadata\": {},\n  \"addendum_data\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/purchases/:id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "purchases",
+                            ":id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\"\n}",
+                      "createdAt": "2026-10-21T20:55:03.000Z",
+                      "updatedAt": "2026-10-21T20:55:03.000Z",
+                      "uid": "35240-2087d8f7-9512-40ab-8bf4-51631fa485d5"
+                    },
+                    {
+                      "id": "019b0631-b679-4016-9736-ff64d7159c97",
+                      "name": "422",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"metadata\": {},\n  \"addendum_data\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/purchases/:id/capture",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "purchases",
+                            ":id",
+                            "capture"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"test\": true\n}",
+                      "createdAt": "2026-10-21T20:55:03.000Z",
+                      "updatedAt": "2026-10-21T20:55:03.000Z",
+                      "uid": "35240-019b0631-b679-4016-9736-ff64d7159c97"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-f0f76e47-7540-4bc7-a5c6-f9da609d4d6f"
+                }
+              ],
+              "id": "203924f8-d98a-43da-bed9-4e8d6a71c922",
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-203924f8-d98a-43da-bed9-4e8d6a71c922"
+            },
+            {
+              "name": "Update an authorization",
+              "id": "ba739db2-a220-457d-9b89-1e3f5d5053df",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"metadata\": \"<string>\",\n  \"extend\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "322643ac-10b5-499d-85b5-9c4a72d0dd79",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) id of the purchase"
+                    }
+                  ]
+                },
+                "description": "Extend, increase authorized amount"
+              },
+              "response": [
+                {
+                  "id": "2d5f23b9-3460-4c2c-8dd8-0237de7d30f6",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"metadata\": \"<string>\",\n  \"extend\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-2d5f23b9-3460-4c2c-8dd8-0237de7d30f6"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-ba739db2-a220-457d-9b89-1e3f5d5053df"
+            },
+            {
+              "name": "Release an authorization",
+              "id": "d73b9496-1d24-4546-b847-411050cf03e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"metadata\": \"<string>\",\n  \"extend\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f99f9d71-a328-4a0d-a4ad-7dc8fb89c738",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) id of the purchase"
+                    }
+                  ]
+                },
+                "description": "Void an authorization partially or completely"
+              },
+              "response": [
+                {
+                  "id": "e1e4e41c-3a0c-4b4b-baa4-02f3c07d878f",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"metadata\": \"<string>\",\n  \"extend\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-e1e4e41c-3a0c-4b4b-baa4-02f3c07d878f"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-d73b9496-1d24-4546-b847-411050cf03e8"
+            },
+            {
+              "name": "Fetch a purchase",
+              "id": "7e7c75c8-6859-46ca-84d1-a77a503ea504",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f50c0acc-9b6c-48a4-ae51-26faddae2ae0",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) The ID or reference of the purchase."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4c11ce5f-db0d-41f7-98f0-ed9f63ff67a0",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-4c11ce5f-db0d-41f7-98f0-ed9f63ff67a0"
+                },
+                {
+                  "id": "0adfc2d9-9ac2-43c4-8a38-c3773d2cbabc",
+                  "name": "404",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {},\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-0adfc2d9-9ac2-43c4-8a38-c3773d2cbabc"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-7e7c75c8-6859-46ca-84d1-a77a503ea504"
+            }
+          ],
+          "id": "e941db71-94f5-4510-83c9-49855a2a56a4",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-e941db71-94f5-4510-83c9-49855a2a56a4"
+        },
+        {
+          "name": "void",
+          "item": [
+            {
+              "name": "Void a purchase",
+              "id": "bc2bcf50-ee8f-4677-9083-deadc6e9f9d4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/void?id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    "void"
+                  ],
+                  "query": [
+                    {
+                      "description": "ID of the purchase to be voided",
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bfae12ee-4805-4358-8f41-302ae773e9c3",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/void?id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        "void"
+                      ],
+                      "query": [
+                        {
+                          "description": "ID of the purchase to be voided",
+                          "key": "id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-bfae12ee-4805-4358-8f41-302ae773e9c3"
+                },
+                {
+                  "id": "50de9868-3917-4c64-a1ea-3ce91ac5456a",
+                  "name": "422",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/void?id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        "void"
+                      ],
+                      "query": [
+                        {
+                          "description": "ID of the purchase to be voided",
+                          "key": "id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\"\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-50de9868-3917-4c64-a1ea-3ce91ac5456a"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-bc2bcf50-ee8f-4677-9083-deadc6e9f9d4"
+            }
+          ],
+          "id": "9cf37289-f37c-4091-9d0b-dab6f7d120ab",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-9cf37289-f37c-4091-9d0b-dab6f7d120ab"
+        },
+        {
+          "name": "settlement",
+          "item": [
+            {
+              "name": "List purchases by settlement",
+              "id": "343fb9a9-ed5f-4100-80f3-35d3a8c3dba7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/settlement?from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    "settlement"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5fb52760-1a05-4db9-a322-b7e54090bd16",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/settlement?from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        "settlement"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  successful: true,\\n  response:  [\\n    {\\n      authorization: \\\"512407\\\",\\n      id: \\\"071-P-P7OX5AF6\\\",\\n      card_number: \\\"512345XXXXXX2346\\\",\\n      card_holder: \\\"Matthew Savage\\\",\\n      card_expiry: \\\"2030-02-28\\\",\\n      card_token: \\\"fke86c5u\\\",\\n      card_type: \\\"MasterCard\\\",\\n      card_category: \\\"Credit\\\",\\n      card_subcategory: \\\"Standard\\\",\\n      amount: 10000,\\n      decimal_amount: 100.0,\\n      successful: true,\\n      message: \\\"Approved\\\",\\n      reference: \\\"73a34343849d71bca9ab1a11225a3139-1\\\",\\n      currency: \\\"AUD\\\",\\n      transaction_id: \\\"071-P-P7OX5AF6\\\",\\n      settlement_date: \\\"2017-07-03\\\",\\n      transaction_date: \\\"2017-07-03T12:39:02+10:00\\\",\\n      response_code: \\\"00\\\",\\n      captured: true,\\n      captured_amount: 10000,\\n      rrn: \\\"071PP7OX5AF6\\\",\\n      cvv_match: \\\"M\\\",\\n      metadata: {},\\n      addendum_data: {}\\n    },\\n    {\\n      authorization: \\\"138504\\\",\\n      id: \\\"071-P-4AXUY9Q4\\\",\\n      card_number: \\\"512345XXXXXX2346\\\",\\n      card_holder: \\\"Matthew Savage\\\",\\n      card_expiry: \\\"2030-02-28\\\",\\n      card_token: \\\"fke86c5u\\\",\\n      card_type: \\\"MasterCard\\\",\\n      card_category: \\\"Credit\\\",\\n      card_subcategory: \\\"Standard\\\",\\n      amount: 10000,\\n      decimal_amount: 100.0,\\n      successful: true,\\n      message: \\\"Approved\\\",\\n      reference: \\\"bfe2f0f43e2f6811161ae7a009b3c840-0\\\",\\n      currency: \\\"AUD\\\",\\n      transaction_id: \\\"071-P-4AXUY9Q4\\\",\\n      settlement_date: \\\"2017-07-03\\\",\\n      transaction_date: \\\"2017-07-03T12:39:01+10:00\\\",\\n      response_code: \\\"00\\\",\\n      captured: true,\\n      captured_amount: 10000,\\n      rrn: \\\"071P4AXUY9Q4\\\",\\n      cvv_match: \\\"M\\\",\\n      metadata: {},\\n      addendum_data: {}\\n    }\\n  ],\\n  errors: [],\\n  records: 2,\\n  total_records: 2,\\n  page: 1,\\n  total_pages: 1\\n}\\n\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-5fb52760-1a05-4db9-a322-b7e54090bd16"
+                },
+                {
+                  "id": "75b8a226-6967-47ce-9200-9ba0993f9071",
+                  "name": "400",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/purchases/settlement?from=<date>&to=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "purchases",
+                        "settlement"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "from",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "to",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  successful: false,\\n  response: [],\\n  errors: ['Params to and from are required']\\n}\\n\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-21T20:55:03.000Z",
+                  "updatedAt": "2026-10-21T20:55:03.000Z",
+                  "uid": "35240-75b8a226-6967-47ce-9200-9ba0993f9071"
+                }
+              ],
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-343fb9a9-ed5f-4100-80f3-35d3a8c3dba7"
+            }
+          ],
+          "id": "a0359a97-6abc-48cc-a4ce-9e7f26121ca2",
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-a0359a97-6abc-48cc-a4ce-9e7f26121ca2"
+        },
+        {
+          "name": "Create a purchase using a wallet",
+          "id": "e4e9c209-ba16-4922-ab01-64f6b12b93ef",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_holder\": \"<string>\",\n  \"cvv\": \"<string>\",\n  \"test\": false,\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"encPaymentData\": \"<string>\",\n    \"encKey\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"origin_url\": \"<string>\",\n    \"card_id\": \"<string>\",\n    \"address_id\": \"<string>\",\n    \"checkout_resource_url\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"checkout_id\": \"<string>\",\n    \"account_id\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\",\n    \"xid\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"par\": \"<string>\",\n    \"ver\": \"<string>\",\n    \"threeds_version\": \"<string>\",\n    \"directory_server_txn_id\": \"<string>\",\n    \"card_on_file\": false,\n    \"auth_reason\": \"<string>\",\n    \"stored_credential_indicator\": \"<string>\",\n    \"authorization_tracking_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/purchases/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "purchases",
+                ""
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "23b27d9d-df22-41d7-8cc2-b54152a87159",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_holder\": \"<string>\",\n  \"cvv\": \"<string>\",\n  \"test\": false,\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"encPaymentData\": \"<string>\",\n    \"encKey\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"origin_url\": \"<string>\",\n    \"card_id\": \"<string>\",\n    \"address_id\": \"<string>\",\n    \"checkout_resource_url\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"checkout_id\": \"<string>\",\n    \"account_id\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\",\n    \"xid\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"par\": \"<string>\",\n    \"ver\": \"<string>\",\n    \"threeds_version\": \"<string>\",\n    \"directory_server_txn_id\": \"<string>\",\n    \"card_on_file\": false,\n    \"auth_reason\": \"<string>\",\n    \"stored_credential_indicator\": \"<string>\",\n    \"authorization_tracking_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": \"<string>\",\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": \"<string>\",\n    \"transaction_date\": \"<string>\",\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": 0,\n    \"rrn\": \"<string>\",\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": \"<array>\",\n  \"test\": true\n}",
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-23b27d9d-df22-41d7-8cc2-b54152a87159"
+            },
+            {
+              "id": "4b5e8422-2672-481f-b331-204d8f49ace7",
+              "name": "400",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"customer_ip\": \"<string>\",\n  \"currency\": \"AUD\",\n  \"card_holder\": \"<string>\",\n  \"cvv\": \"<string>\",\n  \"test\": false,\n  \"wallet\": {\n    \"type\": \"<string>\",\n    \"encPaymentData\": \"<string>\",\n    \"encKey\": \"<string>\",\n    \"callid\": \"<string>\",\n    \"token\": \"<string>\",\n    \"user_id\": \"<string>\",\n    \"origin_url\": \"<string>\",\n    \"card_id\": \"<string>\",\n    \"address_id\": \"<string>\",\n    \"checkout_resource_url\": \"<string>\",\n    \"oauth_token\": \"<string>\",\n    \"oauth_verifier\": \"<string>\",\n    \"checkout_id\": \"<string>\",\n    \"account_id\": \"<string>\"\n  },\n  \"metadata\": {},\n  \"addendum_data\": \"<string>\",\n  \"extra\": {\n    \"ecm\": \"31\",\n    \"sli\": \"<string>\",\n    \"xid\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"par\": \"<string>\",\n    \"ver\": \"<string>\",\n    \"threeds_version\": \"<string>\",\n    \"directory_server_txn_id\": \"<string>\",\n    \"card_on_file\": false,\n    \"auth_reason\": \"<string>\",\n    \"stored_credential_indicator\": \"<string>\",\n    \"authorization_tracking_id\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/purchases/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases",
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": {\n    \"authorization\": {},\n    \"id\": \"<string>\",\n    \"card_number\": \"<string>\",\n    \"card_holder\": \"<string>\",\n    \"card_expiry\": \"<string>\",\n    \"card_token\": \"<string>\",\n    \"card_type\": \"<string>\",\n    \"card_category\": \"<string>\",\n    \"card_subcategory\": \"<string>\",\n    \"amount\": 0,\n    \"decimal_amount\": 0,\n    \"successful\": true,\n    \"message\": {},\n    \"reference\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"transaction_id\": \"<string>\",\n    \"settlement_date\": {},\n    \"transaction_date\": {},\n    \"response_code\": \"<string>\",\n    \"captured\": true,\n    \"captured_amount\": {},\n    \"rrn\": {},\n    \"cvv_match\": \"<string>\",\n    \"metadata\": {},\n    \"addendum_data\": {}\n  },\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-4b5e8422-2672-481f-b331-204d8f49ace7"
+            }
+          ],
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-e4e9c209-ba16-4922-ab01-64f6b12b93ef"
+        },
+        {
+          "name": "List purchases",
+          "id": "463a9c42-6844-4d76-a255-c5d477e15aa6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/purchases?offset=1&limit=10&from=<date>&to=<date>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "purchases"
+              ],
+              "query": [
+                {
+                  "description": "Offset to start",
+                  "key": "offset",
+                  "value": "1"
+                },
+                {
+                  "description": "Number of purchases in the response",
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "description": "Lower bound for the time at which the purchase was created",
+                  "key": "from",
+                  "value": "<date>"
+                },
+                {
+                  "description": "Upper bound for the time at which the purchase was created",
+                  "key": "to",
+                  "value": "<date>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fdf2438-974d-473c-bf07-c363d2ca4cce",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/purchases?offset=1&limit=10&from=<date>&to=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "purchases"
+                  ],
+                  "query": [
+                    {
+                      "description": "Offset to start",
+                      "key": "offset",
+                      "value": "1"
+                    },
+                    {
+                      "description": "Number of purchases in the response",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Lower bound for the time at which the purchase was created",
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Upper bound for the time at which the purchase was created",
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"successful\": true,\n  \"response\": [\n    {\n      \"authorization\": \"<string>\",\n      \"id\": \"<string>\",\n      \"card_number\": \"<string>\",\n      \"card_holder\": \"<string>\",\n      \"card_expiry\": \"<string>\",\n      \"card_token\": \"<string>\",\n      \"card_type\": \"<string>\",\n      \"card_category\": \"<string>\",\n      \"card_subcategory\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"successful\": true,\n      \"message\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"settlement_date\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"response_code\": \"<string>\",\n      \"captured\": true,\n      \"captured_amount\": 0,\n      \"rrn\": \"<string>\",\n      \"cvv_match\": \"<string>\",\n      \"metadata\": {},\n      \"addendum_data\": {}\n    },\n    {\n      \"authorization\": \"<string>\",\n      \"id\": \"<string>\",\n      \"card_number\": \"<string>\",\n      \"card_holder\": \"<string>\",\n      \"card_expiry\": \"<string>\",\n      \"card_token\": \"<string>\",\n      \"card_type\": \"<string>\",\n      \"card_category\": \"<string>\",\n      \"card_subcategory\": \"<string>\",\n      \"amount\": 0,\n      \"decimal_amount\": 0,\n      \"successful\": true,\n      \"message\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"transaction_id\": \"<string>\",\n      \"settlement_date\": \"<string>\",\n      \"transaction_date\": \"<string>\",\n      \"response_code\": \"<string>\",\n      \"captured\": true,\n      \"captured_amount\": 0,\n      \"rrn\": \"<string>\",\n      \"cvv_match\": \"<string>\",\n      \"metadata\": {},\n      \"addendum_data\": {}\n    }\n  ],\n  \"errors\": \"<array>\",\n  \"records\": 0,\n  \"total_records\": 0,\n  \"page\": 0,\n  \"total_pages\": 0\n}",
+              "createdAt": "2026-10-21T20:55:03.000Z",
+              "updatedAt": "2026-10-21T20:55:03.000Z",
+              "uid": "35240-0fdf2438-974d-473c-bf07-c363d2ca4cce"
+            }
+          ],
+          "createdAt": "2026-10-21T20:55:03.000Z",
+          "updatedAt": "2026-10-21T20:55:03.000Z",
+          "uid": "35240-463a9c42-6844-4d76-a255-c5d477e15aa6"
+        }
+      ],
+      "id": "8015388e-31e0-4bf3-9ed5-a5d7e4acafac",
+      "createdAt": "2026-10-21T20:55:03.000Z",
+      "updatedAt": "2026-10-21T20:55:03.000Z",
+      "uid": "35240-8015388e-31e0-4bf3-9ed5-a5d7e4acafac"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

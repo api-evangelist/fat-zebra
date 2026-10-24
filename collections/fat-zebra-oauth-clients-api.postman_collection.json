@@ -1,0 +1,199 @@
+{
+  "info": {
+    "_postman_id": "56feb6a3-358b-4e15-9fb0-e0cced0553e0",
+    "name": "gateway Oauth Clients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:53:20.000Z",
+    "updatedAt": "2026-10-21T20:53:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-56feb6a3-358b-4e15-9fb0-e0cced0553e0"
+  },
+  "item": [
+    {
+      "name": "oauth_clients",
+      "item": [
+        {
+          "name": "Create an OAuth Client",
+          "id": "767a7948-df12-4547-8fcc-fd98245a7e5e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/oauth_clients",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "oauth_clients"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1ac98cc6-8d5e-4347-bdd8-71399eb19b85",
+              "name": "200",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth_clients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth_clients"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"access_key\": \"<string>\",\n  \"access_secret\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:53:20.000Z",
+              "updatedAt": "2026-10-21T20:53:20.000Z",
+              "uid": "35240-1ac98cc6-8d5e-4347-bdd8-71399eb19b85"
+            },
+            {
+              "id": "07334ed9-16c5-4087-9c6d-d80b6cd6f383",
+              "name": "422",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth_clients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth_clients"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-10-21T20:53:20.000Z",
+              "updatedAt": "2026-10-21T20:53:20.000Z",
+              "uid": "35240-07334ed9-16c5-4087-9c6d-d80b6cd6f383"
+            }
+          ],
+          "createdAt": "2026-10-21T20:53:20.000Z",
+          "updatedAt": "2026-10-21T20:53:20.000Z",
+          "uid": "35240-767a7948-df12-4547-8fcc-fd98245a7e5e"
+        }
+      ],
+      "id": "48b744fb-2b5d-4bf3-a341-6f2b476cf466",
+      "createdAt": "2026-10-21T20:53:20.000Z",
+      "updatedAt": "2026-10-21T20:53:20.000Z",
+      "uid": "35240-48b744fb-2b5d-4bf3-a341-6f2b476cf466"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gateway.pmnts-sandbox.io/v1.0"
+    }
+  ]
+}

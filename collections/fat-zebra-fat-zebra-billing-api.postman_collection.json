@@ -1,0 +1,33 @@
+{
+  "info": {
+    "_postman_id": "e4e3c697-06cb-4337-b7b4-fc9df8a089a3",
+    "name": "Fat Zebra Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:52:43.000Z",
+    "updatedAt": "2026-10-21T20:52:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e4e3c697-06cb-4337-b7b4-fc9df8a089a3"
+  },
+  "item": [],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://billing.pmnts-sandbox.io/api/v1/"
+    }
+  ]
+}
