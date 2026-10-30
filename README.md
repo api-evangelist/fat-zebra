@@ -1,4 +1,4 @@
-# Fat Zebra (fat-zebra)
+# Fat Zebra
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,103 +64,166 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Fat Zebra is an Australian payments company (founded 2012, Sydney) providing a card payment gateway and processing platform for merchants, ISOs, and software platforms across Australia and New Zealand. Its API-first Gateway handles Visa, Mastercard, and Amex purchases, authorizations and captures, refunds and voids, card tokenization, 3D Secure, recurring payment plans, direct debits and direct credits over local bank rails, chargeback handling, batch processing, and hosted payment pages (PayNow), plus wallet acceptance for Apple Pay, Google Pay, and Click to Pay. A separate Partner API lets platforms and ISOs create and board their own sub-merchants. The runtime platform is branded pmnts (gateway.pmnts.io).
+Fat Zebra is an Australian payments company (founded 2012, Sydney) providing a card-present and card-not-present payment gateway and processing platform for merchants, ISOs, and software platforms across Australia and New Zealand. Its API-first Gateway handles Visa, Mastercard, and Amex purchases, authorizations and captures, refunds and voids, card tokenization, 3D Secure, recurring payment plans, direct debits and direct credits over local bank rails, chargeback handling, batch processing, and hosted payment pages (PayNow), alongside wallet acceptance for Apple Pay, Google Pay, and Click to Pay. A separate Partner API lets platforms and ISOs create and board their own sub-merchants onto acquirer connections programmatically. The developer surface is a genuine, well-documented ReadMe hub at docs.fatzebra.com with four downloadable OpenAPI definitions, and the runtime platform is branded pmnts (gateway.pmnts.io). Authentication is HTTP Basic using a username and API token.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/fat-zebra/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/fat-zebra/refs/heads/main/apis.yml)
+**Areas:** Payments · Australia · Payment Gateway · Payment Processing · Acquiring · Card Payments · Tokenization · Recurring Billing · Direct Debit · Hosted Payment Pages · Merchant Onboarding
 
-**Developer portal:** [https://docs.fatzebra.com/](https://docs.fatzebra.com/)
+## Fat Zebra on APIs.io
 
-**Home market:** Australia
+Everything profiled for Fat Zebra is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fat-zebra/](https://apis.io/providers/fat-zebra/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (31)
 
-- Payments
-- Australia
-- Payment Gateway
-- Payment Processing
-- Acquiring
-- Card Payments
-- Tokenization
-- Recurring Billing
-- Direct Debit
-- Hosted Payment Pages
-- Merchant Onboarding
+- [Fat Zebra Acquirer connections API](https://apis.io/apis/fat-zebra/fat-zebra-acquirer-connections-api/) — A merchant's connections to acquirers — board, list, update, enable/disable.
+- [Fat Zebra Acquirers API](https://apis.io/apis/fat-zebra/fat-zebra-acquirers-api/) — The acquirer catalogue this partner may board onto.
+- [Fat Zebra Applicable Surcharge API](https://apis.io/apis/fat-zebra/fat-zebra-applicable-surcharge-api/) — The Applicable Surcharge API from Fat Zebra — 1 operation(s) for applicable surcharge.
+- [Fat Zebra Authenticate API](https://apis.io/apis/fat-zebra/fat-zebra-authenticate-api/) — The Authenticate API from Fat Zebra — 3 operation(s) for authenticate.
+- [Fat Zebra Bank Accounts API](https://apis.io/apis/fat-zebra/fat-zebra-bank-accounts-api/) — The Bank Accounts API from Fat Zebra — 2 operation(s) for bank accounts.
+- [Fat Zebra Batches API](https://apis.io/apis/fat-zebra/fat-zebra-batches-api/) — The Batches API from Fat Zebra — 4 operation(s) for batches.
+- [Fat Zebra Chargebacks API](https://apis.io/apis/fat-zebra/fat-zebra-chargebacks-api/) — The Chargebacks API from Fat Zebra — 4 operation(s) for chargebacks.
+- [Fat Zebra Credit Cards API](https://apis.io/apis/fat-zebra/fat-zebra-credit-cards-api/) — The Credit Cards API from Fat Zebra — 3 operation(s) for credit cards.
+- [Fat Zebra Customers API](https://apis.io/apis/fat-zebra/fat-zebra-customers-api/) — The Customers API from Fat Zebra — 3 operation(s) for customers.
+- [Fat Zebra Direct Credits API](https://apis.io/apis/fat-zebra/fat-zebra-direct-credits-api/) — The Direct Credits API from Fat Zebra — 3 operation(s) for direct credits.
+- [Fat Zebra Direct Debits API](https://apis.io/apis/fat-zebra/fat-zebra-direct-debits-api/) — The Direct Debits API from Fat Zebra — 3 operation(s) for direct debits.
+- [Fat Zebra Disputes API](https://apis.io/apis/fat-zebra/fat-zebra-disputes-api/) — The Disputes API from Fat Zebra — 1 operation(s) for disputes.
+- [Fat Zebra Fat Zebra Billing API](https://apis.io/apis/fat-zebra/fat-zebra-fat-zebra-billing-api/) — The Fat Zebra Billing API from Fat Zebra — 1 operation(s) for fat zebra billing.
+- [Fat Zebra Health API](https://apis.io/apis/fat-zebra/fat-zebra-health-api/) — The Health API from Fat Zebra — 2 operation(s) for health.
+- [Fat Zebra Invoice Imports API](https://apis.io/apis/fat-zebra/fat-zebra-invoice-imports-api/) — The Invoice Imports API from Fat Zebra — 1 operation(s) for invoice imports.
+- [Fat Zebra Invoices API](https://apis.io/apis/fat-zebra/fat-zebra-invoices-api/) — The Invoices API from Fat Zebra — 2 operation(s) for invoices.
+- [Fat Zebra Merchants API](https://apis.io/apis/fat-zebra/fat-zebra-merchants-api/) — The Merchants API from Fat Zebra — 7 operation(s) for merchants.
+- [Fat Zebra Oauth Clients API](https://apis.io/apis/fat-zebra/fat-zebra-oauth-clients-api/) — The Oauth Clients API from Fat Zebra — 1 operation(s) for oauth clients.
+- [Fat Zebra Partner API](https://apis.io/apis/fat-zebra/fat-zebra-partner-api/) — The authenticated partner (self).
+- [Fat Zebra Payment Plans API](https://apis.io/apis/fat-zebra/fat-zebra-payment-plans-api/) — The Payment Plans API from Fat Zebra — 2 operation(s) for payment plans.
+- [Fat Zebra Purchases API](https://apis.io/apis/fat-zebra/fat-zebra-purchases-api/) — The Purchases API from Fat Zebra — 11 operation(s) for purchases.
+- [Fat Zebra Refunds API](https://apis.io/apis/fat-zebra/fat-zebra-refunds-api/) — The Refunds API from Fat Zebra — 3 operation(s) for refunds.
+- [Fat Zebra Reports API](https://apis.io/apis/fat-zebra/fat-zebra-reports-api/) — The Reports API from Fat Zebra — 2 operation(s) for reports.
+- [Fat Zebra Settlement API](https://apis.io/apis/fat-zebra/fat-zebra-settlement-api/) — The Settlement API from Fat Zebra — 1 operation(s) for settlement.
+- [Fat Zebra SSO API](https://apis.io/apis/fat-zebra/fat-zebra-sso-api/) — Partner SSO enforcement — read state, enforce, disable.
+- [Fat Zebra Transactions API](https://apis.io/apis/fat-zebra/fat-zebra-transactions-api/) — The Transactions API from Fat Zebra — 2 operation(s) for transactions.
+- [Fat Zebra Users API](https://apis.io/apis/fat-zebra/fat-zebra-users-api/) — Partner dashboard users — CRUD plus deactivate/reactivate.
+- [Fat Zebra Utilities API](https://apis.io/apis/fat-zebra/fat-zebra-utilities-api/) — The Utilities API from Fat Zebra — 3 operation(s) for utilities.
+- [Fat Zebra Utlities API](https://apis.io/apis/fat-zebra/fat-zebra-utlities-api/) — The Utlities API from Fat Zebra — 1 operation(s) for utlities.
+- [Fat Zebra Pay Pal API](https://apis.io/apis/fat-zebra/fat-zebra-pay-pal-api/) — The Pay Pal API from Fat Zebra — 15 operation(s) for pay pal.
+- [Fat Zebra Webhooks API](https://apis.io/apis/fat-zebra/fat-zebra-webhooks-api/) — The Webhooks API from Fat Zebra — 2 operation(s) for webhooks.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-24
-- **Modified:** 2026-07-24
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Fat Zebra Gateway API
+Event-driven and webhook contracts.
 
-The core payments Gateway — 98 documented operations across 73 paths covering purchases, authorizations and captures, refunds and voids, card tokenization, customers and bank accounts, direct debits and direct credits, chargebacks, batches, recurring payment plans, surcharging, and webhook management. OpenAPI 3.1. Auth is HTTP Basic (username + API token).
+- [Fat Zebra Webhooks](https://apis.io/asyncapis/fat-zebra/fat-zebra-webhooks/)
 
-- **Human URL:** [https://docs.fatzebra.com/reference/purchases](https://docs.fatzebra.com/reference/purchases)
-- **Base URL:** `https://gateway.pmnts.io/v1.0`
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [OpenAPI](openapi/fat-zebra-gateway.json)
-- [Documentation](https://docs.fatzebra.com/docs/purchases-overview)
-- [API Reference](https://docs.fatzebra.com/reference/purchases)
+- [fat-zebra](https://apis.io/servers/fat-zebra/fat-zebra/)
 
-### Fat Zebra Partner API
+#### Agentic access (1)
 
-The Partner (v2) API for ISOs and software platforms to programmatically create and manage their own sub-merchants and acquirer connections — 30 operations across 22 paths covering partner self/identity, merchant create/board/lifecycle, credential rotation, acquirer connection management, SSO enforcement, and dashboard users. OpenAPI 3.1. Auth is HTTP Basic.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.fatzebra.com/docs/introduction](https://docs.fatzebra.com/docs/introduction)
-- **Base URL:** `https://gateway.pmnts.io/v2/partners`
+- [Fat Zebra Agentic Access](https://apis.io/agentic-access/fat-zebra/fat-zebra-agentic-access/)
 
-#### Properties
+#### Collections (4)
 
-- [OpenAPI](openapi/fat-zebra-partner.json)
-- [Documentation](https://docs.fatzebra.com/docs/introduction)
-- [API Reference](https://docs.fatzebra.com/reference/showself)
+Postman and Open Collection request collections.
 
-### Fat Zebra Billing API
+- [Fat Zebra Billing](https://apis.io/collections/fat-zebra/open-fat-zebra-billing/)
+- [FDMS TPP Merchant Onboarding](https://apis.io/collections/fat-zebra/open-fat-zebra-fdms-tpp-merchant-onboarding/)
+- [gateway](https://apis.io/collections/fat-zebra/open-fat-zebra-gateway/)
+- [Fat Zebra Partner API](https://apis.io/collections/fat-zebra/open-fat-zebra-partner/)
 
-An early usage-based Billing API (OpenAPI 3.0.3) exposing billing entities and a batch usage-record push for metered billing. Documented server is the sandbox host `billing.pmnts-sandbox.io`. Auth is HTTP Basic.
+#### Overlays (4)
 
-- **Human URL:** [https://docs.fatzebra.com/](https://docs.fatzebra.com/)
-- **Base URL:** `https://billing.pmnts-sandbox.io/api/v1/`
+OpenAPI overlays, including conversational phrasing for each operation.
 
-#### Properties
+- [Fat Zebra Billing Overlay](https://apis.io/overlays/fat-zebra/fat-zebra-billing-overlay/)
+- [Fat Zebra Fdms Tpp Merchant Onboarding Overlay](https://apis.io/overlays/fat-zebra/fat-zebra-fdms-tpp-merchant-onboarding-overlay/)
+- [Fat Zebra Gateway Overlay](https://apis.io/overlays/fat-zebra/fat-zebra-gateway-overlay/)
+- [Fat Zebra Partner Overlay](https://apis.io/overlays/fat-zebra/fat-zebra-partner-overlay/)
 
-- [OpenAPI](openapi/fat-zebra-billing.json)
-- [Documentation](https://docs.fatzebra.com/)
+#### Security (3)
 
-### Fat Zebra FDMS TPP Merchant Onboarding API
+Authentication, trust centre, and vulnerability disclosure.
 
-A Third-Party Processor (TPP) merchant onboarding API for the FDMS acquiring integration (OpenAPI 3.0.3) — create and list merchants and an internal onboard operation. Documented server is the sandbox host `acquiring-sandbox.fatzebra.com.au`. Auth is HTTP Basic.
+- [Fat Zebra Authentication](https://apis.io/security/fat-zebra/fat-zebra-authentication/)
+- [Fat Zebra Domain Security](https://apis.io/security/fat-zebra/fat-zebra-domain-security/)
+- [Fat Zebra Trust Center](https://apis.io/security/fat-zebra/fat-zebra-trust-center/)
 
-- **Human URL:** [https://docs.fatzebra.com/](https://docs.fatzebra.com/)
-- **Base URL:** `https://acquiring-sandbox.fatzebra.com.au/api/v1`
+## Where to find this API
 
-#### Properties
-
-- [OpenAPI](openapi/fat-zebra-fdms-tpp-merchant-onboarding.json)
-- [Documentation](https://docs.fatzebra.com/)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.fatzebra.com/)
-- [Developer Portal](https://docs.fatzebra.com/)
 - [Documentation](https://docs.fatzebra.com/docs/introduction)
-- [API Reference](https://docs.fatzebra.com/reference/purchases)
-- [Getting Started](https://docs.fatzebra.com/docs/getting-started)
-- [Change Log](https://docs.fatzebra.com/changelog/welcome-to-pmnts)
-- [GitHub Organization](https://github.com/fatzebra)
-- [Status Page](https://status.fatzebra.com/)
+- [Getting started](https://docs.fatzebra.com/docs/getting-started)
+- [API reference](https://docs.fatzebra.com/reference/purchases)
 - [Pricing](https://www.fatzebra.com/platform/pricing)
-- [Blog](https://www.fatzebra.com/company/news)
+- [Sign up](https://www.fatzebra.com/contact/sales)
 - [Support](https://www.fatzebra.com/contact/support)
+- [Changelog](https://docs.fatzebra.com/changelog/welcome-to-pmnts)
+- [Blog](https://www.fatzebra.com/company/news)
 - [Security](https://www.fatzebra.com/security)
-- [Privacy Policy](https://www.fatzebra.com/privacy-policy)
-- [Integrations](https://www.fatzebra.com/platform/integrations)
+- [Compliance](https://docs.fatzebra.com/docs/pci-certification)
+- [Privacy policy](https://www.fatzebra.com/privacy-policy)
+- [GitHub](https://github.com/fatzebra)
+- [Status](https://status.fatzebra.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 52.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 60.3 |
+| Contract governance | 18.2 |
+| Operational transparency | 43.4 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 46.1 |
+
+**Agent readiness 36.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 33.5** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fat-zebra/](https://apis.io/providers/fat-zebra/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fat Zebra: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fat-zebra/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
